@@ -4,19 +4,15 @@ Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduct
 
 ## Project structure
 
-- `app/` contains the application source.
-  - `assets/` stores global styles and other processed assets.
-  - `components/` contains auto-imported Vue components.
-  - `composables/` contains reusable composables.
-  - `layouts/` contains shared page layouts.
-  - `middleware/` contains route middleware.
-  - `pages/` contains file-based routes.
-  - `plugins/` contains Nuxt plugins.
-  - `utils/` contains shared client-side utilities.
-- `public/` contains static files served as-is.
-- `server/` contains server routes and server-only code.
-  - `api/` contains API endpoints.
-  - `middleware/`, `plugins/`, and `utils/` contain server middleware, plugins, and utilities.
+- `app/` – application source
+  - `assets/scss/` – global styles and design tokens
+  - `components/` – auto-imported components (e.g. `recipe-post/`)
+  - `layouts/` – page layouts
+  - `pages/` – file-based routes
+  - `composables/`, `middleware/`, `plugins/`, `utils/` – empty for now
+- `shared/types/` – types shared by app and server
+- `public/` – static files
+- `server/` – server
 
 ## Setup
 
@@ -53,39 +49,3 @@ yarn dev
 # bun
 bun run dev
 ```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
