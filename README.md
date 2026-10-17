@@ -2,6 +2,8 @@
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
+The current development is done for mobile view. Desktop comes later.
+
 ## Project structure
 
 - `app/` – application source

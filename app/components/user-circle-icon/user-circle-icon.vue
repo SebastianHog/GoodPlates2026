@@ -1,5 +1,5 @@
 <template>
-  <span class="user-circle-icon" :class="size" :title="user.displayName">
+  <span class="user-circle-icon" :class="`user-circle-icon--${size}`" :title="user.displayName">
     {{ user.displayName.charAt(0).toUpperCase() }}
   </span>
 </template>

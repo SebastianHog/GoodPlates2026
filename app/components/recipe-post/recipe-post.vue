@@ -1,6 +1,6 @@
 <template>
-  <div class="recipe-post-wrapper">
-    <div class="post-header">
+  <div class="recipe-post">
+    <div class="recipe-post__header">
       <user-circle-icon size="medium" :user="author" />
       <!-- 
         TODO: date style changes,
@@ -10,10 +10,10 @@
         display month and day, 
         no year if it's posted the same year. 
       -->
-      <span class="post-header__date-posted">{{ createdAt }}</span>
+      <span class="recipe-post__date-posted">{{ createdAt }}</span>
     </div>
-    <div class="post-body">
-      <img :src="image" :alt="title" class="post-body__image" />
+    <div class="recipe-post__body">
+      <img :src="image" :alt="title" class="recipe-post__image" />
     </div>
   </div>
 </template>

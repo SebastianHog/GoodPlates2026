@@ -1,9 +1,9 @@
 @use "~/assets/scss/tokens" as *;
 
-.recipe-post-wrapper {
+.recipe-post {
   border-bottom: 0.1rem solid $color-border-secondary;
 
-  .post-header {
+  &__header {
     height: 1.75rem;
     margin-bottom: $space-2;
     display: grid;
@@ -11,19 +11,17 @@
     grid-template-rows: 1fr;
     align-items: center;
     gap: $space-2;
-
-    &__date-posted {
-      font-size: $font-size-xs;
-      text-align: right;
-    }
   }
 
-  .post-body {
-    &__image {
-      display: block;
-      width: 100%;
-      aspect-ratio: 4/4;
-      object-fit: cover;
-    }
+  &__date-posted {
+    font-size: $font-size-xs;
+    text-align: right;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4/4;
+    object-fit: cover;
   }
 }
