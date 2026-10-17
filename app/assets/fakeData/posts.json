@@ -1,0 +1,87 @@
+[
+  {
+    "id": "1",
+    "author": {
+      "id": "a1",
+      "hiddenName": "mika_cooks",
+      "displayName": "Mika",
+      "email": "mika@example.com",
+      "bio": "Home cook obsessed with Japanese food.",
+      "createdAt": "2026-01-12T09:30:00Z",
+      "modifiedAt": "2026-01-12T09:30:00Z"
+    },
+    "title": "Homemade salmon nigiri",
+    "body": "Season the rice with rice vinegar, sugar and salt while it's still warm. Wet your hands, shape small ovals of rice, add a dab of wasabi and top with thin slices of sashimi-grade salmon.",
+    "image": "/fakeData/images/sushi_image.webp",
+    "createdAt": "2026-10-15T18:20:00Z",
+    "modifiedAt": "2026-10-15T18:20:00Z"
+  },
+  {
+    "id": "2",
+    "author": {
+      "id": "a2",
+      "hiddenName": "berry_jonas",
+      "displayName": "Jonas",
+      "email": "jonas@example.com",
+      "bio": "Preserving the summer one jar at a time.",
+      "createdAt": "2025-06-03T14:00:00Z",
+      "modifiedAt": "2025-06-03T14:00:00Z"
+    },
+    "title": "Quick strawberry jam",
+    "body": "Simmer 500 g strawberries with 250 g sugar and the juice of half a lemon for about 20 minutes, stirring often. Test on a cold plate: it's done when it wrinkles. Pour into clean jars.",
+    "image": "/fakeData/images/jam.webp",
+    "createdAt": "2026-07-21T10:05:00Z",
+    "modifiedAt": "2026-07-22T08:40:00Z"
+  },
+  {
+    "id": "3",
+    "author": {
+      "id": "a3",
+      "hiddenName": "saga_bakes",
+      "displayName": "Saga",
+      "email": "saga@example.com",
+      "bio": "Weekend breakfasts are my thing.",
+      "createdAt": "2025-11-20T07:45:00Z",
+      "modifiedAt": "2026-02-01T12:00:00Z"
+    },
+    "title": "Fluffy weekend pancakes",
+    "body": "Whisk 2 eggs, 3 dl milk, 2.5 dl flour, 1 tbsp sugar, 1 tsp baking powder and a pinch of salt. Rest the batter for 10 minutes, then fry small rounds in butter until golden on both sides.",
+    "image": "/fakeData/images/pancake.webp",
+    "createdAt": "2026-10-11T08:30:00Z",
+    "modifiedAt": "2026-10-11T08:30:00Z"
+  },
+  {
+    "id": "4",
+    "author": {
+      "id": "a1",
+      "hiddenName": "mika_cooks",
+      "displayName": "Mika",
+      "email": "mika@example.com",
+      "bio": "Home cook obsessed with Japanese food.",
+      "createdAt": "2026-01-12T09:30:00Z",
+      "modifiedAt": "2026-01-12T09:30:00Z"
+    },
+    "title": "Silky egg drop soup",
+    "body": "Bring chicken stock to a simmer with ginger and a splash of soy sauce. Thicken slightly with cornstarch, then slowly pour in beaten eggs while stirring gently. Finish with spring onion and sesame oil.",
+    "image": "/fakeData/images/eggsoup.webp",
+    "createdAt": "2025-12-02T19:10:00Z",
+    "modifiedAt": "2025-12-02T19:10:00Z"
+  },
+  {
+    "id": "5",
+    "author": {
+      "id": "a2",
+      "hiddenName": "berry_jonas",
+      "displayName": "Jonas",
+      "email": "jonas@example.com",
+      "bio": "Preserving the summer one jar at a time.",
+      "createdAt": "2025-06-03T14:00:00Z",
+      "modifiedAt": "2025-06-03T14:00:00Z"
+    },
+    "title": "Loaded veggie hot dogs",
+    "body": "Grill plant-based sausages until charred. Toast the buns, then top with sauerkraut, pickled red onion, crispy fried onions and a stripe of mustard and ketchup.",
+    "image": "/fakeData/images/veg-hotdog.webp",
+    "createdAt": "2026-08-30T13:45:00Z",
+    "modifiedAt": "2026-08-30T13:45:00Z"
+  }
+]
