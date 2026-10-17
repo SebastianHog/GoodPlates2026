@@ -1,8 +1,8 @@
 <template>
   <section>
-    <div class="posts-container">
+    <post-container>
       <recipe-post v-for="x in 5" :key="x" v-bind="fakePost" />
-    </div>
+    </post-container>
   </section>
 </template>
 

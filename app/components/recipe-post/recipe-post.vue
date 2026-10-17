@@ -1,5 +1,5 @@
 <template>
-  <div>{{ title }}</div>
+  <div class="recipe-post">{{ title }}</div>
 </template>
 
 <script setup lang="ts">
