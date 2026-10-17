@@ -1,4 +1,4 @@
-export interface Author {
+export interface IAuthor {
   id: string;
   hiddenName: string;
   displayName: string;

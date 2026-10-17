@@ -3,10 +3,9 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  title: String,
-  author: String,
-});
+import type { IPostContent } from "#shared/types/postContent";
+
+defineProps<IPostContent>();
 </script>
 
 <style lang="scss" src="./styles.scss"></style>
