@@ -5,14 +5,15 @@ Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduct
 ## Project structure
 
 - `app/` – application source
-  - `assets/scss/` – global styles and design tokens
-  - `components/` – auto-imported components (e.g. `recipe-post/`)
+  - `assets/` – styles, design tokens and fake data
+  - `components/` – auto-imported Vue components
+  - `composables/` – reusable composables
   - `layouts/` – page layouts
   - `pages/` – file-based routes
-  - `composables/`, `middleware/`, `plugins/`, `utils/` – empty for now
+  - `middleware/`, `plugins/`, `utils/` – empty for now
 - `shared/types/` – types shared by app and server
-- `public/` – static files
-- `server/` – server
+- `public/` – static files and images
+- `server/` – server code (empty for now)
 
 ## Setup
 
