@@ -1,5 +1,8 @@
 <template>
   <div class="recipe-post">
+    <div class="recipe-post__body">
+      <img :src="image" :alt="title" class="recipe-post__image" />
+    </div>
     <div class="recipe-post__header">
       <user-circle-icon size="medium" :user="author" />
       <!-- 
@@ -11,9 +14,6 @@
         no year if it's posted the same year. 
       -->
       <span class="recipe-post__date-posted">{{ createdAt }}</span>
-    </div>
-    <div class="recipe-post__body">
-      <img :src="image" :alt="title" class="recipe-post__image" />
     </div>
   </div>
 </template>
