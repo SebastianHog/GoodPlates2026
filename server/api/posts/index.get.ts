@@ -1,3 +1,3 @@
-export default defineEventHandler((): IPostContent[] => {
+export default defineEventHandler((): Promise<IPostContent[]> => {
   return getPosts();
 });
