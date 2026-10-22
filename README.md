@@ -25,6 +25,8 @@ My stack for this project:
 
 - NUXT_MONGODB_URI
   - Your NUXT_MONGODB_URI should look like this: mongodb://MongoDBUsername:MongoDBPassword@IP:PORT/goodplates?authSource=admin
+- NUXT_S3_ENDPOINT, NUXT_S3_ACCESS_KEY_ID, NUXT_S3_SECRET_ACCESS_KEY
+  - Images are stored in Garage, set it up with [deploy/garage/README.md](deploy/garage/README.md)
 
 ### Running locally
 

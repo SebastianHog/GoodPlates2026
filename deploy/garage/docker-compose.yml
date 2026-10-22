@@ -1,0 +1,25 @@
+services:
+  garage:
+    image: dxflrs/garage:v2.4.1
+    container_name: garage
+    restart: unless-stopped
+    command: ["/garage", "server", "--single-node", "--default-bucket"]
+    environment:
+      GARAGE_RPC_SECRET: ${GARAGE_RPC_SECRET}
+      GARAGE_ADMIN_TOKEN: ${GARAGE_ADMIN_TOKEN}
+      GARAGE_METRICS_TOKEN: ${GARAGE_METRICS_TOKEN}
+      GARAGE_DEFAULT_BUCKET: ${GARAGE_DEFAULT_BUCKET:-goodplates}
+      GARAGE_DEFAULT_ACCESS_KEY: ${GARAGE_DEFAULT_ACCESS_KEY}
+      GARAGE_DEFAULT_SECRET_KEY: ${GARAGE_DEFAULT_SECRET_KEY}
+    volumes:
+      # Absolute host paths, so this also works from stack managers that run the file elsewhere
+      - ${GARAGE_HOST_DIR:-/opt/garage}/garage.toml:/etc/garage.toml:ro
+      - ${GARAGE_HOST_DIR:-/opt/garage}/meta:/var/lib/garage/meta
+      - ${GARAGE_HOST_DIR:-/opt/garage}/data:/var/lib/garage/data
+    ports:
+      # S3 API: the Nuxt app uploads and reads through this
+      - "3900:3900"
+      # Admin API: only reachable from the server itself
+      - "127.0.0.1:3903:3903"
+      # Web endpoint for public images, enable once you have a domain:
+      # - "3902:3902"

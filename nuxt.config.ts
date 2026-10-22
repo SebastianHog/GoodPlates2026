@@ -5,6 +5,18 @@ export default defineNuxtConfig({
   css: ['~/assets/scss/main.scss'],
   runtimeConfig: {
     // Set via NUXT_MONGODB_URI in .env, server-only
-    mongodbUri: ''
+    mongodbUri: '',
+    // Set via NUXT_S3_* in .env, server-only (Garage, see deploy/garage)
+    s3: {
+      endpoint: '',
+      region: 'garage',
+      bucket: 'goodplates',
+      accessKeyId: '',
+      secretAccessKey: ''
+    },
+    public: {
+      // Where image keys are served from; change to Garage's public web domain later
+      imageBaseUrl: '/images'
+    }
   }
 })

@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1156.0",
     "mongodb": "^7.7.0",
     "mongoose": "^9.11.3",
     "nuxt": "^4.5.2",
