@@ -7,5 +7,5 @@
 </template>
 
 <script lang="ts" setup>
-const { data: posts } = usePosts();
+const { data: posts } = await usePosts();
 </script>

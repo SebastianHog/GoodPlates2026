@@ -7,7 +7,7 @@ The current development is done for mobile view. Desktop comes later.
 ## Project structure
 
 - `app/` – application source
-  - `assets/` – styles, design tokens and fake data
+  - `assets/` – styles and design tokens
   - `components/` – auto-imported Vue components
   - `composables/` – reusable composables
   - `layouts/` – page layouts
@@ -15,7 +15,11 @@ The current development is done for mobile view. Desktop comes later.
   - `middleware/`, `plugins/`, `utils/` – empty for now
 - `shared/types/` – types shared by app and server
 - `public/` – static files and images
-- `server/` – server code (empty for now)
+- `server/` – backend (Nitro)
+  - `api/` – API routes, file-based (`/api/...`)
+  - `data/` – fake data until a database is added
+  - `utils/` – auto-imported server helpers and data access
+  - `middleware/`, `plugins/` – empty for now
 
 ## Setup
 
