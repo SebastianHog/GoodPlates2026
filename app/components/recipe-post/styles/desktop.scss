@@ -9,6 +9,7 @@
   box-shadow: $shadow-sm;
 
   &__header {
+    height: auto;
     margin-block: 0;
     padding: $space-3 $space-4;
   }
