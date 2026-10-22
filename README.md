@@ -1,58 +1,41 @@
-# Nuxt Minimal Starter
+# GoodPlates
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+GoodPlates was originally my final project in school, I created a small version of a website where you could browse and post recipes.
 
-The current development is done for mobile view. Desktop comes later.
+Ever since I graduated I have still wanted to create a good version of GoodPlates, a version I could actually use. So now I decided to finally get it going.
 
-## Project structure
+The original GoodPlates is in another repo, which is why this one is called GoodPlates2026.
 
-- `app/` – application source
-  - `assets/` – styles and design tokens
-  - `components/` – auto-imported Vue components
-  - `composables/` – reusable composables
-  - `layouts/` – page layouts
-  - `pages/` – file-based routes
-  - `middleware/`, `plugins/`, `utils/` – empty for now
-- `shared/types/` – types shared by app and server
-- `public/` – static files and images
-- `server/` – backend (Nitro)
-  - `api/` – API routes, file-based (`/api/...`)
-  - `data/` – fake data until a database is added
-  - `utils/` – auto-imported server helpers and data access
-  - `middleware/`, `plugins/` – empty for now
+My stack for this project:
 
-## Setup
+**Frontend**
 
-Make sure to install dependencies:
+- Nuxt 4
+- TypeScript
+- SCSS (SASS), using BEM naming convention.
+
+**Backend**
+
+- Nitro, Nuxts build in server, for API.
+- MongoDB for the database, using the official mongodb driver.
+
+## Do this to run it locally
+
+### .env
+
+- NUXT_MONGODB_URI
+  - Your NUXT_MONGODB_URI should look like this: mongodb://MongoDBUsername:MongoDBPassword@IP:PORT/goodplates?authSource=admin
+
+### Running locally
+
+1. Install all dependencies
 
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+   npm install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+2. Start the dev server:
 
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```

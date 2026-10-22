@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "mongodb": "^7.7.0",
     "mongoose": "^9.11.3",
     "nuxt": "^4.5.2",
     "vue": "^3.5.43",
