@@ -70,17 +70,17 @@
   }
 }
 
-// Slides down from above the screen edge, eases to a stop; leaves the same way, faster
+// Slides down from above the screen and leaves the same way, faster
 .app-toast-enter-active {
   transition:
-    transform 400ms cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 200ms ease-out;
+    transform 300ms $ease-out,
+    opacity 200ms $ease-out;
 }
 
 .app-toast-leave-active {
   transition:
-    transform 200ms ease-in,
-    opacity 200ms ease-in;
+    transform 200ms $ease-out,
+    opacity 200ms $ease-out;
 }
 
 .app-toast-enter-from,
