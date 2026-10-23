@@ -69,6 +69,23 @@ export async function getPosts(
   return withViewerMarks(docs, viewerId);
 }
 
+// Following: posts by the people the viewer follows, newest first
+export async function getFollowingPosts(
+  viewerId: string,
+): Promise<IPostContent[]> {
+  const followedIds = await getFollowedIds(viewerId);
+  if (!followedIds.length) {
+    return [];
+  }
+
+  const posts = await postsCollection();
+  const docs = await posts
+    .find({ "author.id": { $in: followedIds } })
+    .sort({ createdAt: -1 })
+    .toArray();
+  return withViewerMarks(docs, viewerId);
+}
+
 // Treat the search term as plain text, not as a regex pattern
 function escapeRegex(text: string): string {
   return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");

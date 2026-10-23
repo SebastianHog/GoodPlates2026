@@ -9,5 +9,9 @@ export default defineEventHandler(async (event): Promise<IPostContent[]> => {
     return getDiscoverPosts(user?.id);
   }
 
+  if (feed === "following" && !search && !authorId) {
+    return user ? getFollowingPosts(user.id) : [];
+  }
+
   return getPosts(search, user?.id, authorId);
 });
