@@ -1,10 +1,9 @@
 import { ObjectId, type WithId } from "mongodb";
 
-// Posts made before structured recipes have `image` and `body` instead
 type PostDocument = Omit<
   IPostContent,
   "id" | "likedByMe" | "bookmarkedByMe" | "cookedByMe"
-> & { image?: string; body?: string };
+>;
 
 async function postsCollection() {
   const db = await getDb();
@@ -19,23 +18,15 @@ interface ViewerMarks {
 }
 
 function toPost(
-  { _id, image, body, ...post }: WithId<PostDocument>,
+  { _id, ...post }: WithId<PostDocument>,
   viewer: ViewerMarks = { liked: false, bookmarked: false, cooked: false },
 ): IPostContent {
   return {
     ...post,
-    likeCount: post.likeCount ?? 0,
-    cookCount: post.cookCount ?? 0,
+    id: _id.toHexString(),
     likedByMe: viewer.liked,
     bookmarkedByMe: viewer.bookmarked,
     cookedByMe: viewer.cooked,
-    id: _id.toHexString(),
-    caption: post.caption ?? "",
-    images: post.images ?? (image ? [image] : []),
-    ingredients: post.ingredients ?? [],
-    steps: post.steps ?? (body ? [body] : []),
-    servings: post.servings ?? "",
-    totalTimeMinutes: post.totalTimeMinutes ?? null,
   };
 }
 
@@ -55,7 +46,6 @@ export async function getPosts(
         "caption",
         "ingredients",
         "steps",
-        "body",
         "author.displayName",
         "author.hiddenName",
       ].map((field) => ({
@@ -135,11 +125,7 @@ export async function updatePost(
   const posts = await postsCollection();
   const doc = await posts.findOneAndUpdate(
     { _id: new ObjectId(id) },
-    // Drop the old single-image fields once a post is saved in the new shape
-    {
-      $set: { ...input, modifiedAt: new Date().toISOString() },
-      $unset: { image: "", body: "" },
-    },
+    { $set: { ...input, modifiedAt: new Date().toISOString() } },
     { returnDocument: "after" },
   );
   return doc ? toPost(doc) : null;
@@ -163,7 +149,7 @@ export async function deletePost(id: string): Promise<string[] | null> {
     ),
   );
 
-  const images = doc.images ?? (doc.image ? [doc.image] : []);
+  const images = doc.images;
   const stillUsed = await Promise.all(
     images.map((key) => posts.countDocuments({ images: key }, { limit: 1 })),
   );
