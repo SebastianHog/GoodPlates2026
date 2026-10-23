@@ -73,7 +73,11 @@ export async function createUser(input: {
     return toAuthor({ _id: insertedId, ...user });
   } catch (error) {
     if ((error as { code?: number }).code === 11000) {
-      throw createError({ statusCode: 409, statusMessage: "That email or username is already taken" });
+      throw createError({
+        statusCode: 409,
+        statusMessage: "That email or username is already taken",
+        data: { messageKey: "auth.errors.taken" },
+      });
     }
     throw error;
   }

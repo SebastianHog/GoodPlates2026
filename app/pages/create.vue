@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1 class="create-page__title">New recipe</h1>
+    <h1 class="create-page__title">{{ $t("editor.newTitle") }}</h1>
     <post-editor />
   </section>
 </template>
@@ -8,7 +8,9 @@
 <script lang="ts" setup>
 definePageMeta({ middleware: "auth" });
 
-useHead({ title: "New recipe · GoodPlates" });
+const { t } = useI18n();
+
+useHead({ title: () => t("site.pageTitle", { page: t("editor.newTitle") }) });
 </script>
 
 <style scoped>

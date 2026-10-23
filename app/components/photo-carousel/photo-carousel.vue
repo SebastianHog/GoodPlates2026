@@ -4,7 +4,7 @@
       ref="track"
       class="photo-carousel__track"
       :role="hasSeveral ? 'region' : undefined"
-      :aria-label="hasSeveral ? `${title}, ${images.length} photos` : undefined"
+      :aria-label="hasSeveral ? $t('post.photos', { title, count: images.length }) : undefined"
       :tabindex="hasSeveral ? 0 : undefined"
       @scroll.passive="onScroll"
     >
@@ -13,7 +13,7 @@
         :key="image"
         v-bind="imageSources(image)"
         :sizes="sizes"
-        :alt="hasSeveral ? `${title}, photo ${index + 1} of ${images.length}` : title"
+        :alt="hasSeveral ? $t('post.photo', { title, index: index + 1, count: images.length }) : title"
         class="photo-carousel__image"
         loading="lazy"
         decoding="async"
@@ -27,7 +27,7 @@
         class="photo-carousel__dot"
         :class="{ 'photo-carousel__dot--active': index === activeIndex }"
         type="button"
-        :aria-label="`Show photo ${index + 1}`"
+        :aria-label="$t('post.showPhoto', { index: index + 1 })"
         :aria-current="index === activeIndex || undefined"
         @click="showPhoto(index)"
       />

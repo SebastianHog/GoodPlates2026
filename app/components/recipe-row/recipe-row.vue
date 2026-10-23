@@ -16,13 +16,13 @@
       <p class="recipe-row__meta">{{ meta }}</p>
 
       <details class="recipe-row__recipe">
-        <summary class="recipe-row__toggle">Show recipe</summary>
+        <summary class="recipe-row__toggle">{{ $t("bookmarks.showRecipe") }}</summary>
         <recipe-details :caption="caption" :ingredients="ingredients" :steps="steps" :servings="servings" />
       </details>
     </div>
 
     <div class="recipe-row__actions">
-      <span v-if="!bookmarked" class="recipe-row__removed" role="status">Removed</span>
+      <span v-if="!bookmarked" class="recipe-row__removed" role="status">{{ $t("bookmarks.removed") }}</span>
       <!-- Removing keeps the row, faded, until the page is left, so a second click undoes it -->
       <bookmark-button
         size="large"
@@ -39,10 +39,12 @@
 // A bookmarked recipe as one row: photo, title, details and the bookmark toggle
 const props = defineProps<IPostContent>();
 
+const { t, locale } = useI18n();
+
 const bookmarked = ref(props.bookmarkedByMe);
 
 const meta = computed(() =>
-  [props.author.displayName, formatPostDate(props.createdAt), formatRecipeSummary(props)].filter(Boolean).join(" · "),
+  [props.author.displayName, formatPostDate(props.createdAt, locale.value), formatRecipeSummary(props, t)].filter(Boolean).join(" · "),
 );
 </script>
 

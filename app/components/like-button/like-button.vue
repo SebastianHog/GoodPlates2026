@@ -4,7 +4,7 @@
     :class="{ 'like-button--active': liked }"
     type="button"
     :aria-pressed="liked"
-    :aria-label="`${liked ? 'Unlike' : 'Like'} ${title}, ${likes} ${likes === 1 ? 'like' : 'likes'}`"
+    :aria-label="$t(liked ? 'post.unlike' : 'post.like', { title, n: likes }, likes)"
     :disabled="disabled"
     @click="toggle"
   >

@@ -5,7 +5,7 @@
     <div class="recipe-details__lists">
       <section v-if="ingredients.length">
         <h3 class="recipe-details__label">
-          Ingredients<template v-if="servings"> · {{ servings }}</template>
+          {{ $t("post.details.ingredients") }}<template v-if="servings"> · {{ servings }}</template>
         </h3>
         <ul class="recipe-details__list">
           <li v-for="(ingredient, index) in ingredients" :key="index">{{ ingredient }}</li>
@@ -13,7 +13,7 @@
       </section>
 
       <section v-if="steps.length">
-        <h3 class="recipe-details__label">Steps</h3>
+        <h3 class="recipe-details__label">{{ $t("post.details.steps") }}</h3>
         <ol class="recipe-details__list recipe-details__list--steps">
           <li v-for="(step, index) in steps" :key="index">{{ step }}</li>
         </ol>

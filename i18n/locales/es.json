@@ -1,0 +1,70 @@
+{
+  "site": { "pageTitle": "{page} · GoodPlates", "home": "Inicio de GoodPlates" },
+  "header": { "nav": "Cuenta", "newPost": "Nueva publicación", "logIn": "Entrar", "signUp": "Registrarse" },
+  "search": { "label": "Buscar recetas", "placeholder": "Buscar recetas" },
+  "accountMenu": { "account": "Cuenta", "bookmarks": "Guardados", "logOut": "Cerrar sesión" },
+  "auth": {
+    "tabsLabel": "Cuenta",
+    "login": { "tab": "Iniciar sesión", "pageTitle": "Iniciar sesión", "title": "Bienvenido de nuevo", "subtitle": "Inicia sesión para compartir tus recetas.", "submit": "Iniciar sesión", "pending": "Iniciando sesión…" },
+    "signup": { "tab": "Registrarse", "pageTitle": "Registrarse", "title": "Únete a GoodPlates", "subtitle": "Publica lo que cocinas y descubre lo que preparan los demás.", "submit": "Crear cuenta", "pending": "Creando cuenta…" },
+    "fields": { "name": "Nombre", "username": "Nombre de usuario", "email": "Correo electrónico", "emailPlaceholder": "tu{'@'}ejemplo.com", "password": "Contraseña", "passwordHint": "Al menos 8 caracteres.", "showPassword": "Mostrar", "hidePassword": "Ocultar", "passwordSuffix": "contraseña" },
+    "errors": {
+      "wrongLogin": "Correo o contraseña incorrectos. Inténtalo de nuevo.",
+      "signupFailed": "No se pudo crear tu cuenta. Inténtalo de nuevo.",
+      "nameLength": "El nombre debe tener entre 1 y 40 caracteres.",
+      "usernameFormat": "El nombre de usuario debe tener entre 3 y 20 caracteres: a–z, 0–9 y _.",
+      "emailInvalid": "Introduce un correo electrónico válido.",
+      "passwordLength": "La contraseña debe tener entre 8 y 128 caracteres.",
+      "taken": "Ese correo o nombre de usuario ya está en uso."
+    }
+  },
+  "feed": { "matching": "Recetas que coinciden con «{query}»", "noMatches": "Ninguna receta coincide con «{query}».", "showAll": "Ver todas" },
+  "post": {
+    "edit": "Editar",
+    "photos": "{title}, {count} fotos",
+    "photo": "{title}, foto {index} de {count}",
+    "showPhoto": "Ver foto {index}",
+    "like": "Me gusta {title}, {n} me gusta | Me gusta {title}, {n} me gusta",
+    "unlike": "Quitar me gusta de {title}, {n} me gusta | Quitar me gusta de {title}, {n} me gusta",
+    "bookmark": "Guardar {title}",
+    "removeBookmark": "Quitar {title} de guardados",
+    "bookmarkTooltip": "Guardar",
+    "removeBookmarkTooltip": "Quitar de guardados",
+    "summary": { "ingredients": "{n} ingrediente | {n} ingredientes", "steps": "{n} paso | {n} pasos", "minutes": "{n} min" },
+    "details": { "ingredients": "Ingredientes", "steps": "Preparación" }
+  },
+  "bookmarks": { "title": "Guardados", "empty": "Aún no tienes recetas guardadas. Toca el icono de guardar en cualquier receta del inicio para tenerla aquí.", "browse": "Ver recetas", "showRecipe": "Ver receta", "removed": "Quitada" },
+  "editor": {
+    "newTitle": "Nueva receta", "editTitle": "Editar receta", "editPageTitle": "Editar {title}",
+    "notFound": "No se encontró esta receta.", "notYours": "Solo puedes editar tus propias recetas.",
+    "recipe": "Receta", "draftRestored": "Se ha recuperado tu borrador sin terminar.", "startOver": "Empezar de nuevo",
+    "title": "Título", "titlePlaceholder": "Título de la receta",
+    "description": "Descripción", "descriptionPlaceholder": "Escribe lo que quieras sobre esta receta: una nota rápida, su historia, consejos… (opcional)",
+    "servings": "Raciones", "servingsPlaceholder": "p. ej. 4 tarros", "totalTime": "Tiempo total", "minutes": "min",
+    "ingredients": "Ingredientes", "ingredient": "Ingrediente", "addIngredient": "Añadir ingrediente", "ingredientPlaceholder": "500 g de fresas",
+    "steps": "Pasos", "step": "Paso", "addStep": "Añadir paso", "stepPlaceholder": "Quita el rabito a las fresas y córtalas por la mitad.",
+    "previewHeading": "Así se verá en el inicio", "previewTitle": "Título de la receta",
+    "discardChanges": "Descartar cambios", "preview": "Vista previa", "backToEditing": "Volver a editar",
+    "post": "Publicar receta", "posting": "Publicando…", "save": "Guardar cambios", "saving": "Guardando…", "uploadingPhotos": "Subiendo fotos…",
+    "draftSaved": "Borrador guardado en este navegador · {time}",
+    "leaveConfirm": "¿Salir sin guardar los cambios?",
+    "saveFailed": "No se pudo guardar tu receta. Sigue aquí; inténtalo de nuevo.",
+    "photoFailed": "No se pudo subir una foto. Vuelve a intentarlo o quítala."
+  },
+  "list": { "moveUp": "Subir {item} {index}", "moveDown": "Bajar {item} {index}", "remove": "Quitar {item} {index}" },
+  "photos": {
+    "heading": "Fotos", "cover": "Portada", "coverAlt": "Foto de portada", "thumbAlt": "Foto {index}",
+    "add": "Añade fotos de tu plato", "addHint": "Arrástralas aquí o elige archivos · hasta {max}", "addMore": "Añadir fotos",
+    "uploading": "Subiendo…", "failed": "Error", "retry": "Reintentar",
+    "moveLeft": "Mover foto {index} a la izquierda", "moveRight": "Mover foto {index} a la derecha", "remove": "Quitar foto {index}",
+    "count": "{count} de {max} fotos", "reorderHint": "la primera es la portada; arrastra o usa las flechas para reordenar",
+    "tooMany": "Solo caben {max} fotos; se omitieron las demás"
+  },
+  "validation": {
+    "photosRequired": "Añade al menos una foto", "photosMax": "Añade como máximo {photos} fotos", "photoBroken": "Una foto no se subió correctamente",
+    "titleRequired": "Ponle un título a tu receta", "titleMax": "El título debe tener menos de {title} caracteres", "captionMax": "La descripción debe tener menos de {caption} caracteres",
+    "ingredientsRequired": "Añade al menos un ingrediente", "ingredientsMax": "Añade como máximo {ingredients} ingredientes", "ingredientTooLong": "Un ingrediente es demasiado largo",
+    "stepsRequired": "Añade al menos un paso", "stepsMax": "Añade como máximo {steps} pasos", "stepTooLong": "Un paso es demasiado largo",
+    "servingsMax": "Las raciones deben tener menos de {servings} caracteres", "timeInvalid": "Indica el tiempo en minutos enteros"
+  }
+}

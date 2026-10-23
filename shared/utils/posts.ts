@@ -12,7 +12,8 @@ export const POST_LIMITS = {
 
 export type PostField = "images" | "title" | "caption" | "ingredients" | "steps" | "servings" | "totalTimeMinutes";
 
-// Checks a create/edit form, returning the cleaned post or the first problem per field
+// Checks a create/edit form, returning the cleaned post or the first problem per field.
+// Problems are i18n keys (see i18n/locales); translate them with POST_LIMITS as the values.
 export function validatePostInput(
   raw: unknown,
 ): { data: PostInput; errors: null } | { data: null; errors: Partial<Record<PostField, string>> } {
@@ -32,30 +33,30 @@ export function validatePostInput(
   const time = body.totalTimeMinutes;
   const totalTimeMinutes = time === null || time === undefined || time === "" ? null : Number(time);
 
-  if (images.length === 0) errors.images = "Add at least one photo";
-  else if (images.length > POST_LIMITS.photos) errors.images = `Add at most ${POST_LIMITS.photos} photos`;
-  else if (!images.every((key) => IMAGE_KEY_PATTERN.test(key))) errors.images = "A photo did not upload correctly";
+  if (images.length === 0) errors.images = "validation.photosRequired";
+  else if (images.length > POST_LIMITS.photos) errors.images = "validation.photosMax";
+  else if (!images.every((key) => IMAGE_KEY_PATTERN.test(key))) errors.images = "validation.photoBroken";
 
-  if (!title) errors.title = "Give your recipe a title";
-  else if (title.length > POST_LIMITS.title) errors.title = `Keep the title under ${POST_LIMITS.title} characters`;
+  if (!title) errors.title = "validation.titleRequired";
+  else if (title.length > POST_LIMITS.title) errors.title = "validation.titleMax";
 
-  if (caption.length > POST_LIMITS.caption) errors.caption = `Keep the description under ${POST_LIMITS.caption} characters`;
+  if (caption.length > POST_LIMITS.caption) errors.caption = "validation.captionMax";
 
-  if (ingredients.length === 0) errors.ingredients = "Add at least one ingredient";
-  else if (ingredients.length > POST_LIMITS.ingredients) errors.ingredients = `Add at most ${POST_LIMITS.ingredients} ingredients`;
-  else if (ingredients.some((line) => line.length > POST_LIMITS.line)) errors.ingredients = "One ingredient is too long";
+  if (ingredients.length === 0) errors.ingredients = "validation.ingredientsRequired";
+  else if (ingredients.length > POST_LIMITS.ingredients) errors.ingredients = "validation.ingredientsMax";
+  else if (ingredients.some((line) => line.length > POST_LIMITS.line)) errors.ingredients = "validation.ingredientTooLong";
 
-  if (steps.length === 0) errors.steps = "Add at least one step";
-  else if (steps.length > POST_LIMITS.steps) errors.steps = `Add at most ${POST_LIMITS.steps} steps`;
-  else if (steps.some((line) => line.length > POST_LIMITS.line)) errors.steps = "One step is too long";
+  if (steps.length === 0) errors.steps = "validation.stepsRequired";
+  else if (steps.length > POST_LIMITS.steps) errors.steps = "validation.stepsMax";
+  else if (steps.some((line) => line.length > POST_LIMITS.line)) errors.steps = "validation.stepTooLong";
 
-  if (servings.length > POST_LIMITS.servings) errors.servings = `Keep servings under ${POST_LIMITS.servings} characters`;
+  if (servings.length > POST_LIMITS.servings) errors.servings = "validation.servingsMax";
 
   if (
     totalTimeMinutes !== null &&
     (!Number.isInteger(totalTimeMinutes) || totalTimeMinutes < 1 || totalTimeMinutes > POST_LIMITS.totalTimeMinutes)
   ) {
-    errors.totalTimeMinutes = "Enter the time in whole minutes";
+    errors.totalTimeMinutes = "validation.timeInvalid";
   }
 
   if (Object.keys(errors).length > 0) {

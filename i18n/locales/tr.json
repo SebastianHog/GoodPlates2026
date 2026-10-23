@@ -1,0 +1,70 @@
+{
+  "site": { "pageTitle": "{page} · GoodPlates", "home": "GoodPlates ana sayfa" },
+  "header": { "nav": "Hesap", "newPost": "Yeni gönderi", "logIn": "Giriş yap", "signUp": "Kayıt ol" },
+  "search": { "label": "Tarif ara", "placeholder": "Tarif ara" },
+  "accountMenu": { "account": "Hesap", "bookmarks": "Yer imleri", "logOut": "Çıkış yap" },
+  "auth": {
+    "tabsLabel": "Hesap",
+    "login": { "tab": "Giriş yap", "pageTitle": "Giriş yap", "title": "Tekrar hoş geldin", "subtitle": "Tariflerini paylaşmak için giriş yap.", "submit": "Giriş yap", "pending": "Giriş yapılıyor…" },
+    "signup": { "tab": "Kayıt ol", "pageTitle": "Kayıt ol", "title": "GoodPlates'e katıl", "subtitle": "Pişirdiklerini paylaş, başkalarının neler yaptığını gör.", "submit": "Hesap oluştur", "pending": "Hesap oluşturuluyor…" },
+    "fields": { "name": "Ad", "username": "Kullanıcı adı", "email": "E-posta", "emailPlaceholder": "sen{'@'}ornek.com", "password": "Şifre", "passwordHint": "En az 8 karakter.", "showPassword": "Göster", "hidePassword": "Gizle", "passwordSuffix": "şifre" },
+    "errors": {
+      "wrongLogin": "E-posta veya şifre yanlış. Lütfen tekrar dene.",
+      "signupFailed": "Hesabın oluşturulamadı. Lütfen tekrar dene.",
+      "nameLength": "Ad 1–40 karakter olmalı.",
+      "usernameFormat": "Kullanıcı adı 3–20 karakter olmalı: a–z, 0–9 ve _.",
+      "emailInvalid": "Geçerli bir e-posta adresi gir.",
+      "passwordLength": "Şifre 8–128 karakter olmalı.",
+      "taken": "Bu e-posta veya kullanıcı adı zaten kullanılıyor."
+    }
+  },
+  "feed": { "matching": "“{query}” ile eşleşen tarifler", "noMatches": "“{query}” ile eşleşen tarif yok.", "showAll": "Tümünü göster" },
+  "post": {
+    "edit": "Düzenle",
+    "photos": "{title}, {count} fotoğraf",
+    "photo": "{title}, fotoğraf {index}/{count}",
+    "showPhoto": "{index}. fotoğrafı göster",
+    "like": "{title} tarifini beğen, {n} beğeni | {title} tarifini beğen, {n} beğeni",
+    "unlike": "{title} beğenisini geri al, {n} beğeni | {title} beğenisini geri al, {n} beğeni",
+    "bookmark": "{title} tarifini yer imlerine ekle",
+    "removeBookmark": "{title} tarifini yer imlerinden kaldır",
+    "bookmarkTooltip": "Yer imlerine ekle",
+    "removeBookmarkTooltip": "Yer iminden kaldır",
+    "summary": { "ingredients": "{n} malzeme | {n} malzeme", "steps": "{n} adım | {n} adım", "minutes": "{n} dk" },
+    "details": { "ingredients": "Malzemeler", "steps": "Hazırlanışı" }
+  },
+  "bookmarks": { "title": "Yer imleri", "empty": "Henüz yer imi yok. Akıştaki bir tarifin yer imi simgesine dokunarak buraya kaydet.", "browse": "Tariflere göz at", "showRecipe": "Tarifi göster", "removed": "Kaldırıldı" },
+  "editor": {
+    "newTitle": "Yeni tarif", "editTitle": "Tarifi düzenle", "editPageTitle": "{title} düzenle",
+    "notFound": "Bu tarif bulunamadı.", "notYours": "Yalnızca kendi tariflerini düzenleyebilirsin.",
+    "recipe": "Tarif", "draftRestored": "Yarım kalan taslağın geri yüklendi.", "startOver": "Baştan başla",
+    "title": "Başlık", "titlePlaceholder": "Tarif başlığı",
+    "description": "Açıklama", "descriptionPlaceholder": "Bu tarif hakkında istediğini yaz: kısa bir not, arkasındaki hikâye, ipuçları… (isteğe bağlı)",
+    "servings": "Porsiyon", "servingsPlaceholder": "örn. 4 kavanoz", "totalTime": "Toplam süre", "minutes": "dk",
+    "ingredients": "Malzemeler", "ingredient": "Malzeme", "addIngredient": "Malzeme ekle", "ingredientPlaceholder": "500 g çilek",
+    "steps": "Adımlar", "step": "Adım", "addStep": "Adım ekle", "stepPlaceholder": "Çileklerin saplarını ayıklayıp ikiye kesin.",
+    "previewHeading": "Akışta böyle görünecek", "previewTitle": "Tarif başlığı",
+    "discardChanges": "Değişiklikleri at", "preview": "Önizle", "backToEditing": "Düzenlemeye dön",
+    "post": "Tarifi paylaş", "posting": "Paylaşılıyor…", "save": "Değişiklikleri kaydet", "saving": "Kaydediliyor…", "uploadingPhotos": "Fotoğraflar yükleniyor…",
+    "draftSaved": "Taslak bu tarayıcıya kaydedildi · {time}",
+    "leaveConfirm": "Değişikliklerini kaydetmeden çıkmak istiyor musun?",
+    "saveFailed": "Tarifin kaydedilemedi. Hâlâ burada; tekrar dene.",
+    "photoFailed": "Bir fotoğraf yüklenemedi. Tekrar dene ya da kaldır."
+  },
+  "list": { "moveUp": "{item} {index} yukarı taşı", "moveDown": "{item} {index} aşağı taşı", "remove": "{item} {index} kaldır" },
+  "photos": {
+    "heading": "Fotoğraflar", "cover": "Kapak", "coverAlt": "Kapak fotoğrafı", "thumbAlt": "Fotoğraf {index}",
+    "add": "Yemeğinin fotoğraflarını ekle", "addHint": "Buraya sürükle ya da dosya seç · en fazla {max}", "addMore": "Fotoğraf ekle",
+    "uploading": "Yükleniyor…", "failed": "Başarısız", "retry": "Tekrar dene",
+    "moveLeft": "{index}. fotoğrafı sola taşı", "moveRight": "{index}. fotoğrafı sağa taşı", "remove": "{index}. fotoğrafı kaldır",
+    "count": "{count}/{max} fotoğraf", "reorderHint": "ilki kapak fotoğrafıdır, sıralamak için sürükle ya da okları kullan",
+    "tooMany": "Yalnızca {max} fotoğraf sığar; kalanlar atlandı"
+  },
+  "validation": {
+    "photosRequired": "En az bir fotoğraf ekle", "photosMax": "En fazla {photos} fotoğraf ekle", "photoBroken": "Bir fotoğraf düzgün yüklenmedi",
+    "titleRequired": "Tarifine bir başlık ver", "titleMax": "Başlık {title} karakterden kısa olmalı", "captionMax": "Açıklama {caption} karakterden kısa olmalı",
+    "ingredientsRequired": "En az bir malzeme ekle", "ingredientsMax": "En fazla {ingredients} malzeme ekle", "ingredientTooLong": "Bir malzeme çok uzun",
+    "stepsRequired": "En az bir adım ekle", "stepsMax": "En fazla {steps} adım ekle", "stepTooLong": "Bir adım çok uzun",
+    "servingsMax": "Porsiyon {servings} karakterden kısa olmalı", "timeInvalid": "Süreyi tam dakika olarak gir"
+  }
+}

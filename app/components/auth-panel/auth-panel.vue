@@ -3,7 +3,7 @@
     <segmented-tabs
       v-model="tab"
       :tabs="tabs"
-      label="Account"
+      :label="$t('auth.tabsLabel')"
       panel-id="auth-panel"
       id-prefix="auth-tab"
     />
@@ -16,15 +16,13 @@
     @submit.prevent="submit"
   >
     <div class="auth-panel__intro">
-      <h1 class="auth-panel__title">{{ copy.title }}</h1>
-      <p class="auth-panel__subtitle">{{ copy.subtitle }}</p>
+      <h1 class="auth-panel__title">{{ $t(`auth.${tab}.title`) }}</h1>
+      <p class="auth-panel__subtitle">{{ $t(`auth.${tab}.subtitle`) }}</p>
     </div>
 
     <template v-if="tab === 'signup'">
       <div class="auth-panel__field">
-        <label class="auth-panel__label" for="auth-display-name"
-          >Name</label
-        >
+        <label class="auth-panel__label" for="auth-display-name">{{ $t("auth.fields.name") }}</label>
         <input
           id="auth-display-name"
           v-model="displayName"
@@ -37,7 +35,7 @@
       </div>
 
       <div class="auth-panel__field">
-        <label class="auth-panel__label" for="auth-handle">Username</label>
+        <label class="auth-panel__label" for="auth-handle">{{ $t("auth.fields.username") }}</label>
         <div class="auth-panel__affix">
           <span class="auth-panel__prefix" aria-hidden="true">@</span>
           <input
@@ -61,20 +59,20 @@
     </template>
 
     <div class="auth-panel__field">
-      <label class="auth-panel__label" for="auth-email">Email</label>
+      <label class="auth-panel__label" for="auth-email">{{ $t("auth.fields.email") }}</label>
       <input
         id="auth-email"
         v-model="email"
         class="auth-panel__input"
         type="email"
         autocomplete="email"
-        placeholder="you@example.com"
+        :placeholder="$t('auth.fields.emailPlaceholder')"
         required
       />
     </div>
 
     <div class="auth-panel__field">
-      <label class="auth-panel__label" for="auth-password">Password</label>
+      <label class="auth-panel__label" for="auth-password">{{ $t("auth.fields.password") }}</label>
       <div class="auth-panel__affix">
         <input
           id="auth-password"
@@ -96,8 +94,8 @@
           aria-controls="auth-password"
           @click="showPassword = !showPassword"
         >
-          {{ showPassword ? "Hide" : "Show"
-          }}<span class="visually-hidden"> password</span>
+          {{ $t(showPassword ? "auth.fields.hidePassword" : "auth.fields.showPassword") }}
+          <span class="visually-hidden">{{ $t("auth.fields.passwordSuffix") }}</span>
         </button>
       </div>
       <p
@@ -105,14 +103,14 @@
         id="auth-password-hint"
         class="auth-panel__hint"
       >
-        At least 8 characters.
+        {{ $t("auth.fields.passwordHint") }}
       </p>
     </div>
 
     <p v-if="error" class="auth-panel__error" role="alert">{{ error }}</p>
 
     <button class="auth-panel__submit" type="submit" :disabled="pending">
-      {{ pending ? copy.pending : copy.submit }}
+      {{ $t(`auth.${tab}.${pending ? "pending" : "submit"}`) }}
     </button>
   </form>
   </div>
@@ -122,25 +120,12 @@
 // The log in / sign up tabs and their form
 type Tab = "login" | "signup";
 
-const tabs: { id: Tab; label: string }[] = [
-  { id: "login", label: "Log in" },
-  { id: "signup", label: "Sign up" },
-];
+const { t } = useI18n();
 
-const content = {
-  login: {
-    title: "Welcome back",
-    subtitle: "Log in to share your recipes.",
-    submit: "Log in",
-    pending: "Logging in…",
-  },
-  signup: {
-    title: "Join GoodPlates",
-    subtitle: "Post what you cook and see what others are making.",
-    submit: "Create account",
-    pending: "Creating account…",
-  },
-};
+const tabs = computed<{ id: Tab; label: string }[]>(() => [
+  { id: "login", label: t("auth.login.tab") },
+  { id: "signup", label: t("auth.signup.tab") },
+]);
 
 const route = useRoute();
 const router = useRouter();
@@ -153,7 +138,6 @@ watch(
   () => route.query.tab,
   (value) => (tab.value = value === "signup" ? "signup" : "login"),
 );
-const copy = computed(() => content[tab.value]);
 
 const displayName = ref("");
 const handle = ref("");
@@ -192,16 +176,14 @@ async function submit() {
     await refreshSession();
     await navigateTo("/");
   } catch (e) {
-    const { statusCode, statusMessage } = e as {
-      statusCode?: number;
-      statusMessage?: string;
-    };
+    // The server names the problem with an i18n key when it is something the user can fix
+    const { data } = e as { data?: { data?: { messageKey?: string } } };
+    const messageKey = data?.data?.messageKey;
+
     if (tab.value === "login") {
-      error.value = "Wrong email or password. Please try again.";
-    } else if (statusCode === 400 || statusCode === 409) {
-      error.value = `${statusMessage}.`;
+      error.value = t("auth.errors.wrongLogin");
     } else {
-      error.value = "Could not create your account. Please try again.";
+      error.value = messageKey ? t(messageKey) : t("auth.errors.signupFailed");
     }
   } finally {
     pending.value = false;

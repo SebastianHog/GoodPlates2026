@@ -9,7 +9,7 @@
       @click="open = !open"
     >
       <user-circle-icon size="medium" :user="user" />
-      <span class="visually-hidden">Account</span>
+      <span class="visually-hidden">{{ $t("accountMenu.account") }}</span>
       <app-icon name="chevron-down" class="account-menu__chevron" />
     </button>
 
@@ -18,8 +18,8 @@
         <span class="account-menu__name">{{ user.displayName }}</span>
         <span class="account-menu__handle">@{{ user.hiddenName }}</span>
       </p>
-      <NuxtLink to="/bookmarks" class="account-menu__item">Bookmarks</NuxtLink>
-      <button class="account-menu__item" type="button" @click="logout">Log out</button>
+      <NuxtLink to="/bookmarks" class="account-menu__item">{{ $t("accountMenu.bookmarks") }}</NuxtLink>
+      <button class="account-menu__item" type="button" @click="logout">{{ $t("accountMenu.logOut") }}</button>
     </div>
   </div>
 </template>

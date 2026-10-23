@@ -9,7 +9,9 @@ definePageMeta({ middleware: "guest" });
 
 const route = useRoute();
 
+const { t } = useI18n();
+
 useHead({
-  title: () => (route.query.tab === "signup" ? "Sign up · GoodPlates" : "Log in · GoodPlates"),
+  title: () => t("site.pageTitle", { page: t(route.query.tab === "signup" ? "auth.signup.pageTitle" : "auth.login.pageTitle") }),
 });
 </script>

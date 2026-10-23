@@ -1,6 +1,6 @@
 <template>
   <form class="search-field" role="search" @submit.prevent="search">
-    <label class="visually-hidden" for="site-search">Search recipes</label>
+    <label class="visually-hidden" for="site-search">{{ $t("search.label") }}</label>
     <app-icon name="search" class="search-field__icon" />
     <input
       id="site-search"
@@ -8,7 +8,7 @@
       class="search-field__input"
       type="search"
       name="q"
-      placeholder="Search recipes"
+      :placeholder="$t('search.placeholder')"
       enterkeyhint="search"
       maxlength="100"
     />

@@ -7,10 +7,10 @@
     @dragleave="draggingFiles = false"
     @drop.prevent="onDrop"
   >
-    <h2 id="photo-picker-heading" class="visually-hidden">Photos</h2>
+    <h2 id="photo-picker-heading" class="visually-hidden">{{ $t("photos.heading") }}</h2>
 
     <div class="photo-picker__cover">
-      <img v-if="photos[0]" :src="photos[0].preview" alt="Cover photo" class="photo-picker__cover-image" />
+      <img v-if="photos[0]" :src="photos[0].preview" :alt="$t('photos.coverAlt')" class="photo-picker__cover-image" />
       <button
         v-else
         :id="inputId"
@@ -21,8 +21,8 @@
         @click="chooseFiles"
       >
         <app-icon name="photo" class="photo-picker__dropzone-icon" />
-        <span class="photo-picker__dropzone-title">Add photos of your dish</span>
-        <span class="photo-picker__dropzone-hint">Drag them here or choose files · up to {{ POST_LIMITS.photos }}</span>
+        <span class="photo-picker__dropzone-title">{{ $t("photos.add") }}</span>
+        <span class="photo-picker__dropzone-hint">{{ $t("photos.addHint", { max: POST_LIMITS.photos }) }}</span>
       </button>
     </div>
 
@@ -40,13 +40,13 @@
         @dragover.prevent
         @drop.prevent.stop="onThumbDrop(index)"
       >
-        <img :src="photo.preview" :alt="`Photo ${index + 1}`" class="photo-picker__thumb-image" />
-        <span v-if="index === 0" class="photo-picker__badge">Cover</span>
+        <img :src="photo.preview" :alt="$t('photos.thumbAlt', { index: index + 1 })" class="photo-picker__thumb-image" />
+        <span v-if="index === 0" class="photo-picker__badge">{{ $t("photos.cover") }}</span>
 
-        <span v-if="photo.status === 'uploading'" class="photo-picker__status">Uploading…</span>
+        <span v-if="photo.status === 'uploading'" class="photo-picker__status">{{ $t("photos.uploading") }}</span>
         <span v-else-if="photo.status === 'error'" class="photo-picker__status">
-          Failed
-          <button class="photo-picker__retry" type="button" @click="upload(photo)">Retry</button>
+          {{ $t("photos.failed") }}
+          <button class="photo-picker__retry" type="button" @click="upload(photo)">{{ $t("photos.retry") }}</button>
         </span>
 
         <div class="photo-picker__actions">
@@ -54,7 +54,7 @@
             class="photo-picker__action"
             type="button"
             :disabled="index === 0"
-            :aria-label="`Move photo ${index + 1} left`"
+            :aria-label="$t('photos.moveLeft', { index: index + 1 })"
             @click="move(index, -1)"
           >
             <app-icon name="chevron-left" />
@@ -63,12 +63,12 @@
             class="photo-picker__action"
             type="button"
             :disabled="index === photos.length - 1"
-            :aria-label="`Move photo ${index + 1} right`"
+            :aria-label="$t('photos.moveRight', { index: index + 1 })"
             @click="move(index, 1)"
           >
             <app-icon name="chevron-right" />
           </button>
-          <button class="photo-picker__action" type="button" :aria-label="`Remove photo ${index + 1}`" @click="remove(index)">
+          <button class="photo-picker__action" type="button" :aria-label="$t('photos.remove', { index: index + 1 })" @click="remove(index)">
             <app-icon name="close" />
           </button>
         </div>
@@ -77,14 +77,14 @@
       <li v-if="photos.length > 0 && photos.length < POST_LIMITS.photos" class="photo-picker__thumb">
         <button class="photo-picker__add" type="button" @click="chooseFiles">
           <app-icon name="plus" />
-          <span class="visually-hidden">Add photos</span>
+          <span class="visually-hidden">{{ $t("photos.addMore") }}</span>
         </button>
       </li>
     </ul>
 
     <p class="photo-picker__count">
-      {{ photos.length }} of {{ POST_LIMITS.photos }} photos
-      <template v-if="photos.length > 1">· first is the cover, drag or use the arrows to reorder</template>
+      {{ $t("photos.count", { count: photos.length, max: POST_LIMITS.photos }) }}
+      <template v-if="photos.length > 1">· {{ $t("photos.reorderHint") }}</template>
     </p>
     <p v-if="error || notice" :id="`${inputId}-error`" class="photo-picker__error">{{ error || notice }}</p>
 
@@ -113,6 +113,8 @@ defineProps<{
 
 const photos = defineModel<EditorPhoto[]>({ required: true });
 
+const { t } = useI18n();
+
 const fileInput = ref<HTMLInputElement>();
 const draggingFiles = ref(false);
 const dragIndex = ref<number | null>(null);
@@ -128,7 +130,7 @@ function addFiles(files: FileList | File[]) {
   const room = POST_LIMITS.photos - photos.value.length;
   const chosen = Array.from(files).filter((file) => file.type.startsWith("image/"));
 
-  notice.value = chosen.length > room ? `Only ${POST_LIMITS.photos} photos fit; the rest were skipped` : "";
+  notice.value = chosen.length > room ? t("photos.tooMany", { max: POST_LIMITS.photos }) : "";
 
   const added = chosen.slice(0, room).map((file) =>
     reactive<EditorPhoto>({

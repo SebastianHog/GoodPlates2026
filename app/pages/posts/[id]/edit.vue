@@ -1,9 +1,9 @@
 <template>
   <section>
-    <h1 class="edit-page__title">Edit recipe</h1>
-    <p v-if="error" class="edit-page__message">This recipe could not be found.</p>
+    <h1 class="edit-page__title">{{ $t("editor.editTitle") }}</h1>
+    <p v-if="error" class="edit-page__message">{{ $t("editor.notFound") }}</p>
     <p v-else-if="post && post.author.id !== user?.id" class="edit-page__message">
-      You can only edit your own recipes.
+      {{ $t("editor.notYours") }}
     </p>
     <post-editor v-else-if="post" :post="post" />
   </section>
@@ -16,7 +16,14 @@ const route = useRoute();
 const { user } = useUserSession();
 const { data: post, error } = await useFetch<IPostContent>(`/api/posts/${route.params.id}`);
 
-useHead({ title: () => `Edit ${post.value?.title ?? "recipe"} · GoodPlates` });
+const { t } = useI18n();
+
+useHead({
+  title: () =>
+    t("site.pageTitle", {
+      page: post.value ? t("editor.editPageTitle", { title: post.value.title }) : t("editor.editTitle"),
+    }),
+});
 </script>
 
 <style scoped>

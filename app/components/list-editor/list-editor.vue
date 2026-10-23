@@ -23,7 +23,7 @@
             class="list-editor__action"
             type="button"
             :disabled="index === 0"
-            :aria-label="`Move ${itemLabel.toLowerCase()} ${index + 1} up`"
+            :aria-label="$t('list.moveUp', { item: itemLabel.toLocaleLowerCase(), index: index + 1 })"
             @click="move(index, -1)"
           >
             <app-icon name="chevron-up" />
@@ -32,7 +32,7 @@
             class="list-editor__action"
             type="button"
             :disabled="index === modelValue.length - 1"
-            :aria-label="`Move ${itemLabel.toLowerCase()} ${index + 1} down`"
+            :aria-label="$t('list.moveDown', { item: itemLabel.toLocaleLowerCase(), index: index + 1 })"
             @click="move(index, 1)"
           >
             <app-icon name="chevron-down" />
@@ -41,7 +41,7 @@
             class="list-editor__action"
             type="button"
             :disabled="modelValue.length === 1"
-            :aria-label="`Remove ${itemLabel.toLowerCase()} ${index + 1}`"
+            :aria-label="$t('list.remove', { item: itemLabel.toLocaleLowerCase(), index: index + 1 })"
             @click="remove(index)"
           >
             <app-icon name="close" />

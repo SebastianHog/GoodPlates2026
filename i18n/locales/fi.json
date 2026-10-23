@@ -1,0 +1,70 @@
+{
+  "site": { "pageTitle": "{page} · GoodPlates", "home": "GoodPlates etusivu" },
+  "header": { "nav": "Tili", "newPost": "Uusi julkaisu", "logIn": "Kirjaudu", "signUp": "Luo tili" },
+  "search": { "label": "Hae reseptejä", "placeholder": "Hae reseptejä" },
+  "accountMenu": { "account": "Tili", "bookmarks": "Kirjanmerkit", "logOut": "Kirjaudu ulos" },
+  "auth": {
+    "tabsLabel": "Tili",
+    "login": { "tab": "Kirjaudu", "pageTitle": "Kirjaudu", "title": "Tervetuloa takaisin", "subtitle": "Kirjaudu jakaaksesi reseptejäsi.", "submit": "Kirjaudu", "pending": "Kirjaudutaan…" },
+    "signup": { "tab": "Luo tili", "pageTitle": "Luo tili", "title": "Liity GoodPlatesiin", "subtitle": "Julkaise mitä kokkaat ja katso, mitä muut tekevät.", "submit": "Luo tili", "pending": "Luodaan tiliä…" },
+    "fields": { "name": "Nimi", "username": "Käyttäjänimi", "email": "Sähköposti", "emailPlaceholder": "sina{'@'}esimerkki.fi", "password": "Salasana", "passwordHint": "Vähintään 8 merkkiä.", "showPassword": "Näytä", "hidePassword": "Piilota", "passwordSuffix": "salasana" },
+    "errors": {
+      "wrongLogin": "Väärä sähköposti tai salasana. Yritä uudelleen.",
+      "signupFailed": "Tilin luominen epäonnistui. Yritä uudelleen.",
+      "nameLength": "Nimen pituuden on oltava 1–40 merkkiä.",
+      "usernameFormat": "Käyttäjänimen on oltava 3–20 merkkiä: a–z, 0–9 ja _.",
+      "emailInvalid": "Anna kelvollinen sähköpostiosoite.",
+      "passwordLength": "Salasanan on oltava 8–128 merkkiä.",
+      "taken": "Sähköposti tai käyttäjänimi on jo käytössä."
+    }
+  },
+  "feed": { "matching": "Reseptit haulla ”{query}”", "noMatches": "Haulla ”{query}” ei löytynyt reseptejä.", "showAll": "Näytä kaikki" },
+  "post": {
+    "edit": "Muokkaa",
+    "photos": "{title}, {count} kuvaa",
+    "photo": "{title}, kuva {index}/{count}",
+    "showPhoto": "Näytä kuva {index}",
+    "like": "Tykkää: {title}, {n} tykkäys | Tykkää: {title}, {n} tykkäystä",
+    "unlike": "Poista tykkäys: {title}, {n} tykkäys | Poista tykkäys: {title}, {n} tykkäystä",
+    "bookmark": "Lisää kirjanmerkki: {title}",
+    "removeBookmark": "Poista kirjanmerkki: {title}",
+    "bookmarkTooltip": "Lisää kirjanmerkki",
+    "removeBookmarkTooltip": "Poista kirjanmerkki",
+    "summary": { "ingredients": "{n} ainesosa | {n} ainesosaa", "steps": "{n} vaihe | {n} vaihetta", "minutes": "{n} min" },
+    "details": { "ingredients": "Ainesosat", "steps": "Valmistus" }
+  },
+  "bookmarks": { "title": "Kirjanmerkit", "empty": "Ei vielä kirjanmerkkejä. Napauta reseptin kirjanmerkkiä syötteessä tallentaaksesi sen tänne.", "browse": "Selaa reseptejä", "showRecipe": "Näytä resepti", "removed": "Poistettu" },
+  "editor": {
+    "newTitle": "Uusi resepti", "editTitle": "Muokkaa reseptiä", "editPageTitle": "Muokkaa: {title}",
+    "notFound": "Reseptiä ei löytynyt.", "notYours": "Voit muokata vain omia reseptejäsi.",
+    "recipe": "Resepti", "draftRestored": "Keskeneräinen luonnoksesi palautettiin.", "startOver": "Aloita alusta",
+    "title": "Otsikko", "titlePlaceholder": "Reseptin otsikko",
+    "description": "Kuvaus", "descriptionPlaceholder": "Kirjoita reseptistä mitä haluat: lyhyt huomio, tarina sen takana, vinkkejä… (valinnainen)",
+    "servings": "Annokset", "servingsPlaceholder": "esim. 4 purkkia", "totalTime": "Kokonaisaika", "minutes": "min",
+    "ingredients": "Ainesosat", "ingredient": "Ainesosa", "addIngredient": "Lisää ainesosa", "ingredientPlaceholder": "500 g mansikoita",
+    "steps": "Vaiheet", "step": "Vaihe", "addStep": "Lisää vaihe", "stepPlaceholder": "Perkaa mansikat ja halkaise ne.",
+    "previewHeading": "Näin se näkyy syötteessä", "previewTitle": "Reseptin otsikko",
+    "discardChanges": "Hylkää muutokset", "preview": "Esikatselu", "backToEditing": "Takaisin muokkaukseen",
+    "post": "Julkaise resepti", "posting": "Julkaistaan…", "save": "Tallenna muutokset", "saving": "Tallennetaan…", "uploadingPhotos": "Ladataan kuvia…",
+    "draftSaved": "Luonnos tallennettu tähän selaimeen · {time}",
+    "leaveConfirm": "Poistutaanko tallentamatta muutoksia?",
+    "saveFailed": "Reseptin tallentaminen epäonnistui. Se on yhä tallessa täällä; yritä uudelleen.",
+    "photoFailed": "Kuvan lataus epäonnistui. Yritä uudelleen tai poista se."
+  },
+  "list": { "moveUp": "Siirrä ylös: {item} {index}", "moveDown": "Siirrä alas: {item} {index}", "remove": "Poista: {item} {index}" },
+  "photos": {
+    "heading": "Kuvat", "cover": "Kansi", "coverAlt": "Kansikuva", "thumbAlt": "Kuva {index}",
+    "add": "Lisää kuvia ruoastasi", "addHint": "Vedä ne tähän tai valitse tiedostot · enintään {max}", "addMore": "Lisää kuvia",
+    "uploading": "Ladataan…", "failed": "Epäonnistui", "retry": "Yritä uudelleen",
+    "moveLeft": "Siirrä kuvaa {index} vasemmalle", "moveRight": "Siirrä kuvaa {index} oikealle", "remove": "Poista kuva {index}",
+    "count": "{count}/{max} kuvaa", "reorderHint": "ensimmäinen on kansikuva, vedä tai käytä nuolia järjestyksen muuttamiseen",
+    "tooMany": "Vain {max} kuvaa mahtuu; loput ohitettiin"
+  },
+  "validation": {
+    "photosRequired": "Lisää vähintään yksi kuva", "photosMax": "Lisää enintään {photos} kuvaa", "photoBroken": "Kuva ei latautunut oikein",
+    "titleRequired": "Anna reseptille otsikko", "titleMax": "Otsikon on oltava alle {title} merkkiä", "captionMax": "Kuvauksen on oltava alle {caption} merkkiä",
+    "ingredientsRequired": "Lisää vähintään yksi ainesosa", "ingredientsMax": "Lisää enintään {ingredients} ainesosaa", "ingredientTooLong": "Yksi ainesosa on liian pitkä",
+    "stepsRequired": "Lisää vähintään yksi vaihe", "stepsMax": "Lisää enintään {steps} vaihetta", "stepTooLong": "Yksi vaihe on liian pitkä",
+    "servingsMax": "Annosten on oltava alle {servings} merkkiä", "timeInvalid": "Anna aika kokonaisina minuutteina"
+  }
+}

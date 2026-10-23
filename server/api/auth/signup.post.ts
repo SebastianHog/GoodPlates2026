@@ -4,16 +4,16 @@ export default defineEventHandler(async (event): Promise<IAuthor> => {
   const { displayName, hiddenName, email, password } = await readBody(event);
 
   if (typeof displayName !== "string" || !displayName.trim() || displayName.trim().length > 40) {
-    throw createError({ statusCode: 400, statusMessage: "Name must be 1–40 characters" });
+    throw createError({ statusCode: 400, statusMessage: "Name must be 1–40 characters", data: { messageKey: "auth.errors.nameLength" } });
   }
   if (typeof hiddenName !== "string" || !HANDLE_PATTERN.test(hiddenName)) {
-    throw createError({ statusCode: 400, statusMessage: "Username must be 3–20 characters: a–z, 0–9 and _" });
+    throw createError({ statusCode: 400, statusMessage: "Username must be 3–20 characters: a–z, 0–9 and _", data: { messageKey: "auth.errors.usernameFormat" } });
   }
   if (typeof email !== "string" || email.length > 254 || !EMAIL_PATTERN.test(email)) {
-    throw createError({ statusCode: 400, statusMessage: "Enter a valid email address" });
+    throw createError({ statusCode: 400, statusMessage: "Enter a valid email address", data: { messageKey: "auth.errors.emailInvalid" } });
   }
   if (typeof password !== "string" || password.length < 8 || password.length > 128) {
-    throw createError({ statusCode: 400, statusMessage: "Password must be 8–128 characters" });
+    throw createError({ statusCode: 400, statusMessage: "Password must be 8–128 characters", data: { messageKey: "auth.errors.passwordLength" } });
   }
 
   const user = await createUser({ displayName: displayName.trim(), hiddenName, email, password });

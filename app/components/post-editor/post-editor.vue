@@ -2,64 +2,68 @@
   <form class="post-editor" novalidate @submit.prevent="submit">
     <booklet-spread class="post-editor__booklet">
       <template #left>
-        <photo-picker v-model="photos" input-id="post-images" :error="errors.images" />
+        <photo-picker
+          v-model="photos"
+          input-id="post-images"
+          :error="errors.images && $t(errors.images, POST_LIMITS)"
+        />
       </template>
 
       <!-- Right page: the recipe, or a preview of the feed card -->
       <template #right>
-        <section class="post-editor__recipe" aria-label="Recipe">
+        <section class="post-editor__recipe" :aria-label="$t('editor.recipe')">
           <div v-if="restoredDraft" class="post-editor__notice" role="status">
-            Your unfinished draft was restored.
-            <button class="post-editor__link" type="button" @click="discardDraft">Start over</button>
+            {{ $t("editor.draftRestored") }}
+            <button class="post-editor__link" type="button" @click="discardDraft">{{ $t("editor.startOver") }}</button>
           </div>
 
           <template v-if="!showPreview">
             <div class="post-editor__field">
-              <label class="visually-hidden" for="post-title">Title</label>
+              <label class="visually-hidden" for="post-title">{{ $t("editor.title") }}</label>
               <input
                 id="post-title"
                 v-model="title"
                 class="post-editor__title"
                 type="text"
-                placeholder="Recipe title"
+                :placeholder="$t('editor.titlePlaceholder')"
                 :maxlength="POST_LIMITS.title"
                 :aria-invalid="!!errors.title || undefined"
                 aria-describedby="post-title-error"
               />
-              <p v-if="errors.title" id="post-title-error" class="post-editor__field-error">{{ errors.title }}</p>
+              <p v-if="errors.title" id="post-title-error" class="post-editor__field-error">{{ $t(errors.title, POST_LIMITS) }}</p>
             </div>
 
             <div class="post-editor__field">
-              <label class="visually-hidden" for="post-caption">Description</label>
+              <label class="visually-hidden" for="post-caption">{{ $t("editor.description") }}</label>
               <textarea
                 id="post-caption"
                 ref="captionField"
                 v-model="caption"
                 class="post-editor__caption"
                 rows="3"
-                placeholder="Say anything you want about this recipe: a quick note, the story behind it, tips… (optional)"
+                :placeholder="$t('editor.descriptionPlaceholder')"
                 :maxlength="POST_LIMITS.caption"
                 :aria-invalid="!!errors.caption || undefined"
                 aria-describedby="post-caption-error"
                 @input="fitToContent(captionField)"
               />
-              <p v-if="errors.caption" id="post-caption-error" class="post-editor__field-error">{{ errors.caption }}</p>
+              <p v-if="errors.caption" id="post-caption-error" class="post-editor__field-error">{{ $t(errors.caption, POST_LIMITS) }}</p>
             </div>
 
             <div class="post-editor__details">
               <div class="post-editor__detail">
-                <label class="post-editor__label" for="post-servings">Servings</label>
+                <label class="post-editor__label" for="post-servings">{{ $t("editor.servings") }}</label>
                 <input
                   id="post-servings"
                   v-model="servings"
                   class="post-editor__input"
                   type="text"
-                  placeholder="e.g. 4 jars"
+                  :placeholder="$t('editor.servingsPlaceholder')"
                   :maxlength="POST_LIMITS.servings"
                 />
               </div>
               <div class="post-editor__detail">
-                <label class="post-editor__label" for="post-time">Total time</label>
+                <label class="post-editor__label" for="post-time">{{ $t("editor.totalTime") }}</label>
                 <div class="post-editor__suffixed">
                   <input
                     id="post-time"
@@ -72,53 +76,53 @@
                     :aria-invalid="!!errors.totalTimeMinutes || undefined"
                     aria-describedby="post-time-error"
                   />
-                  <span class="post-editor__suffix" aria-hidden="true">min</span>
+                  <span class="post-editor__suffix" aria-hidden="true">{{ $t("editor.minutes") }}</span>
                 </div>
                 <p v-if="errors.totalTimeMinutes" id="post-time-error" class="post-editor__field-error">
-                  {{ errors.totalTimeMinutes }}
+                  {{ $t(errors.totalTimeMinutes, POST_LIMITS) }}
                 </p>
               </div>
             </div>
 
             <div class="post-editor__lists">
               <div class="post-editor__list">
-                <h3 class="post-editor__label">Ingredients</h3>
+                <h3 class="post-editor__label">{{ $t("editor.ingredients") }}</h3>
                 <list-editor
                   v-model="ingredients"
                   id-prefix="post-ingredients"
-                  item-label="Ingredient"
-                  add-label="Add ingredient"
-                  placeholder="500 g strawberries"
+                  :item-label="$t('editor.ingredient')"
+                  :add-label="$t('editor.addIngredient')"
+                  :placeholder="$t('editor.ingredientPlaceholder')"
                   :max="POST_LIMITS.ingredients"
                   :invalid="!!errors.ingredients"
                   describedby="post-ingredients-error"
                 />
                 <p v-if="errors.ingredients" id="post-ingredients-error" class="post-editor__field-error">
-                  {{ errors.ingredients }}
+                  {{ $t(errors.ingredients, POST_LIMITS) }}
                 </p>
               </div>
 
               <div class="post-editor__list">
-                <h3 class="post-editor__label">Steps</h3>
+                <h3 class="post-editor__label">{{ $t("editor.steps") }}</h3>
                 <list-editor
                   v-model="steps"
                   id-prefix="post-steps"
-                  item-label="Step"
-                  add-label="Add step"
-                  placeholder="Hull and halve the strawberries."
+                  :item-label="$t('editor.step')"
+                  :add-label="$t('editor.addStep')"
+                  :placeholder="$t('editor.stepPlaceholder')"
                   :max="POST_LIMITS.steps"
                   numbered
                   multiline
                   :invalid="!!errors.steps"
                   describedby="post-steps-error"
                 />
-                <p v-if="errors.steps" id="post-steps-error" class="post-editor__field-error">{{ errors.steps }}</p>
+                <p v-if="errors.steps" id="post-steps-error" class="post-editor__field-error">{{ $t(errors.steps, POST_LIMITS) }}</p>
               </div>
             </div>
           </template>
 
           <div v-else class="post-editor__preview">
-            <h2 class="post-editor__label">How it will look in the feed</h2>
+            <h2 class="post-editor__label">{{ $t("editor.previewHeading") }}</h2>
             <recipe-post v-bind="previewPost" preview />
           </div>
 
@@ -127,9 +131,9 @@
           <div class="post-editor__footer">
             <span class="post-editor__status" aria-live="polite">{{ statusText }}</span>
             <div class="post-editor__buttons">
-              <NuxtLink v-if="post" :to="'/'" class="post-editor__button">Discard changes</NuxtLink>
+              <NuxtLink v-if="post" :to="'/'" class="post-editor__button">{{ $t("editor.discardChanges") }}</NuxtLink>
               <button class="post-editor__button" type="button" @click="showPreview = !showPreview">
-                {{ showPreview ? "Back to editing" : "Preview" }}
+                {{ $t(showPreview ? "editor.backToEditing" : "editor.preview") }}
               </button>
               <button
                 class="post-editor__button post-editor__button--primary"
@@ -154,6 +158,7 @@ import type { EditorPhoto } from "~/utils/editorPhoto";
 const props = defineProps<{ post?: IPostContent }>();
 
 const { user } = useUserSession();
+const { t } = useI18n();
 const draft = usePostDraft();
 
 // Form fields
@@ -184,15 +189,15 @@ const uploadedKeys = computed(() =>
 );
 
 const submitLabel = computed(() => {
-  if (pending.value) return props.post ? "Saving…" : "Posting…";
-  if (uploading.value) return "Uploading photos…";
-  return props.post ? "Save changes" : "Post recipe";
+  if (pending.value) return t(props.post ? "editor.saving" : "editor.posting");
+  if (uploading.value) return t("editor.uploadingPhotos");
+  return t(props.post ? "editor.save" : "editor.post");
 });
 
 const statusText = computed(() => {
   if (props.post || !draft.savedAt.value) return "";
   const time = draft.savedAt.value.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-  return `Draft saved in this browser · ${time}`;
+  return t("editor.draftSaved", { time });
 });
 
 // What gets sent to the server, and what a draft stores
@@ -226,7 +231,7 @@ const previewPost = computed<IPostContent>(() => {
     ...input.value,
     id: props.post?.id ?? "preview",
     author,
-    title: title.value.trim() || "Recipe title",
+    title: title.value.trim() || t("editor.previewTitle"),
     ingredients: lines(ingredients.value),
     steps: lines(steps.value),
     likeCount: props.post?.likeCount ?? 0,
@@ -300,7 +305,7 @@ onMounted(() => window.addEventListener("beforeunload", onBeforeUnload));
 onBeforeUnmount(() => window.removeEventListener("beforeunload", onBeforeUnload));
 
 onBeforeRouteLeave(() => {
-  if (hasUnsavedWork() && !window.confirm("Leave without saving your changes?")) {
+  if (hasUnsavedWork() && !window.confirm(t("editor.leaveConfirm"))) {
     return false;
   }
 });
@@ -333,7 +338,7 @@ async function submit() {
   showPreview.value = false;
 
   if (photos.value.some((photo) => photo.status === "error")) {
-    errors.value = { images: "A photo failed to upload. Retry it or remove it." };
+    errors.value = { images: "editor.photoFailed" };
     nextTick(focusFirstError);
     return;
   }
@@ -357,10 +362,14 @@ async function submit() {
     submitted.value = true;
     await navigateTo("/");
   } catch (e) {
-    const { statusMessage } = e as { statusMessage?: string };
-    submitError.value = statusMessage
-      ? `${statusMessage}. Your recipe is still here; try again.`
-      : "Could not save your recipe. It is still here; try again.";
+    // Problems the server found in the fields come back as i18n keys, shown next to each field
+    const fieldErrors = (e as { data?: { data?: { errors?: typeof errors.value } } }).data?.data?.errors;
+    if (fieldErrors) {
+      errors.value = fieldErrors;
+      nextTick(focusFirstError);
+    } else {
+      submitError.value = t("editor.saveFailed");
+    }
   } finally {
     pending.value = false;
   }

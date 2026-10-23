@@ -63,6 +63,8 @@
     font-size: $font-size-sm;
     font-weight: $font-weight-medium;
     text-decoration: none;
+    // Longer translations stay on one line
+    white-space: nowrap;
     transition:
       background $transition-fast,
       color $transition-fast;

@@ -1,14 +1,14 @@
 <template>
   <section class="bookmarks-page">
-    <h1 class="bookmarks-page__title">Bookmarks</h1>
+    <h1 class="bookmarks-page__title">{{ $t("bookmarks.title") }}</h1>
 
     <div v-if="posts?.length" class="bookmarks-page__list">
       <recipe-row v-for="post in posts" :key="post.id" v-bind="post" />
     </div>
 
     <div v-else class="bookmarks-page__empty">
-      <p>No bookmarks yet. Tap the bookmark on any recipe in the feed to keep it here.</p>
-      <NuxtLink to="/">Browse recipes</NuxtLink>
+      <p>{{ $t("bookmarks.empty") }}</p>
+      <NuxtLink to="/">{{ $t("bookmarks.browse") }}</NuxtLink>
     </div>
   </section>
 </template>
@@ -16,7 +16,9 @@
 <script lang="ts" setup>
 definePageMeta({ middleware: "auth" });
 
-useHead({ title: "Bookmarks · GoodPlates" });
+const { t } = useI18n();
+
+useHead({ title: () => t("site.pageTitle", { page: t("bookmarks.title") }) });
 
 const { data: posts } = await useFetch<IPostContent[]>("/api/bookmarks");
 </script>

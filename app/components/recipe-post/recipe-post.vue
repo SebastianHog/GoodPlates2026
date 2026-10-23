@@ -10,7 +10,7 @@
     <footer class="recipe-post__footer">
       <user-circle-icon size="medium" :user="author" />
       <span class="recipe-post__author">{{ author.displayName }}</span>
-      <NuxtLink v-if="isOwnPost" :to="`/posts/${id}/edit`" class="recipe-post__edit">Edit</NuxtLink>
+      <NuxtLink v-if="isOwnPost" :to="`/posts/${id}/edit`" class="recipe-post__edit">{{ $t("post.edit") }}</NuxtLink>
 
       <like-button
         class="recipe-post__like"
@@ -22,7 +22,7 @@
       />
       <bookmark-button :post-id="id" :title="title" :bookmarked-by-me="bookmarkedByMe" :disabled="preview" />
 
-      <time class="recipe-post__date" :datetime="createdAt">{{ formatPostDate(createdAt) }}</time>
+      <time class="recipe-post__date" :datetime="createdAt">{{ formatPostDate(createdAt, locale) }}</time>
     </footer>
   </article>
 </template>
@@ -32,9 +32,10 @@
 const props = defineProps<IPostContent & { preview?: boolean }>();
 
 const { user } = useUserSession();
+const { t, locale } = useI18n();
 const isOwnPost = computed(() => user.value?.id === props.author.id);
 
-const summary = computed(() => formatRecipeSummary(props));
+const summary = computed(() => formatRecipeSummary(props, t));
 </script>
 
 <style lang="scss" src="./styles.scss"></style>

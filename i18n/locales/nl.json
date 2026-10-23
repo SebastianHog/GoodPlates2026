@@ -1,0 +1,70 @@
+{
+  "site": { "pageTitle": "{page} · GoodPlates", "home": "GoodPlates startpagina" },
+  "header": { "nav": "Account", "newPost": "Nieuw bericht", "logIn": "Inloggen", "signUp": "Registreren" },
+  "search": { "label": "Recepten zoeken", "placeholder": "Recepten zoeken" },
+  "accountMenu": { "account": "Account", "bookmarks": "Bladwijzers", "logOut": "Uitloggen" },
+  "auth": {
+    "tabsLabel": "Account",
+    "login": { "tab": "Inloggen", "pageTitle": "Inloggen", "title": "Welkom terug", "subtitle": "Log in om je recepten te delen.", "submit": "Inloggen", "pending": "Bezig met inloggen…" },
+    "signup": { "tab": "Registreren", "pageTitle": "Registreren", "title": "Word lid van GoodPlates", "subtitle": "Deel wat je kookt en zie wat anderen maken.", "submit": "Account aanmaken", "pending": "Account wordt aangemaakt…" },
+    "fields": { "name": "Naam", "username": "Gebruikersnaam", "email": "E-mail", "emailPlaceholder": "jij{'@'}voorbeeld.nl", "password": "Wachtwoord", "passwordHint": "Minstens 8 tekens.", "showPassword": "Tonen", "hidePassword": "Verbergen", "passwordSuffix": "wachtwoord" },
+    "errors": {
+      "wrongLogin": "Onjuist e-mailadres of wachtwoord. Probeer het opnieuw.",
+      "signupFailed": "Je account kon niet worden aangemaakt. Probeer het opnieuw.",
+      "nameLength": "Je naam moet 1–40 tekens lang zijn.",
+      "usernameFormat": "Je gebruikersnaam moet 3–20 tekens lang zijn: a–z, 0–9 en _.",
+      "emailInvalid": "Vul een geldig e-mailadres in.",
+      "passwordLength": "Je wachtwoord moet 8–128 tekens lang zijn.",
+      "taken": "Dat e-mailadres of die gebruikersnaam is al in gebruik."
+    }
+  },
+  "feed": { "matching": "Recepten met „{query}”", "noMatches": "Geen recepten gevonden voor „{query}”.", "showAll": "Alles tonen" },
+  "post": {
+    "edit": "Bewerken",
+    "photos": "{title}, {count} foto's",
+    "photo": "{title}, foto {index} van {count}",
+    "showPhoto": "Foto {index} tonen",
+    "like": "{title} leuk vinden, {n} like | {title} leuk vinden, {n} likes",
+    "unlike": "{title} niet meer leuk vinden, {n} like | {title} niet meer leuk vinden, {n} likes",
+    "bookmark": "{title} bewaren",
+    "removeBookmark": "{title} uit bladwijzers halen",
+    "bookmarkTooltip": "Bewaren",
+    "removeBookmarkTooltip": "Uit bladwijzers halen",
+    "summary": { "ingredients": "{n} ingrediënt | {n} ingrediënten", "steps": "{n} stap | {n} stappen", "minutes": "{n} min" },
+    "details": { "ingredients": "Ingrediënten", "steps": "Bereiding" }
+  },
+  "bookmarks": { "title": "Bladwijzers", "empty": "Nog geen bladwijzers. Tik op de bladwijzer bij een recept in de feed om het hier te bewaren.", "browse": "Recepten bekijken", "showRecipe": "Recept tonen", "removed": "Verwijderd" },
+  "editor": {
+    "newTitle": "Nieuw recept", "editTitle": "Recept bewerken", "editPageTitle": "{title} bewerken",
+    "notFound": "Dit recept is niet gevonden.", "notYours": "Je kunt alleen je eigen recepten bewerken.",
+    "recipe": "Recept", "draftRestored": "Je onafgemaakte concept is teruggezet.", "startOver": "Opnieuw beginnen",
+    "title": "Titel", "titlePlaceholder": "Titel van het recept",
+    "description": "Beschrijving", "descriptionPlaceholder": "Schrijf wat je maar wilt over dit recept: een korte notitie, het verhaal erachter, tips… (optioneel)",
+    "servings": "Porties", "servingsPlaceholder": "bijv. 4 potten", "totalTime": "Totale tijd", "minutes": "min",
+    "ingredients": "Ingrediënten", "ingredient": "Ingrediënt", "addIngredient": "Ingrediënt toevoegen", "ingredientPlaceholder": "500 g aardbeien",
+    "steps": "Stappen", "step": "Stap", "addStep": "Stap toevoegen", "stepPlaceholder": "Verwijder het kroontje van de aardbeien en halveer ze.",
+    "previewHeading": "Zo ziet het eruit in de feed", "previewTitle": "Titel van het recept",
+    "discardChanges": "Wijzigingen weggooien", "preview": "Voorbeeld", "backToEditing": "Terug naar bewerken",
+    "post": "Recept plaatsen", "posting": "Bezig met plaatsen…", "save": "Wijzigingen opslaan", "saving": "Bezig met opslaan…", "uploadingPhotos": "Foto's uploaden…",
+    "draftSaved": "Concept opgeslagen in deze browser · {time}",
+    "leaveConfirm": "Weggaan zonder je wijzigingen op te slaan?",
+    "saveFailed": "Je recept kon niet worden opgeslagen. Het staat er nog; probeer het opnieuw.",
+    "photoFailed": "Een foto kon niet worden geüpload. Probeer het opnieuw of verwijder hem."
+  },
+  "list": { "moveUp": "{item} {index} omhoog", "moveDown": "{item} {index} omlaag", "remove": "{item} {index} verwijderen" },
+  "photos": {
+    "heading": "Foto's", "cover": "Omslag", "coverAlt": "Omslagfoto", "thumbAlt": "Foto {index}",
+    "add": "Voeg foto's van je gerecht toe", "addHint": "Sleep ze hierheen of kies bestanden · maximaal {max}", "addMore": "Foto's toevoegen",
+    "uploading": "Uploaden…", "failed": "Mislukt", "retry": "Opnieuw proberen",
+    "moveLeft": "Foto {index} naar links", "moveRight": "Foto {index} naar rechts", "remove": "Foto {index} verwijderen",
+    "count": "{count} van {max} foto's", "reorderHint": "de eerste is de omslag, sleep of gebruik de pijlen om de volgorde te wijzigen",
+    "tooMany": "Er passen maar {max} foto's; de rest is overgeslagen"
+  },
+  "validation": {
+    "photosRequired": "Voeg minstens één foto toe", "photosMax": "Voeg maximaal {photos} foto's toe", "photoBroken": "Een foto is niet goed geüpload",
+    "titleRequired": "Geef je recept een titel", "titleMax": "Houd de titel korter dan {title} tekens", "captionMax": "Houd de beschrijving korter dan {caption} tekens",
+    "ingredientsRequired": "Voeg minstens één ingrediënt toe", "ingredientsMax": "Voeg maximaal {ingredients} ingrediënten toe", "ingredientTooLong": "Eén ingrediënt is te lang",
+    "stepsRequired": "Voeg minstens één stap toe", "stepsMax": "Voeg maximaal {steps} stappen toe", "stepTooLong": "Eén stap is te lang",
+    "servingsMax": "Houd de porties korter dan {servings} tekens", "timeInvalid": "Vul de tijd in hele minuten in"
+  }
+}

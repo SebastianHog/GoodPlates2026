@@ -4,8 +4,8 @@
     :class="[`bookmark-button--${size}`, { 'bookmark-button--active': bookmarked }]"
     type="button"
     :aria-pressed="bookmarked"
-    :aria-label="bookmarked ? `Remove bookmark from ${title}` : `Bookmark ${title}`"
-    :title="bookmarked ? 'Remove bookmark' : 'Bookmark'"
+    :aria-label="$t(bookmarked ? 'post.removeBookmark' : 'post.bookmark', { title })"
+    :title="$t(bookmarked ? 'post.removeBookmarkTooltip' : 'post.bookmarkTooltip')"
     :disabled="disabled"
     @click="toggle"
   >

@@ -1,0 +1,70 @@
+{
+  "site": { "pageTitle": "{page} · GoodPlates", "home": "GoodPlates startsida" },
+  "header": { "nav": "Konto", "newPost": "Nytt inlägg", "logIn": "Logga in", "signUp": "Skapa konto" },
+  "search": { "label": "Sök recept", "placeholder": "Sök recept" },
+  "accountMenu": { "account": "Konto", "bookmarks": "Bokmärken", "logOut": "Logga ut" },
+  "auth": {
+    "tabsLabel": "Konto",
+    "login": { "tab": "Logga in", "pageTitle": "Logga in", "title": "Välkommen tillbaka", "subtitle": "Logga in för att dela dina recept.", "submit": "Logga in", "pending": "Loggar in…" },
+    "signup": { "tab": "Skapa konto", "pageTitle": "Skapa konto", "title": "Gå med i GoodPlates", "subtitle": "Lägg upp det du lagar och se vad andra gör.", "submit": "Skapa konto", "pending": "Skapar konto…" },
+    "fields": { "name": "Namn", "username": "Användarnamn", "email": "E-post", "emailPlaceholder": "du{'@'}exempel.se", "password": "Lösenord", "passwordHint": "Minst 8 tecken.", "showPassword": "Visa", "hidePassword": "Dölj", "passwordSuffix": "lösenord" },
+    "errors": {
+      "wrongLogin": "Fel e-post eller lösenord. Försök igen.",
+      "signupFailed": "Kunde inte skapa ditt konto. Försök igen.",
+      "nameLength": "Namnet måste vara 1–40 tecken.",
+      "usernameFormat": "Användarnamnet måste vara 3–20 tecken: a–z, 0–9 och _.",
+      "emailInvalid": "Ange en giltig e-postadress.",
+      "passwordLength": "Lösenordet måste vara 8–128 tecken.",
+      "taken": "E-postadressen eller användarnamnet är redan upptaget."
+    }
+  },
+  "feed": { "matching": "Recept som matchar ”{query}”", "noMatches": "Inga recept matchar ”{query}”.", "showAll": "Visa alla" },
+  "post": {
+    "edit": "Redigera",
+    "photos": "{title}, {count} foton",
+    "photo": "{title}, foto {index} av {count}",
+    "showPhoto": "Visa foto {index}",
+    "like": "Gilla {title}, {n} gillning | Gilla {title}, {n} gillningar",
+    "unlike": "Sluta gilla {title}, {n} gillning | Sluta gilla {title}, {n} gillningar",
+    "bookmark": "Bokmärk {title}",
+    "removeBookmark": "Ta bort bokmärket från {title}",
+    "bookmarkTooltip": "Bokmärk",
+    "removeBookmarkTooltip": "Ta bort bokmärke",
+    "summary": { "ingredients": "{n} ingrediens | {n} ingredienser", "steps": "{n} steg | {n} steg", "minutes": "{n} min" },
+    "details": { "ingredients": "Ingredienser", "steps": "Gör så här" }
+  },
+  "bookmarks": { "title": "Bokmärken", "empty": "Inga bokmärken än. Tryck på bokmärket på ett recept i flödet för att spara det här.", "browse": "Bläddra bland recept", "showRecipe": "Visa recept", "removed": "Borttaget" },
+  "editor": {
+    "newTitle": "Nytt recept", "editTitle": "Redigera recept", "editPageTitle": "Redigera {title}",
+    "notFound": "Receptet hittades inte.", "notYours": "Du kan bara redigera dina egna recept.",
+    "recipe": "Recept", "draftRestored": "Ditt osparade utkast har återställts.", "startOver": "Börja om",
+    "title": "Titel", "titlePlaceholder": "Receptets titel",
+    "description": "Beskrivning", "descriptionPlaceholder": "Skriv vad du vill om receptet: en kort kommentar, historien bakom, tips… (valfritt)",
+    "servings": "Portioner", "servingsPlaceholder": "t.ex. 4 burkar", "totalTime": "Total tid", "minutes": "min",
+    "ingredients": "Ingredienser", "ingredient": "Ingrediens", "addIngredient": "Lägg till ingrediens", "ingredientPlaceholder": "500 g jordgubbar",
+    "steps": "Steg", "step": "Steg", "addStep": "Lägg till steg", "stepPlaceholder": "Skala och halvera jordgubbarna.",
+    "previewHeading": "Så här ser det ut i flödet", "previewTitle": "Receptets titel",
+    "discardChanges": "Släng ändringar", "preview": "Förhandsgranska", "backToEditing": "Tillbaka till redigering",
+    "post": "Publicera recept", "posting": "Publicerar…", "save": "Spara ändringar", "saving": "Sparar…", "uploadingPhotos": "Laddar upp foton…",
+    "draftSaved": "Utkast sparat i den här webbläsaren · {time}",
+    "leaveConfirm": "Lämna utan att spara dina ändringar?",
+    "saveFailed": "Kunde inte spara receptet. Det finns kvar här; försök igen.",
+    "photoFailed": "Ett foto kunde inte laddas upp. Försök igen eller ta bort det."
+  },
+  "list": { "moveUp": "Flytta {item} {index} uppåt", "moveDown": "Flytta {item} {index} nedåt", "remove": "Ta bort {item} {index}" },
+  "photos": {
+    "heading": "Foton", "cover": "Omslag", "coverAlt": "Omslagsfoto", "thumbAlt": "Foto {index}",
+    "add": "Lägg till foton på din rätt", "addHint": "Dra hit dem eller välj filer · upp till {max}", "addMore": "Lägg till foton",
+    "uploading": "Laddar upp…", "failed": "Misslyckades", "retry": "Försök igen",
+    "moveLeft": "Flytta foto {index} åt vänster", "moveRight": "Flytta foto {index} åt höger", "remove": "Ta bort foto {index}",
+    "count": "{count} av {max} foton", "reorderHint": "det första är omslaget, dra eller använd pilarna för att ändra ordning",
+    "tooMany": "Bara {max} foton får plats; resten hoppades över"
+  },
+  "validation": {
+    "photosRequired": "Lägg till minst ett foto", "photosMax": "Lägg till högst {photos} foton", "photoBroken": "Ett foto laddades inte upp korrekt",
+    "titleRequired": "Ge receptet en titel", "titleMax": "Håll titeln under {title} tecken", "captionMax": "Håll beskrivningen under {caption} tecken",
+    "ingredientsRequired": "Lägg till minst en ingrediens", "ingredientsMax": "Lägg till högst {ingredients} ingredienser", "ingredientTooLong": "En ingrediens är för lång",
+    "stepsRequired": "Lägg till minst ett steg", "stepsMax": "Lägg till högst {steps} steg", "stepTooLong": "Ett steg är för långt",
+    "servingsMax": "Håll portioner under {servings} tecken", "timeInvalid": "Ange tiden i hela minuter"
+  }
+}
