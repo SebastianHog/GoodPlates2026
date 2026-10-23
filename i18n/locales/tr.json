@@ -18,7 +18,7 @@
       "taken": "Bu e-posta veya kullanıcı adı zaten kullanılıyor."
     }
   },
-  "feed": { "matching": "“{query}” ile eşleşen tarifler", "noMatches": "“{query}” ile eşleşen tarif yok.", "showAll": "Tümünü göster", "title": "Tarifler", "introTitle": "Ev aşçılarından tarifler", "intro": "İnsanların ne pişirdiğini görün; her gönderide tarifi de var.", "introJoin": "Kaydolun, kendi tariflerinizi paylaşın", "empty": "Henüz tarif yok.", "emptyPost": "İlk tarifi siz paylaşın", "emptyJoin": "Kaydolun ve ilk tarifi paylaşın", "loading": "Tarifler yükleniyor…", "loadFailed": "Tarifler yüklenemedi.", "retry": "Tekrar dene" },
+  "feed": { "matching": "“{query}” ile eşleşen tarifler", "noMatches": "“{query}” ile eşleşen tarif yok.", "showAll": "Tümünü göster", "title": "Tarifler", "introTitle": "Ev aşçılarından tarifler", "intro": "İnsanların ne pişirdiğini görün; her gönderide tarifi de var.", "introJoin": "Kaydolun, kendi tariflerinizi paylaşın", "empty": "Henüz tarif yok.", "emptyPost": "İlk tarifi siz paylaşın", "emptyJoin": "Kaydolun ve ilk tarifi paylaşın", "loading": "Tarifler yükleniyor…", "loadFailed": "Tarifler yüklenemedi.", "retry": "Tekrar dene", "tabsLabel": "Akış", "latest": "En yeni", "discover": "Keşfet" },
   "toast": { "likeFailed": "Beğeniniz kaydedilemedi. Tekrar deneyin.", "bookmarkFailed": "Yer işaretiniz kaydedilemedi. Tekrar deneyin.", "dismiss": "Kapat", "likeLogin": "Tarifleri beğenmek için giriş yapın.", "bookmarkLogin": "Tarifleri yer işaretlerinize kaydetmek için giriş yapın.", "logIn": "Giriş yap" },
   "post": {
     "edit": "Düzenle",

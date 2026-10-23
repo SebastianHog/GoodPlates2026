@@ -18,7 +18,7 @@
       "taken": "Sähköposti tai käyttäjänimi on jo käytössä."
     }
   },
-  "feed": { "matching": "Reseptit haulla ”{query}”", "noMatches": "Haulla ”{query}” ei löytynyt reseptejä.", "showAll": "Näytä kaikki", "title": "Reseptit", "introTitle": "Reseptejä kotikokeilta", "intro": "Katso, mitä muut kokkaavat – jokaisessa julkaisussa on mukana resepti.", "introJoin": "Rekisteröidy ja jaa omasi", "empty": "Reseptejä ei ole vielä.", "emptyPost": "Julkaise ensimmäinen", "emptyJoin": "Rekisteröidy ja julkaise ensimmäinen", "loading": "Ladataan reseptejä…", "loadFailed": "Reseptejä ei voitu ladata.", "retry": "Yritä uudelleen" },
+  "feed": { "matching": "Reseptit haulla ”{query}”", "noMatches": "Haulla ”{query}” ei löytynyt reseptejä.", "showAll": "Näytä kaikki", "title": "Reseptit", "introTitle": "Reseptejä kotikokeilta", "intro": "Katso, mitä muut kokkaavat – jokaisessa julkaisussa on mukana resepti.", "introJoin": "Rekisteröidy ja jaa omasi", "empty": "Reseptejä ei ole vielä.", "emptyPost": "Julkaise ensimmäinen", "emptyJoin": "Rekisteröidy ja julkaise ensimmäinen", "loading": "Ladataan reseptejä…", "loadFailed": "Reseptejä ei voitu ladata.", "retry": "Yritä uudelleen", "tabsLabel": "Syöte", "latest": "Uusimmat", "discover": "Löydä" },
   "toast": { "likeFailed": "Tykkäystäsi ei voitu tallentaa. Yritä uudelleen.", "bookmarkFailed": "Kirjanmerkkiäsi ei voitu tallentaa. Yritä uudelleen.", "dismiss": "Sulje", "likeLogin": "Kirjaudu, niin voit tykätä resepteistä.", "bookmarkLogin": "Kirjaudu, niin voit tallentaa reseptejä kirjanmerkkeihin.", "logIn": "Kirjaudu" },
   "post": {
     "edit": "Muokkaa",

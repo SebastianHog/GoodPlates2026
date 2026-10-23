@@ -18,7 +18,7 @@
       "taken": "Ese correo o nombre de usuario ya está en uso."
     }
   },
-  "feed": { "matching": "Recetas que coinciden con «{query}»", "noMatches": "Ninguna receta coincide con «{query}».", "showAll": "Ver todas", "title": "Recetas", "introTitle": "Recetas de cocineros caseros", "intro": "Mira lo que cocina la gente, con la receta en cada publicación.", "introJoin": "Regístrate para compartir las tuyas", "empty": "Todavía no hay recetas.", "emptyPost": "Publica la primera", "emptyJoin": "Regístrate para publicar la primera", "loading": "Cargando recetas…", "loadFailed": "No se pudieron cargar las recetas.", "retry": "Reintentar" },
+  "feed": { "matching": "Recetas que coinciden con «{query}»", "noMatches": "Ninguna receta coincide con «{query}».", "showAll": "Ver todas", "title": "Recetas", "introTitle": "Recetas de cocineros caseros", "intro": "Mira lo que cocina la gente, con la receta en cada publicación.", "introJoin": "Regístrate para compartir las tuyas", "empty": "Todavía no hay recetas.", "emptyPost": "Publica la primera", "emptyJoin": "Regístrate para publicar la primera", "loading": "Cargando recetas…", "loadFailed": "No se pudieron cargar las recetas.", "retry": "Reintentar", "tabsLabel": "Feed", "latest": "Recientes", "discover": "Descubrir" },
   "toast": { "likeFailed": "No se pudo guardar tu me gusta. Inténtalo de nuevo.", "bookmarkFailed": "No se pudo guardar tu marcador. Inténtalo de nuevo.", "dismiss": "Cerrar", "likeLogin": "Entra para dar me gusta a las recetas.", "bookmarkLogin": "Entra para guardar recetas en tus marcadores.", "logIn": "Entrar" },
   "post": {
     "edit": "Editar",

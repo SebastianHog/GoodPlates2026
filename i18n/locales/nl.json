@@ -18,7 +18,7 @@
       "taken": "Dat e-mailadres of die gebruikersnaam is al in gebruik."
     }
   },
-  "feed": { "matching": "Recepten met „{query}”", "noMatches": "Geen recepten gevonden voor „{query}”.", "showAll": "Alles tonen", "title": "Recepten", "introTitle": "Recepten van thuiskoks", "intro": "Zie wat mensen koken, met het recept bij elk bericht.", "introJoin": "Meld je aan om je eigen recepten te delen", "empty": "Nog geen recepten.", "emptyPost": "Plaats het eerste", "emptyJoin": "Meld je aan om het eerste te plaatsen", "loading": "Recepten laden…", "loadFailed": "De recepten konden niet worden geladen.", "retry": "Opnieuw proberen" },
+  "feed": { "matching": "Recepten met „{query}”", "noMatches": "Geen recepten gevonden voor „{query}”.", "showAll": "Alles tonen", "title": "Recepten", "introTitle": "Recepten van thuiskoks", "intro": "Zie wat mensen koken, met het recept bij elk bericht.", "introJoin": "Meld je aan om je eigen recepten te delen", "empty": "Nog geen recepten.", "emptyPost": "Plaats het eerste", "emptyJoin": "Meld je aan om het eerste te plaatsen", "loading": "Recepten laden…", "loadFailed": "De recepten konden niet worden geladen.", "retry": "Opnieuw proberen", "tabsLabel": "Feed", "latest": "Nieuwste", "discover": "Ontdekken" },
   "toast": { "likeFailed": "Je like kon niet worden opgeslagen. Probeer het opnieuw.", "bookmarkFailed": "Je bladwijzer kon niet worden opgeslagen. Probeer het opnieuw.", "dismiss": "Sluiten", "likeLogin": "Log in om recepten te liken.", "bookmarkLogin": "Log in om recepten op te slaan in je bladwijzers.", "logIn": "Inloggen" },
   "post": {
     "edit": "Bewerken",

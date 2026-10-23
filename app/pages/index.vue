@@ -11,39 +11,57 @@
     </header>
     <h1 v-else class="visually-hidden">{{ $t("feed.title") }}</h1>
 
-    <!-- While posts load: grey stand-ins in their shape, and a line for screen readers -->
-    <template v-if="status === 'pending'">
-      <p class="visually-hidden" role="status">{{ $t("feed.loading") }}</p>
-      <post-container aria-hidden="true">
-        <recipe-post-skeleton v-for="n in 3" :key="n" />
-      </post-container>
-    </template>
+    <segmented-tabs
+      v-if="!search"
+      v-model="feed"
+      class="feed__tabs"
+      :tabs="feedTabs"
+      :label="$t('feed.tabsLabel')"
+      panel-id="feed-panel"
+      id-prefix="feed-tab"
+    />
 
-    <p v-else-if="error" class="feed__message" role="alert">
-      {{ $t("feed.loadFailed") }}
-      <button type="button" class="feed__retry" @click="() => refresh()">{{ $t("feed.retry") }}</button>
-    </p>
+    <div
+      id="feed-panel"
+      :role="search ? undefined : 'tabpanel'"
+      :aria-labelledby="search ? undefined : `feed-tab-${feed}`"
+    >
+      <!-- While posts load: grey stand-ins in their shape, and a line for screen readers -->
+      <template v-if="status === 'pending'">
+        <p class="visually-hidden" role="status">{{ $t("feed.loading") }}</p>
+        <post-container aria-hidden="true">
+          <recipe-post-skeleton v-for="n in 3" :key="n" />
+        </post-container>
+      </template>
 
-    <template v-else>
-      <p v-if="search" class="feed__message">
-        {{
-          $t(posts?.length ? "feed.matching" : "feed.noMatches", {
-            query: search,
-          })
-        }}
-        <NuxtLink to="/">{{ $t("feed.showAll") }}</NuxtLink>
+      <p v-else-if="error" class="feed__message" role="alert">
+        {{ $t("feed.loadFailed") }}
+        <button type="button" class="feed__retry" @click="() => refresh()">
+          {{ $t("feed.retry") }}
+        </button>
       </p>
-      <p v-else-if="posts && !posts.length" class="feed__message">
-        {{ $t("feed.empty") }}
-        <NuxtLink :to="loggedIn ? '/create' : '/login?tab=signup'">
-          {{ $t(loggedIn ? "feed.emptyPost" : "feed.emptyJoin") }}
-        </NuxtLink>
-      </p>
 
-      <post-container>
-        <recipe-post v-for="post in posts" :key="post.id" v-bind="post" />
-      </post-container>
-    </template>
+      <template v-else>
+        <p v-if="search" class="feed__message">
+          {{
+            $t(posts?.length ? "feed.matching" : "feed.noMatches", {
+              query: search,
+            })
+          }}
+          <NuxtLink to="/">{{ $t("feed.showAll") }}</NuxtLink>
+        </p>
+        <p v-else-if="posts && !posts.length" class="feed__message">
+          {{ $t("feed.empty") }}
+          <NuxtLink :to="loggedIn ? '/create' : '/login?tab=signup'">
+            {{ $t(loggedIn ? "feed.emptyPost" : "feed.emptyJoin") }}
+          </NuxtLink>
+        </p>
+
+        <post-container>
+          <recipe-post v-for="post in posts" :key="post.id" v-bind="post" />
+        </post-container>
+      </template>
+    </div>
   </section>
 </template>
 
@@ -56,8 +74,31 @@ const search = computed(
     (typeof route.query.q === "string" && route.query.q.trim()) || undefined,
 );
 
-// Lazy, so moving to the feed or searching shows the skeletons instead of waiting on the old page
-const { data: posts, status, error, refresh } = usePosts(search, { lazy: true });
+const router = useRouter();
+
+// Which feed is shown lives in the url (?feed=discover), latest is the default
+const feed = computed<FeedId>({
+  get: () => (route.query.feed === "discover" ? "discover" : "latest"),
+  set: (value) =>
+    router.replace({
+      query: { ...route.query, feed: value === "latest" ? undefined : value },
+    }),
+});
+
+const feedTabs = computed<{ id: FeedId; label: string }[]>(() => [
+  { id: "latest", label: t("feed.latest") },
+  { id: "discover", label: t("feed.discover") },
+]);
+
+const {
+  data: posts,
+  status,
+  error,
+  refresh,
+} = usePosts(search, {
+  lazy: true,
+  feed,
+});
 
 const showIntro = computed(() => !loggedIn.value && !search.value);
 
@@ -66,13 +107,12 @@ useHead({
     t("site.pageTitle", {
       page: search.value
         ? t("feed.matching", { query: search.value })
-        : t("feed.title"),
+        : t(feed.value === "discover" ? "feed.discover" : "feed.title"),
     }),
 });
 </script>
 
 <style scoped>
-/* One post per row, as wide as the bookmarks list */
 .feed {
   max-width: 48rem;
   margin: 0 auto;
@@ -80,6 +120,11 @@ useHead({
 
 .feed__intro {
   margin-bottom: 2rem;
+}
+
+.feed__tabs {
+  max-width: 20rem;
+  margin-bottom: 1.5rem;
 }
 
 .feed__title {

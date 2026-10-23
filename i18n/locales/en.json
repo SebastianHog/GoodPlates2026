@@ -70,7 +70,10 @@
     "emptyJoin": "Sign up to post the first one",
     "loading": "Loading recipes…",
     "loadFailed": "Could not load recipes.",
-    "retry": "Try again"
+    "retry": "Try again",
+    "tabsLabel": "Feed",
+    "latest": "Latest",
+    "discover": "Discover"
   },
   "toast": {
     "likeFailed": "Could not save your like. Try again.",
