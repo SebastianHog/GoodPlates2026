@@ -143,34 +143,56 @@ export async function createPost(
   return toPost({ _id: insertedId, ...post }, author);
 }
 
+// Why a post couldn't be changed by the user who asked
+export type NotOwnPost = "missing" | "notYours";
+
+async function whyNotOwn(id: string): Promise<NotOwnPost> {
+  if (!ObjectId.isValid(id)) {
+    return "missing";
+  }
+  const posts = await postsCollection();
+  const exists = await posts.countDocuments({ _id: new ObjectId(id) }, { limit: 1 });
+  return exists ? "notYours" : "missing";
+}
+
+// Saves an edit, only when `authorId` wrote the post
 export async function updatePost(
   id: string,
+  authorId: string,
   input: PostInput,
-): Promise<IPostContent | null> {
+): Promise<IPostContent | NotOwnPost> {
+  if (!ObjectId.isValid(id)) {
+    return "missing";
+  }
+
   const posts = await postsCollection();
   const doc = await posts.findOneAndUpdate(
-    { _id: new ObjectId(id) },
+    { _id: new ObjectId(id), "author.id": authorId },
     { $set: { ...input, modifiedAt: new Date().toISOString() } },
     { returnDocument: "after" },
   );
   if (!doc) {
-    return null;
+    return whyNotOwn(id);
   }
 
   const [post] = await toPosts([doc]);
   return post!;
 }
 
-// Removes a post with its likes, bookmarks and cooks. Returns the photo keys no other post uses, or null when the post is missing
-export async function deletePost(id: string): Promise<string[] | null> {
+// Removes a post with its likes, bookmarks and cooks, only when `authorId` wrote it.
+// Returns the photo keys no other post uses
+export async function deletePost(
+  id: string,
+  authorId: string,
+): Promise<string[] | NotOwnPost> {
   if (!ObjectId.isValid(id)) {
-    return null;
+    return "missing";
   }
 
   const posts = await postsCollection();
-  const doc = await posts.findOneAndDelete({ _id: new ObjectId(id) });
+  const doc = await posts.findOneAndDelete({ _id: new ObjectId(id), "author.id": authorId });
   if (!doc) {
-    return null;
+    return whyNotOwn(id);
   }
 
   await Promise.all(
