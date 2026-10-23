@@ -1,38 +1,136 @@
 @use "~/assets/scss/tokens" as *;
+@use "~/assets/scss/mixins" as *;
 
 .recipe-details {
-  &__caption {
-    margin: 0 0 $space-4;
-    line-height: $line-height-relaxed;
-    white-space: pre-line;
-    text-wrap: pretty;
-    overflow-wrap: anywhere;
-  }
+  display: grid;
+  gap: $space-8;
 
-  &__lists {
-    display: grid;
-    gap: $space-4;
-  }
-
-  &__label {
-    margin: 0 0 $space-1;
-    font-size: $font-size-sm;
+  &__heading {
+    margin: 0 0 $space-2;
+    font-family: $font-family-serif;
+    font-size: $font-size-xl;
     font-weight: $font-weight-semibold;
+    line-height: $line-height-tight;
+  }
+
+  &__servings {
+    color: $color-text-muted;
+    font-weight: $font-weight-normal;
   }
 
   &__list {
     margin: 0;
-    padding-left: $space-6;
-    line-height: $line-height-relaxed;
-    overflow-wrap: anywhere;
+    padding: 0;
+    list-style: none;
 
     li + li {
-      margin-top: $space-1;
+      border-top: 1px solid $color-border;
+    }
+  }
+
+  // whole row is the tap target
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    gap: $space-3;
+    min-height: 2.75rem;
+    padding: $space-3 0;
+    cursor: pointer;
+  }
+
+  &__check {
+    @include visually-hidden;
+  }
+
+  &__box {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1.5px solid $color-border-secondary;
+    border-radius: $radius-sm;
+    background: $color-surface;
+    color: $color-primary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    font-variant-numeric: tabular-nums;
+    transition:
+      background $transition-fast,
+      border-color $transition-fast,
+      color $transition-fast;
+
+    &--numbered {
+      border-color: $color-primary;
+    }
+  }
+
+  &__tick {
+    display: none;
+    --icon-stroke: 2.5;
+  }
+
+  &__text {
+    min-width: 0;
+    padding-top: 0.0625rem;
+    line-height: $line-height-normal;
+    overflow-wrap: anywhere;
+    transition: color $transition-fast;
+  }
+
+  &__section--steps &__text {
+    font-size: $font-size-lg;
+    line-height: $line-height-relaxed;
+  }
+
+  &__section--steps &__box {
+    margin-top: 0.125rem;
+  }
+
+  &__item:hover &__box {
+    border-color: $color-primary;
+  }
+
+  &__check:focus-visible + &__box {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+
+  &__item--done &__box {
+    border-color: $color-primary;
+    background: $color-primary;
+    color: $color-surface;
+  }
+
+  &__item--done &__number {
+    display: none;
+  }
+
+  &__item--done &__tick {
+    display: inline-flex;
+  }
+
+  &__item--done &__text {
+    color: $color-text-muted;
+    text-decoration: line-through;
+    text-decoration-color: rgb($color-text-muted, 0.6);
+  }
+
+  &__clear {
+    margin-top: $space-3;
+    padding: $space-2 0;
+    border: none;
+    background: none;
+    color: $color-primary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
 
-    &--steps li::marker {
-      color: $color-primary;
-      font-weight: $font-weight-bold;
-    }
+    @include focus-ring;
   }
 }

@@ -43,7 +43,7 @@
     "loading": "Tarif yükleniyor…",
     "moreFrom": "{name} kullanıcısından daha fazlası"
   },
-  "bookmarks": { "title": "Yer imleri", "empty": "Henüz yer imi yok. Akıştaki bir tarifin yer imi simgesine dokunarak buraya kaydet.", "browse": "Tariflere göz at", "showRecipe": "Tarifi göster", "removed": "Kaldırıldı" },
+  "bookmarks": { "title": "Yer imleri", "empty": "Henüz yer imi yok. Akıştaki bir tarifin yer imi simgesine dokunarak buraya kaydet.", "browse": "Tariflere göz at", "removed": "Kaldırıldı" },
   "editor": {
     "newTitle": "Yeni tarif", "editTitle": "Tarifi düzenle", "editPageTitle": "{title} düzenle",
     "notFound": "Bu tarif bulunamadı.", "notYours": "Yalnızca kendi tariflerini düzenleyebilirsin.",

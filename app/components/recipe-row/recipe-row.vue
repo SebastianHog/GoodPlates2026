@@ -12,13 +12,10 @@
     <div v-else class="recipe-row__image recipe-row__image--empty" />
 
     <div class="recipe-row__info">
-      <h2 class="recipe-row__title">{{ title }}</h2>
+      <h2 class="recipe-row__title">
+        <NuxtLink :to="`/posts/${id}`" class="recipe-row__link">{{ title }}</NuxtLink>
+      </h2>
       <p class="recipe-row__meta">{{ meta }}</p>
-
-      <details class="recipe-row__recipe">
-        <summary class="recipe-row__toggle">{{ $t("bookmarks.showRecipe") }}</summary>
-        <recipe-details :caption="caption" :ingredients="ingredients" :steps="steps" :servings="servings" />
-      </details>
     </div>
 
     <div class="recipe-row__actions">

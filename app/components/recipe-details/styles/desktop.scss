@@ -1,7 +1,12 @@
 @use "~/assets/scss/tokens" as *;
 
-// Ingredients and steps side by side
-.recipe-details__lists {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
-  gap: $space-8;
+.recipe-details {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+  align-items: start;
+  gap: $space-12;
+
+  &__section--ingredients {
+    position: sticky;
+    top: $space-6;
+  }
 }

@@ -43,7 +43,7 @@
     "loading": "Cargando receta…",
     "moreFrom": "Más de {name}"
   },
-  "bookmarks": { "title": "Guardados", "empty": "Aún no tienes recetas guardadas. Toca el icono de guardar en cualquier receta del inicio para tenerla aquí.", "browse": "Ver recetas", "showRecipe": "Ver receta", "removed": "Quitada" },
+  "bookmarks": { "title": "Guardados", "empty": "Aún no tienes recetas guardadas. Toca el icono de guardar en cualquier receta del inicio para tenerla aquí.", "browse": "Ver recetas", "removed": "Quitada" },
   "editor": {
     "newTitle": "Nueva receta", "editTitle": "Editar receta", "editPageTitle": "Editar {title}",
     "notFound": "No se encontró esta receta.", "notYours": "Solo puedes editar tus propias recetas.",

@@ -43,27 +43,17 @@
     overflow-wrap: anywhere;
   }
 
-  &__recipe {
-    margin-top: $space-2;
-  }
-
-  &__toggle {
-    width: fit-content;
-    color: $color-primary;
-    font-size: $font-size-sm;
-    font-weight: $font-weight-semibold;
-    cursor: pointer;
+  &__link {
+    color: inherit;
+    text-decoration: none;
 
     &:hover {
       text-decoration: underline;
-      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.15em;
     }
 
     @include focus-ring;
-  }
-
-  &__recipe[open] &__toggle {
-    margin-bottom: $space-3;
   }
 
   &__actions {

@@ -43,7 +43,7 @@
     "loading": "Laddar recept…",
     "moreFrom": "Mer från {name}"
   },
-  "bookmarks": { "title": "Bokmärken", "empty": "Inga bokmärken än. Tryck på bokmärket på ett recept i flödet för att spara det här.", "browse": "Bläddra bland recept", "showRecipe": "Visa recept", "removed": "Borttaget" },
+  "bookmarks": { "title": "Bokmärken", "empty": "Inga bokmärken än. Tryck på bokmärket på ett recept i flödet för att spara det här.", "browse": "Bläddra bland recept", "removed": "Borttaget" },
   "editor": {
     "newTitle": "Nytt recept", "editTitle": "Redigera recept", "editPageTitle": "Redigera {title}",
     "notFound": "Receptet hittades inte.", "notYours": "Du kan bara redigera dina egna recept.",

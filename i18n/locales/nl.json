@@ -43,7 +43,7 @@
     "loading": "Recept laden…",
     "moreFrom": "Meer van {name}"
   },
-  "bookmarks": { "title": "Bladwijzers", "empty": "Nog geen bladwijzers. Tik op de bladwijzer bij een recept in de feed om het hier te bewaren.", "browse": "Recepten bekijken", "showRecipe": "Recept tonen", "removed": "Verwijderd" },
+  "bookmarks": { "title": "Bladwijzers", "empty": "Nog geen bladwijzers. Tik op de bladwijzer bij een recept in de feed om het hier te bewaren.", "browse": "Recepten bekijken", "removed": "Verwijderd" },
   "editor": {
     "newTitle": "Nieuw recept", "editTitle": "Recept bewerken", "editPageTitle": "{title} bewerken",
     "notFound": "Dit recept is niet gevonden.", "notYours": "Je kunt alleen je eigen recepten bewerken.",

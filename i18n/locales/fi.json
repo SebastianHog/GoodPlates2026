@@ -43,7 +43,7 @@
     "loading": "Ladataan reseptiä…",
     "moreFrom": "Lisää käyttäjältä {name}"
   },
-  "bookmarks": { "title": "Kirjanmerkit", "empty": "Ei vielä kirjanmerkkejä. Napauta reseptin kirjanmerkkiä syötteessä tallentaaksesi sen tänne.", "browse": "Selaa reseptejä", "showRecipe": "Näytä resepti", "removed": "Poistettu" },
+  "bookmarks": { "title": "Kirjanmerkit", "empty": "Ei vielä kirjanmerkkejä. Napauta reseptin kirjanmerkkiä syötteessä tallentaaksesi sen tänne.", "browse": "Selaa reseptejä", "removed": "Poistettu" },
   "editor": {
     "newTitle": "Uusi resepti", "editTitle": "Muokkaa reseptiä", "editPageTitle": "Muokkaa: {title}",
     "notFound": "Reseptiä ei löytynyt.", "notYours": "Voit muokata vain omia reseptejäsi.",
