@@ -32,7 +32,6 @@ const { on: bookmarked, toggle } = usePostToggle(
   "bookmark",
   () => props.postId,
   () => ({ on: props.bookmarkedByMe, count: 0 }),
-  (result) => ({ on: result.bookmarked as boolean }),
 );
 
 watch(bookmarked, (value) => emit("change", value));

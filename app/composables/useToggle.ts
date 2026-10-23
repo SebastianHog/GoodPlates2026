@@ -1,25 +1,18 @@
-interface ToggleState {
-  on: boolean;
-  count: number;
-}
-
 // An on/off action on a post (like, bookmark, cooked)
 export function usePostToggle(
-  kind: "like" | "bookmark" | "cook",
+  kind: PostMark,
   postId: () => string,
-  initial: () => ToggleState,
-  readResult: (result: Record<string, unknown>) => Partial<ToggleState>,
+  initial: () => ToggleResult,
 ) {
-  return useToggle(kind, () => `/api/posts/${postId()}/${kind}`, initial, readResult);
+  return useToggle(kind, () => `/api/posts/${postId()}/${kind}`, initial);
 }
 
 // An on/off action saved with PUT (on) and DELETE (off) to `url`. It updates right away, rolls back and says so if the
 // server says no, asks logged-out visitors to log in (and brings them back), and only the latest click's answer counts.
 export function useToggle(
-  kind: "like" | "bookmark" | "cook" | "follow",
+  kind: PostMark | "follow",
   url: () => string,
-  initial: () => ToggleState,
-  readResult: (result: Record<string, unknown>) => Partial<ToggleState>,
+  initial: () => ToggleResult,
 ) {
   const { loggedIn } = useUserSession();
   const route = useRoute();
@@ -49,13 +42,12 @@ export function useToggle(
 
     const request = ++latest;
     try {
-      const result = await $fetch<Record<string, unknown>>(url(), {
+      const result = await $fetch<ToggleResult>(url(), {
         method: next ? "PUT" : "DELETE",
       });
       if (request === latest) {
-        const { on: confirmed, count: confirmedCount } = readResult(result);
-        if (confirmed !== undefined) on.value = confirmed;
-        if (confirmedCount !== undefined) count.value = confirmedCount;
+        on.value = result.on;
+        count.value = result.count;
       }
     } catch {
       if (request === latest) {

@@ -30,7 +30,6 @@ const {
   "like",
   () => props.postId,
   () => ({ on: props.likedByMe, count: props.likeCount }),
-  (result) => ({ on: result.liked as boolean, count: result.likeCount as number }),
 );
 </script>
 

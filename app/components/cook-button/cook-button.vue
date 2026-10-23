@@ -44,10 +44,6 @@ const {
   "cook",
   () => props.postId,
   () => ({ on: props.cookedByMe, count: props.cookCount }),
-  (result) => ({
-    on: result.cooked as boolean,
-    count: result.cookCount as number,
-  }),
 );
 
 const countText = computed(() => {

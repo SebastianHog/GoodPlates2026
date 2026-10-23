@@ -246,22 +246,17 @@ async function setMark(
   return deletedCount > 0;
 }
 
-// Likes or unlikes a post and returns the new count; repeating the same action changes nothing
-export function setPostLike(
+// Likes, bookmarks or cooks a post (or takes it back) and returns the new count, or null when the post is missing.
+// Bookmarks have no count, so they return 0. Repeating the same action changes nothing
+export async function setPostMark(
+  mark: PostMark,
   postId: string,
   userId: string,
-  liked: boolean,
+  on: boolean,
 ): Promise<number | null> {
-  return setCountedMark("likes", "likeCount", postId, userId, liked);
-}
-
-// Marks a post as cooked (or not) and returns how many people cooked it
-export function setPostCook(
-  postId: string,
-  userId: string,
-  cooked: boolean,
-): Promise<number | null> {
-  return setCountedMark("cooks", "cookCount", postId, userId, cooked);
+  if (mark === "like") return setCountedMark("likes", "likeCount", postId, userId, on);
+  if (mark === "cook") return setCountedMark("cooks", "cookCount", postId, userId, on);
+  return (await setMark("bookmarks", postId, userId, on)) === null ? null : 0;
 }
 
 // A mark that also keeps a count on the post
@@ -287,15 +282,6 @@ async function setCountedMark(
       )
     : await posts.findOne({ _id });
   return doc?.[countField] ?? 0;
-}
-
-// Bookmarks or un-bookmarks a post; false when the post does not exist
-export async function setPostBookmark(
-  postId: string,
-  userId: string,
-  bookmarked: boolean,
-): Promise<boolean> {
-  return (await setMark("bookmarks", postId, userId, bookmarked)) !== null;
 }
 
 // The user's bookmarked posts, most recently bookmarked first

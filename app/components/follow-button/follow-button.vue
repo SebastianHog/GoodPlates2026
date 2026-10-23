@@ -26,10 +26,6 @@ const {
   "follow",
   () => `/api/users/${props.handle}/follow`,
   () => ({ on: props.followedByMe, count: props.followerCount }),
-  (result) => ({
-    on: result.following as boolean,
-    count: result.followerCount as number,
-  }),
 );
 
 watch(followers, (value) => emit("change", value));
