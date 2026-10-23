@@ -1,0 +1,10 @@
+@use "~/assets/scss/tokens" as *;
+
+.recipe-article {
+  &__recipe {
+    padding: $space-8;
+    border: 1px solid $color-border;
+    background: $color-surface;
+    box-shadow: $shadow-sm;
+  }
+}
