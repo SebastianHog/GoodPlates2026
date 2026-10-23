@@ -1,7 +1,13 @@
 <template>
   <div class="recipe-post">
     <div class="recipe-post__body">
-      <img :src="image" :alt="title" class="recipe-post__image" />
+      <img
+        :src="image"
+        :alt="title"
+        class="recipe-post__image"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
     <div class="recipe-post__header">
       <user-circle-icon size="medium" :user="author" />
