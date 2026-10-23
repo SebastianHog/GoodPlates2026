@@ -1,0 +1,26 @@
+@use "~/assets/scss/tokens" as *;
+
+.post-byline {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  min-width: 0;
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    line-height: $line-height-tight;
+  }
+
+  &__name {
+    overflow-wrap: anywhere;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__date {
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+  }
+}

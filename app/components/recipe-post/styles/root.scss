@@ -1,13 +1,20 @@
 @use "~/assets/scss/tokens" as *;
 
 .recipe-post {
-  display: flex;
-  flex-direction: column;
+  container-type: inline-size;
   border-bottom: 1px solid $color-border-secondary;
 
-  // Takes the spare height, so the footer always sits at the bottom of the card
-  &__body {
+  &__spread {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  &__text-page {
+    display: flex;
     flex: 1;
+    flex-direction: column;
+    min-width: 0;
     padding: $space-3 0 0;
   }
 
@@ -27,39 +34,27 @@
     font-size: $font-size-sm;
   }
 
+  &__caption {
+    display: -webkit-box;
+    max-width: 60ch;
+    margin: $space-3 0 0;
+    overflow: hidden;
+    line-height: $line-height-normal;
+    white-space: pre-line;
+    text-wrap: pretty;
+    overflow-wrap: anywhere;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+
   &__footer {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: $space-2;
-    margin-block: $space-3;
-  }
-
-  &__author {
-    min-width: 0;
-    overflow-wrap: anywhere;
-    font-size: $font-size-sm;
-    font-weight: $font-weight-medium;
-  }
-
-  &__edit {
-    color: $color-primary;
-    font-size: $font-size-sm;
-    font-weight: $font-weight-semibold;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-  }
-
-  // like, bookmark and date to the right
-  &__like {
-    margin-left: auto;
-  }
-
-  &__date {
-    color: $color-text-muted;
-    font-size: $font-size-sm;
+    justify-content: space-between;
+    gap: $space-3;
+    margin-top: auto;
+    padding-block: $space-4 $space-3;
   }
 }
