@@ -7,6 +7,7 @@
 export type IconName =
   | "alert"
   | "bookmark"
+  | "check"
   | "chevron-down"
   | "chevron-left"
   | "chevron-right"
@@ -15,6 +16,7 @@ export type IconName =
   | "photo"
   | "plus"
   | "search"
+  | "share"
   | "thumbs-up";
 </script>
 
