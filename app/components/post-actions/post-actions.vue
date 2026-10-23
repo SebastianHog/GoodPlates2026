@@ -19,6 +19,7 @@
       :bookmarked-by-me="bookmarkedByMe"
       :disabled="disabled"
     />
+    <share-button v-if="share" :post-id="id" :title="title" />
   </div>
 </template>
 
@@ -30,6 +31,7 @@ const props = defineProps<
   > & {
     authorId: string;
     disabled?: boolean;
+    share?: boolean;
   }
 >();
 

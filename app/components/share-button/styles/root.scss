@@ -1,0 +1,10 @@
+@use "~/assets/scss/tokens" as *;
+@use "~/assets/scss/mixins" as *;
+
+.share-button {
+  @include icon-button;
+
+  &__icon {
+    --icon-stroke: 1.75;
+  }
+}
