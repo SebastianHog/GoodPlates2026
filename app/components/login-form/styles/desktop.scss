@@ -6,12 +6,12 @@
   &--booklet {
     max-width: 56rem;
     // Tall enough for the sign-up tab, so the booklet does not resize when switching
-    min-height: 41rem;
+    min-height: 45rem;
   }
 
-  // The form sits in the middle of its page
+  // Fixed distance from the top, so the tabs stay put when switching between log in and sign up
   &__panel {
-    margin-block: auto;
+    margin-top: $space-12;
   }
 
   &--card {
