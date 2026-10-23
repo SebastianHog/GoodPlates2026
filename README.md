@@ -26,6 +26,8 @@ My stack for this project:
 
 - NUXT_MONGODB_URI
   - Your NUXT_MONGODB_URI should look like this: mongodb://MongoDBUsername:MongoDBPassword@IP:PORT/goodplates?authSource=admin
+- NUXT_SESSION_PASSWORD
+  - Encrypts the login cookie, at least 32 characters. Generated into .env automatically the first time you run `npm run dev`
 - NUXT_S3_ENDPOINT, NUXT_S3_ACCESS_KEY_ID, NUXT_S3_SECRET_ACCESS_KEY
   - From your Garage setup, see [Setting up Garage](#setting-up-garage)
 

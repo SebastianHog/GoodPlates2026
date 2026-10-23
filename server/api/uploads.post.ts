@@ -5,6 +5,7 @@ const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/avif"];
 
 // Uploads one photo to Garage in every size from IMAGE_WIDTHS and returns its key
 export default defineEventHandler(async (event): Promise<{ key: string }> => {
+  await requireUserSession(event);
   const parts = await readMultipartFormData(event);
   const file = parts?.find((part) => part.name === "image" && part.filename);
 

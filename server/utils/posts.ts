@@ -42,23 +42,13 @@ export async function getPostById(id: string): Promise<IPostContent | null> {
   return doc ? toPost(doc) : null;
 }
 
-// TODO: use the logged in user once auth exists
-const placeholderAuthor: IAuthor = {
-  id: "tempuser",
-  hiddenName: "tempuser",
-  displayName: "tempuser",
-  email: "",
-  bio: "",
-  createdAt: "2026-01-01T00:00:00Z",
-  modifiedAt: "2026-01-01T00:00:00Z",
-};
-
 export async function createPost(
   input: Pick<IPostContent, "title" | "body" | "image">,
+  author: IAuthor,
 ): Promise<IPostContent> {
   const now = new Date().toISOString();
   const post: PostDocument = {
-    author: placeholderAuthor,
+    author,
     ...input,
     createdAt: now,
     modifiedAt: now,
