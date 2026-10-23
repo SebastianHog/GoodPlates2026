@@ -1,0 +1,39 @@
+@use "~/assets/scss/tokens" as *;
+
+.featured-post {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  margin: 0;
+
+  &__photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 5 / 2;
+    border-radius: $radius-md;
+    object-fit: cover;
+  }
+
+  &__caption {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: $space-3;
+    font-size: $font-size-sm;
+  }
+
+  // The whole title shows, wrapping long words without spaces
+  &__title {
+    min-width: 0;
+    font-weight: $font-weight-semibold;
+    overflow-wrap: anywhere;
+  }
+
+  &__author {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: $space-2;
+    color: $color-text-muted;
+  }
+}

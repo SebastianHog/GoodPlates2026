@@ -1,18 +1,28 @@
 import { ObjectId, type WithId } from "mongodb";
 
 // Posts made before structured recipes have `image` and `body` instead
-type PostDocument = Omit<IPostContent, "id" | "likedByMe"> & { image?: string; body?: string };
+type PostDocument = Omit<IPostContent, "id" | "likedByMe" | "bookmarkedByMe"> & { image?: string; body?: string };
 
 async function postsCollection() {
   const db = await getDb();
   return db.collection<PostDocument>("posts");
 }
 
-function toPost({ _id, image, body, ...post }: WithId<PostDocument>, likedByMe = false): IPostContent {
+// What the viewer has done to a post; logged-out visitors have done neither
+interface ViewerMarks {
+  liked: boolean;
+  bookmarked: boolean;
+}
+
+function toPost(
+  { _id, image, body, ...post }: WithId<PostDocument>,
+  viewer: ViewerMarks = { liked: false, bookmarked: false },
+): IPostContent {
   return {
     ...post,
     likeCount: post.likeCount ?? 0,
-    likedByMe,
+    likedByMe: viewer.liked,
+    bookmarkedByMe: viewer.bookmarked,
     id: _id.toHexString(),
     caption: post.caption ?? "",
     images: post.images ?? (image ? [image] : []),
@@ -24,7 +34,7 @@ function toPost({ _id, image, body, ...post }: WithId<PostDocument>, likedByMe =
 }
 
 // Newest first. With a search term, only posts whose title, recipe or author name contain it.
-// With a viewer, each post also says whether they liked it
+// With a viewer, each post also says whether they liked and bookmarked it
 export async function getPosts(search?: string, viewerId?: string): Promise<IPostContent[]> {
   const posts = await postsCollection();
   const term = search?.trim();
@@ -37,8 +47,7 @@ export async function getPosts(search?: string, viewerId?: string): Promise<IPos
     : {};
 
   const docs = await posts.find(filter).sort({ createdAt: -1 }).toArray();
-  const liked = viewerId ? await likedPostIds(viewerId, docs.map((doc) => doc._id.toHexString())) : new Set();
-  return docs.map((doc) => toPost(doc, liked.has(doc._id.toHexString())));
+  return withViewerMarks(docs, viewerId);
 }
 
 // Treat the search term as plain text, not as a regex pattern
@@ -82,54 +91,98 @@ export async function updatePost(id: string, input: PostInput): Promise<IPostCon
   return doc ? toPost(doc) : null;
 }
 
-// Likes live in their own collection, one row per user and post, so a user can only like once
-let likeIndexReady = false;
+// Likes and bookmarks live in their own collections, one row per user and post, so each can only happen once
+type MarkKind = "likes" | "bookmarks";
+const markIndexReady = new Set<MarkKind>();
 
-async function likesCollection() {
+async function marksCollection(kind: MarkKind) {
   const db = await getDb();
-  const likes = db.collection<{ postId: string; userId: string; createdAt: string }>("likes");
-  if (!likeIndexReady) {
-    await likes.createIndex({ postId: 1, userId: 1 }, { unique: true });
-    likeIndexReady = true;
+  const marks = db.collection<{ postId: string; userId: string; createdAt: string }>(kind);
+  if (!markIndexReady.has(kind)) {
+    await marks.createIndex({ postId: 1, userId: 1 }, { unique: true });
+    await marks.createIndex({ userId: 1, createdAt: -1 });
+    markIndexReady.add(kind);
   }
-  return likes;
+  return marks;
 }
 
-async function likedPostIds(userId: string, postIds: string[]): Promise<Set<string>> {
-  const likes = await likesCollection();
-  const rows = await likes.find({ userId, postId: { $in: postIds } }).toArray();
+async function markedPostIds(kind: MarkKind, userId: string, postIds: string[]): Promise<Set<string>> {
+  const marks = await marksCollection(kind);
+  const rows = await marks.find({ userId, postId: { $in: postIds } }).toArray();
   return new Set(rows.map((row) => row.postId));
 }
 
-// Likes or unlikes a post and returns the new count; repeating the same action changes nothing
-export async function setPostLike(postId: string, userId: string, liked: boolean): Promise<number | null> {
+async function withViewerMarks(docs: WithId<PostDocument>[], viewerId?: string): Promise<IPostContent[]> {
+  if (!viewerId) {
+    return docs.map((doc) => toPost(doc));
+  }
+
+  const ids = docs.map((doc) => doc._id.toHexString());
+  const [liked, bookmarked] = await Promise.all([
+    markedPostIds("likes", viewerId, ids),
+    markedPostIds("bookmarks", viewerId, ids),
+  ]);
+  return docs.map((doc) => {
+    const id = doc._id.toHexString();
+    return toPost(doc, { liked: liked.has(id), bookmarked: bookmarked.has(id) });
+  });
+}
+
+// Adds or removes a like/bookmark row; returns whether anything changed, or null when the post is missing
+async function setMark(kind: MarkKind, postId: string, userId: string, on: boolean): Promise<boolean | null> {
   if (!ObjectId.isValid(postId)) {
     return null;
   }
 
   const posts = await postsCollection();
-  const _id = new ObjectId(postId);
-  if (!(await posts.countDocuments({ _id }, { limit: 1 }))) {
+  if (!(await posts.countDocuments({ _id: new ObjectId(postId) }, { limit: 1 }))) {
     return null;
   }
 
-  const likes = await likesCollection();
-  let change = 0;
-
-  if (liked) {
+  const marks = await marksCollection(kind);
+  if (on) {
     try {
-      await likes.insertOne({ postId, userId, createdAt: new Date().toISOString() });
-      change = 1;
+      await marks.insertOne({ postId, userId, createdAt: new Date().toISOString() });
+      return true;
     } catch (error) {
-      if ((error as { code?: number }).code !== 11000) throw error;
+      if ((error as { code?: number }).code === 11000) return false;
+      throw error;
     }
-  } else {
-    const { deletedCount } = await likes.deleteOne({ postId, userId });
-    change = -deletedCount;
   }
 
-  const doc = change
-    ? await posts.findOneAndUpdate({ _id }, { $inc: { likeCount: change } }, { returnDocument: "after" })
+  const { deletedCount } = await marks.deleteOne({ postId, userId });
+  return deletedCount > 0;
+}
+
+// Likes or unlikes a post and returns the new count; repeating the same action changes nothing
+export async function setPostLike(postId: string, userId: string, liked: boolean): Promise<number | null> {
+  const changed = await setMark("likes", postId, userId, liked);
+  if (changed === null) {
+    return null;
+  }
+
+  const posts = await postsCollection();
+  const _id = new ObjectId(postId);
+  const doc = changed
+    ? await posts.findOneAndUpdate({ _id }, { $inc: { likeCount: liked ? 1 : -1 } }, { returnDocument: "after" })
     : await posts.findOne({ _id });
   return doc?.likeCount ?? 0;
+}
+
+// Bookmarks or un-bookmarks a post; false when the post does not exist
+export async function setPostBookmark(postId: string, userId: string, bookmarked: boolean): Promise<boolean> {
+  return (await setMark("bookmarks", postId, userId, bookmarked)) !== null;
+}
+
+// The user's bookmarked posts, most recently bookmarked first
+export async function getBookmarkedPosts(userId: string): Promise<IPostContent[]> {
+  const marks = await marksCollection("bookmarks");
+  const rows = await marks.find({ userId }).sort({ createdAt: -1 }).toArray();
+
+  const posts = await postsCollection();
+  const docs = await posts.find({ _id: { $in: rows.map((row) => new ObjectId(row.postId)) } }).toArray();
+  const byId = new Map(docs.map((doc) => [doc._id.toHexString(), doc]));
+  const ordered = rows.map((row) => byId.get(row.postId)).filter((doc) => doc !== undefined);
+
+  return withViewerMarks(ordered, userId);
 }

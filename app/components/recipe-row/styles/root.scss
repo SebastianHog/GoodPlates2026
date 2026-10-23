@@ -1,0 +1,78 @@
+@use "~/assets/scss/tokens" as *;
+@use "~/assets/scss/mixins" as *;
+
+.recipe-row {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr) auto;
+  align-items: start;
+  gap: $space-3;
+  padding: $space-4 0;
+  border-bottom: 1px solid $color-border;
+  transition: opacity $transition-medium;
+
+  // A removed bookmark stays visible, faded, so it can be undone
+  &--removed {
+    opacity: 0.55;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: $radius-sm;
+    object-fit: cover;
+
+    &--empty {
+      background: $color-border;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-tight;
+    overflow-wrap: anywhere;
+  }
+
+  &__meta {
+    margin: $space-1 0 0;
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+    overflow-wrap: anywhere;
+  }
+
+  &__recipe {
+    margin-top: $space-2;
+  }
+
+  &__toggle {
+    width: fit-content;
+    color: $color-primary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    @include focus-ring;
+  }
+
+  &__recipe[open] &__toggle {
+    margin-bottom: $space-3;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+  }
+
+  &__removed {
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+  }
+}

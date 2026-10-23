@@ -10,8 +10,9 @@ export interface IPostContent {
   servings: string;
   totalTimeMinutes: number | null;
   likeCount: number;
-  // Whether the logged-in viewer has liked it; always false for logged-out visitors
+  // Whether the logged-in viewer has liked / bookmarked it; always false for logged-out visitors
   likedByMe: boolean;
+  bookmarkedByMe: boolean;
   createdAt: string;
   modifiedAt: string;
 }

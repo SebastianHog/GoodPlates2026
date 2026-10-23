@@ -1,0 +1,19 @@
+@use "~/assets/scss/tokens" as *;
+
+// Size an icon with width/height on its class. Stroke width and fill can be
+// changed per use with --icon-stroke and --icon-fill.
+.app-icon {
+  display: inline-flex;
+  flex: none;
+  width: 1.125rem;
+  height: 1.125rem;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--icon-fill, none);
+    stroke: currentColor;
+    stroke-width: var(--icon-stroke, 2);
+    transition: fill $transition-fast;
+  }
+}

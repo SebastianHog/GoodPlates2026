@@ -1,0 +1,27 @@
+@use "~/assets/scss/tokens" as *;
+@use "~/assets/scss/mixins" as *;
+
+.bookmark-button {
+  @include icon-button;
+
+  &__icon {
+    --icon-stroke: 1.75;
+  }
+
+  &--large {
+    padding: $space-2;
+
+    .bookmark-button__icon {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+
+  &--active {
+    color: $color-primary;
+
+    .bookmark-button__icon {
+      --icon-fill: currentColor;
+    }
+  }
+}

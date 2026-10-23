@@ -1,80 +1,24 @@
 @use "~/assets/scss/tokens" as *;
 
-// Single page when there is no post to show
-.login-form__page {
+.login-form {
   margin-top: $space-8;
-  padding: $space-8;
-  border: 1px solid $color-border;
-  border-radius: $radius-lg;
-  background: $color-surface;
-  box-shadow: $shadow-md;
-}
 
-// Open booklet: top post on the left page, the form on the right
-.login-form--spread {
-  display: grid;
-  // minmax(0, …) so a long post title can never widen a page
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 0;
-  max-width: 56rem;
-  // Tall enough for the sign-up tab, so the booklet does not resize when switching
-  min-height: 41rem;
-  margin-top: $space-8;
-  border: 1px solid $color-border;
-  border-radius: $radius-lg;
-  box-shadow:
-    0 1px 2px rgb(0 0 0 / 6%),
-    0 16px 40px -12px rgb(0 0 0 / 20%);
-  overflow: hidden;
+  &--booklet {
+    max-width: 56rem;
+    // Tall enough for the sign-up tab, so the booklet does not resize when switching
+    min-height: 41rem;
+  }
 
-  .login-form__cover,
-  .login-form__page {
-    position: relative;
+  // The form sits in the middle of its page
+  &__panel {
+    margin-block: auto;
+  }
+
+  &--card {
     padding: $space-8;
-
-    // Shadow in the fold between the two pages
-    &::after {
-      content: "";
-      position: absolute;
-      inset-block: 0;
-      width: $space-8;
-      pointer-events: none;
-    }
-  }
-
-  .login-form__cover {
-    gap: $space-4;
-    background: $color-paper;
-
-    &::after {
-      right: 0;
-      background: linear-gradient(to left, rgb(0 0 0 / 9%), transparent);
-    }
-  }
-
-  .login-form__photo {
-    flex: 1;
-    min-height: 0;
-    aspect-ratio: auto;
-    border-radius: $radius-sm;
-  }
-
-  .login-form__caption {
-    font-size: $font-size-base;
-    align-items: flex-start;
-  }
-
-  .login-form__page {
-    justify-content: center;
-    margin-top: 0;
-    border: none;
-    border-radius: 0;
+    border: 1px solid $color-border;
+    border-radius: $radius-lg;
     background: $color-surface;
-    box-shadow: none;
-
-    &::after {
-      left: 0;
-      background: linear-gradient(to right, rgb(0 0 0 / 6%), transparent);
-    }
+    box-shadow: $shadow-md;
   }
 }

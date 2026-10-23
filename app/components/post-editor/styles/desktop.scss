@@ -1,59 +1,16 @@
 @use "~/assets/scss/tokens" as *;
 
-// Open booklet: photos on the left page, the recipe on the right
-.post-editor {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
-  gap: 0;
-  max-width: 72rem;
+// Open booklet: photos on the left page, the recipe on the wider right page
+.post-editor__booklet {
+  --booklet-right: 1.4fr;
   min-height: 44rem;
-  border: 1px solid $color-border;
-  border-radius: $radius-lg;
-  box-shadow:
-    0 1px 2px rgb(0 0 0 / 6%),
-    0 16px 40px -12px rgb(0 0 0 / 20%);
+}
 
-  &__photos,
-  &__recipe {
-    position: relative;
-    padding: $space-8;
-
-    // Shadow in the fold between the two pages
-    &::after {
-      content: "";
-      position: absolute;
-      inset-block: 0;
-      width: $space-8;
-      pointer-events: none;
-    }
-  }
-
-  &__photos {
-    background: $color-paper;
-
-    &::after {
-      right: 0;
-      background: linear-gradient(to left, rgb(0 0 0 / 9%), transparent);
-    }
-  }
-
-  // Keep the photos above the fold shadow
-  &__photos > :not(.post-editor__visually-hidden) {
-    position: relative;
-    z-index: 1;
-  }
-
-  &__cover {
-    aspect-ratio: 1;
-  }
+.post-editor {
+  max-width: 72rem;
 
   &__recipe {
-    background: $color-surface;
-
-    &::after {
-      left: 0;
-      background: linear-gradient(to right, rgb(0 0 0 / 6%), transparent);
-    }
+    flex: 1;
   }
 
   &__buttons {

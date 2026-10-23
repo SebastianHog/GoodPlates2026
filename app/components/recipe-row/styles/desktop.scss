@@ -1,0 +1,6 @@
+@use "~/assets/scss/tokens" as *;
+
+.recipe-row {
+  grid-template-columns: 8rem minmax(0, 1fr) auto;
+  gap: $space-6;
+}

@@ -1,5 +1,7 @@
 @use "~/assets/scss/tokens" as *;
+@use "~/assets/scss/mixins" as *;
 
+// One row: brand, search right after it, actions pushed to the right
 .site-header {
   grid-template-columns: auto minmax(0, 28rem) 1fr;
   grid-template-areas: "brand search actions";
@@ -11,11 +13,6 @@
   }
 
   &__label {
-    position: static;
-    width: auto;
-    height: auto;
-    overflow: visible;
-    clip-path: none;
-    white-space: normal;
+    @include visually-shown;
   }
 }

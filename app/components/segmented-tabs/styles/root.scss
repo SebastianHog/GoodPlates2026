@@ -1,0 +1,55 @@
+@use "~/assets/scss/tokens" as *;
+@use "~/assets/scss/mixins" as *;
+
+.segmented-tabs {
+  position: relative;
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  padding: $space-1;
+  border-radius: $radius-md;
+  background: $color-paper;
+  box-shadow: inset 0 0 0 1px $color-border;
+
+  // The pill behind the selected tab, moved by --tab-index
+  &::before {
+    content: "";
+    position: absolute;
+    inset: $space-1;
+    width: calc((100% - 2 * #{$space-1}) / var(--tab-count));
+    border-radius: $radius-sm;
+    background: $color-surface;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 12%);
+    transform: translateX(calc(var(--tab-index) * 100%));
+    transition: transform $transition-medium cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  &__tab {
+    position: relative;
+    padding: $space-2 $space-3;
+    border: none;
+    border-radius: $radius-sm;
+    background: none;
+    color: $color-text-muted;
+    font-weight: $font-weight-medium;
+    cursor: pointer;
+    transition: color $transition-fast;
+
+    &:hover,
+    &[aria-selected="true"] {
+      color: $color-text;
+    }
+
+    &[aria-selected="true"] {
+      font-weight: $font-weight-semibold;
+    }
+
+    @include focus-ring;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .segmented-tabs::before {
+    transition: none;
+  }
+}

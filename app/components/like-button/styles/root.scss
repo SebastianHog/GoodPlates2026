@@ -1,0 +1,36 @@
+@use "~/assets/scss/tokens" as *;
+@use "~/assets/scss/mixins" as *;
+
+.like-button {
+  @include icon-button;
+  padding-inline: $space-2;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  font-variant-numeric: tabular-nums;
+
+  &__icon {
+    --icon-stroke: 1.75;
+  }
+
+  &--active {
+    color: $color-primary;
+
+    .like-button__icon {
+      --icon-fill: #{rgb($color-primary, 0.15)};
+      animation: like-button-lift 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  }
+}
+
+// A small lift when a post is liked
+@keyframes like-button-lift {
+  40% {
+    transform: translateY(-2px) rotate(-12deg) scale(1.15);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .like-button__icon {
+    animation: none !important;
+  }
+}

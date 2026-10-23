@@ -1,0 +1,18 @@
+@use "~/assets/scss/tokens" as *;
+
+// The photo fills the height it is given, e.g. a booklet page
+.featured-post {
+  flex: 1;
+  gap: $space-4;
+
+  &__photo {
+    flex: 1;
+    min-height: 0;
+    aspect-ratio: auto;
+    border-radius: $radius-sm;
+  }
+
+  &__caption {
+    font-size: $font-size-base;
+  }
+}

@@ -1,0 +1,7 @@
+@use "~/assets/scss/tokens" as *;
+
+// Ingredients and steps side by side
+.recipe-details__lists {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: $space-8;
+}

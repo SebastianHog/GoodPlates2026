@@ -1,0 +1,14 @@
+@use "~/assets/scss/tokens" as *;
+
+// Phone: the two pages stack
+.booklet-spread {
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+
+  &__page {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+}

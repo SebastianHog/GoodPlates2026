@@ -1,0 +1,40 @@
+@use "~/assets/scss/tokens" as *;
+
+.search-field {
+  position: relative;
+
+  &__icon {
+    --icon-stroke: 1.75;
+    position: absolute;
+    top: 50%;
+    left: $space-3;
+    color: $color-text-muted;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  &__input {
+    width: 100%;
+    padding: $space-2 $space-3 $space-2 2.25rem;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    background: $color-paper;
+    color: $color-text;
+    caret-color: $color-primary;
+    transition:
+      border-color $transition-fast,
+      box-shadow $transition-fast,
+      background $transition-fast;
+
+    &::placeholder {
+      color: $color-text-muted;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $color-primary;
+      background: $color-surface;
+      box-shadow: 0 0 0 3px rgb($color-primary, 0.2);
+    }
+  }
+}

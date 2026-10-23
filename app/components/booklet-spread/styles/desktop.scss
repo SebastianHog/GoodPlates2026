@@ -1,0 +1,46 @@
+@use "~/assets/scss/tokens" as *;
+
+.booklet-spread {
+  display: grid;
+  // minmax(0, …) so long content can never widen a page
+  grid-template-columns: minmax(0, var(--booklet-left, 1fr)) minmax(0, var(--booklet-right, 1fr));
+  gap: 0;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 6%),
+    0 16px 40px -12px rgb(0 0 0 / 20%);
+  overflow: hidden;
+
+  &__page {
+    position: relative;
+    padding: $space-8;
+
+    // Shadow in the fold between the two pages
+    &::after {
+      content: "";
+      position: absolute;
+      inset-block: 0;
+      width: $space-8;
+      pointer-events: none;
+    }
+
+    &--left {
+      background: $color-paper;
+
+      &::after {
+        right: 0;
+        background: linear-gradient(to left, rgb(0 0 0 / 9%), transparent);
+      }
+    }
+
+    &--right {
+      background: $color-surface;
+
+      &::after {
+        left: 0;
+        background: linear-gradient(to right, rgb(0 0 0 / 6%), transparent);
+      }
+    }
+  }
+}

@@ -1,0 +1,148 @@
+@use "~/assets/scss/tokens" as *;
+@use "~/assets/scss/mixins" as *;
+
+.auth-panel {
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+
+  &__panel {
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+  }
+
+  &__intro {
+    margin-bottom: $space-2;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+    text-wrap: balance;
+  }
+
+  &__subtitle {
+    margin: $space-1 0 0;
+    color: $color-text-muted;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+  }
+
+  &__label {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+  }
+
+  &__hint {
+    margin: 0;
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+  }
+
+  &__input {
+    width: 100%;
+    padding: $space-2 $space-3;
+    border: 1px solid $color-border-secondary;
+    border-radius: $radius-md;
+    background: $color-surface;
+    color: $color-text;
+    caret-color: $color-primary;
+    transition: border-color $transition-fast, box-shadow $transition-fast;
+
+    &::placeholder {
+      color: $color-text-muted;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $color-primary;
+      box-shadow: 0 0 0 3px rgb($color-primary, 0.2);
+    }
+
+    &--prefixed {
+      padding-left: 1.75rem;
+    }
+
+    &--password {
+      padding-right: 4rem;
+    }
+  }
+
+  &__affix {
+    position: relative;
+  }
+
+  &__prefix {
+    position: absolute;
+    top: 50%;
+    left: $space-3;
+    transform: translateY(-50%);
+    color: $color-text-muted;
+    pointer-events: none;
+  }
+
+  &__toggle {
+    position: absolute;
+    top: 50%;
+    right: $space-2;
+    transform: translateY(-50%);
+    padding: $space-1 $space-2;
+    border: none;
+    border-radius: $radius-sm;
+    background: none;
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    cursor: pointer;
+
+    &:hover {
+      color: $color-text;
+    }
+
+    @include focus-ring(0);
+  }
+
+  &__error {
+    margin: 0;
+    padding: $space-2 $space-3;
+    border: 1px solid $color-error;
+    border-radius: $radius-md;
+    background: $color-error-surface;
+    color: $color-error;
+    font-size: $font-size-sm;
+  }
+
+  &__submit {
+    margin-top: $space-2;
+    padding: $space-3 $space-4;
+    border: none;
+    border-radius: $radius-md;
+    background: $color-primary;
+    color: $color-surface;
+    font-weight: $font-weight-semibold;
+    cursor: pointer;
+    transition: background $transition-fast;
+
+    &:hover:not(:disabled) {
+      background: $color-primary-hover;
+    }
+
+    @include focus-ring;
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: progress;
+    }
+  }
+
+  ::selection {
+    background: rgb($color-primary, 0.2);
+  }
+}

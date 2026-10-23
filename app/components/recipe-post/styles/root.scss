@@ -5,87 +5,6 @@
   flex-direction: column;
   border-bottom: 1px solid $color-border-secondary;
 
-  &__media {
-    position: relative;
-  }
-
-  &__track {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    background: $color-border;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-
-    &:focus-visible {
-      outline: 2px solid $color-primary;
-      outline-offset: -2px;
-    }
-  }
-
-  &__image {
-    display: block;
-    flex: 0 0 100%;
-    width: 100%;
-    aspect-ratio: 1;
-    object-fit: cover;
-    scroll-snap-align: start;
-  }
-
-  // Soft shade fading up from the bottom edge so the dots read on light photos
-  &__dots {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    padding: $space-8 0 $space-1;
-    background: linear-gradient(to top, rgb($color-text, 0.35), transparent);
-    pointer-events: none;
-  }
-
-  &__dot {
-    display: grid;
-    place-items: center;
-    width: 1.25rem;
-    height: 1.25rem;
-    padding: 0;
-    border: none;
-    background: none;
-    cursor: pointer;
-    pointer-events: auto;
-
-    &::before {
-      content: "";
-      width: 0.4375rem;
-      height: 0.4375rem;
-      border-radius: 50%;
-      background: rgb($color-surface, 0.55);
-      box-shadow: 0 0 2px rgb(0 0 0 / 30%);
-      transition:
-        background $transition-fast,
-        transform $transition-fast;
-    }
-
-    &:hover::before {
-      background: rgb($color-surface, 0.85);
-    }
-
-    &--active::before {
-      background: $color-surface;
-      transform: scale(1.2);
-    }
-
-    &:focus-visible {
-      outline: 2px solid $color-surface;
-      outline-offset: -2px;
-    }
-  }
-
   &__body {
     padding: $space-3 0 0;
   }
@@ -100,13 +19,13 @@
     overflow-wrap: anywhere;
   }
 
-  &__counts {
+  &__summary {
     margin: $space-1 0 0;
     color: $color-text-muted;
     font-size: $font-size-sm;
   }
 
-  &__header {
+  &__footer {
     display: flex;
     align-items: center;
     gap: $space-2;
@@ -132,74 +51,13 @@
     }
   }
 
+  // Pushes the like, bookmark and date to the right
   &__like {
-    display: inline-flex;
-    align-items: center;
-    gap: $space-1;
     margin-left: auto;
-    padding: $space-1 $space-2;
-    border: none;
-    border-radius: $radius-sm;
-    background: none;
+  }
+
+  &__date {
     color: $color-text-muted;
     font-size: $font-size-sm;
-    font-weight: $font-weight-medium;
-    font-variant-numeric: tabular-nums;
-    cursor: pointer;
-    transition: color $transition-fast, background $transition-fast;
-
-    &:hover:not(:disabled) {
-      background: $color-paper;
-      color: $color-text;
-    }
-
-    &:focus-visible {
-      outline: 2px solid $color-primary;
-      outline-offset: 2px;
-    }
-
-    &:disabled {
-      cursor: default;
-    }
-
-    &--active {
-      color: $color-primary;
-
-      .recipe-post__like-icon {
-        fill: rgb($color-primary, 0.15);
-      }
-    }
-  }
-
-  &__like-icon {
-    width: 1.125rem;
-    height: 1.125rem;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.75;
-    stroke-linejoin: round;
-    transition: transform $transition-fast;
-  }
-
-  &__like--active &__like-icon {
-    animation: recipe-post-like 300ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  &__date-posted {
-    color: $color-text-muted;
-    font-size: $font-size-sm;
-  }
-}
-
-// A small lift when a post is liked
-@keyframes recipe-post-like {
-  40% {
-    transform: translateY(-2px) rotate(-12deg) scale(1.15);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .recipe-post__like-icon {
-    animation: none !important;
   }
 }

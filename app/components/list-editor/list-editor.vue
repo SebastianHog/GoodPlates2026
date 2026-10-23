@@ -26,7 +26,7 @@
             :aria-label="`Move ${itemLabel.toLowerCase()} ${index + 1} up`"
             @click="move(index, -1)"
           >
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6" /></svg>
+            <app-icon name="chevron-up" />
           </button>
           <button
             class="list-editor__action"
@@ -35,7 +35,7 @@
             :aria-label="`Move ${itemLabel.toLowerCase()} ${index + 1} down`"
             @click="move(index, 1)"
           >
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+            <app-icon name="chevron-down" />
           </button>
           <button
             class="list-editor__action"
@@ -44,7 +44,7 @@
             :aria-label="`Remove ${itemLabel.toLowerCase()} ${index + 1}`"
             @click="remove(index)"
           >
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+            <app-icon name="close" />
           </button>
         </div>
       </li>
@@ -74,11 +74,9 @@ const emit = defineEmits<{ "update:modelValue": [value: string[]] }>();
 
 const fields: HTMLInputElement[] = [];
 
-// Textareas grow with their text instead of showing a scrollbar
+// Textareas (steps) grow with their text
 function fitHeight(el: HTMLElement | undefined) {
-  if (!props.multiline || !el) return;
-  el.style.height = "auto";
-  el.style.height = `${el.scrollHeight + 2}px`;
+  if (props.multiline) fitToContent(el);
 }
 
 function onInput(event: Event, index: number) {
