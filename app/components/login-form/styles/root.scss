@@ -25,17 +25,17 @@
 
   &__caption {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     gap: $space-3;
     font-size: $font-size-sm;
   }
 
+  // The whole title shows, wrapping long words without spaces
   &__caption-title {
-    overflow: hidden;
+    min-width: 0;
     font-weight: $font-weight-semibold;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    overflow-wrap: anywhere;
   }
 
   &__caption-author {

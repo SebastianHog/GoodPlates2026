@@ -24,6 +24,7 @@ const { data: posts } = await usePosts(search);
   gap: 0.5rem;
   margin: 0 0 1.5rem;
   color: var(--color-text-muted);
+  overflow-wrap: anywhere;
 }
 
 .search-summary a {

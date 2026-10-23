@@ -207,6 +207,8 @@
   &__menu-user {
     display: flex;
     flex-direction: column;
+    max-width: 18rem;
+    overflow-wrap: anywhere;
     margin: 0;
     padding: $space-2 $space-3 $space-3;
     border-bottom: 1px solid $color-border;

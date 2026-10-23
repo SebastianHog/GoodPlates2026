@@ -96,6 +96,8 @@
     font-weight: $font-weight-semibold;
     line-height: $line-height-tight;
     text-wrap: balance;
+    // Break long words without spaces instead of cutting them off
+    overflow-wrap: anywhere;
   }
 
   &__counts {
@@ -112,6 +114,8 @@
   }
 
   &__author {
+    min-width: 0;
+    overflow-wrap: anywhere;
     font-size: $font-size-sm;
     font-weight: $font-weight-medium;
   }
