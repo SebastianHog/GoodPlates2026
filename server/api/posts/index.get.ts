@@ -1,9 +1,13 @@
 export default defineEventHandler(async (event): Promise<IPostContent[]> => {
-  const { q, author } = getQuery(event);
+  const { q, author, feed } = getQuery(event);
   const { user } = await getUserSession(event);
-  return getPosts(
-    typeof q === "string" ? q.slice(0, 100) : undefined,
-    user?.id,
-    typeof author === "string" ? author : undefined,
-  );
+  const search = typeof q === "string" ? q.slice(0, 100) : undefined;
+  const authorId = typeof author === "string" ? author : undefined;
+
+  // search and author pages are always newest first
+  if (feed === "discover" && !search && !authorId) {
+    return getDiscoverPosts(user?.id);
+  }
+
+  return getPosts(search, user?.id, authorId);
 });
