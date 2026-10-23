@@ -97,4 +97,10 @@ useHead({
   font-weight: 600;
   text-underline-offset: 3px;
 }
+
+.feed__lead a:focus-visible,
+.feed__message a:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
 </style>

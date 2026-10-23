@@ -30,7 +30,7 @@
     "removeBookmark": "Poista kirjanmerkki: {title}",
     "bookmarkTooltip": "Lisää kirjanmerkki",
     "removeBookmarkTooltip": "Poista kirjanmerkki",
-    "summary": { "ingredients": "{n} ainesosa | {n} ainesosaa", "steps": "{n} vaihe | {n} vaihetta", "minutes": "{n} min" },
+    "summary": { "ingredients": "{n} ainesosa | {n} ainesosaa", "steps": "{n} vaihe | {n} vaihetta", "minutes": "{n} min", "hours": "{n} h", "hoursMinutes": "{h} h {m} min" },
     "details": { "ingredients": "Ainesosat", "steps": "Valmistus" }
   },
   "bookmarks": { "title": "Kirjanmerkit", "empty": "Ei vielä kirjanmerkkejä. Napauta reseptin kirjanmerkkiä syötteessä tallentaaksesi sen tänne.", "browse": "Selaa reseptejä", "showRecipe": "Näytä resepti", "removed": "Poistettu" },

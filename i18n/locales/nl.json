@@ -30,7 +30,7 @@
     "removeBookmark": "{title} uit bladwijzers halen",
     "bookmarkTooltip": "Bewaren",
     "removeBookmarkTooltip": "Uit bladwijzers halen",
-    "summary": { "ingredients": "{n} ingrediënt | {n} ingrediënten", "steps": "{n} stap | {n} stappen", "minutes": "{n} min" },
+    "summary": { "ingredients": "{n} ingrediënt | {n} ingrediënten", "steps": "{n} stap | {n} stappen", "minutes": "{n} min", "hours": "{n} uur", "hoursMinutes": "{h} uur {m} min" },
     "details": { "ingredients": "Ingrediënten", "steps": "Bereiding" }
   },
   "bookmarks": { "title": "Bladwijzers", "empty": "Nog geen bladwijzers. Tik op de bladwijzer bij een recept in de feed om het hier te bewaren.", "browse": "Recepten bekijken", "showRecipe": "Recept tonen", "removed": "Verwijderd" },

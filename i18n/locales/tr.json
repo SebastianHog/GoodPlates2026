@@ -30,7 +30,7 @@
     "removeBookmark": "{title} tarifini yer imlerinden kaldır",
     "bookmarkTooltip": "Yer imlerine ekle",
     "removeBookmarkTooltip": "Yer iminden kaldır",
-    "summary": { "ingredients": "{n} malzeme | {n} malzeme", "steps": "{n} adım | {n} adım", "minutes": "{n} dk" },
+    "summary": { "ingredients": "{n} malzeme | {n} malzeme", "steps": "{n} adım | {n} adım", "minutes": "{n} dk", "hours": "{n} sa", "hoursMinutes": "{h} sa {m} dk" },
     "details": { "ingredients": "Malzemeler", "steps": "Hazırlanışı" }
   },
   "bookmarks": { "title": "Yer imleri", "empty": "Henüz yer imi yok. Akıştaki bir tarifin yer imi simgesine dokunarak buraya kaydet.", "browse": "Tariflere göz at", "showRecipe": "Tarifi göster", "removed": "Kaldırıldı" },

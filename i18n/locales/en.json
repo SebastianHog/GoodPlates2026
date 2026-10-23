@@ -83,7 +83,9 @@
     "summary": {
       "ingredients": "{n} ingredient | {n} ingredients",
       "steps": "{n} step | {n} steps",
-      "minutes": "{n} min"
+      "minutes": "{n} min",
+      "hours": "{n} h",
+      "hoursMinutes": "{h} h {m} min"
     },
     "details": {
       "ingredients": "Ingredients",

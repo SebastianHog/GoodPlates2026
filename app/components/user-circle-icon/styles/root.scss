@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
   border: 1px solid $color-border-secondary;
-  border-radius: 1rem;
+  border-radius: $radius-full;
 
   &--small {
     width: 1.25rem;

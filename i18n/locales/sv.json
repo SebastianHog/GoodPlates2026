@@ -30,7 +30,7 @@
     "removeBookmark": "Ta bort bokmärket från {title}",
     "bookmarkTooltip": "Bokmärk",
     "removeBookmarkTooltip": "Ta bort bokmärke",
-    "summary": { "ingredients": "{n} ingrediens | {n} ingredienser", "steps": "{n} steg | {n} steg", "minutes": "{n} min" },
+    "summary": { "ingredients": "{n} ingrediens | {n} ingredienser", "steps": "{n} steg | {n} steg", "minutes": "{n} min", "hours": "{n} tim", "hoursMinutes": "{h} tim {m} min" },
     "details": { "ingredients": "Ingredienser", "steps": "Gör så här" }
   },
   "bookmarks": { "title": "Bokmärken", "empty": "Inga bokmärken än. Tryck på bokmärket på ett recept i flödet för att spara det här.", "browse": "Bläddra bland recept", "showRecipe": "Visa recept", "removed": "Borttaget" },

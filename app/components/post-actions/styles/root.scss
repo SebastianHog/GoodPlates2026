@@ -1,4 +1,5 @@
 @use "~/assets/scss/tokens" as *;
+@use "~/assets/scss/mixins" as *;
 
 .post-actions {
   display: flex;
@@ -16,5 +17,7 @@
       text-decoration: underline;
       text-underline-offset: 3px;
     }
+
+    @include focus-ring;
   }
 }
