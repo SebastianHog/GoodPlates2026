@@ -1,21 +1,17 @@
 @use "~/assets/scss/tokens" as *;
 
 .recipe-post {
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
   border: 1px solid $color-border;
   background: $color-surface;
   box-shadow: $shadow-sm;
 
-  &__header {
-    height: auto;
-    margin-block: 0;
-    padding: $space-3 $space-4;
+  &__body {
+    padding: $space-3 $space-4 0;
   }
 
-  &__date-posted {
-    font-size: $font-size-sm;
-    color: $color-text-muted;
+  &__header {
+    margin-block: 0;
+    padding: $space-3 $space-4;
   }
 }

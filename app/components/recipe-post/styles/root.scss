@@ -1,26 +1,136 @@
 @use "~/assets/scss/tokens" as *;
 
 .recipe-post {
-  border-bottom: 0.1rem solid $color-border-secondary;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid $color-border-secondary;
 
-  &__header {
-    margin-block: $space-2;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    grid-template-rows: 1fr;
-    align-items: center;
-    gap: $space-2;
+  &__media {
+    position: relative;
   }
 
-  &__date-posted {
-    font-size: $font-size-xs;
-    text-align: right;
+  &__track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    background: $color-border;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-primary;
+      outline-offset: -2px;
+    }
   }
 
   &__image {
     display: block;
+    flex: 0 0 100%;
     width: 100%;
-    aspect-ratio: 4/4;
+    aspect-ratio: 1;
     object-fit: cover;
+    scroll-snap-align: start;
+  }
+
+  // Soft shade fading up from the bottom edge so the dots read on light photos
+  &__dots {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    padding: $space-8 0 $space-1;
+    background: linear-gradient(to top, rgb($color-text, 0.35), transparent);
+    pointer-events: none;
+  }
+
+  &__dot {
+    display: grid;
+    place-items: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    pointer-events: auto;
+
+    &::before {
+      content: "";
+      width: 0.4375rem;
+      height: 0.4375rem;
+      border-radius: 50%;
+      background: rgb($color-surface, 0.55);
+      box-shadow: 0 0 2px rgb(0 0 0 / 30%);
+      transition:
+        background $transition-fast,
+        transform $transition-fast;
+    }
+
+    &:hover::before {
+      background: rgb($color-surface, 0.85);
+    }
+
+    &--active::before {
+      background: $color-surface;
+      transform: scale(1.2);
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-surface;
+      outline-offset: -2px;
+    }
+  }
+
+  &__body {
+    padding: $space-3 0 0;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-tight;
+    text-wrap: balance;
+  }
+
+  &__counts {
+    margin: $space-1 0 0;
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    margin-block: $space-3;
+  }
+
+  &__author {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+  }
+
+  &__edit {
+    color: $color-primary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  }
+
+  &__date-posted {
+    margin-left: auto;
+    color: $color-text-muted;
+    font-size: $font-size-sm;
   }
 }

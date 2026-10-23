@@ -2,7 +2,7 @@
   <div class="login-form" :class="{ 'login-form--spread': topPost }">
     <figure v-if="topPost" class="login-form__cover">
       <img
-        v-bind="imageSources(topPost.image)"
+        v-bind="imageSources(topPost.images[0]!)"
         sizes="(min-width: 52em) 28rem, 100vw"
         :alt="topPost.title"
         class="login-form__photo"
@@ -181,7 +181,7 @@ const { fetch: refreshSession } = useUserSession();
 
 // most recent post in left page of the booklet
 const { data: posts } = await usePosts();
-const topPost = computed(() => posts.value?.find((post) => post.image));
+const topPost = computed(() => posts.value?.find((post) => post.images.length > 0));
 
 const tab = ref<Tab>(route.query.tab === "signup" ? "signup" : "login");
 
