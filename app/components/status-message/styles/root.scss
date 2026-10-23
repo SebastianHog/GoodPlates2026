@@ -1,0 +1,26 @@
+@use "~/assets/scss/tokens" as *;
+@use "~/assets/scss/mixins" as *;
+
+.status-message {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+  margin: 0 0 $space-6;
+  color: $color-text-muted;
+  overflow-wrap: anywhere;
+
+  a,
+  button {
+    padding: 0;
+    border: none;
+    background: none;
+    color: $color-primary;
+    font: inherit;
+    font-weight: $font-weight-semibold;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+
+    @include focus-ring;
+  }
+}

@@ -26,48 +26,38 @@
       :role="search ? undefined : 'tabpanel'"
       :aria-labelledby="search ? undefined : `feed-tab-${feed}`"
     >
-      <!-- While posts load: grey stand-ins in their shape, and a line for screen readers -->
-      <template v-if="status === 'pending'">
-        <p class="visually-hidden" role="status">{{ $t("feed.loading") }}</p>
-        <post-container aria-hidden="true">
-          <recipe-post-skeleton v-for="n in 3" :key="n" />
-        </post-container>
-      </template>
-
-      <p v-else-if="error" class="feed__message" role="alert">
-        {{ $t("feed.loadFailed") }}
-        <button type="button" class="feed__retry" @click="() => refresh()">
-          {{ $t("feed.retry") }}
-        </button>
-      </p>
-
-      <template v-else>
-        <p v-if="search" class="feed__message">
+      <load-state
+        :status="status"
+        :error="error"
+        :loading-label="$t('feed.loading')"
+        :failed-label="$t('feed.loadFailed')"
+        @retry="refresh"
+      >
+        <status-message v-if="search">
           {{
             $t(posts?.length ? "feed.matching" : "feed.noMatches", {
               query: search,
             })
           }}
           <NuxtLink to="/">{{ $t("feed.showAll") }}</NuxtLink>
-        </p>
-        <p
+        </status-message>
+        <status-message
           v-else-if="posts && !posts.length && feed === 'following'"
-          class="feed__message"
         >
           {{ $t("feed.followingEmpty") }}
           <NuxtLink to="/?feed=discover">{{ $t("feed.findCooks") }}</NuxtLink>
-        </p>
-        <p v-else-if="posts && !posts.length" class="feed__message">
+        </status-message>
+        <status-message v-else-if="posts && !posts.length">
           {{ $t("feed.empty") }}
           <NuxtLink :to="loggedIn ? '/create' : '/login?tab=signup'">
             {{ $t(loggedIn ? "feed.emptyPost" : "feed.emptyJoin") }}
           </NuxtLink>
-        </p>
+        </status-message>
 
         <post-container>
           <recipe-post v-for="post in posts" :key="post.id" v-bind="post" />
         </post-container>
-      </template>
+      </load-state>
     </div>
   </section>
 </template>
@@ -160,37 +150,13 @@ useHead({
   text-wrap: pretty;
 }
 
-.feed__message {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin: 0 0 1.5rem;
-  color: var(--color-text-muted);
-  overflow-wrap: anywhere;
-}
-
-.feed__retry {
-  padding: 0;
-  border: none;
-  background: none;
-  color: var(--color-primary);
-  font: inherit;
-  font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  cursor: pointer;
-}
-
-.feed__lead a,
-.feed__message a {
+.feed__lead a {
   color: var(--color-primary);
   font-weight: 600;
   text-underline-offset: 3px;
 }
 
-.feed__lead a:focus-visible,
-.feed__message a:focus-visible,
-.feed__retry:focus-visible {
+.feed__lead a:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }

@@ -1,10 +1,10 @@
 <template>
   <section>
     <h1 class="edit-page__title">{{ $t("editor.editTitle") }}</h1>
-    <p v-if="error" class="edit-page__message">{{ $t("editor.notFound") }}</p>
-    <p v-else-if="post && post.author.id !== user?.id" class="edit-page__message">
+    <status-message v-if="error">{{ $t("editor.notFound") }}</status-message>
+    <status-message v-else-if="post && post.author.id !== user?.id">
       {{ $t("editor.notYours") }}
-    </p>
+    </status-message>
     <post-editor v-else-if="post" :post="post" />
   </section>
 </template>
@@ -33,9 +33,5 @@ useHead({
   font-family: var(--font-family-serif);
   font-size: 1.5rem;
   font-weight: 600;
-}
-
-.edit-page__message {
-  color: var(--color-text-muted);
 }
 </style>

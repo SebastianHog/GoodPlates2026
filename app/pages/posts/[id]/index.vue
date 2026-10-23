@@ -1,23 +1,20 @@
 <template>
   <section class="post-page">
-    <template v-if="status === 'pending'">
-      <p class="visually-hidden" role="status">{{ $t("post.loading") }}</p>
-      <recipe-post-skeleton />
-    </template>
+    <load-state
+      :status="status"
+      :error="error"
+      :loading-label="$t('post.loading')"
+      :failed-label="$t('post.loadFailed')"
+      :skeletons="1"
+      @retry="refresh"
+    >
+      <template #notFound>
+        {{ $t("post.notFound") }}
+        <NuxtLink to="/">{{ $t("post.backToFeed") }}</NuxtLink>
+      </template>
 
-    <p v-else-if="error?.statusCode === 404" class="post-page__message">
-      {{ $t("post.notFound") }}
-      <NuxtLink to="/">{{ $t("post.backToFeed") }}</NuxtLink>
-    </p>
-
-    <p v-else-if="error" class="post-page__message" role="alert">
-      {{ $t("post.loadFailed") }}
-      <button type="button" class="post-page__retry" @click="() => refresh()">
-        {{ $t("feed.retry") }}
-      </button>
-    </p>
-
-    <recipe-article v-else-if="post" v-bind="post" />
+      <recipe-article v-if="post" v-bind="post" />
+    </load-state>
   </section>
 </template>
 
@@ -46,32 +43,5 @@ useHead({
 .post-page {
   max-width: 60rem;
   margin: 0 auto;
-}
-
-.post-page__message {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin: 0;
-  color: var(--color-text-muted);
-}
-
-.post-page__message a,
-.post-page__retry {
-  padding: 0;
-  border: none;
-  background: none;
-  color: var(--color-primary);
-  font: inherit;
-  font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  cursor: pointer;
-}
-
-.post-page__message a:focus-visible,
-.post-page__retry:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
 }
 </style>
