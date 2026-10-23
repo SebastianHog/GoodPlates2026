@@ -191,7 +191,12 @@
     "draftSaved": "Draft saved in this browser · {time}",
     "leaveConfirm": "Leave without saving your changes?",
     "saveFailed": "Could not save your recipe. It is still here; try again.",
-    "photoFailed": "A photo failed to upload. Retry it or remove it."
+    "photoFailed": "A photo failed to upload. Retry it or remove it.",
+    "delete": "Delete recipe",
+    "deleting": "Deleting…",
+    "deleteConfirm": "Delete this recipe? This can't be undone.",
+    "deleted": "Recipe deleted.",
+    "deleteFailed": "Could not delete the recipe. Try again."
   },
   "list": {
     "moveUp": "Move {item} {index} up",

@@ -202,6 +202,17 @@
               </button>
             </div>
           </div>
+
+          <div v-if="post" class="post-editor__delete-row">
+            <button
+              class="post-editor__delete"
+              type="button"
+              :disabled="deleting"
+              @click="deletePost"
+            >
+              {{ $t(deleting ? "editor.deleting" : "editor.delete") }}
+            </button>
+          </div>
         </section>
       </template>
     </booklet-spread>
@@ -422,6 +433,26 @@ function focusFirstError() {
     block: "center",
   });
   target?.focus({ preventScroll: true });
+}
+
+// Deleting (edit only): asks first, then goes to your profile
+const { show: showToast } = useToast();
+const deleting = ref(false);
+
+async function deletePost() {
+  if (!props.post || !window.confirm(t("editor.deleteConfirm"))) return;
+
+  deleting.value = true;
+  try {
+    await $fetch(`/api/posts/${props.post.id}`, { method: "DELETE" });
+    submitted.value = true;
+    showToast(t("editor.deleted"), { tone: "info" });
+    await navigateTo(user.value ? `/u/${user.value.hiddenName}` : "/");
+  } catch {
+    showToast(t("editor.deleteFailed"));
+  } finally {
+    deleting.value = false;
+  }
 }
 
 async function submit() {

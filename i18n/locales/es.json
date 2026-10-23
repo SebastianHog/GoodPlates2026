@@ -61,7 +61,7 @@
     "draftSaved": "Borrador guardado en este navegador · {time}",
     "leaveConfirm": "¿Salir sin guardar los cambios?",
     "saveFailed": "No se pudo guardar tu receta. Sigue aquí; inténtalo de nuevo.",
-    "photoFailed": "No se pudo subir una foto. Vuelve a intentarlo o quítala."
+    "photoFailed": "No se pudo subir una foto. Vuelve a intentarlo o quítala.", "delete": "Eliminar receta", "deleting": "Eliminando…", "deleteConfirm": "¿Eliminar esta receta? No se puede deshacer.", "deleted": "Receta eliminada.", "deleteFailed": "No se pudo eliminar la receta. Inténtalo de nuevo."
   },
   "list": { "moveUp": "Subir {item} {index}", "moveDown": "Bajar {item} {index}", "remove": "Quitar {item} {index}" },
   "photos": {

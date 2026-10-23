@@ -61,7 +61,7 @@
     "draftSaved": "Taslak bu tarayıcıya kaydedildi · {time}",
     "leaveConfirm": "Değişikliklerini kaydetmeden çıkmak istiyor musun?",
     "saveFailed": "Tarifin kaydedilemedi. Hâlâ burada; tekrar dene.",
-    "photoFailed": "Bir fotoğraf yüklenemedi. Tekrar dene ya da kaldır."
+    "photoFailed": "Bir fotoğraf yüklenemedi. Tekrar dene ya da kaldır.", "delete": "Tarifi sil", "deleting": "Siliniyor…", "deleteConfirm": "Bu tarif silinsin mi? Bu işlem geri alınamaz.", "deleted": "Tarif silindi.", "deleteFailed": "Tarif silinemedi. Tekrar deneyin."
   },
   "list": { "moveUp": "{item} {index} yukarı taşı", "moveDown": "{item} {index} aşağı taşı", "remove": "{item} {index} kaldır" },
   "photos": {

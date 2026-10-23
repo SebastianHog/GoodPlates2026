@@ -61,7 +61,7 @@
     "draftSaved": "Luonnos tallennettu tähän selaimeen · {time}",
     "leaveConfirm": "Poistutaanko tallentamatta muutoksia?",
     "saveFailed": "Reseptin tallentaminen epäonnistui. Se on yhä tallessa täällä; yritä uudelleen.",
-    "photoFailed": "Kuvan lataus epäonnistui. Yritä uudelleen tai poista se."
+    "photoFailed": "Kuvan lataus epäonnistui. Yritä uudelleen tai poista se.", "delete": "Poista resepti", "deleting": "Poistetaan…", "deleteConfirm": "Poistetaanko tämä resepti? Tätä ei voi perua.", "deleted": "Resepti poistettu.", "deleteFailed": "Reseptiä ei voitu poistaa. Yritä uudelleen."
   },
   "list": { "moveUp": "Siirrä ylös: {item} {index}", "moveDown": "Siirrä alas: {item} {index}", "remove": "Poista: {item} {index}" },
   "photos": {

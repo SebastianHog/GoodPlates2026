@@ -61,7 +61,7 @@
     "draftSaved": "Concept opgeslagen in deze browser · {time}",
     "leaveConfirm": "Weggaan zonder je wijzigingen op te slaan?",
     "saveFailed": "Je recept kon niet worden opgeslagen. Het staat er nog; probeer het opnieuw.",
-    "photoFailed": "Een foto kon niet worden geüpload. Probeer het opnieuw of verwijder hem."
+    "photoFailed": "Een foto kon niet worden geüpload. Probeer het opnieuw of verwijder hem.", "delete": "Recept verwijderen", "deleting": "Verwijderen…", "deleteConfirm": "Dit recept verwijderen? Dit kan niet ongedaan worden gemaakt.", "deleted": "Recept verwijderd.", "deleteFailed": "Het recept kon niet worden verwijderd. Probeer het opnieuw."
   },
   "list": { "moveUp": "{item} {index} omhoog", "moveDown": "{item} {index} omlaag", "remove": "{item} {index} verwijderen" },
   "photos": {

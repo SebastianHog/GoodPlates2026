@@ -145,6 +145,31 @@ export async function updatePost(
   return doc ? toPost(doc) : null;
 }
 
+// Removes a post with its likes, bookmarks and cooks. Returns the photo keys no other post uses, or null when the post is missing
+export async function deletePost(id: string): Promise<string[] | null> {
+  if (!ObjectId.isValid(id)) {
+    return null;
+  }
+
+  const posts = await postsCollection();
+  const doc = await posts.findOneAndDelete({ _id: new ObjectId(id) });
+  if (!doc) {
+    return null;
+  }
+
+  await Promise.all(
+    (["likes", "bookmarks", "cooks"] as const).map(async (kind) =>
+      (await marksCollection(kind)).deleteMany({ postId: id }),
+    ),
+  );
+
+  const images = doc.images ?? (doc.image ? [doc.image] : []);
+  const stillUsed = await Promise.all(
+    images.map((key) => posts.countDocuments({ images: key }, { limit: 1 })),
+  );
+  return images.filter((_, index) => !stillUsed[index]);
+}
+
 // Likes, bookmarks and cooks live in their own collections, one row per user and post, so each can only happen once
 type MarkKind = "likes" | "bookmarks" | "cooks";
 const markIndexReady = new Set<MarkKind>();

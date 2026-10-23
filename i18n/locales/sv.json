@@ -61,7 +61,7 @@
     "draftSaved": "Utkast sparat i den här webbläsaren · {time}",
     "leaveConfirm": "Lämna utan att spara dina ändringar?",
     "saveFailed": "Kunde inte spara receptet. Det finns kvar här; försök igen.",
-    "photoFailed": "Ett foto kunde inte laddas upp. Försök igen eller ta bort det."
+    "photoFailed": "Ett foto kunde inte laddas upp. Försök igen eller ta bort det.", "delete": "Ta bort recept", "deleting": "Tar bort…", "deleteConfirm": "Ta bort det här receptet? Det går inte att ångra.", "deleted": "Receptet togs bort.", "deleteFailed": "Det gick inte att ta bort receptet. Försök igen."
   },
   "list": { "moveUp": "Flytta {item} {index} uppåt", "moveDown": "Flytta {item} {index} nedåt", "remove": "Ta bort {item} {index}" },
   "photos": {
