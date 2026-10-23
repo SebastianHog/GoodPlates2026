@@ -1,0 +1,40 @@
+<template>
+  <section v-if="others.length" class="author-posts">
+    <h2 class="author-posts__heading">{{ $t("post.moreFrom", { name: author.displayName }) }}</h2>
+    <ul class="author-posts__list">
+      <li v-for="post in others" :key="post.id">
+        <NuxtLink :to="`/posts/${post.id}`" class="author-posts__link">
+          <img
+            v-bind="imageSources(post.images[0]!)"
+            sizes="(min-width: 52em) 18rem, 33vw"
+            alt=""
+            class="author-posts__photo"
+            loading="lazy"
+            decoding="async"
+          />
+          <span class="author-posts__title">{{ post.title }}</span>
+        </NuxtLink>
+      </li>
+    </ul>
+  </section>
+</template>
+
+<script setup lang="ts">
+// Up to 3 other posts by the same author
+const props = defineProps<{
+  author: IAuthor;
+  excludeId: string;
+}>();
+
+const { data: posts } = useFetch<IPostContent[]>("/api/posts", {
+  query: { author: props.author.id },
+  key: `author-posts-${props.author.id}`,
+  lazy: true,
+});
+
+const others = computed(
+  () => posts.value?.filter((post) => post.id !== props.excludeId && post.images.length > 0).slice(0, 3) ?? [],
+);
+</script>
+
+<style lang="scss" src="./styles.scss"></style>
