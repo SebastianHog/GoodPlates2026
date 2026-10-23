@@ -5,7 +5,9 @@
   flex-direction: column;
   border-bottom: 1px solid $color-border-secondary;
 
+  // Takes the spare height, so the footer always sits at the bottom of the card
   &__body {
+    flex: 1;
     padding: $space-3 0 0;
   }
 
@@ -15,7 +17,6 @@
     font-weight: $font-weight-semibold;
     line-height: $line-height-tight;
     text-wrap: balance;
-    // Break long words without spaces instead of cutting them off
     overflow-wrap: anywhere;
   }
 
@@ -51,7 +52,7 @@
     }
   }
 
-  // Pushes the like, bookmark and date to the right
+  // like, bookmark and date to the right
   &__like {
     margin-left: auto;
   }
