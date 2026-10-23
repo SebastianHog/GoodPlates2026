@@ -60,7 +60,14 @@
   "feed": {
     "matching": "Recipes matching “{query}”",
     "noMatches": "No recipes match “{query}”.",
-    "showAll": "Show all"
+    "showAll": "Show all",
+    "title": "Recipes",
+    "introTitle": "Recipes from home cooks",
+    "intro": "See what people are cooking, with the recipe in every post.",
+    "introJoin": "Sign up to share yours",
+    "empty": "No recipes yet.",
+    "emptyPost": "Post the first one",
+    "emptyJoin": "Sign up to post the first one"
   },
   "post": {
     "edit": "Edit",

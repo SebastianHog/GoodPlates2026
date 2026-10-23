@@ -18,7 +18,7 @@
       "taken": "Bu e-posta veya kullanıcı adı zaten kullanılıyor."
     }
   },
-  "feed": { "matching": "“{query}” ile eşleşen tarifler", "noMatches": "“{query}” ile eşleşen tarif yok.", "showAll": "Tümünü göster" },
+  "feed": { "matching": "“{query}” ile eşleşen tarifler", "noMatches": "“{query}” ile eşleşen tarif yok.", "showAll": "Tümünü göster", "title": "Tarifler", "introTitle": "Ev aşçılarından tarifler", "intro": "İnsanların ne pişirdiğini görün; her gönderide tarifi de var.", "introJoin": "Kaydolun, kendi tariflerinizi paylaşın", "empty": "Henüz tarif yok.", "emptyPost": "İlk tarifi siz paylaşın", "emptyJoin": "Kaydolun ve ilk tarifi paylaşın" },
   "post": {
     "edit": "Düzenle",
     "photos": "{title}, {count} fotoğraf",

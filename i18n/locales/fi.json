@@ -18,7 +18,7 @@
       "taken": "Sähköposti tai käyttäjänimi on jo käytössä."
     }
   },
-  "feed": { "matching": "Reseptit haulla ”{query}”", "noMatches": "Haulla ”{query}” ei löytynyt reseptejä.", "showAll": "Näytä kaikki" },
+  "feed": { "matching": "Reseptit haulla ”{query}”", "noMatches": "Haulla ”{query}” ei löytynyt reseptejä.", "showAll": "Näytä kaikki", "title": "Reseptit", "introTitle": "Reseptejä kotikokeilta", "intro": "Katso, mitä muut kokkaavat – jokaisessa julkaisussa on mukana resepti.", "introJoin": "Rekisteröidy ja jaa omasi", "empty": "Reseptejä ei ole vielä.", "emptyPost": "Julkaise ensimmäinen", "emptyJoin": "Rekisteröidy ja julkaise ensimmäinen" },
   "post": {
     "edit": "Muokkaa",
     "photos": "{title}, {count} kuvaa",

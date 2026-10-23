@@ -18,7 +18,7 @@
       "taken": "Ese correo o nombre de usuario ya está en uso."
     }
   },
-  "feed": { "matching": "Recetas que coinciden con «{query}»", "noMatches": "Ninguna receta coincide con «{query}».", "showAll": "Ver todas" },
+  "feed": { "matching": "Recetas que coinciden con «{query}»", "noMatches": "Ninguna receta coincide con «{query}».", "showAll": "Ver todas", "title": "Recetas", "introTitle": "Recetas de cocineros caseros", "intro": "Mira lo que cocina la gente, con la receta en cada publicación.", "introJoin": "Regístrate para compartir las tuyas", "empty": "Todavía no hay recetas.", "emptyPost": "Publica la primera", "emptyJoin": "Regístrate para publicar la primera" },
   "post": {
     "edit": "Editar",
     "photos": "{title}, {count} fotos",

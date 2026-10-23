@@ -18,7 +18,7 @@
       "taken": "E-postadressen eller användarnamnet är redan upptaget."
     }
   },
-  "feed": { "matching": "Recept som matchar ”{query}”", "noMatches": "Inga recept matchar ”{query}”.", "showAll": "Visa alla" },
+  "feed": { "matching": "Recept som matchar ”{query}”", "noMatches": "Inga recept matchar ”{query}”.", "showAll": "Visa alla", "title": "Recept", "introTitle": "Recept från hemmakockar", "intro": "Se vad folk lagar, med receptet i varje inlägg.", "introJoin": "Skapa ett konto och dela dina egna", "empty": "Inga recept än.", "emptyPost": "Lägg upp det första", "emptyJoin": "Skapa ett konto och lägg upp det första" },
   "post": {
     "edit": "Redigera",
     "photos": "{title}, {count} foton",
