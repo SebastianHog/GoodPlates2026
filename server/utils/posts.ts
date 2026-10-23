@@ -11,10 +11,25 @@ function toPost({ _id, ...post }: WithId<PostDocument>): IPostContent {
   return { ...post, id: _id.toHexString() };
 }
 
-export async function getPosts(): Promise<IPostContent[]> {
+// Newest first. With a search term, only posts whose title, recipe or author name contain it
+export async function getPosts(search?: string): Promise<IPostContent[]> {
   const posts = await postsCollection();
-  const docs = await posts.find().sort({ createdAt: -1 }).toArray();
+  const term = search?.trim();
+  const filter = term
+    ? {
+        $or: ["title", "body", "author.displayName", "author.hiddenName"].map((field) => ({
+          [field]: { $regex: escapeRegex(term), $options: "i" },
+        })),
+      }
+    : {};
+
+  const docs = await posts.find(filter).sort({ createdAt: -1 }).toArray();
   return docs.map(toPost);
+}
+
+// Treat the search term as plain text, not as a regex pattern
+function escapeRegex(text: string): string {
+  return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 export async function getPostById(id: string): Promise<IPostContent | null> {

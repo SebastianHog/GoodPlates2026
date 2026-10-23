@@ -1,0 +1,21 @@
+@use "~/assets/scss/tokens" as *;
+
+.site-header {
+  grid-template-columns: auto minmax(0, 28rem) 1fr;
+  grid-template-areas: "brand search actions";
+  gap: $space-8;
+  padding: $space-3 $space-6;
+
+  &__actions {
+    justify-self: end;
+  }
+
+  &__label {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
+  }
+}

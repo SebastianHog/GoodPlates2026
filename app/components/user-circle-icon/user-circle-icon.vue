@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 const { user, size = "medium" } = defineProps<{
-  user: IAuthor;
+  user: Pick<IAuthor, "displayName">;
   size?: "small" | "medium";
 }>();
 </script>
