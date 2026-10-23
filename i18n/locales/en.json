@@ -100,8 +100,18 @@
     },
     "details": {
       "ingredients": "Ingredients",
-      "steps": "Steps"
-    }
+      "steps": "Steps",
+      "clear": "Clear ticks"
+    },
+    "share": "Share",
+    "shareLabel": "Share {title}",
+    "linkCopied": "Link copied.",
+    "copyFailed": "Could not copy the link.",
+    "notFound": "This recipe could not be found.",
+    "backToFeed": "Back to recipes",
+    "loadFailed": "Could not load this recipe.",
+    "loading": "Loading recipe…",
+    "moreFrom": "More from {name}"
   },
   "bookmarks": {
     "title": "Bookmarks",

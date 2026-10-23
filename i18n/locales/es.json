@@ -32,7 +32,16 @@
     "bookmarkTooltip": "Guardar",
     "removeBookmarkTooltip": "Quitar de guardados",
     "summary": { "ingredients": "{n} ingrediente | {n} ingredientes", "steps": "{n} paso | {n} pasos", "minutes": "{n} min", "hours": "{n} h", "hoursMinutes": "{h} h {m} min" },
-    "details": { "ingredients": "Ingredientes", "steps": "Preparación" }
+    "details": { "ingredients": "Ingredientes", "steps": "Preparación", "clear": "Quitar marcas" },
+    "share": "Compartir",
+    "shareLabel": "Compartir {title}",
+    "linkCopied": "Enlace copiado.",
+    "copyFailed": "No se pudo copiar el enlace.",
+    "notFound": "No se encontró esta receta.",
+    "backToFeed": "Volver a las recetas",
+    "loadFailed": "No se pudo cargar esta receta.",
+    "loading": "Cargando receta…",
+    "moreFrom": "Más de {name}"
   },
   "bookmarks": { "title": "Guardados", "empty": "Aún no tienes recetas guardadas. Toca el icono de guardar en cualquier receta del inicio para tenerla aquí.", "browse": "Ver recetas", "showRecipe": "Ver receta", "removed": "Quitada" },
   "editor": {

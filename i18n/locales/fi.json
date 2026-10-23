@@ -32,7 +32,16 @@
     "bookmarkTooltip": "Lisää kirjanmerkki",
     "removeBookmarkTooltip": "Poista kirjanmerkki",
     "summary": { "ingredients": "{n} ainesosa | {n} ainesosaa", "steps": "{n} vaihe | {n} vaihetta", "minutes": "{n} min", "hours": "{n} h", "hoursMinutes": "{h} h {m} min" },
-    "details": { "ingredients": "Ainesosat", "steps": "Valmistus" }
+    "details": { "ingredients": "Ainesosat", "steps": "Valmistus", "clear": "Tyhjennä merkinnät" },
+    "share": "Jaa",
+    "shareLabel": "Jaa {title}",
+    "linkCopied": "Linkki kopioitu.",
+    "copyFailed": "Linkkiä ei voitu kopioida.",
+    "notFound": "Reseptiä ei löytynyt.",
+    "backToFeed": "Takaisin resepteihin",
+    "loadFailed": "Reseptiä ei voitu ladata.",
+    "loading": "Ladataan reseptiä…",
+    "moreFrom": "Lisää käyttäjältä {name}"
   },
   "bookmarks": { "title": "Kirjanmerkit", "empty": "Ei vielä kirjanmerkkejä. Napauta reseptin kirjanmerkkiä syötteessä tallentaaksesi sen tänne.", "browse": "Selaa reseptejä", "showRecipe": "Näytä resepti", "removed": "Poistettu" },
   "editor": {

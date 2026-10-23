@@ -32,7 +32,16 @@
     "bookmarkTooltip": "Yer imlerine ekle",
     "removeBookmarkTooltip": "Yer iminden kaldır",
     "summary": { "ingredients": "{n} malzeme | {n} malzeme", "steps": "{n} adım | {n} adım", "minutes": "{n} dk", "hours": "{n} sa", "hoursMinutes": "{h} sa {m} dk" },
-    "details": { "ingredients": "Malzemeler", "steps": "Hazırlanışı" }
+    "details": { "ingredients": "Malzemeler", "steps": "Hazırlanışı", "clear": "İşaretleri temizle" },
+    "share": "Paylaş",
+    "shareLabel": "{title} tarifini paylaş",
+    "linkCopied": "Bağlantı kopyalandı.",
+    "copyFailed": "Bağlantı kopyalanamadı.",
+    "notFound": "Bu tarif bulunamadı.",
+    "backToFeed": "Tariflere dön",
+    "loadFailed": "Bu tarif yüklenemedi.",
+    "loading": "Tarif yükleniyor…",
+    "moreFrom": "{name} kullanıcısından daha fazlası"
   },
   "bookmarks": { "title": "Yer imleri", "empty": "Henüz yer imi yok. Akıştaki bir tarifin yer imi simgesine dokunarak buraya kaydet.", "browse": "Tariflere göz at", "showRecipe": "Tarifi göster", "removed": "Kaldırıldı" },
   "editor": {

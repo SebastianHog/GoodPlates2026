@@ -32,7 +32,16 @@
     "bookmarkTooltip": "Bewaren",
     "removeBookmarkTooltip": "Uit bladwijzers halen",
     "summary": { "ingredients": "{n} ingrediënt | {n} ingrediënten", "steps": "{n} stap | {n} stappen", "minutes": "{n} min", "hours": "{n} uur", "hoursMinutes": "{h} uur {m} min" },
-    "details": { "ingredients": "Ingrediënten", "steps": "Bereiding" }
+    "details": { "ingredients": "Ingrediënten", "steps": "Bereiding", "clear": "Vinkjes wissen" },
+    "share": "Delen",
+    "shareLabel": "{title} delen",
+    "linkCopied": "Link gekopieerd.",
+    "copyFailed": "De link kon niet worden gekopieerd.",
+    "notFound": "Dit recept kon niet worden gevonden.",
+    "backToFeed": "Terug naar recepten",
+    "loadFailed": "Dit recept kon niet worden geladen.",
+    "loading": "Recept laden…",
+    "moreFrom": "Meer van {name}"
   },
   "bookmarks": { "title": "Bladwijzers", "empty": "Nog geen bladwijzers. Tik op de bladwijzer bij een recept in de feed om het hier te bewaren.", "browse": "Recepten bekijken", "showRecipe": "Recept tonen", "removed": "Verwijderd" },
   "editor": {
