@@ -2,7 +2,7 @@
   "site": { "pageTitle": "{page} · GoodPlates", "home": "Inicio de GoodPlates" },
   "header": { "nav": "Cuenta", "newPost": "Nueva publicación", "logIn": "Entrar", "signUp": "Registrarse" },
   "search": { "label": "Buscar recetas", "placeholder": "Buscar recetas" },
-  "accountMenu": { "account": "Cuenta", "bookmarks": "Guardados", "logOut": "Cerrar sesión" },
+  "accountMenu": { "account": "Cuenta", "profile": "Tu perfil", "bookmarks": "Guardados", "logOut": "Cerrar sesión" },
   "auth": {
     "tabsLabel": "Cuenta",
     "login": { "tab": "Iniciar sesión", "pageTitle": "Iniciar sesión", "title": "Bienvenido de nuevo", "subtitle": "Inicia sesión para compartir tus recetas.", "submit": "Iniciar sesión", "pending": "Iniciando sesión…" },
@@ -18,8 +18,8 @@
       "taken": "Ese correo o nombre de usuario ya está en uso."
     }
   },
-  "feed": { "matching": "Recetas que coinciden con «{query}»", "noMatches": "Ninguna receta coincide con «{query}».", "showAll": "Ver todas", "title": "Recetas", "introTitle": "Recetas de cocineros caseros", "intro": "Mira lo que cocina la gente, con la receta en cada publicación.", "introJoin": "Regístrate para compartir las tuyas", "empty": "Todavía no hay recetas.", "emptyPost": "Publica la primera", "emptyJoin": "Regístrate para publicar la primera", "loading": "Cargando recetas…", "loadFailed": "No se pudieron cargar las recetas.", "retry": "Reintentar", "tabsLabel": "Feed", "latest": "Recientes", "discover": "Descubrir" },
-  "toast": { "likeFailed": "No se pudo guardar tu me gusta. Inténtalo de nuevo.", "bookmarkFailed": "No se pudo guardar tu marcador. Inténtalo de nuevo.", "dismiss": "Cerrar", "likeLogin": "Entra para dar me gusta a las recetas.", "bookmarkLogin": "Entra para guardar recetas en tus marcadores.", "logIn": "Entrar", "cookLogin": "Entra para llevar la cuenta de lo que has cocinado.", "cookFailed": "No se pudo guardar que lo has cocinado. Inténtalo de nuevo." },
+  "feed": { "matching": "Recetas que coinciden con «{query}»", "noMatches": "Ninguna receta coincide con «{query}».", "showAll": "Ver todas", "title": "Recetas", "introTitle": "Recetas de cocineros caseros", "intro": "Mira lo que cocina la gente, con la receta en cada publicación.", "introJoin": "Regístrate para compartir las tuyas", "empty": "Todavía no hay recetas.", "emptyPost": "Publica la primera", "emptyJoin": "Regístrate para publicar la primera", "loading": "Cargando recetas…", "loadFailed": "No se pudieron cargar las recetas.", "retry": "Reintentar", "tabsLabel": "Feed", "latest": "Recientes", "discover": "Descubrir", "following": "Siguiendo", "followingEmpty": "Aún no hay nada. Sigue a cocineros para ver aquí sus nuevas recetas.", "findCooks": "Encuentra cocineros en Descubrir" },
+  "toast": { "likeFailed": "No se pudo guardar tu me gusta. Inténtalo de nuevo.", "bookmarkFailed": "No se pudo guardar tu marcador. Inténtalo de nuevo.", "dismiss": "Cerrar", "likeLogin": "Entra para dar me gusta a las recetas.", "bookmarkLogin": "Entra para guardar recetas en tus marcadores.", "logIn": "Entrar", "cookLogin": "Entra para llevar la cuenta de lo que has cocinado.", "cookFailed": "No se pudo guardar que lo has cocinado. Inténtalo de nuevo.", "followLogin": "Entra para seguir a cocineros.", "followFailed": "No se pudo actualizar a quién sigues. Inténtalo de nuevo." },
   "post": {
     "edit": "Editar",
     "photos": "{title}, {count} fotos",
@@ -45,6 +45,7 @@
     "cooked": { "button": "Lo he cocinado", "nudge": "Has marcado todos los pasos. ¿Te ha salido?", "first": "Eres la primera persona en cocinarlo.", "withOthers": "Tú y {n} persona más lo habéis cocinado. | Tú y {n} personas más lo habéis cocinado.", "others": "Cocinado por {n} persona. | Cocinado por {n} personas.", "none": "Nadie lo ha cocinado todavía." }
   },
   "bookmarks": { "title": "Guardados", "empty": "Aún no tienes recetas guardadas. Toca el icono de guardar en cualquier receta del inicio para tenerla aquí.", "browse": "Ver recetas", "removed": "Quitada" },
+  "profile": { "title": "Perfil", "loading": "Cargando perfil…", "notFound": "No se encontró a este cocinero.", "loadFailed": "No se pudo cargar este perfil.", "recipes": "{n} receta | {n} recetas", "followers": "{n} seguidor | {n} seguidores", "following": "{n} siguiendo", "follow": "Seguir", "followingButton": "Siguiendo", "recipesHeading": "Recetas", "empty": "{name} aún no ha publicado recetas.", "ownEmpty": "Aún no has publicado recetas.", "postFirst": "Publica tu primera receta" },
   "editor": {
     "newTitle": "Nueva receta", "editTitle": "Editar receta", "editPageTitle": "Editar {title}",
     "notFound": "No se encontró esta receta.", "notYours": "Solo puedes editar tus propias recetas.",

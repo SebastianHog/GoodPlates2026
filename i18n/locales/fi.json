@@ -2,7 +2,7 @@
   "site": { "pageTitle": "{page} · GoodPlates", "home": "GoodPlates etusivu" },
   "header": { "nav": "Tili", "newPost": "Uusi julkaisu", "logIn": "Kirjaudu", "signUp": "Luo tili" },
   "search": { "label": "Hae reseptejä", "placeholder": "Hae reseptejä" },
-  "accountMenu": { "account": "Tili", "bookmarks": "Kirjanmerkit", "logOut": "Kirjaudu ulos" },
+  "accountMenu": { "account": "Tili", "profile": "Oma profiili", "bookmarks": "Kirjanmerkit", "logOut": "Kirjaudu ulos" },
   "auth": {
     "tabsLabel": "Tili",
     "login": { "tab": "Kirjaudu", "pageTitle": "Kirjaudu", "title": "Tervetuloa takaisin", "subtitle": "Kirjaudu jakaaksesi reseptejäsi.", "submit": "Kirjaudu", "pending": "Kirjaudutaan…" },
@@ -18,8 +18,8 @@
       "taken": "Sähköposti tai käyttäjänimi on jo käytössä."
     }
   },
-  "feed": { "matching": "Reseptit haulla ”{query}”", "noMatches": "Haulla ”{query}” ei löytynyt reseptejä.", "showAll": "Näytä kaikki", "title": "Reseptit", "introTitle": "Reseptejä kotikokeilta", "intro": "Katso, mitä muut kokkaavat – jokaisessa julkaisussa on mukana resepti.", "introJoin": "Rekisteröidy ja jaa omasi", "empty": "Reseptejä ei ole vielä.", "emptyPost": "Julkaise ensimmäinen", "emptyJoin": "Rekisteröidy ja julkaise ensimmäinen", "loading": "Ladataan reseptejä…", "loadFailed": "Reseptejä ei voitu ladata.", "retry": "Yritä uudelleen", "tabsLabel": "Syöte", "latest": "Uusimmat", "discover": "Löydä" },
-  "toast": { "likeFailed": "Tykkäystäsi ei voitu tallentaa. Yritä uudelleen.", "bookmarkFailed": "Kirjanmerkkiäsi ei voitu tallentaa. Yritä uudelleen.", "dismiss": "Sulje", "likeLogin": "Kirjaudu, niin voit tykätä resepteistä.", "bookmarkLogin": "Kirjaudu, niin voit tallentaa reseptejä kirjanmerkkeihin.", "logIn": "Kirjaudu", "cookLogin": "Kirjaudu, niin voit pitää kirjaa tekemistäsi resepteistä.", "cookFailed": "Tekemistäsi ei voitu tallentaa. Yritä uudelleen." },
+  "feed": { "matching": "Reseptit haulla ”{query}”", "noMatches": "Haulla ”{query}” ei löytynyt reseptejä.", "showAll": "Näytä kaikki", "title": "Reseptit", "introTitle": "Reseptejä kotikokeilta", "intro": "Katso, mitä muut kokkaavat – jokaisessa julkaisussa on mukana resepti.", "introJoin": "Rekisteröidy ja jaa omasi", "empty": "Reseptejä ei ole vielä.", "emptyPost": "Julkaise ensimmäinen", "emptyJoin": "Rekisteröidy ja julkaise ensimmäinen", "loading": "Ladataan reseptejä…", "loadFailed": "Reseptejä ei voitu ladata.", "retry": "Yritä uudelleen", "tabsLabel": "Syöte", "latest": "Uusimmat", "discover": "Löydä", "following": "Seurattavat", "followingEmpty": "Täällä ei ole vielä mitään. Seuraa kokkeja nähdäksesi heidän uudet reseptinsä täällä.", "findCooks": "Löydä kokkeja Löydä-osiosta" },
+  "toast": { "likeFailed": "Tykkäystäsi ei voitu tallentaa. Yritä uudelleen.", "bookmarkFailed": "Kirjanmerkkiäsi ei voitu tallentaa. Yritä uudelleen.", "dismiss": "Sulje", "likeLogin": "Kirjaudu, niin voit tykätä resepteistä.", "bookmarkLogin": "Kirjaudu, niin voit tallentaa reseptejä kirjanmerkkeihin.", "logIn": "Kirjaudu", "cookLogin": "Kirjaudu, niin voit pitää kirjaa tekemistäsi resepteistä.", "cookFailed": "Tekemistäsi ei voitu tallentaa. Yritä uudelleen.", "followLogin": "Kirjaudu seurataksesi kokkeja.", "followFailed": "Seurattavia ei voitu päivittää. Yritä uudelleen." },
   "post": {
     "edit": "Muokkaa",
     "photos": "{title}, {count} kuvaa",
@@ -45,6 +45,7 @@
     "cooked": { "button": "Tein tämän", "nudge": "Kaikki vaiheet on merkitty. Onnistuiko?", "first": "Olet ensimmäinen, joka teki tämän.", "withOthers": "Sinä ja {n} muu teitte tämän. | Sinä ja {n} muuta teitte tämän.", "others": "{n} henkilö on tehnyt tämän. | {n} henkilöä on tehnyt tämän.", "none": "Kukaan ei ole vielä tehnyt tätä." }
   },
   "bookmarks": { "title": "Kirjanmerkit", "empty": "Ei vielä kirjanmerkkejä. Napauta reseptin kirjanmerkkiä syötteessä tallentaaksesi sen tänne.", "browse": "Selaa reseptejä", "removed": "Poistettu" },
+  "profile": { "title": "Profiili", "loading": "Ladataan profiilia…", "notFound": "Tätä kokkia ei löytynyt.", "loadFailed": "Profiilia ei voitu ladata.", "recipes": "{n} resepti | {n} reseptiä", "followers": "{n} seuraaja | {n} seuraajaa", "following": "Seuraa {n}", "follow": "Seuraa", "followingButton": "Seurataan", "recipesHeading": "Reseptit", "empty": "{name} ei ole vielä julkaissut reseptejä.", "ownEmpty": "Et ole vielä julkaissut reseptejä.", "postFirst": "Julkaise ensimmäinen reseptisi" },
   "editor": {
     "newTitle": "Uusi resepti", "editTitle": "Muokkaa reseptiä", "editPageTitle": "Muokkaa: {title}",
     "notFound": "Reseptiä ei löytynyt.", "notYours": "Voit muokata vain omia reseptejäsi.",

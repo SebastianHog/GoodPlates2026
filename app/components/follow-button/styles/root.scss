@@ -1,0 +1,44 @@
+@use "~/assets/scss/tokens" as *;
+@use "~/assets/scss/mixins" as *;
+
+// Filled while not following (the action to take), quiet outline once following
+.follow-button {
+  min-width: 7rem;
+  min-height: 2.75rem;
+  padding: $space-2 $space-4;
+  border: 1px solid $color-primary;
+  border-radius: $radius-sm;
+  background: $color-primary;
+  color: $color-surface;
+  font: inherit;
+  font-weight: $font-weight-semibold;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background $transition-fast,
+    color $transition-fast,
+    border-color $transition-fast,
+    transform 160ms $ease-out;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: $color-primary-hover;
+    }
+  }
+
+  &--following {
+    border-color: $color-border-secondary;
+    background: $color-surface;
+    color: $color-text;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        border-color: $color-text-muted;
+        background: $color-paper;
+      }
+    }
+  }
+
+  @include press;
+  @include focus-ring;
+}

@@ -2,7 +2,7 @@
   "site": { "pageTitle": "{page} · GoodPlates", "home": "GoodPlates ana sayfa" },
   "header": { "nav": "Hesap", "newPost": "Yeni gönderi", "logIn": "Giriş yap", "signUp": "Kayıt ol" },
   "search": { "label": "Tarif ara", "placeholder": "Tarif ara" },
-  "accountMenu": { "account": "Hesap", "bookmarks": "Yer imleri", "logOut": "Çıkış yap" },
+  "accountMenu": { "account": "Hesap", "profile": "Profiliniz", "bookmarks": "Yer imleri", "logOut": "Çıkış yap" },
   "auth": {
     "tabsLabel": "Hesap",
     "login": { "tab": "Giriş yap", "pageTitle": "Giriş yap", "title": "Tekrar hoş geldin", "subtitle": "Tariflerini paylaşmak için giriş yap.", "submit": "Giriş yap", "pending": "Giriş yapılıyor…" },
@@ -18,8 +18,8 @@
       "taken": "Bu e-posta veya kullanıcı adı zaten kullanılıyor."
     }
   },
-  "feed": { "matching": "“{query}” ile eşleşen tarifler", "noMatches": "“{query}” ile eşleşen tarif yok.", "showAll": "Tümünü göster", "title": "Tarifler", "introTitle": "Ev aşçılarından tarifler", "intro": "İnsanların ne pişirdiğini görün; her gönderide tarifi de var.", "introJoin": "Kaydolun, kendi tariflerinizi paylaşın", "empty": "Henüz tarif yok.", "emptyPost": "İlk tarifi siz paylaşın", "emptyJoin": "Kaydolun ve ilk tarifi paylaşın", "loading": "Tarifler yükleniyor…", "loadFailed": "Tarifler yüklenemedi.", "retry": "Tekrar dene", "tabsLabel": "Akış", "latest": "En yeni", "discover": "Keşfet" },
-  "toast": { "likeFailed": "Beğeniniz kaydedilemedi. Tekrar deneyin.", "bookmarkFailed": "Yer işaretiniz kaydedilemedi. Tekrar deneyin.", "dismiss": "Kapat", "likeLogin": "Tarifleri beğenmek için giriş yapın.", "bookmarkLogin": "Tarifleri yer işaretlerinize kaydetmek için giriş yapın.", "logIn": "Giriş yap", "cookLogin": "Pişirdiklerinizi takip etmek için giriş yapın.", "cookFailed": "Pişirdiğiniz kaydedilemedi. Tekrar deneyin." },
+  "feed": { "matching": "“{query}” ile eşleşen tarifler", "noMatches": "“{query}” ile eşleşen tarif yok.", "showAll": "Tümünü göster", "title": "Tarifler", "introTitle": "Ev aşçılarından tarifler", "intro": "İnsanların ne pişirdiğini görün; her gönderide tarifi de var.", "introJoin": "Kaydolun, kendi tariflerinizi paylaşın", "empty": "Henüz tarif yok.", "emptyPost": "İlk tarifi siz paylaşın", "emptyJoin": "Kaydolun ve ilk tarifi paylaşın", "loading": "Tarifler yükleniyor…", "loadFailed": "Tarifler yüklenemedi.", "retry": "Tekrar dene", "tabsLabel": "Akış", "latest": "En yeni", "discover": "Keşfet", "following": "Takip", "followingEmpty": "Henüz bir şey yok. Yeni tariflerini burada görmek için aşçıları takip edin.", "findCooks": "Keşfet'te aşçı bulun" },
+  "toast": { "likeFailed": "Beğeniniz kaydedilemedi. Tekrar deneyin.", "bookmarkFailed": "Yer işaretiniz kaydedilemedi. Tekrar deneyin.", "dismiss": "Kapat", "likeLogin": "Tarifleri beğenmek için giriş yapın.", "bookmarkLogin": "Tarifleri yer işaretlerinize kaydetmek için giriş yapın.", "logIn": "Giriş yap", "cookLogin": "Pişirdiklerinizi takip etmek için giriş yapın.", "cookFailed": "Pişirdiğiniz kaydedilemedi. Tekrar deneyin.", "followLogin": "Aşçıları takip etmek için giriş yapın.", "followFailed": "Takip ettikleriniz güncellenemedi. Tekrar deneyin." },
   "post": {
     "edit": "Düzenle",
     "photos": "{title}, {count} fotoğraf",
@@ -45,6 +45,7 @@
     "cooked": { "button": "Bunu pişirdim", "nudge": "Tüm adımlar işaretlendi. Yaptınız mı?", "first": "Bunu ilk pişiren sizsiniz.", "withOthers": "Siz ve {n} kişi daha bunu pişirdi. | Siz ve {n} kişi daha bunu pişirdi.", "others": "{n} kişi pişirdi. | {n} kişi pişirdi.", "none": "Henüz kimse bunu pişirmedi." }
   },
   "bookmarks": { "title": "Yer imleri", "empty": "Henüz yer imi yok. Akıştaki bir tarifin yer imi simgesine dokunarak buraya kaydet.", "browse": "Tariflere göz at", "removed": "Kaldırıldı" },
+  "profile": { "title": "Profil", "loading": "Profil yükleniyor…", "notFound": "Bu aşçı bulunamadı.", "loadFailed": "Bu profil yüklenemedi.", "recipes": "{n} tarif | {n} tarif", "followers": "{n} takipçi | {n} takipçi", "following": "{n} takip", "follow": "Takip et", "followingButton": "Takip ediliyor", "recipesHeading": "Tarifler", "empty": "{name} henüz tarif paylaşmadı.", "ownEmpty": "Henüz tarif paylaşmadınız.", "postFirst": "İlk tarifinizi paylaşın" },
   "editor": {
     "newTitle": "Yeni tarif", "editTitle": "Tarifi düzenle", "editPageTitle": "{title} düzenle",
     "notFound": "Bu tarif bulunamadı.", "notYours": "Yalnızca kendi tariflerini düzenleyebilirsin.",

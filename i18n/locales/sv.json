@@ -2,7 +2,7 @@
   "site": { "pageTitle": "{page} · GoodPlates", "home": "GoodPlates startsida" },
   "header": { "nav": "Konto", "newPost": "Nytt inlägg", "logIn": "Logga in", "signUp": "Skapa konto" },
   "search": { "label": "Sök recept", "placeholder": "Sök recept" },
-  "accountMenu": { "account": "Konto", "bookmarks": "Bokmärken", "logOut": "Logga ut" },
+  "accountMenu": { "account": "Konto", "profile": "Din profil", "bookmarks": "Bokmärken", "logOut": "Logga ut" },
   "auth": {
     "tabsLabel": "Konto",
     "login": { "tab": "Logga in", "pageTitle": "Logga in", "title": "Välkommen tillbaka", "subtitle": "Logga in för att dela dina recept.", "submit": "Logga in", "pending": "Loggar in…" },
@@ -18,8 +18,8 @@
       "taken": "E-postadressen eller användarnamnet är redan upptaget."
     }
   },
-  "feed": { "matching": "Recept som matchar ”{query}”", "noMatches": "Inga recept matchar ”{query}”.", "showAll": "Visa alla", "title": "Recept", "introTitle": "Recept från hemmakockar", "intro": "Se vad folk lagar, med receptet i varje inlägg.", "introJoin": "Skapa ett konto och dela dina egna", "empty": "Inga recept än.", "emptyPost": "Lägg upp det första", "emptyJoin": "Skapa ett konto och lägg upp det första", "loading": "Laddar recept…", "loadFailed": "Det gick inte att ladda recepten.", "retry": "Försök igen", "tabsLabel": "Flöde", "latest": "Senaste", "discover": "Upptäck" },
-  "toast": { "likeFailed": "Det gick inte att spara din gilla-markering. Försök igen.", "bookmarkFailed": "Det gick inte att spara ditt bokmärke. Försök igen.", "dismiss": "Stäng", "likeLogin": "Logga in för att gilla recept.", "bookmarkLogin": "Logga in för att spara recept i dina bokmärken.", "logIn": "Logga in", "cookLogin": "Logga in för att hålla koll på vad du har lagat.", "cookFailed": "Det gick inte att spara att du lagat den här. Försök igen." },
+  "feed": { "matching": "Recept som matchar ”{query}”", "noMatches": "Inga recept matchar ”{query}”.", "showAll": "Visa alla", "title": "Recept", "introTitle": "Recept från hemmakockar", "intro": "Se vad folk lagar, med receptet i varje inlägg.", "introJoin": "Skapa ett konto och dela dina egna", "empty": "Inga recept än.", "emptyPost": "Lägg upp det första", "emptyJoin": "Skapa ett konto och lägg upp det första", "loading": "Laddar recept…", "loadFailed": "Det gick inte att ladda recepten.", "retry": "Försök igen", "tabsLabel": "Flöde", "latest": "Senaste", "discover": "Upptäck", "following": "Följer", "followingEmpty": "Inget här än. Följ kockar för att se deras nya recept här.", "findCooks": "Hitta kockar under Upptäck" },
+  "toast": { "likeFailed": "Det gick inte att spara din gilla-markering. Försök igen.", "bookmarkFailed": "Det gick inte att spara ditt bokmärke. Försök igen.", "dismiss": "Stäng", "likeLogin": "Logga in för att gilla recept.", "bookmarkLogin": "Logga in för att spara recept i dina bokmärken.", "logIn": "Logga in", "cookLogin": "Logga in för att hålla koll på vad du har lagat.", "cookFailed": "Det gick inte att spara att du lagat den här. Försök igen.", "followLogin": "Logga in för att följa kockar.", "followFailed": "Det gick inte att uppdatera vem du följer. Försök igen." },
   "post": {
     "edit": "Redigera",
     "photos": "{title}, {count} foton",
@@ -45,6 +45,7 @@
     "cooked": { "button": "Jag lagade den här", "nudge": "Alla steg är avbockade. Blev det bra?", "first": "Du är den första som lagat den här.", "withOthers": "Du och {n} person till har lagat den här. | Du och {n} personer till har lagat den här.", "others": "Lagad av {n} person. | Lagad av {n} personer.", "none": "Ingen har lagat den här än." }
   },
   "bookmarks": { "title": "Bokmärken", "empty": "Inga bokmärken än. Tryck på bokmärket på ett recept i flödet för att spara det här.", "browse": "Bläddra bland recept", "removed": "Borttaget" },
+  "profile": { "title": "Profil", "loading": "Laddar profil…", "notFound": "Den här kocken kunde inte hittas.", "loadFailed": "Det gick inte att ladda profilen.", "recipes": "{n} recept | {n} recept", "followers": "{n} följare | {n} följare", "following": "Följer {n}", "follow": "Följ", "followingButton": "Följer", "recipesHeading": "Recept", "empty": "{name} har inte lagt upp några recept än.", "ownEmpty": "Du har inte lagt upp några recept än.", "postFirst": "Lägg upp ditt första recept" },
   "editor": {
     "newTitle": "Nytt recept", "editTitle": "Redigera recept", "editPageTitle": "Redigera {title}",
     "notFound": "Receptet hittades inte.", "notYours": "Du kan bara redigera dina egna recept.",

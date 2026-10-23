@@ -17,4 +17,12 @@
     height: 1.75rem;
     font-size: $font-size-sm;
   }
+  &--large {
+    flex: none;
+    width: 4.5rem;
+    height: 4.5rem;
+    background: $color-surface;
+    font-family: $font-family-serif;
+    font-size: $font-size-2xl;
+  }
 }

@@ -3,11 +3,21 @@ interface ToggleState {
   count: number;
 }
 
-// An on/off action on a post (like, bookmark, cooked). It updates right away, rolls back and says so if the
-// server says no, asks logged-out visitors to log in (and brings them back), and only the latest click's answer counts.
+// An on/off action on a post (like, bookmark, cooked)
 export function usePostToggle(
   kind: "like" | "bookmark" | "cook",
   postId: () => string,
+  initial: () => ToggleState,
+  readResult: (result: Record<string, unknown>) => Partial<ToggleState>,
+) {
+  return useToggle(kind, () => `/api/posts/${postId()}/${kind}`, initial, readResult);
+}
+
+// An on/off action saved with PUT (on) and DELETE (off) to `url`. It updates right away, rolls back and says so if the
+// server says no, asks logged-out visitors to log in (and brings them back), and only the latest click's answer counts.
+export function useToggle(
+  kind: "like" | "bookmark" | "cook" | "follow",
+  url: () => string,
   initial: () => ToggleState,
   readResult: (result: Record<string, unknown>) => Partial<ToggleState>,
 ) {
@@ -39,7 +49,7 @@ export function usePostToggle(
 
     const request = ++latest;
     try {
-      const result = await $fetch<Record<string, unknown>>(`/api/posts/${postId()}/${kind}`, {
+      const result = await $fetch<Record<string, unknown>>(url(), {
         method: next ? "PUT" : "DELETE",
       });
       if (request === latest) {

@@ -1,0 +1,8 @@
+// Follow button on the right of the name
+.profile-header {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+
+  &__follow {
+    grid-column: auto;
+  }
+}

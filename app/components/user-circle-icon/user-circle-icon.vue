@@ -7,7 +7,7 @@
 <script setup lang="ts">
 const { user, size = "medium" } = defineProps<{
   user: Pick<IAuthor, "displayName">;
-  size?: "small" | "medium";
+  size?: "small" | "medium" | "large";
 }>();
 </script>
 

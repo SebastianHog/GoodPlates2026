@@ -2,7 +2,7 @@
   "site": { "pageTitle": "{page} · GoodPlates", "home": "GoodPlates startpagina" },
   "header": { "nav": "Account", "newPost": "Nieuw bericht", "logIn": "Inloggen", "signUp": "Registreren" },
   "search": { "label": "Recepten zoeken", "placeholder": "Recepten zoeken" },
-  "accountMenu": { "account": "Account", "bookmarks": "Bladwijzers", "logOut": "Uitloggen" },
+  "accountMenu": { "account": "Account", "profile": "Jouw profiel", "bookmarks": "Bladwijzers", "logOut": "Uitloggen" },
   "auth": {
     "tabsLabel": "Account",
     "login": { "tab": "Inloggen", "pageTitle": "Inloggen", "title": "Welkom terug", "subtitle": "Log in om je recepten te delen.", "submit": "Inloggen", "pending": "Bezig met inloggen…" },
@@ -18,8 +18,8 @@
       "taken": "Dat e-mailadres of die gebruikersnaam is al in gebruik."
     }
   },
-  "feed": { "matching": "Recepten met „{query}”", "noMatches": "Geen recepten gevonden voor „{query}”.", "showAll": "Alles tonen", "title": "Recepten", "introTitle": "Recepten van thuiskoks", "intro": "Zie wat mensen koken, met het recept bij elk bericht.", "introJoin": "Meld je aan om je eigen recepten te delen", "empty": "Nog geen recepten.", "emptyPost": "Plaats het eerste", "emptyJoin": "Meld je aan om het eerste te plaatsen", "loading": "Recepten laden…", "loadFailed": "De recepten konden niet worden geladen.", "retry": "Opnieuw proberen", "tabsLabel": "Feed", "latest": "Nieuwste", "discover": "Ontdekken" },
-  "toast": { "likeFailed": "Je like kon niet worden opgeslagen. Probeer het opnieuw.", "bookmarkFailed": "Je bladwijzer kon niet worden opgeslagen. Probeer het opnieuw.", "dismiss": "Sluiten", "likeLogin": "Log in om recepten te liken.", "bookmarkLogin": "Log in om recepten op te slaan in je bladwijzers.", "logIn": "Inloggen", "cookLogin": "Log in om bij te houden wat je hebt gemaakt.", "cookFailed": "Opslaan dat je dit hebt gemaakt is mislukt. Probeer het opnieuw." },
+  "feed": { "matching": "Recepten met „{query}”", "noMatches": "Geen recepten gevonden voor „{query}”.", "showAll": "Alles tonen", "title": "Recepten", "introTitle": "Recepten van thuiskoks", "intro": "Zie wat mensen koken, met het recept bij elk bericht.", "introJoin": "Meld je aan om je eigen recepten te delen", "empty": "Nog geen recepten.", "emptyPost": "Plaats het eerste", "emptyJoin": "Meld je aan om het eerste te plaatsen", "loading": "Recepten laden…", "loadFailed": "De recepten konden niet worden geladen.", "retry": "Opnieuw proberen", "tabsLabel": "Feed", "latest": "Nieuwste", "discover": "Ontdekken", "following": "Volgend", "followingEmpty": "Nog niets hier. Volg koks om hier hun nieuwe recepten te zien.", "findCooks": "Vind koks via Ontdekken" },
+  "toast": { "likeFailed": "Je like kon niet worden opgeslagen. Probeer het opnieuw.", "bookmarkFailed": "Je bladwijzer kon niet worden opgeslagen. Probeer het opnieuw.", "dismiss": "Sluiten", "likeLogin": "Log in om recepten te liken.", "bookmarkLogin": "Log in om recepten op te slaan in je bladwijzers.", "logIn": "Inloggen", "cookLogin": "Log in om bij te houden wat je hebt gemaakt.", "cookFailed": "Opslaan dat je dit hebt gemaakt is mislukt. Probeer het opnieuw.", "followLogin": "Log in om koks te volgen.", "followFailed": "Wie je volgt kon niet worden bijgewerkt. Probeer het opnieuw." },
   "post": {
     "edit": "Bewerken",
     "photos": "{title}, {count} foto's",
@@ -45,6 +45,7 @@
     "cooked": { "button": "Ik heb dit gemaakt", "nudge": "Alle stappen zijn afgevinkt. Is het gelukt?", "first": "Jij bent de eerste die dit heeft gemaakt.", "withOthers": "Jij en {n} ander hebben dit gemaakt. | Jij en {n} anderen hebben dit gemaakt.", "others": "Gemaakt door {n} persoon. | Gemaakt door {n} personen.", "none": "Nog niemand heeft dit gemaakt." }
   },
   "bookmarks": { "title": "Bladwijzers", "empty": "Nog geen bladwijzers. Tik op de bladwijzer bij een recept in de feed om het hier te bewaren.", "browse": "Recepten bekijken", "removed": "Verwijderd" },
+  "profile": { "title": "Profiel", "loading": "Profiel laden…", "notFound": "Deze kok kon niet worden gevonden.", "loadFailed": "Dit profiel kon niet worden geladen.", "recipes": "{n} recept | {n} recepten", "followers": "{n} volger | {n} volgers", "following": "{n} volgend", "follow": "Volgen", "followingButton": "Volgend", "recipesHeading": "Recepten", "empty": "{name} heeft nog geen recepten geplaatst.", "ownEmpty": "Je hebt nog geen recepten geplaatst.", "postFirst": "Plaats je eerste recept" },
   "editor": {
     "newTitle": "Nieuw recept", "editTitle": "Recept bewerken", "editPageTitle": "{title} bewerken",
     "notFound": "Dit recept is niet gevonden.", "notYours": "Je kunt alleen je eigen recepten bewerken.",

@@ -1,0 +1,53 @@
+@use "~/assets/scss/tokens" as *;
+
+// Phone: avatar and name side by side, follow button full width below
+.profile-header {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: $space-4;
+
+  &__text {
+    min-width: 0;
+  }
+
+  &__name {
+    margin: 0;
+    font-family: $font-family-serif;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-tight;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+  }
+
+  &__handle {
+    margin: $space-1 0 0;
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+    overflow-wrap: anywhere;
+  }
+
+  &__bio {
+    max-width: 60ch;
+    margin: $space-3 0 0;
+    line-height: $line-height-normal;
+    white-space: pre-line;
+    text-wrap: pretty;
+    overflow-wrap: anywhere;
+  }
+
+  &__stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-1 $space-4;
+    margin: $space-3 0 0;
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__follow {
+    grid-column: 1 / -1;
+  }
+}

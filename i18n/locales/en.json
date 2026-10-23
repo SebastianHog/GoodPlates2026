@@ -15,6 +15,7 @@
   },
   "accountMenu": {
     "account": "Account",
+    "profile": "Your profile",
     "bookmarks": "Bookmarks",
     "logOut": "Log out"
   },
@@ -73,7 +74,10 @@
     "retry": "Try again",
     "tabsLabel": "Feed",
     "latest": "Latest",
-    "discover": "Discover"
+    "discover": "Discover",
+    "following": "Following",
+    "followingEmpty": "Nothing here yet. Follow cooks to see their new recipes here.",
+    "findCooks": "Find cooks on Discover"
   },
   "toast": {
     "likeFailed": "Could not save your like. Try again.",
@@ -83,7 +87,9 @@
     "bookmarkLogin": "Log in to save recipes to your bookmarks.",
     "logIn": "Log in",
     "cookLogin": "Log in to keep track of what you've cooked.",
-    "cookFailed": "Could not save that you cooked this. Try again."
+    "cookFailed": "Could not save that you cooked this. Try again.",
+    "followLogin": "Log in to follow cooks.",
+    "followFailed": "Could not update who you follow. Try again."
   },
   "post": {
     "edit": "Edit",
@@ -131,6 +137,21 @@
     "empty": "No bookmarks yet. Tap the bookmark on any recipe in the feed to keep it here.",
     "browse": "Browse recipes",
     "removed": "Removed"
+  },
+  "profile": {
+    "title": "Profile",
+    "loading": "Loading profile…",
+    "notFound": "This cook could not be found.",
+    "loadFailed": "Could not load this profile.",
+    "recipes": "{n} recipe | {n} recipes",
+    "followers": "{n} follower | {n} followers",
+    "following": "{n} following",
+    "follow": "Follow",
+    "followingButton": "Following",
+    "recipesHeading": "Recipes",
+    "empty": "{name} hasn't posted any recipes yet.",
+    "ownEmpty": "You haven't posted any recipes yet.",
+    "postFirst": "Post your first recipe"
   },
   "editor": {
     "newTitle": "New recipe",
