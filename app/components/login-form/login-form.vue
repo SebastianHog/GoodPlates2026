@@ -54,7 +54,9 @@
 
         <template v-if="tab === 'signup'">
           <div class="login-form__field">
-            <label class="login-form__label" for="auth-display-name">Name</label>
+            <label class="login-form__label" for="auth-display-name"
+              >Name</label
+            >
             <input
               id="auth-display-name"
               v-model="displayName"
@@ -82,7 +84,9 @@
                 aria-describedby="auth-handle-hint"
                 required
                 @input="
-                  handle = ($event.target as HTMLInputElement).value.toLowerCase()
+                  handle = (
+                    $event.target as HTMLInputElement
+                  ).value.toLowerCase()
                 "
               />
             </div>
@@ -173,12 +177,22 @@ const content = {
 
 const route = useRoute();
 const router = useRouter();
+const { fetch: refreshSession } = useUserSession();
 
-// Newest post with a photo fills the left page of the booklet
+// most recent post in left page of the booklet
 const { data: posts } = await usePosts();
 const topPost = computed(() => posts.value?.find((post) => post.image));
 
 const tab = ref<Tab>(route.query.tab === "signup" ? "signup" : "login");
+
+// Check the url for which version of the form to show, singup or login.
+watch(
+  () => route.query.tab,
+  (value) => {
+    tab.value = value === "signup" ? "signup" : "login";
+    error.value = "";
+  },
+);
 const copy = computed(() => content[tab.value]);
 
 const displayName = ref("");
@@ -208,7 +222,6 @@ async function submit() {
   pending.value = true;
   error.value = "";
   try {
-    // TODO: backend endpoints don't exist yet
     if (tab.value === "login") {
       await $fetch("/api/auth/login", {
         method: "POST",
@@ -225,14 +238,20 @@ async function submit() {
         },
       });
     }
+    await refreshSession();
     await navigateTo("/");
   } catch (e) {
-    error.value =
-      tab.value === "login"
-        ? "Wrong email or password. Please try again."
-        : (e as { statusCode?: number }).statusCode === 409
-          ? "That email or username is already taken."
-          : "Could not create your account. Please try again.";
+    const { statusCode, statusMessage } = e as {
+      statusCode?: number;
+      statusMessage?: string;
+    };
+    if (tab.value === "login") {
+      error.value = "Wrong email or password. Please try again.";
+    } else if (statusCode === 400 || statusCode === 409) {
+      error.value = `${statusMessage}.`;
+    } else {
+      error.value = "Could not create your account. Please try again.";
+    }
   } finally {
     pending.value = false;
   }
