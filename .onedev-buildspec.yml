@@ -1,0 +1,58 @@
+version: 47
+jobs:
+  - name: goodplates deploy
+    steps:
+      - type: CheckoutStep
+        name: checkout code
+        cloneCredential:
+          type: DefaultCredential
+        withLfs: false
+        withSubmodules: false
+        condition: SUCCESSFUL
+        optional: false
+      - type: SetBuildVersionStep
+        name: set build version
+        buildVersion: "@script:builtin:node:determine-project-version@"
+        condition: SUCCESSFUL
+        optional: false
+      - type: CommandStep
+        name: build & deploy docker
+        runInContainer: true
+        image: docker
+        interpreter:
+          type: DefaultInterpreter
+          commands: |
+            # Stop on the first error, so a failed build never takes down the running site
+            set -e
+
+            docker build -t goodplates:latest .
+
+            docker stop goodplates || true
+            docker rm goodplates || true
+            docker run -d \
+              --name goodplates \
+              --restart unless-stopped \
+              -p 3803:3000 \
+              -e NUXT_MONGODB_URI='@secret:goodplates-mongodb-uri@' \
+              -e NUXT_SESSION_PASSWORD='@secret:goodplates-session-password@' \
+              -e NUXT_S3_ENDPOINT='@secret:goodplates-s3-endpoint@' \
+              -e NUXT_S3_ACCESS_KEY_ID='@secret:goodplates-s3-access-key-id@' \
+              -e NUXT_S3_SECRET_ACCESS_KEY='@secret:goodplates-s3-secret-access-key@' \
+              -e NUXT_S3_BUCKET='@secret:goodplates-s3-bucket@' \
+              goodplates:latest
+
+            # Old untagged images from earlier builds
+            docker image prune -f
+        runAs: 0:0
+        useTTY: true
+        condition: SUCCESSFUL
+        optional: false
+    jobExecutor: local-docker
+    triggers:
+      - type: BranchUpdateTrigger
+        branches: master
+        userMatch: anyone
+    retryCondition: never
+    maxRetries: 3
+    retryDelay: 30
+    timeout: 14400
