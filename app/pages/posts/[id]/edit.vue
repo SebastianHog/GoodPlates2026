@@ -30,7 +30,9 @@ useHead({
 .edit-page__title {
   max-width: 72rem;
   margin: 0 auto 1.5rem;
+  font-family: var(--font-family-serif);
   font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .edit-page__message {

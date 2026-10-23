@@ -10,8 +10,9 @@ $color-primary-hover: #146140;
 $color-error: #dc2626;
 $color-error-surface: #fef2f2;
 
-$font-family-sans: Inter, ui-sans-serif, system-ui, sans-serif;
-$font-size-xs: 0.55rem;
+$font-family-sans: "Figtree Variable", ui-sans-serif, system-ui, sans-serif;
+// recipe titles and page titles only
+$font-family-serif: "Literata Variable", Georgia, serif;
 $font-size-sm: 0.875rem;
 $font-size-base: 1rem;
 $font-size-lg: 1.125rem;

@@ -14,6 +14,7 @@
   --color-border: #{$color-border};
   --color-primary: #{$color-primary};
   --color-primary-hover: #{$color-primary-hover};
+  --font-family-serif: #{$font-family-serif};
   --content-max-width: #{$content-max-width};
 }
 
@@ -24,6 +25,10 @@
 body {
   margin: 0;
   background: $color-paper;
+}
+
+::selection {
+  background: color-mix(in srgb, $color-primary 18%, transparent);
 }
 
 button,

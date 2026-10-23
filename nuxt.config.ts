@@ -16,7 +16,8 @@ export default defineNuxtConfig({
       { code: "fi", language: "fi", name: "Suomi", file: "fi.json" },
     ],
   },
-  css: ["~/assets/scss/main.scss"],
+  // Self-hosted variable fonts: Literata for recipe and page titles, Figtree for everything else
+  css: ["@fontsource-variable/literata/opsz.css", "@fontsource-variable/figtree/wght.css", "~/assets/scss/main.scss"],
   runtimeConfig: {
     // Set via NUXT_MONGODB_URI in .env, server-only
     mongodbUri: "",

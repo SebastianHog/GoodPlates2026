@@ -25,6 +25,7 @@
   // The whole title shows, wrapping long words without spaces
   &__title {
     min-width: 0;
+    font-family: $font-family-serif;
     font-weight: $font-weight-semibold;
     overflow-wrap: anywhere;
   }

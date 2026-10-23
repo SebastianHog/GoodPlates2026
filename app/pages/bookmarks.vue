@@ -31,7 +31,9 @@ const { data: posts } = await useFetch<IPostContent[]>("/api/bookmarks");
 
 .bookmarks-page__title {
   margin: 0 0 0.5rem;
+  font-family: var(--font-family-serif);
   font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .bookmarks-page__list {

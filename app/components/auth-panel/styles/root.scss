@@ -18,8 +18,9 @@
 
   &__title {
     margin: 0;
+    font-family: $font-family-serif;
     font-size: $font-size-2xl;
-    font-weight: $font-weight-bold;
+    font-weight: $font-weight-semibold;
     line-height: $line-height-tight;
     text-wrap: balance;
   }
