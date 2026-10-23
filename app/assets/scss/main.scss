@@ -38,6 +38,11 @@ select {
   font: inherit;
 }
 
+// The h1 at the top of a page
+.page-title {
+  @include mixins.headline;
+}
+
 // Hidden on screen, still read by screen readers
 .visually-hidden {
   @include mixins.visually-hidden;

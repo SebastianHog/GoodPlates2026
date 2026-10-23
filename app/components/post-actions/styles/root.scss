@@ -7,17 +7,11 @@
   gap: $space-2;
 
   &__edit {
+    @include text-link;
+
     margin-right: $space-1;
     color: $color-primary;
     font-size: $font-size-sm;
     font-weight: $font-weight-semibold;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    @include focus-ring;
   }
 }

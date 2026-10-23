@@ -1,15 +1,15 @@
 <template>
   <section class="bookmarks-page">
-    <h1 class="bookmarks-page__title">{{ $t("bookmarks.title") }}</h1>
+    <h1 class="page-title bookmarks-page__title">{{ $t("bookmarks.title") }}</h1>
 
     <div v-if="posts?.length" class="bookmarks-page__list">
       <recipe-row v-for="post in posts" :key="post.id" v-bind="post" />
     </div>
 
-    <div v-else class="bookmarks-page__empty">
-      <p>{{ $t("bookmarks.empty") }}</p>
+    <status-message v-else class="bookmarks-page__empty">
+      {{ $t("bookmarks.empty") }}
       <NuxtLink to="/">{{ $t("bookmarks.browse") }}</NuxtLink>
-    </div>
+    </status-message>
   </section>
 </template>
 
@@ -31,9 +31,6 @@ const { data: posts } = await useFetch<IPostContent[]>("/api/bookmarks");
 
 .bookmarks-page__title {
   margin: 0 0 0.5rem;
-  font-family: var(--font-family-serif);
-  font-size: 1.5rem;
-  font-weight: 600;
 }
 
 .bookmarks-page__list {
@@ -42,11 +39,5 @@ const { data: posts } = await useFetch<IPostContent[]>("/api/bookmarks");
 
 .bookmarks-page__empty {
   padding: 3rem 0;
-  color: var(--color-text-muted);
-}
-
-.bookmarks-page__empty a {
-  color: var(--color-primary);
-  font-weight: 600;
 }
 </style>

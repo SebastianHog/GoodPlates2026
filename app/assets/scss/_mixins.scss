@@ -20,12 +20,42 @@
   white-space: normal;
 }
 
+// Page and recipe titles: Literata, 1.5rem, semibold (DESIGN.md headline)
+@mixin headline {
+  margin: 0;
+  font-family: $font-family-serif;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-tight;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
 // The keyboard focus outline used across the site
 @mixin focus-ring($offset: 2px, $color: $color-primary) {
   &:focus-visible {
     outline: 2px solid $color;
     outline-offset: $offset;
   }
+}
+
+// The underline links get on hover
+@mixin underline {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+// A link (or button) that looks like text and underlines on hover. Set `color` after it for a green link
+@mixin text-link {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    @include underline;
+  }
+
+  @include focus-ring;
 }
 
 // Shrinks a little while pressed, so a tap feels answered right away.

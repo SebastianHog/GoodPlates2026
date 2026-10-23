@@ -60,9 +60,7 @@
   }
 
   &:hover &__link {
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.15em;
+    @include underline;
   }
 
   &__summary {

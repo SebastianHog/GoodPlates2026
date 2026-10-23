@@ -15,19 +15,12 @@
   }
 
   &__name {
+    @include text-link;
+
     width: fit-content;
-    color: inherit;
     overflow-wrap: anywhere;
     font-size: $font-size-sm;
     font-weight: $font-weight-semibold;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    @include focus-ring;
   }
 
   &__date {

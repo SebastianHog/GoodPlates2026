@@ -122,6 +122,8 @@
   }
 
   &__clear {
+    @include text-link;
+
     margin-top: $space-3;
     padding: $space-2 0;
     border: none;
@@ -130,12 +132,5 @@
     font-size: $font-size-sm;
     font-weight: $font-weight-semibold;
     cursor: pointer;
-
-    &:hover {
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    @include focus-ring;
   }
 }

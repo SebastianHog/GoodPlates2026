@@ -3,7 +3,7 @@
     <!-- IF user is not logged in, see little text about what goodplates is about, 
      show posts normally to logged in users-->
     <header v-if="showIntro" class="feed__intro">
-      <h1 class="feed__title">{{ $t("feed.introTitle") }}</h1>
+      <h1 class="page-title">{{ $t("feed.introTitle") }}</h1>
       <p class="feed__lead">
         {{ $t("feed.intro") }}
         <NuxtLink to="/login?tab=signup">{{ $t("feed.introJoin") }}</NuxtLink>
@@ -132,15 +132,6 @@ useHead({
 .feed__tabs {
   max-width: 26rem;
   margin-bottom: 1.5rem;
-}
-
-.feed__title {
-  margin: 0;
-  font-family: var(--font-family-serif);
-  font-size: 1.5rem;
-  font-weight: 600;
-  line-height: 1.25;
-  text-wrap: balance;
 }
 
 .feed__lead {
