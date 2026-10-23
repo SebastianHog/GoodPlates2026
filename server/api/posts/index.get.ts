@@ -1,4 +1,5 @@
-export default defineEventHandler((event): Promise<IPostContent[]> => {
+export default defineEventHandler(async (event): Promise<IPostContent[]> => {
   const { q } = getQuery(event);
-  return getPosts(typeof q === "string" ? q.slice(0, 100) : undefined);
+  const { user } = await getUserSession(event);
+  return getPosts(typeof q === "string" ? q.slice(0, 100) : undefined, user?.id);
 });

@@ -9,6 +9,9 @@ export interface IPostContent {
   steps: string[];
   servings: string;
   totalTimeMinutes: number | null;
+  likeCount: number;
+  // Whether the logged-in viewer has liked it; always false for logged-out visitors
+  likedByMe: boolean;
   createdAt: string;
   modifiedAt: string;
 }

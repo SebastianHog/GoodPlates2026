@@ -44,6 +44,23 @@
       <user-circle-icon size="medium" :user="author" />
       <span class="recipe-post__author">{{ author.displayName }}</span>
       <NuxtLink v-if="isOwnPost" :to="`/posts/${id}/edit`" class="recipe-post__edit">Edit</NuxtLink>
+      <button
+        class="recipe-post__like"
+        :class="{ 'recipe-post__like--active': liked }"
+        type="button"
+        :aria-pressed="liked"
+        :aria-label="`${liked ? 'Unlike' : 'Like'} ${title}, ${likes} ${likes === 1 ? 'like' : 'likes'}`"
+        :disabled="preview"
+        @click="toggleLike"
+      >
+        <svg class="recipe-post__like-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7 10v11H4a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1h3Z" />
+          <path
+            d="M7 10l4.2-7.4A1.8 1.8 0 0 1 14.6 3.7L13.8 8h5.4a2 2 0 0 1 2 2.4l-1.6 8.4A2 2 0 0 1 17.6 21H7"
+          />
+        </svg>
+        <span aria-hidden="true">{{ likes }}</span>
+      </button>
       <time class="recipe-post__date-posted" :datetime="createdAt">{{ formatPostDate(createdAt) }}</time>
     </div>
   </article>
@@ -52,10 +69,51 @@
 <script setup lang="ts">
 import type { IPostContent } from "#shared/types/postContent";
 
-const props = defineProps<IPostContent>();
+// `preview` is the editor's preview: the like button shows but does nothing
+const props = defineProps<IPostContent & { preview?: boolean }>();
 
-const { user } = useUserSession();
+const { user, loggedIn } = useUserSession();
 const isOwnPost = computed(() => user.value?.id === props.author.id);
+
+// Likes update right away and roll back if the server says no
+const liked = ref(props.likedByMe);
+const likes = ref(props.likeCount);
+watch(
+  () => [props.likedByMe, props.likeCount] as const,
+  ([likedByMe, likeCount]) => {
+    liked.value = likedByMe;
+    likes.value = likeCount;
+  },
+);
+
+let likeRequest = 0;
+
+async function toggleLike() {
+  if (!loggedIn.value) {
+    await navigateTo("/login");
+    return;
+  }
+
+  const next = !liked.value;
+  const before = { liked: liked.value, likes: likes.value };
+  liked.value = next;
+  likes.value += next ? 1 : -1;
+
+  // Only the latest click's answer counts when someone clicks quickly
+  const request = ++likeRequest;
+  try {
+    const result = await $fetch(`/api/posts/${props.id}/like`, { method: next ? "PUT" : "DELETE" });
+    if (request === likeRequest) {
+      liked.value = result.liked;
+      likes.value = result.likeCount;
+    }
+  } catch {
+    if (request === likeRequest) {
+      liked.value = before.liked;
+      likes.value = before.likes;
+    }
+  }
+}
 
 const plural = (count: number, word: string) => `${count} ${word}${count === 1 ? "" : "s"}`;
 const counts = computed(() =>

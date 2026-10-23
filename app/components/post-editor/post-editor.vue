@@ -224,7 +224,7 @@
 
       <div v-else class="post-editor__preview">
         <h2 class="post-editor__label">How it will look in the feed</h2>
-        <recipe-post v-bind="previewPost" />
+        <recipe-post v-bind="previewPost" preview />
       </div>
 
       <p v-if="submitError" class="post-editor__error" role="alert">{{ submitError }}</p>
@@ -344,6 +344,8 @@ const previewPost = computed<IPostContent>(() => {
     title: title.value.trim() || "Recipe title",
     ingredients: lines(ingredients.value),
     steps: lines(steps.value),
+    likeCount: props.post?.likeCount ?? 0,
+    likedByMe: false,
     createdAt: props.post?.createdAt ?? now,
     modifiedAt: now,
   };

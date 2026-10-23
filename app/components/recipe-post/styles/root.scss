@@ -128,9 +128,74 @@
     }
   }
 
-  &__date-posted {
+  &__like {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-1;
     margin-left: auto;
+    padding: $space-1 $space-2;
+    border: none;
+    border-radius: $radius-sm;
+    background: none;
     color: $color-text-muted;
     font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    font-variant-numeric: tabular-nums;
+    cursor: pointer;
+    transition: color $transition-fast, background $transition-fast;
+
+    &:hover:not(:disabled) {
+      background: $color-paper;
+      color: $color-text;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-primary;
+      outline-offset: 2px;
+    }
+
+    &:disabled {
+      cursor: default;
+    }
+
+    &--active {
+      color: $color-primary;
+
+      .recipe-post__like-icon {
+        fill: rgb($color-primary, 0.15);
+      }
+    }
+  }
+
+  &__like-icon {
+    width: 1.125rem;
+    height: 1.125rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.75;
+    stroke-linejoin: round;
+    transition: transform $transition-fast;
+  }
+
+  &__like--active &__like-icon {
+    animation: recipe-post-like 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  &__date-posted {
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+  }
+}
+
+// A small lift when a post is liked
+@keyframes recipe-post-like {
+  40% {
+    transform: translateY(-2px) rotate(-12deg) scale(1.15);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .recipe-post__like-icon {
+    animation: none !important;
   }
 }
