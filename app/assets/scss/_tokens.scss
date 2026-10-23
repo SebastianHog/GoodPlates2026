@@ -45,9 +45,13 @@ $radius-full: 9999px;
 $shadow-sm: 0 1px 2px rgb(0 0 0 / 5%);
 $shadow-md: 0 4px 6px -1px rgb(0 0 0 / 10%);
 
+// For color and background changes
 $transition-fast: 150ms ease;
 $transition-medium: 250ms ease;
-$transition-slow: 400ms ease;
+
+// For movement: ease-out when something enters or leaves, ease-in-out when it moves on screen
+$ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+$ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 
 $content-max-width: 72rem;
 
