@@ -25,6 +25,8 @@
 </template>
 
 <script lang="ts" setup>
+definePageMeta({ middleware: "auth" });
+
 const title = ref("");
 const body = ref("");
 const image = ref("");

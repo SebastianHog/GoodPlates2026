@@ -5,6 +5,8 @@
 </template>
 
 <script lang="ts" setup>
+definePageMeta({ middleware: "guest" });
+
 const route = useRoute();
 
 useHead({
