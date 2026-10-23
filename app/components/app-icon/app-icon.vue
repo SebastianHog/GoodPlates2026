@@ -5,6 +5,7 @@
 
 <script lang="ts">
 export type IconName =
+  | "alert"
   | "bookmark"
   | "chevron-down"
   | "chevron-left"
@@ -26,7 +27,10 @@ const files = import.meta.glob<string>("~/assets/icons/*.svg", {
 });
 
 const icons = Object.fromEntries(
-  Object.entries(files).map(([path, svg]) => [path.split("/").pop()!.replace(".svg", ""), svg]),
+  Object.entries(files).map(([path, svg]) => [
+    path.split("/").pop()!.replace(".svg", ""),
+    svg,
+  ]),
 );
 
 const props = defineProps<{ name: IconName }>();

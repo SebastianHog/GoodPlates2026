@@ -1,0 +1,79 @@
+@use "~/assets/scss/tokens" as *;
+
+.recipe-post-skeleton {
+  container-type: inline-size;
+  border-bottom: 1px solid $color-border-secondary;
+  animation: recipe-post-skeleton-pulse 1.6s ease-in-out infinite;
+
+  &__spread {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__photo {
+    aspect-ratio: 1;
+    background: $color-border;
+  }
+
+  &__text-page {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: $space-3;
+    padding: $space-4 0 0;
+  }
+
+  &__bar {
+    width: 100%;
+    max-width: 60ch;
+    height: 0.875rem;
+    border-radius: $radius-sm;
+    background: $color-border;
+
+    &--title {
+      width: 70%;
+      height: 1.5rem;
+    }
+
+    &--summary {
+      width: 40%;
+      margin-bottom: $space-2;
+    }
+
+    &--short {
+      width: 55%;
+    }
+
+    &--name {
+      width: 6rem;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    margin-top: auto;
+    padding-block: $space-4 $space-3;
+  }
+
+  &__avatar {
+    flex: none;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: $radius-full;
+    background: $color-border;
+  }
+}
+
+@keyframes recipe-post-skeleton-pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .recipe-post-skeleton {
+    animation: none;
+  }
+}

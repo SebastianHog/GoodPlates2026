@@ -1,0 +1,39 @@
+@use "~/assets/scss/tokens" as *;
+
+.recipe-post-skeleton {
+  border: 1px solid $color-border;
+  background: $color-surface;
+
+  &__spread {
+    padding: $space-3;
+  }
+
+  &__text-page {
+    padding: $space-4 $space-1 0;
+  }
+
+  &__footer {
+    padding-block: $space-4 $space-1;
+  }
+
+  @container (min-width: 36rem) {
+    &__spread {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+      padding: 0;
+    }
+
+    &__photo-page {
+      padding: $space-6;
+      background: $color-paper;
+    }
+
+    &__text-page {
+      padding: $space-6;
+    }
+
+    &__footer {
+      padding-block: $space-4 0;
+    }
+  }
+}

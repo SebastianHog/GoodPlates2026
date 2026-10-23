@@ -11,24 +11,39 @@
     </header>
     <h1 v-else class="visually-hidden">{{ $t("feed.title") }}</h1>
 
-    <p v-if="search" class="feed__message">
-      {{
-        $t(posts?.length ? "feed.matching" : "feed.noMatches", {
-          query: search,
-        })
-      }}
-      <NuxtLink to="/">{{ $t("feed.showAll") }}</NuxtLink>
-    </p>
-    <p v-else-if="posts && !posts.length" class="feed__message">
-      {{ $t("feed.empty") }}
-      <NuxtLink :to="loggedIn ? '/create' : '/login?tab=signup'">
-        {{ $t(loggedIn ? "feed.emptyPost" : "feed.emptyJoin") }}
-      </NuxtLink>
+    <!-- While posts load: grey stand-ins in their shape, and a line for screen readers -->
+    <template v-if="status === 'pending'">
+      <p class="visually-hidden" role="status">{{ $t("feed.loading") }}</p>
+      <post-container aria-hidden="true">
+        <recipe-post-skeleton v-for="n in 3" :key="n" />
+      </post-container>
+    </template>
+
+    <p v-else-if="error" class="feed__message" role="alert">
+      {{ $t("feed.loadFailed") }}
+      <button type="button" class="feed__retry" @click="() => refresh()">{{ $t("feed.retry") }}</button>
     </p>
 
-    <post-container>
-      <recipe-post v-for="post in posts" :key="post.id" v-bind="post" />
-    </post-container>
+    <template v-else>
+      <p v-if="search" class="feed__message">
+        {{
+          $t(posts?.length ? "feed.matching" : "feed.noMatches", {
+            query: search,
+          })
+        }}
+        <NuxtLink to="/">{{ $t("feed.showAll") }}</NuxtLink>
+      </p>
+      <p v-else-if="posts && !posts.length" class="feed__message">
+        {{ $t("feed.empty") }}
+        <NuxtLink :to="loggedIn ? '/create' : '/login?tab=signup'">
+          {{ $t(loggedIn ? "feed.emptyPost" : "feed.emptyJoin") }}
+        </NuxtLink>
+      </p>
+
+      <post-container>
+        <recipe-post v-for="post in posts" :key="post.id" v-bind="post" />
+      </post-container>
+    </template>
   </section>
 </template>
 
@@ -41,7 +56,8 @@ const search = computed(
     (typeof route.query.q === "string" && route.query.q.trim()) || undefined,
 );
 
-const { data: posts } = await usePosts(search);
+// Lazy, so moving to the feed or searching shows the skeletons instead of waiting on the old page
+const { data: posts, status, error, refresh } = usePosts(search, { lazy: true });
 
 const showIntro = computed(() => !loggedIn.value && !search.value);
 
@@ -91,6 +107,18 @@ useHead({
   overflow-wrap: anywhere;
 }
 
+.feed__retry {
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--color-primary);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
 .feed__lead a,
 .feed__message a {
   color: var(--color-primary);
@@ -99,7 +127,8 @@ useHead({
 }
 
 .feed__lead a:focus-visible,
-.feed__message a:focus-visible {
+.feed__message a:focus-visible,
+.feed__retry:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }

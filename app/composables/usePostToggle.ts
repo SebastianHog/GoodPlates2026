@@ -3,8 +3,8 @@ interface ToggleState {
   count: number;
 }
 
-// An on/off action on a post (like, bookmark). It updates right away, rolls back if the
-// server says no, sends logged-out visitors to /login, and only the latest click's answer counts.
+// An on/off action on a post (like, bookmark). It updates right away, rolls back and says so if the
+// server says no, asks logged-out visitors to log in (and brings them back), and only the latest click's answer counts.
 export function usePostToggle(
   kind: "like" | "bookmark",
   postId: () => string,
@@ -12,6 +12,9 @@ export function usePostToggle(
   readResult: (result: Record<string, unknown>) => Partial<ToggleState>,
 ) {
   const { loggedIn } = useUserSession();
+  const route = useRoute();
+  const { t } = useI18n();
+  const { show: showToast } = useToast();
   const on = ref(initial().on);
   const count = ref(initial().count);
 
@@ -24,7 +27,8 @@ export function usePostToggle(
 
   async function toggle() {
     if (!loggedIn.value) {
-      await navigateTo("/login");
+      const login = `/login?redirect=${encodeURIComponent(route.fullPath)}`;
+      showToast(t(`toast.${kind}Login`), { tone: "info", action: { label: t("toast.logIn"), to: login } });
       return;
     }
 
@@ -47,6 +51,7 @@ export function usePostToggle(
       if (request === latest) {
         on.value = before.on;
         count.value = before.count;
+        showToast(t(`toast.${kind}Failed`));
       }
     }
   }

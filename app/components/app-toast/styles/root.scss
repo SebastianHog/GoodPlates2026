@@ -1,0 +1,97 @@
+@use "~/assets/scss/tokens" as *;
+@use "~/assets/scss/mixins" as *;
+
+.app-toast {
+  position: fixed;
+  top: $space-4;
+  right: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  padding-inline: $space-4;
+  pointer-events: none;
+
+  &__box {
+    display: flex;
+    align-items: flex-start;
+    gap: $space-3;
+    width: 100%;
+    max-width: 28rem;
+    padding: $space-3 $space-2 $space-3 $space-4;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    background: $color-surface;
+    box-shadow:
+      0 1px 2px rgb(0 0 0 / 6%),
+      0 12px 32px -12px rgb(0 0 0 / 25%);
+    pointer-events: auto;
+  }
+
+  &__icon {
+    margin-top: 0.125rem;
+    color: $color-error;
+  }
+
+  &__message {
+    flex: 1;
+    align-self: center;
+    min-width: 0;
+    margin: 0;
+    font-size: $font-size-sm;
+    line-height: $line-height-normal;
+    overflow-wrap: anywhere;
+  }
+
+  &__action {
+    flex: none;
+    align-self: center;
+    padding: $space-1 $space-3;
+    border-radius: $radius-sm;
+    background: $color-primary;
+    color: $color-surface;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background $transition-fast;
+
+    &:hover {
+      background: $color-primary-hover;
+    }
+
+    @include focus-ring;
+  }
+
+  &__close {
+    @include icon-button;
+
+    align-self: center;
+  }
+}
+
+// Slides down from above the screen edge, eases to a stop; leaves the same way, faster
+.app-toast-enter-active {
+  transition:
+    transform 400ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 200ms ease-out;
+}
+
+.app-toast-leave-active {
+  transition:
+    transform 200ms ease-in,
+    opacity 200ms ease-in;
+}
+
+.app-toast-enter-from,
+.app-toast-leave-to {
+  transform: translateY(calc(-100% - #{$space-4}));
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-toast-enter-from,
+  .app-toast-leave-to {
+    transform: none;
+  }
+}

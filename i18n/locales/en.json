@@ -67,7 +67,18 @@
     "introJoin": "Sign up to share yours",
     "empty": "No recipes yet.",
     "emptyPost": "Post the first one",
-    "emptyJoin": "Sign up to post the first one"
+    "emptyJoin": "Sign up to post the first one",
+    "loading": "Loading recipes…",
+    "loadFailed": "Could not load recipes.",
+    "retry": "Try again"
+  },
+  "toast": {
+    "likeFailed": "Could not save your like. Try again.",
+    "bookmarkFailed": "Could not save your bookmark. Try again.",
+    "dismiss": "Dismiss",
+    "likeLogin": "Log in to like recipes.",
+    "bookmarkLogin": "Log in to save recipes to your bookmarks.",
+    "logIn": "Log in"
   },
   "post": {
     "edit": "Edit",

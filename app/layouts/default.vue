@@ -1,6 +1,7 @@
 <template>
   <div class="layout">
     <site-header />
+    <app-toast :duration="5000" />
 
     <main class="layout__content">
       <slot />
