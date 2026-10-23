@@ -1,6 +1,8 @@
 @use "~/assets/scss/tokens" as *;
+@use "~/assets/scss/mixins" as *;
 
 .recipe-post {
+  position: relative;
   container-type: inline-size;
   border-bottom: 1px solid $color-border-secondary;
 
@@ -8,6 +10,21 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+  }
+
+  // above the card link, so photos can be swiped and buttons clicked
+  &__photo-page,
+  &__actions {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__photo-page {
+    cursor: pointer;
+  }
+
+  &--preview &__photo-page {
+    cursor: auto;
   }
 
   &__text-page {
@@ -26,6 +43,25 @@
     line-height: $line-height-tight;
     text-wrap: balance;
     overflow-wrap: anywhere;
+  }
+
+  &__link {
+    color: inherit;
+    text-decoration: none;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+    }
+
+    @include focus-ring;
+  }
+
+  &:hover &__link {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
   }
 
   &__summary {
