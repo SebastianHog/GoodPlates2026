@@ -329,7 +329,7 @@ function focusFirstError() {
   const target = document.getElementById(fieldTargets[first]!);
   // With photos already added there is no drop zone to focus, so scroll to the photos instead
   const fallback = first === "images" ? document.querySelector<HTMLElement>(".photo-picker") : null;
-  (target ?? fallback)?.scrollIntoView({ behavior: "smooth", block: "center" });
+  (target ?? fallback)?.scrollIntoView({ behavior: scrollBehavior(), block: "center" });
   target?.focus({ preventScroll: true });
 }
 

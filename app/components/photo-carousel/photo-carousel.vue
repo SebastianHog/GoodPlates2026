@@ -56,7 +56,7 @@ function onScroll() {
 
 function showPhoto(index: number) {
   const el = track.value;
-  el?.scrollTo({ left: index * el.clientWidth, behavior: "smooth" });
+  el?.scrollTo({ left: index * el.clientWidth, behavior: scrollBehavior() });
 }
 </script>
 
