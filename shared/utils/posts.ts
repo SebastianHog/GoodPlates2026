@@ -1,3 +1,12 @@
+// How many posts one request returns: a page of a feed or profile, and the Discover list
+export const POST_PAGE_SIZE = 20;
+export const DISCOVER_SIZE = 30;
+
+// Where the next page starts: "<createdAt>_<id>" of the last post shown, sent as ?before=
+export function pageCursor(post: Pick<IPostContent, "createdAt" | "id">): string {
+  return `${post.createdAt}_${post.id}`;
+}
+
 export const POST_LIMITS = {
   photos: 6,
   title: 80,

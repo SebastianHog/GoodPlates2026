@@ -5,8 +5,9 @@ export default defineEventHandler(async (event): Promise<IProfile> => {
   }
 
   const { user: viewer } = await getUserSession(event);
-  const [posts, counts, followedByMe] = await Promise.all([
-    getPosts(undefined, viewer?.id, user.id),
+  const [posts, postCount, counts, followedByMe] = await Promise.all([
+    getPosts({ viewerId: viewer?.id, authorId: user.id }),
+    countPostsBy(user.id),
     getFollowCounts(user.id),
     viewer ? isFollowing(viewer.id, user.id) : false,
   ]);
@@ -14,6 +15,7 @@ export default defineEventHandler(async (event): Promise<IProfile> => {
   return {
     user,
     posts,
+    postCount,
     followerCount: counts.followers,
     followingCount: counts.following,
     followedByMe,

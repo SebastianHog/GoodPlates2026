@@ -16,9 +16,9 @@
 </template>
 
 <script setup lang="ts">
-// The most recent post with a photo fills the left page of the booklet
-const { data: posts } = await usePosts();
-const topPost = computed(() => posts.value?.find((post) => post.images.length > 0));
+// The most recent post fills the left page of the booklet
+const { data: posts } = await useFetch<IPostContent[]>("/api/posts", { query: { limit: 1 } });
+const topPost = computed(() => posts.value?.[0]);
 </script>
 
 <style lang="scss" src="./styles.scss"></style>

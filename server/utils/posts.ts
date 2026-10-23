@@ -7,9 +7,55 @@ export type PostDocument = Omit<
   "id" | "author" | "likedByMe" | "bookmarkedByMe" | "cookedByMe"
 > & { author: { id: string } & Partial<IAuthor> };
 
+let indexesReady = false;
+
 export async function postsCollection() {
   const db = await getDb();
-  return db.collection<PostDocument>("posts");
+  const posts = db.collection<PostDocument>("posts");
+  // Newest-first lists, overall and per author
+  if (!indexesReady) {
+    await Promise.all([
+      posts.createIndex({ createdAt: -1, _id: -1 }),
+      posts.createIndex({ "author.id": 1, createdAt: -1, _id: -1 }),
+    ]);
+    indexesReady = true;
+  }
+  return posts;
+}
+
+// A page of a newest-first list: at most `limit` posts, starting after the post `before` points at
+export interface PageOptions {
+  limit?: number;
+  before?: string;
+}
+
+function afterCursor(before?: string) {
+  const split = before?.lastIndexOf("_") ?? -1;
+  const createdAt = before?.slice(0, split);
+  const id = before?.slice(split + 1);
+  if (!createdAt || !id || !ObjectId.isValid(id)) {
+    return {};
+  }
+  return {
+    $or: [
+      { createdAt: { $lt: createdAt } },
+      { createdAt, _id: { $lt: new ObjectId(id) } },
+    ],
+  };
+}
+
+async function findPage(
+  filter: object,
+  viewerId: string | undefined,
+  { limit = POST_PAGE_SIZE, before }: PageOptions,
+): Promise<IPostContent[]> {
+  const posts = await postsCollection();
+  const docs = await posts
+    .find({ $and: [filter, afterCursor(before)] })
+    .sort({ createdAt: -1, _id: -1 })
+    .limit(limit)
+    .toArray();
+  return toPosts(docs, viewerId);
 }
 
 // What the viewer has done to a post; logged-out visitors have done none of it
@@ -64,14 +110,14 @@ function missingAuthor(stored: PostDocument["author"]): IAuthor {
   };
 }
 
-// Newest first. With a search term, only posts whose title, recipe or author name contain it.
+// Newest first, a page at a time. With a search term, only posts whose title, recipe or author name contain it.
 // With a viewer, each post also says whether they liked, bookmarked and cooked it
-export async function getPosts(
-  search?: string,
-  viewerId?: string,
-  authorId?: string,
-): Promise<IPostContent[]> {
-  const posts = await postsCollection();
+export async function getPosts({
+  search,
+  viewerId,
+  authorId,
+  ...page
+}: PageOptions & { search?: string; viewerId?: string; authorId?: string }): Promise<IPostContent[]> {
   const term = search?.trim();
   const filter = {
     ...(term && {
@@ -85,25 +131,24 @@ export async function getPosts(
     ...(authorId && { "author.id": authorId }),
   };
 
-  const docs = await posts.find(filter).sort({ createdAt: -1 }).toArray();
-  return toPosts(docs, viewerId);
+  return findPage(filter, viewerId, page);
 }
 
-// Following: posts by the people the viewer follows, newest first
+export async function countPostsBy(authorId: string): Promise<number> {
+  const posts = await postsCollection();
+  return posts.countDocuments({ "author.id": authorId });
+}
+
+// Following: posts by the people the viewer follows, newest first, a page at a time
 export async function getFollowingPosts(
   viewerId: string,
+  page: PageOptions = {},
 ): Promise<IPostContent[]> {
   const followedIds = await getFollowedIds(viewerId);
   if (!followedIds.length) {
     return [];
   }
-
-  const posts = await postsCollection();
-  const docs = await posts
-    .find({ "author.id": { $in: followedIds } })
-    .sort({ createdAt: -1 })
-    .toArray();
-  return toPosts(docs, viewerId);
+  return findPage({ "author.id": { $in: followedIds } }, viewerId, page);
 }
 
 export async function getPostById(

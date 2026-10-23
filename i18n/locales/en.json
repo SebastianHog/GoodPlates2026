@@ -77,7 +77,10 @@
     "discover": "Discover",
     "following": "Following",
     "followingEmpty": "Nothing here yet. Follow cooks to see their new recipes here.",
-    "findCooks": "Find cooks on Discover"
+    "findCooks": "Find cooks on Discover",
+    "showMore": "Show more recipes",
+    "loadingMore": "Loading…",
+    "loadMoreFailed": "Could not load more recipes. Try again."
   },
   "toast": {
     "likeFailed": "Could not save your like. Try again.",

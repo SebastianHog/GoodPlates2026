@@ -17,7 +17,7 @@
         <profile-header
           :key="profile.user.id"
           :user="profile.user"
-          :recipe-count="profile.posts.length"
+          :recipe-count="profile.postCount"
           :follower-count="profile.followerCount"
           :following-count="profile.followingCount"
           :followed-by-me="profile.followedByMe"
@@ -36,8 +36,9 @@
         </status-message>
 
         <post-container>
-          <recipe-post v-for="post in profile.posts" :key="post.id" v-bind="post" />
+          <recipe-post v-for="post in posts" :key="post.id" v-bind="post" />
         </post-container>
+        <show-more :has-more="hasMore" :loading="loadingMore" @more="loadMore" />
       </template>
     </load-state>
   </section>
@@ -56,6 +57,12 @@ const {
 } = useFetch<IProfile>(() => `/api/users/${route.params.handle}`, {
   lazy: true,
 });
+
+// The profile brings the first page of recipes; the rest load from /api/posts
+const { posts, hasMore, loadingMore, loadMore } = usePostPages(
+  computed(() => profile.value?.posts),
+  () => ({ author: profile.value?.user.id }),
+);
 
 const isOwnProfile = computed(() => user.value?.id === profile.value?.user.id);
 

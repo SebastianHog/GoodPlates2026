@@ -30,14 +30,15 @@ const props = defineProps<{
   excludeId: string;
 }>();
 
+// 4, so there are still 3 when one of them is the post being shown
 const { data: posts } = useFetch<IPostContent[]>("/api/posts", {
-  query: { author: props.author.id },
+  query: { author: props.author.id, limit: 4 },
   key: `author-posts-${props.author.id}`,
   lazy: true,
 });
 
 const others = computed(
-  () => posts.value?.filter((post) => post.id !== props.excludeId && post.images.length > 0).slice(0, 3) ?? [],
+  () => posts.value?.filter((post) => post.id !== props.excludeId).slice(0, 3) ?? [],
 );
 </script>
 

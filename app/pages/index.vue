@@ -57,6 +57,7 @@
         <post-container>
           <recipe-post v-for="post in posts" :key="post.id" v-bind="post" />
         </post-container>
+        <show-more :has-more="hasMore" :loading="loadingMore" @more="loadMore" />
       </load-state>
     </div>
   </section>
@@ -95,15 +96,8 @@ const feedTabs = computed<{ id: FeedId; label: string }[]>(() => [
   { id: "discover", label: t("feed.discover") },
 ]);
 
-const {
-  data: posts,
-  status,
-  error,
-  refresh,
-} = usePosts(search, {
-  lazy: true,
-  feed,
-});
+const { posts, status, error, refresh, hasMore, loadingMore, loadMore } =
+  usePosts({ search, feed, lazy: true });
 
 const showIntro = computed(() => !loggedIn.value && !search.value);
 

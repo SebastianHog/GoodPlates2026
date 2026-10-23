@@ -1,20 +1,35 @@
+import { ObjectId } from "mongodb";
+
 // Discover: posts that are popular and/or recent, slight randomness to it.
 // Score = activity in the last 2 weeks (bookmarks count double, cooks triple) + all-time likes and cooks, faded by age, times a random factor.
 // Posts the viewer wrote, liked, bookmarked or cooked go last, and the same author isn't shown twice in a row if it can be avoided
+// Only posts from the last POOL_DAYS, or with activity in the last DISCOVER_DAYS, are considered
 const DISCOVER_DAYS = 14;
+const POOL_DAYS = 90;
 
 export async function getDiscoverPosts(
   viewerId?: string,
+  limit = DISCOVER_SIZE,
 ): Promise<IPostContent[]> {
-  const posts = await postsCollection();
-  const docs = await posts.find().toArray();
-  const since = new Date(Date.now() - DISCOVER_DAYS * 86_400_000).toISOString();
+  const daysAgo = (days: number) => new Date(Date.now() - days * 86_400_000).toISOString();
+  const since = daysAgo(DISCOVER_DAYS);
 
   const [recentLikes, recentBookmarks, recentCooks] = await Promise.all([
     recentMarkCounts("likes", since),
     recentMarkCounts("bookmarks", since),
     recentMarkCounts("cooks", since),
   ]);
+  const active = [...new Set([...recentLikes.keys(), ...recentBookmarks.keys(), ...recentCooks.keys()])];
+
+  const posts = await postsCollection();
+  const docs = await posts
+    .find({
+      $or: [
+        { createdAt: { $gte: daysAgo(POOL_DAYS) } },
+        { _id: { $in: active.filter((id) => ObjectId.isValid(id)).map((id) => new ObjectId(id)) } },
+      ],
+    })
+    .toArray();
   const withMarks = await toPosts(docs, viewerId);
 
   const scored = withMarks.map((post) => {
@@ -40,7 +55,7 @@ export async function getDiscoverPosts(
   const ranked = scored
     .sort((a, b) => Number(a.seen) - Number(b.seen) || b.score - a.score)
     .map(({ post }) => post);
-  return spreadAuthors(ranked);
+  return spreadAuthors(ranked).slice(0, limit);
 }
 
 // How many likes/bookmarks/cooks each post got since the given time

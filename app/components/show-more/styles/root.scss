@@ -1,0 +1,40 @@
+@use "~/assets/scss/tokens" as *;
+@use "~/assets/scss/mixins" as *;
+
+.show-more {
+  display: flex;
+  justify-content: center;
+  margin-top: $space-8;
+
+  &__button {
+    min-width: 14rem;
+    min-height: 2.75rem;
+    padding: $space-2 $space-6;
+    border: 1px solid $color-border-secondary;
+    border-radius: $radius-sm;
+    background: $color-surface;
+    color: $color-text;
+    font: inherit;
+    font-weight: $font-weight-semibold;
+    cursor: pointer;
+    transition:
+      background $transition-fast,
+      border-color $transition-fast,
+      transform 160ms $ease-out;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover:not(:disabled) {
+        border-color: $color-text-muted;
+        background: $color-paper;
+      }
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: progress;
+    }
+
+    @include press;
+    @include focus-ring;
+  }
+}
