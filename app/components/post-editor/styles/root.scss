@@ -1,0 +1,490 @@
+@use "~/assets/scss/tokens" as *;
+
+// Phone: photos first, then the recipe, Post pinned to the bottom
+.post-editor {
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+  max-width: 40rem;
+  margin-inline: auto;
+
+  &__visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  // Photos
+
+  &__photos {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+    transition: background $transition-fast;
+
+    &--dragging {
+      background: rgb($color-primary, 0.06);
+      outline: 2px dashed $color-primary;
+      outline-offset: 4px;
+    }
+  }
+
+  &__cover {
+    aspect-ratio: 4 / 3;
+    border-radius: $radius-sm;
+    overflow: hidden;
+    background: $color-border;
+  }
+
+  &__cover-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__dropzone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $space-2;
+    width: 100%;
+    height: 100%;
+    padding: $space-6;
+    border: 2px dashed $color-border-secondary;
+    border-radius: $radius-sm;
+    background: $color-surface;
+    color: $color-text-muted;
+    cursor: pointer;
+    transition: border-color $transition-fast, color $transition-fast;
+
+    &:hover {
+      border-color: $color-primary;
+      color: $color-text;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-primary;
+      outline-offset: 2px;
+    }
+
+    &[aria-invalid="true"] {
+      border-color: $color-error;
+    }
+  }
+
+  &__dropzone-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+  }
+
+  &__dropzone-title {
+    color: $color-text;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__dropzone-hint {
+    font-size: $font-size-sm;
+  }
+
+  &__thumbs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $space-2;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__thumb {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: $radius-sm;
+    overflow: hidden;
+    background: $color-border;
+    cursor: grab;
+
+    &--cover {
+      outline: 2px solid $color-primary;
+      outline-offset: 2px;
+    }
+
+    &--error .post-editor__thumb-image {
+      opacity: 0.4;
+    }
+  }
+
+  &__thumb-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__badge {
+    position: absolute;
+    top: $space-1;
+    left: $space-1;
+    padding: 0 $space-2;
+    background: $color-primary;
+    color: $color-surface;
+    font-size: 0.75rem;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__thumb-status {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $space-1;
+    background: rgb($color-text, 0.55);
+    color: $color-surface;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+  }
+
+  &__retry {
+    padding: 2px $space-2;
+    border: 1px solid $color-surface;
+    border-radius: $radius-sm;
+    background: none;
+    color: inherit;
+    font-size: $font-size-sm;
+    cursor: pointer;
+  }
+
+  &__thumb-actions {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(to top, rgb($color-text, 0.6), transparent);
+    opacity: 0;
+    transition: opacity $transition-fast;
+  }
+
+  &__thumb:hover &__thumb-actions,
+  &__thumb:focus-within &__thumb-actions {
+    opacity: 1;
+  }
+
+  &__thumb-action {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    background: none;
+    color: $color-surface;
+    cursor: pointer;
+
+    svg {
+      width: 1rem;
+      height: 1rem;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.25;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    &:disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-surface;
+      outline-offset: -2px;
+    }
+  }
+
+  &__add-photo {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    border: 2px dashed $color-border-secondary;
+    border-radius: $radius-sm;
+    background: $color-surface;
+    color: $color-text-muted;
+    cursor: pointer;
+
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+
+    &:hover {
+      border-color: $color-primary;
+      color: $color-primary;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-primary;
+      outline-offset: 2px;
+    }
+  }
+
+  &__photo-count {
+    margin: 0;
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+  }
+
+  // Recipe
+
+  &__recipe {
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+  }
+
+  &__notice {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-2;
+    padding: $space-2 $space-3;
+    background: rgb($color-primary, 0.08);
+    font-size: $font-size-sm;
+  }
+
+  &__link {
+    padding: 0;
+    border: none;
+    background: none;
+    color: $color-primary;
+    font-weight: $font-weight-semibold;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+  }
+
+  &__title,
+  &__caption {
+    width: 100%;
+    padding: $space-1 0;
+    border: none;
+    border-bottom: 1px solid $color-border-secondary;
+    background: none;
+    color: $color-text;
+    caret-color: $color-primary;
+
+    &::placeholder {
+      color: $color-text-muted;
+    }
+
+    &:focus {
+      outline: none;
+      border-bottom-color: $color-primary;
+      box-shadow: 0 1px 0 $color-primary;
+    }
+
+    &[aria-invalid="true"] {
+      border-bottom-color: $color-error;
+    }
+  }
+
+  &__title {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+  }
+
+  &__caption {
+    min-height: 4.5rem;
+    border-bottom-color: $color-border;
+    line-height: $line-height-relaxed;
+    resize: vertical;
+  }
+
+  &__details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $space-4;
+  }
+
+  &__detail {
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+  }
+
+  &__label {
+    margin: 0;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__input {
+    width: 100%;
+    padding: $space-2 $space-3;
+    border: 1px solid $color-border-secondary;
+    border-radius: $radius-sm;
+    background: $color-surface;
+    color: $color-text;
+    caret-color: $color-primary;
+
+    &::placeholder {
+      color: $color-text-muted;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $color-primary;
+      box-shadow: 0 0 0 3px rgb($color-primary, 0.2);
+    }
+
+    &[aria-invalid="true"] {
+      border-color: $color-error;
+    }
+  }
+
+  &__suffixed {
+    position: relative;
+
+    .post-editor__input {
+      padding-right: 3rem;
+    }
+  }
+
+  &__suffix {
+    position: absolute;
+    top: 50%;
+    right: $space-3;
+    transform: translateY(-50%);
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+    pointer-events: none;
+  }
+
+  &__lists {
+    display: flex;
+    flex-direction: column;
+    gap: $space-6;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+  }
+
+  &__field-error {
+    margin: 0;
+    color: $color-error;
+    font-size: $font-size-sm;
+  }
+
+  &__preview {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+    max-width: 22rem;
+  }
+
+  &__error {
+    margin: 0;
+    padding: $space-2 $space-3;
+    border: 1px solid $color-error;
+    border-radius: $radius-sm;
+    background: $color-error-surface;
+    color: $color-error;
+    font-size: $font-size-sm;
+  }
+
+  &__footer {
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-3;
+    margin-inline: -$space-6;
+    padding: $space-3 $space-6;
+    border-top: 1px solid $color-border;
+    background: $color-surface;
+  }
+
+  &__status {
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+  }
+
+  &__buttons {
+    display: flex;
+    flex: 1 1 100%;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: $space-2;
+  }
+
+  &__button {
+    padding: $space-2 $space-4;
+    border: 1px solid $color-border-secondary;
+    border-radius: $radius-sm;
+    background: $color-surface;
+    color: $color-text;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background $transition-fast, border-color $transition-fast;
+
+    &:hover:not(:disabled) {
+      border-color: $color-text-muted;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-primary;
+      outline-offset: 2px;
+    }
+
+    // Full width on phones so the main action is easy to reach
+    &--primary {
+      flex-basis: 100%;
+      border-color: $color-primary;
+      background: $color-primary;
+      color: $color-surface;
+
+      &:hover:not(:disabled) {
+        border-color: $color-primary-hover;
+        background: $color-primary-hover;
+      }
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: progress;
+    }
+  }
+}
+
+@media (hover: none) {
+  .post-editor__thumb-actions {
+    opacity: 1;
+  }
+}

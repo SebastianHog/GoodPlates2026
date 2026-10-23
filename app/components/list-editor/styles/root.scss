@@ -1,0 +1,142 @@
+@use "~/assets/scss/tokens" as *;
+
+.list-editor {
+  &__rows {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__row {
+    display: flex;
+    align-items: flex-start;
+    gap: $space-2;
+    padding: $space-1 0;
+    border-bottom: 1px solid $color-border;
+  }
+
+  &__number {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: $space-2;
+    background: rgb($color-primary, 0.1);
+    color: $color-primary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__input {
+    flex: 1;
+    min-width: 0;
+    padding: $space-2;
+    border: 1px solid transparent;
+    border-radius: $radius-sm;
+    background: none;
+    color: $color-text;
+    line-height: $line-height-normal;
+    caret-color: $color-primary;
+    resize: vertical;
+
+    &::placeholder {
+      color: $color-text-muted;
+    }
+
+    &:hover {
+      border-color: $color-border;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $color-primary;
+      background: $color-surface;
+      box-shadow: 0 0 0 3px rgb($color-primary, 0.2);
+    }
+
+    &[aria-invalid="true"] {
+      border-color: $color-error;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex: none;
+    margin-top: $space-1;
+    opacity: 0.35;
+    transition: opacity $transition-fast;
+  }
+
+  // Row controls stay quiet until the row is in use
+  &__row:hover &__actions,
+  &__row:focus-within &__actions {
+    opacity: 1;
+  }
+
+  &__action {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    border-radius: $radius-sm;
+    background: none;
+    color: $color-text-muted;
+    cursor: pointer;
+
+    svg {
+      width: 1rem;
+      height: 1rem;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    &:hover:not(:disabled) {
+      background: $color-paper;
+      color: $color-text;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-primary;
+      outline-offset: -2px;
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: default;
+    }
+  }
+
+  &__add {
+    padding: $space-2 0;
+    border: none;
+    background: none;
+    color: $color-primary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    cursor: pointer;
+
+    &:hover {
+      color: $color-primary-hover;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-primary;
+      outline-offset: 2px;
+    }
+  }
+}
+
+// Touch screens have no hover, so keep the controls visible
+@media (hover: none) {
+  .list-editor__actions {
+    opacity: 1;
+  }
+}
