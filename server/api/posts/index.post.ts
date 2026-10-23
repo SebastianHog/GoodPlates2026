@@ -1,14 +1,9 @@
 export default defineEventHandler(async (event): Promise<IPostContent> => {
   const { user } = await requireUserSession(event);
-  const { title, body, image } = await readBody(event);
+  const { data, errors } = validatePostInput(await readBody(event));
 
-  if (!title || !body) {
-    throw createError({ statusCode: 400, statusMessage: "Title and body are required" });
-  }
-
-  // Only accept keys from /api/uploads, not arbitrary URLs
-  if (image && !IMAGE_KEY_PATTERN.test(image)) {
-    throw createError({ statusCode: 400, statusMessage: "Invalid image" });
+  if (errors) {
+    throw createError({ statusCode: 400, statusMessage: Object.values(errors)[0], data: { errors } });
   }
 
   const author = await getUserById(user.id);
@@ -16,5 +11,5 @@ export default defineEventHandler(async (event): Promise<IPostContent> => {
     throw createError({ statusCode: 401, statusMessage: "Your account no longer exists" });
   }
 
-  return await createPost({ title, body, image: image ?? "" }, author);
+  return await createPost(data, author);
 });

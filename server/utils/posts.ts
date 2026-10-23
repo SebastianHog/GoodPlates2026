@@ -1,14 +1,24 @@
 import { ObjectId, type WithId } from "mongodb";
 
-type PostDocument = Omit<IPostContent, "id">;
+// Posts made before structured recipes have `image` and `body` instead
+type PostDocument = Omit<IPostContent, "id"> & { image?: string; body?: string };
 
 async function postsCollection() {
   const db = await getDb();
   return db.collection<PostDocument>("posts");
 }
 
-function toPost({ _id, ...post }: WithId<PostDocument>): IPostContent {
-  return { ...post, id: _id.toHexString() };
+function toPost({ _id, image, body, ...post }: WithId<PostDocument>): IPostContent {
+  return {
+    ...post,
+    id: _id.toHexString(),
+    caption: post.caption ?? "",
+    images: post.images ?? (image ? [image] : []),
+    ingredients: post.ingredients ?? [],
+    steps: post.steps ?? (body ? [body] : []),
+    servings: post.servings ?? "",
+    totalTimeMinutes: post.totalTimeMinutes ?? null,
+  };
 }
 
 // Newest first. With a search term, only posts whose title, recipe or author name contain it
@@ -17,9 +27,9 @@ export async function getPosts(search?: string): Promise<IPostContent[]> {
   const term = search?.trim();
   const filter = term
     ? {
-        $or: ["title", "body", "author.displayName", "author.hiddenName"].map((field) => ({
-          [field]: { $regex: escapeRegex(term), $options: "i" },
-        })),
+        $or: ["title", "caption", "ingredients", "steps", "body", "author.displayName", "author.hiddenName"].map(
+          (field) => ({ [field]: { $regex: escapeRegex(term), $options: "i" } }),
+        ),
       }
     : {};
 
@@ -42,10 +52,7 @@ export async function getPostById(id: string): Promise<IPostContent | null> {
   return doc ? toPost(doc) : null;
 }
 
-export async function createPost(
-  input: Pick<IPostContent, "title" | "body" | "image">,
-  author: IAuthor,
-): Promise<IPostContent> {
+export async function createPost(input: PostInput, author: IAuthor): Promise<IPostContent> {
   const now = new Date().toISOString();
   const post: PostDocument = {
     author,
