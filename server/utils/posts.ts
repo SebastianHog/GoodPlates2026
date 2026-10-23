@@ -1,7 +1,10 @@
 import { ObjectId, type WithId } from "mongodb";
 
 // Posts made before structured recipes have `image` and `body` instead
-type PostDocument = Omit<IPostContent, "id" | "likedByMe" | "bookmarkedByMe"> & { image?: string; body?: string };
+type PostDocument = Omit<
+  IPostContent,
+  "id" | "likedByMe" | "bookmarkedByMe"
+> & { image?: string; body?: string };
 
 async function postsCollection() {
   const db = await getDb();
@@ -35,14 +38,26 @@ function toPost(
 
 // Newest first. With a search term, only posts whose title, recipe or author name contain it.
 // With a viewer, each post also says whether they liked and bookmarked it
-export async function getPosts(search?: string, viewerId?: string, authorId?: string): Promise<IPostContent[]> {
+export async function getPosts(
+  search?: string,
+  viewerId?: string,
+  authorId?: string,
+): Promise<IPostContent[]> {
   const posts = await postsCollection();
   const term = search?.trim();
   const filter = {
     ...(term && {
-      $or: ["title", "caption", "ingredients", "steps", "body", "author.displayName", "author.hiddenName"].map(
-        (field) => ({ [field]: { $regex: escapeRegex(term), $options: "i" } }),
-      ),
+      $or: [
+        "title",
+        "caption",
+        "ingredients",
+        "steps",
+        "body",
+        "author.displayName",
+        "author.hiddenName",
+      ].map((field) => ({
+        [field]: { $regex: escapeRegex(term), $options: "i" },
+      })),
     }),
     ...(authorId && { "author.id": authorId }),
   };
@@ -56,7 +71,10 @@ function escapeRegex(text: string): string {
   return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-export async function getPostById(id: string, viewerId?: string): Promise<IPostContent | null> {
+export async function getPostById(
+  id: string,
+  viewerId?: string,
+): Promise<IPostContent | null> {
   if (!ObjectId.isValid(id)) {
     return null;
   }
@@ -71,7 +89,10 @@ export async function getPostById(id: string, viewerId?: string): Promise<IPostC
   return post!;
 }
 
-export async function createPost(input: PostInput, author: IAuthor): Promise<IPostContent> {
+export async function createPost(
+  input: PostInput,
+  author: IAuthor,
+): Promise<IPostContent> {
   const now = new Date().toISOString();
   const post: PostDocument = {
     author,
@@ -86,12 +107,18 @@ export async function createPost(input: PostInput, author: IAuthor): Promise<IPo
   return toPost({ _id: insertedId, ...post });
 }
 
-export async function updatePost(id: string, input: PostInput): Promise<IPostContent | null> {
+export async function updatePost(
+  id: string,
+  input: PostInput,
+): Promise<IPostContent | null> {
   const posts = await postsCollection();
   const doc = await posts.findOneAndUpdate(
     { _id: new ObjectId(id) },
     // Drop the old single-image fields once a post is saved in the new shape
-    { $set: { ...input, modifiedAt: new Date().toISOString() }, $unset: { image: "", body: "" } },
+    {
+      $set: { ...input, modifiedAt: new Date().toISOString() },
+      $unset: { image: "", body: "" },
+    },
     { returnDocument: "after" },
   );
   return doc ? toPost(doc) : null;
@@ -103,7 +130,11 @@ const markIndexReady = new Set<MarkKind>();
 
 async function marksCollection(kind: MarkKind) {
   const db = await getDb();
-  const marks = db.collection<{ postId: string; userId: string; createdAt: string }>(kind);
+  const marks = db.collection<{
+    postId: string;
+    userId: string;
+    createdAt: string;
+  }>(kind);
   if (!markIndexReady.has(kind)) {
     await marks.createIndex({ postId: 1, userId: 1 }, { unique: true });
     await marks.createIndex({ userId: 1, createdAt: -1 });
@@ -112,13 +143,20 @@ async function marksCollection(kind: MarkKind) {
   return marks;
 }
 
-async function markedPostIds(kind: MarkKind, userId: string, postIds: string[]): Promise<Set<string>> {
+async function markedPostIds(
+  kind: MarkKind,
+  userId: string,
+  postIds: string[],
+): Promise<Set<string>> {
   const marks = await marksCollection(kind);
   const rows = await marks.find({ userId, postId: { $in: postIds } }).toArray();
   return new Set(rows.map((row) => row.postId));
 }
 
-async function withViewerMarks(docs: WithId<PostDocument>[], viewerId?: string): Promise<IPostContent[]> {
+async function withViewerMarks(
+  docs: WithId<PostDocument>[],
+  viewerId?: string,
+): Promise<IPostContent[]> {
   if (!viewerId) {
     return docs.map((doc) => toPost(doc));
   }
@@ -130,25 +168,39 @@ async function withViewerMarks(docs: WithId<PostDocument>[], viewerId?: string):
   ]);
   return docs.map((doc) => {
     const id = doc._id.toHexString();
-    return toPost(doc, { liked: liked.has(id), bookmarked: bookmarked.has(id) });
+    return toPost(doc, {
+      liked: liked.has(id),
+      bookmarked: bookmarked.has(id),
+    });
   });
 }
 
 // Adds or removes a like/bookmark row; returns whether anything changed, or null when the post is missing
-async function setMark(kind: MarkKind, postId: string, userId: string, on: boolean): Promise<boolean | null> {
+async function setMark(
+  kind: MarkKind,
+  postId: string,
+  userId: string,
+  on: boolean,
+): Promise<boolean | null> {
   if (!ObjectId.isValid(postId)) {
     return null;
   }
 
   const posts = await postsCollection();
-  if (!(await posts.countDocuments({ _id: new ObjectId(postId) }, { limit: 1 }))) {
+  if (
+    !(await posts.countDocuments({ _id: new ObjectId(postId) }, { limit: 1 }))
+  ) {
     return null;
   }
 
   const marks = await marksCollection(kind);
   if (on) {
     try {
-      await marks.insertOne({ postId, userId, createdAt: new Date().toISOString() });
+      await marks.insertOne({
+        postId,
+        userId,
+        createdAt: new Date().toISOString(),
+      });
       return true;
     } catch (error) {
       if ((error as { code?: number }).code === 11000) return false;
@@ -161,7 +213,11 @@ async function setMark(kind: MarkKind, postId: string, userId: string, on: boole
 }
 
 // Likes or unlikes a post and returns the new count; repeating the same action changes nothing
-export async function setPostLike(postId: string, userId: string, liked: boolean): Promise<number | null> {
+export async function setPostLike(
+  postId: string,
+  userId: string,
+  liked: boolean,
+): Promise<number | null> {
   const changed = await setMark("likes", postId, userId, liked);
   if (changed === null) {
     return null;
@@ -170,35 +226,51 @@ export async function setPostLike(postId: string, userId: string, liked: boolean
   const posts = await postsCollection();
   const _id = new ObjectId(postId);
   const doc = changed
-    ? await posts.findOneAndUpdate({ _id }, { $inc: { likeCount: liked ? 1 : -1 } }, { returnDocument: "after" })
+    ? await posts.findOneAndUpdate(
+        { _id },
+        { $inc: { likeCount: liked ? 1 : -1 } },
+        { returnDocument: "after" },
+      )
     : await posts.findOne({ _id });
   return doc?.likeCount ?? 0;
 }
 
 // Bookmarks or un-bookmarks a post; false when the post does not exist
-export async function setPostBookmark(postId: string, userId: string, bookmarked: boolean): Promise<boolean> {
+export async function setPostBookmark(
+  postId: string,
+  userId: string,
+  bookmarked: boolean,
+): Promise<boolean> {
   return (await setMark("bookmarks", postId, userId, bookmarked)) !== null;
 }
 
 // The user's bookmarked posts, most recently bookmarked first
-export async function getBookmarkedPosts(userId: string): Promise<IPostContent[]> {
+export async function getBookmarkedPosts(
+  userId: string,
+): Promise<IPostContent[]> {
   const marks = await marksCollection("bookmarks");
   const rows = await marks.find({ userId }).sort({ createdAt: -1 }).toArray();
 
   const posts = await postsCollection();
-  const docs = await posts.find({ _id: { $in: rows.map((row) => new ObjectId(row.postId)) } }).toArray();
+  const docs = await posts
+    .find({ _id: { $in: rows.map((row) => new ObjectId(row.postId)) } })
+    .toArray();
   const byId = new Map(docs.map((doc) => [doc._id.toHexString(), doc]));
-  const ordered = rows.map((row) => byId.get(row.postId)).filter((doc) => doc !== undefined);
+  const ordered = rows
+    .map((row) => byId.get(row.postId))
+    .filter((doc) => doc !== undefined);
 
   return withViewerMarks(ordered, userId);
 }
 
-// Discover: popular and recent posts in a shuffled order, so each visit shows something a bit different.
+// Discover: posts that are popular and/or recent, slight randomness to it.
 // Score = activity in the last 2 weeks (bookmarks count double) + all-time likes, faded by age, times a random factor.
 // Posts the viewer wrote, liked or bookmarked go last, and the same author isn't shown twice in a row if it can be avoided
 const DISCOVER_DAYS = 14;
 
-export async function getDiscoverPosts(viewerId?: string): Promise<IPostContent[]> {
+export async function getDiscoverPosts(
+  viewerId?: string,
+): Promise<IPostContent[]> {
   const posts = await postsCollection();
   const docs = await posts.find().toArray();
   const since = new Date(Date.now() - DISCOVER_DAYS * 86_400_000).toISOString();
@@ -210,11 +282,17 @@ export async function getDiscoverPosts(viewerId?: string): Promise<IPostContent[
   const withMarks = await withViewerMarks(docs, viewerId);
 
   const scored = withMarks.map((post) => {
-    const activity = (recentLikes.get(post.id) ?? 0) + 2 * (recentBookmarks.get(post.id) ?? 0) + 0.25 * post.likeCount;
-    const ageDays = (Date.now() - new Date(post.createdAt).getTime()) / 86_400_000;
+    const activity =
+      (recentLikes.get(post.id) ?? 0) +
+      2 * (recentBookmarks.get(post.id) ?? 0) +
+      0.25 * post.likeCount;
+    const ageDays =
+      (Date.now() - new Date(post.createdAt).getTime()) / 86_400_000;
     const freshness = 1 / (1 + ageDays / DISCOVER_DAYS);
-    const score = (1 + Math.log1p(activity)) * freshness * (0.5 + Math.random());
-    const seen = post.author.id === viewerId || post.likedByMe || post.bookmarkedByMe;
+    const score =
+      (1 + Math.log1p(activity)) * freshness * (0.5 + Math.random());
+    const seen =
+      post.author.id === viewerId || post.likedByMe || post.bookmarkedByMe;
     return { post, score, seen };
   });
 
@@ -225,10 +303,16 @@ export async function getDiscoverPosts(viewerId?: string): Promise<IPostContent[
 }
 
 // How many likes/bookmarks each post got since the given time
-async function recentMarkCounts(kind: MarkKind, since: string): Promise<Map<string, number>> {
+async function recentMarkCounts(
+  kind: MarkKind,
+  since: string,
+): Promise<Map<string, number>> {
   const marks = await marksCollection(kind);
   const rows = await marks
-    .aggregate<{ _id: string; count: number }>([
+    .aggregate<{
+      _id: string;
+      count: number;
+    }>([
       { $match: { createdAt: { $gte: since } } },
       { $group: { _id: "$postId", count: { $sum: 1 } } },
     ])
