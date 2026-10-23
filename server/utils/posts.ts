@@ -65,3 +65,14 @@ export async function createPost(input: PostInput, author: IAuthor): Promise<IPo
   const { insertedId } = await posts.insertOne(post);
   return toPost({ _id: insertedId, ...post });
 }
+
+export async function updatePost(id: string, input: PostInput): Promise<IPostContent | null> {
+  const posts = await postsCollection();
+  const doc = await posts.findOneAndUpdate(
+    { _id: new ObjectId(id) },
+    // Drop the old single-image fields once a post is saved in the new shape
+    { $set: { ...input, modifiedAt: new Date().toISOString() }, $unset: { image: "", body: "" } },
+    { returnDocument: "after" },
+  );
+  return doc ? toPost(doc) : null;
+}
