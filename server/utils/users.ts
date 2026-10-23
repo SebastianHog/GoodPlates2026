@@ -28,6 +28,26 @@ function toAuthor({ _id, email: _email, passwordHash: _hash, ...user }: WithId<U
   return { ...user, id: _id.toHexString() };
 }
 
+// Public profiles for a list of user ids, by id
+export async function getUsersByIds(ids: string[]): Promise<Map<string, IAuthor>> {
+  const users = await usersCollection();
+  const docs = await users
+    .find({ _id: { $in: ids.filter((id) => ObjectId.isValid(id)).map((id) => new ObjectId(id)) } })
+    .toArray();
+  return new Map(docs.map((doc) => [doc._id.toHexString(), toAuthor(doc)]));
+}
+
+// Ids of users whose name or username contains the search term
+export async function findUserIds(term: string): Promise<string[]> {
+  const users = await usersCollection();
+  const pattern = { $regex: escapeRegex(term), $options: "i" };
+  const docs = await users
+    .find({ $or: [{ displayName: pattern }, { hiddenName: pattern }] })
+    .project({ _id: 1 })
+    .toArray();
+  return docs.map((doc) => doc._id.toHexString());
+}
+
 export async function getUserById(id: string): Promise<IAuthor | null> {
   if (!ObjectId.isValid(id)) {
     return null;

@@ -1,4 +1,4 @@
-import { ObjectId, type WithId } from "mongodb";
+import { ObjectId } from "mongodb";
 
 // Likes, bookmarks and cooks live in their own collections, one row per user and post, so each can only happen once
 export type MarkKind = "likes" | "bookmarks" | "cooks";
@@ -29,28 +29,20 @@ async function markedPostIds(
   return new Set(rows.map((row) => row.postId));
 }
 
-// Turns post documents into posts, saying for each whether the viewer liked, bookmarked and cooked it
-export async function withViewerMarks(
-  docs: WithId<PostDocument>[],
-  viewerId?: string,
-): Promise<IPostContent[]> {
-  if (!viewerId) {
-    return docs.map((doc) => toPost(doc));
-  }
-
-  const ids = docs.map((doc) => doc._id.toHexString());
+// For each post id, whether the viewer liked, bookmarked and cooked it
+export async function getViewerMarks(
+  postIds: string[],
+  viewerId: string,
+): Promise<(postId: string) => ViewerMarks> {
   const [liked, bookmarked, cooked] = await Promise.all([
-    markedPostIds("likes", viewerId, ids),
-    markedPostIds("bookmarks", viewerId, ids),
-    markedPostIds("cooks", viewerId, ids),
+    markedPostIds("likes", viewerId, postIds),
+    markedPostIds("bookmarks", viewerId, postIds),
+    markedPostIds("cooks", viewerId, postIds),
   ]);
-  return docs.map((doc) => {
-    const id = doc._id.toHexString();
-    return toPost(doc, {
-      liked: liked.has(id),
-      bookmarked: bookmarked.has(id),
-      cooked: cooked.has(id),
-    });
+  return (postId) => ({
+    liked: liked.has(postId),
+    bookmarked: bookmarked.has(postId),
+    cooked: cooked.has(postId),
   });
 }
 
@@ -145,5 +137,5 @@ export async function getBookmarkedPosts(
     .map((row) => byId.get(row.postId))
     .filter((doc) => doc !== undefined);
 
-  return withViewerMarks(ordered, userId);
+  return toPosts(ordered, userId);
 }

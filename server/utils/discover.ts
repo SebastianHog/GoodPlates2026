@@ -15,7 +15,7 @@ export async function getDiscoverPosts(
     recentMarkCounts("bookmarks", since),
     recentMarkCounts("cooks", since),
   ]);
-  const withMarks = await withViewerMarks(docs, viewerId);
+  const withMarks = await toPosts(docs, viewerId);
 
   const scored = withMarks.map((post) => {
     const activity =
