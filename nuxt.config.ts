@@ -1,22 +1,22 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2025-07-15',
+  compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
-  css: ['~/assets/scss/main.scss'],
+  css: ["~/assets/scss/main.scss"],
   runtimeConfig: {
     // Set via NUXT_MONGODB_URI in .env, server-only
-    mongodbUri: '',
+    mongodbUri: "",
     // Set via NUXT_S3_* in .env, server-only (Garage, see deploy/garage)
     s3: {
-      endpoint: '',
-      region: 'garage',
-      bucket: 'goodplates',
-      accessKeyId: '',
-      secretAccessKey: ''
+      endpoint: "",
+      region: "garage",
+      bucket: "goodplates",
+      accessKeyId: "",
+      secretAccessKey: "",
     },
     public: {
-      // Where image keys are served from; change to Garage's public web domain later
-      imageBaseUrl: '/images'
-    }
-  }
-})
+      // TODO: Change to garage url later on
+      imageBaseUrl: "/images",
+    },
+  },
+});

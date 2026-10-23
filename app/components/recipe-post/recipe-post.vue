@@ -2,7 +2,8 @@
   <div class="recipe-post">
     <div class="recipe-post__body">
       <img
-        :src="image"
+        v-bind="imageSources(image)"
+        sizes="(min-width: 52em) 24rem, 100vw"
         :alt="title"
         class="recipe-post__image"
         loading="lazy"

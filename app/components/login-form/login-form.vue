@@ -1,7 +1,12 @@
 <template>
   <div class="login-form" :class="{ 'login-form--spread': topPost }">
     <figure v-if="topPost" class="login-form__cover">
-      <img :src="topPost.image" :alt="topPost.title" class="login-form__photo" />
+      <img
+        v-bind="imageSources(topPost.image)"
+        sizes="(min-width: 52em) 28rem, 100vw"
+        :alt="topPost.title"
+        class="login-form__photo"
+      />
       <figcaption class="login-form__caption">
         <span class="login-form__caption-title">{{ topPost.title }}</span>
         <span class="login-form__caption-author">
