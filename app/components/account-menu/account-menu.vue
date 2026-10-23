@@ -18,6 +18,9 @@
         <span class="account-menu__name">{{ user.displayName }}</span>
         <span class="account-menu__handle">@{{ user.hiddenName }}</span>
       </p>
+      <NuxtLink :to="`/u/${user.hiddenName}`" class="account-menu__item">{{
+        $t("accountMenu.profile")
+      }}</NuxtLink>
       <NuxtLink to="/bookmarks" class="account-menu__item">{{ $t("accountMenu.bookmarks") }}</NuxtLink>
       <button class="account-menu__item" type="button" @click="logout">{{ $t("accountMenu.logOut") }}</button>
     </div>

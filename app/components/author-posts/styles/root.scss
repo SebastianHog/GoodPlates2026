@@ -13,6 +13,19 @@
     overflow-wrap: anywhere;
   }
 
+  &__heading-link {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.15em;
+    }
+
+    @include focus-ring;
+  }
+
   &__list {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));

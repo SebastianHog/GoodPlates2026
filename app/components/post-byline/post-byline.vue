@@ -2,7 +2,9 @@
   <div class="post-byline">
     <user-circle-icon size="medium" :user="author" aria-hidden="true" />
     <span class="post-byline__text">
-      <span class="post-byline__name">{{ author.displayName }}</span>
+      <NuxtLink :to="`/u/${author.hiddenName}`" class="post-byline__name">
+        {{ author.displayName }}
+      </NuxtLink>
       <time class="post-byline__date" :datetime="createdAt">{{
         formatPostDate(createdAt, locale)
       }}</time>

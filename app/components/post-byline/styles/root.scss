@@ -1,4 +1,5 @@
 @use "~/assets/scss/tokens" as *;
+@use "~/assets/scss/mixins" as *;
 
 .post-byline {
   display: flex;
@@ -14,9 +15,19 @@
   }
 
   &__name {
+    width: fit-content;
+    color: inherit;
     overflow-wrap: anywhere;
     font-size: $font-size-sm;
     font-weight: $font-weight-semibold;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    @include focus-ring;
   }
 
   &__date {

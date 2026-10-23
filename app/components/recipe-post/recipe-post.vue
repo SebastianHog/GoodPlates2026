@@ -20,7 +20,11 @@
         <p v-if="caption" class="recipe-post__caption">{{ caption }}</p>
 
         <footer class="recipe-post__footer">
-          <post-byline :author="author" :created-at="createdAt" />
+          <post-byline
+            class="recipe-post__byline"
+            :author="author"
+            :created-at="createdAt"
+          />
           <post-actions
             class="recipe-post__actions"
             :id="id"

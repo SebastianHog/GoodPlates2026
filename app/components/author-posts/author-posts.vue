@@ -1,6 +1,10 @@
 <template>
   <section v-if="others.length" class="author-posts">
-    <h2 class="author-posts__heading">{{ $t("post.moreFrom", { name: author.displayName }) }}</h2>
+    <h2 class="author-posts__heading">
+      <NuxtLink :to="`/u/${author.hiddenName}`" class="author-posts__heading-link">
+        {{ $t("post.moreFrom", { name: author.displayName }) }}
+      </NuxtLink>
+    </h2>
     <ul class="author-posts__list">
       <li v-for="post in others" :key="post.id">
         <NuxtLink :to="`/posts/${post.id}`" class="author-posts__link">
