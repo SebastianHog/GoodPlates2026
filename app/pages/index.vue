@@ -50,6 +50,13 @@
           }}
           <NuxtLink to="/">{{ $t("feed.showAll") }}</NuxtLink>
         </p>
+        <p
+          v-else-if="posts && !posts.length && feed === 'following'"
+          class="feed__message"
+        >
+          {{ $t("feed.followingEmpty") }}
+          <NuxtLink to="/?feed=discover">{{ $t("feed.findCooks") }}</NuxtLink>
+        </p>
         <p v-else-if="posts && !posts.length" class="feed__message">
           {{ $t("feed.empty") }}
           <NuxtLink :to="loggedIn ? '/create' : '/login?tab=signup'">
@@ -78,15 +85,23 @@ const router = useRouter();
 
 // Which feed is shown lives in the url (?feed=discover), latest is the default
 const feed = computed<FeedId>({
-  get: () => (route.query.feed === "discover" ? "discover" : "latest"),
+  get: () => {
+    if (route.query.feed === "discover") return "discover";
+    if (route.query.feed === "following" && loggedIn.value) return "following";
+    return "latest";
+  },
   set: (value) =>
     router.replace({
       query: { ...route.query, feed: value === "latest" ? undefined : value },
     }),
 });
 
+// following only makes sense when logged in
 const feedTabs = computed<{ id: FeedId; label: string }[]>(() => [
   { id: "latest", label: t("feed.latest") },
+  ...(loggedIn.value
+    ? [{ id: "following" as const, label: t("feed.following") }]
+    : []),
   { id: "discover", label: t("feed.discover") },
 ]);
 
@@ -107,7 +122,9 @@ useHead({
     t("site.pageTitle", {
       page: search.value
         ? t("feed.matching", { query: search.value })
-        : t(feed.value === "discover" ? "feed.discover" : "feed.title"),
+        : t(
+            feed.value === "latest" ? "feed.title" : `feed.${feed.value}`,
+          ),
     }),
 });
 </script>
@@ -123,7 +140,7 @@ useHead({
 }
 
 .feed__tabs {
-  max-width: 20rem;
+  max-width: 26rem;
   margin-bottom: 1.5rem;
 }
 
