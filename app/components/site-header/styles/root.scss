@@ -67,12 +67,14 @@
     white-space: nowrap;
     transition:
       background $transition-fast,
-      color $transition-fast;
+      color $transition-fast,
+      transform 160ms $ease-out;
 
     &:hover {
       color: $color-primary;
     }
 
+    @include press;
     @include focus-ring;
 
     &--primary {

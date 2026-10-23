@@ -129,12 +129,15 @@
     color: $color-surface;
     font-weight: $font-weight-semibold;
     cursor: pointer;
-    transition: background $transition-fast;
+    transition:
+      background $transition-fast,
+      transform 160ms $ease-out;
 
     &:hover:not(:disabled) {
       background: $color-primary-hover;
     }
 
+    @include press;
     @include focus-ring;
 
     &:disabled {

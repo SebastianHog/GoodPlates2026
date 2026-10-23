@@ -212,12 +212,16 @@
     font-weight: $font-weight-semibold;
     text-decoration: none;
     cursor: pointer;
-    transition: background $transition-fast, border-color $transition-fast;
+    transition:
+      background $transition-fast,
+      border-color $transition-fast,
+      transform 160ms $ease-out;
 
     &:hover:not(:disabled) {
       border-color: $color-text-muted;
     }
 
+    @include press;
     @include focus-ring;
 
     // Full width on phones so the main action is easy to reach

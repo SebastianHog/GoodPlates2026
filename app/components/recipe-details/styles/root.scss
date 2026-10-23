@@ -58,7 +58,8 @@
     transition:
       background $transition-fast,
       border-color $transition-fast,
-      color $transition-fast;
+      color $transition-fast,
+      transform 160ms $ease-out;
 
     &--numbered {
       border-color: $color-primary;
@@ -89,6 +90,10 @@
 
   &__item:hover &__box {
     border-color: $color-primary;
+  }
+
+  &__item:active &__box {
+    transform: scale(0.94);
   }
 
   &__check:focus-visible + &__box {

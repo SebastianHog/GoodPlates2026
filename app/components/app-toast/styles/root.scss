@@ -54,12 +54,15 @@
     font-weight: $font-weight-medium;
     text-decoration: none;
     white-space: nowrap;
-    transition: background $transition-fast;
+    transition:
+      background $transition-fast,
+      transform 160ms $ease-out;
 
     &:hover {
       background: $color-primary-hover;
     }
 
+    @include press;
     @include focus-ring;
   }
 

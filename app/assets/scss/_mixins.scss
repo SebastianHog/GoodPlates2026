@@ -28,6 +28,14 @@
   }
 }
 
+// Shrinks a little while pressed, so a tap feels answered right away.
+// Add `transform 160ms $ease-out` to the element's transition.
+@mixin press {
+  &:active:not(:disabled) {
+    transform: scale(0.97);
+  }
+}
+
 // Small borderless button holding an icon (and sometimes a count)
 @mixin icon-button {
   display: inline-flex;
@@ -43,7 +51,8 @@
   cursor: pointer;
   transition:
     color $transition-fast,
-    background $transition-fast;
+    background $transition-fast,
+    transform 160ms $ease-out;
 
   &:hover:not(:disabled) {
     background: $color-paper;
@@ -54,5 +63,6 @@
     cursor: default;
   }
 
+  @include press;
   @include focus-ring;
 }
