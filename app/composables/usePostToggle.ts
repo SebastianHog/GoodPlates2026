@@ -3,10 +3,10 @@ interface ToggleState {
   count: number;
 }
 
-// An on/off action on a post (like, bookmark). It updates right away, rolls back and says so if the
+// An on/off action on a post (like, bookmark, cooked). It updates right away, rolls back and says so if the
 // server says no, asks logged-out visitors to log in (and brings them back), and only the latest click's answer counts.
 export function usePostToggle(
-  kind: "like" | "bookmark",
+  kind: "like" | "bookmark" | "cook",
   postId: () => string,
   initial: () => ToggleState,
   readResult: (result: Record<string, unknown>) => Partial<ToggleState>,

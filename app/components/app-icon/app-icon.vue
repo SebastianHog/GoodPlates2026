@@ -1,5 +1,4 @@
 <template>
-  <!-- Our own SVG files, inlined so they take the text colour -->
   <span class="app-icon" aria-hidden="true" v-html="svg" />
 </template>
 
@@ -15,13 +14,13 @@ export type IconName =
   | "close"
   | "photo"
   | "plus"
+  | "pot"
   | "search"
   | "share"
   | "thumbs-up";
 </script>
 
 <script setup lang="ts">
-// Every .svg in assets/icons, as raw markup, keyed by file name
 const files = import.meta.glob<string>("~/assets/icons/*.svg", {
   query: "?raw",
   import: "default",

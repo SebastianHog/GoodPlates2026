@@ -19,7 +19,7 @@
     }
   },
   "feed": { "matching": "Recepten met „{query}”", "noMatches": "Geen recepten gevonden voor „{query}”.", "showAll": "Alles tonen", "title": "Recepten", "introTitle": "Recepten van thuiskoks", "intro": "Zie wat mensen koken, met het recept bij elk bericht.", "introJoin": "Meld je aan om je eigen recepten te delen", "empty": "Nog geen recepten.", "emptyPost": "Plaats het eerste", "emptyJoin": "Meld je aan om het eerste te plaatsen", "loading": "Recepten laden…", "loadFailed": "De recepten konden niet worden geladen.", "retry": "Opnieuw proberen", "tabsLabel": "Feed", "latest": "Nieuwste", "discover": "Ontdekken" },
-  "toast": { "likeFailed": "Je like kon niet worden opgeslagen. Probeer het opnieuw.", "bookmarkFailed": "Je bladwijzer kon niet worden opgeslagen. Probeer het opnieuw.", "dismiss": "Sluiten", "likeLogin": "Log in om recepten te liken.", "bookmarkLogin": "Log in om recepten op te slaan in je bladwijzers.", "logIn": "Inloggen" },
+  "toast": { "likeFailed": "Je like kon niet worden opgeslagen. Probeer het opnieuw.", "bookmarkFailed": "Je bladwijzer kon niet worden opgeslagen. Probeer het opnieuw.", "dismiss": "Sluiten", "likeLogin": "Log in om recepten te liken.", "bookmarkLogin": "Log in om recepten op te slaan in je bladwijzers.", "logIn": "Inloggen", "cookLogin": "Log in om bij te houden wat je hebt gemaakt.", "cookFailed": "Opslaan dat je dit hebt gemaakt is mislukt. Probeer het opnieuw." },
   "post": {
     "edit": "Bewerken",
     "photos": "{title}, {count} foto's",
@@ -41,7 +41,8 @@
     "backToFeed": "Terug naar recepten",
     "loadFailed": "Dit recept kon niet worden geladen.",
     "loading": "Recept laden…",
-    "moreFrom": "Meer van {name}"
+    "moreFrom": "Meer van {name}",
+    "cooked": { "button": "Ik heb dit gemaakt", "nudge": "Alle stappen zijn afgevinkt. Is het gelukt?", "first": "Jij bent de eerste die dit heeft gemaakt.", "withOthers": "Jij en {n} ander hebben dit gemaakt. | Jij en {n} anderen hebben dit gemaakt.", "others": "Gemaakt door {n} persoon. | Gemaakt door {n} personen.", "none": "Nog niemand heeft dit gemaakt." }
   },
   "bookmarks": { "title": "Bladwijzers", "empty": "Nog geen bladwijzers. Tik op de bladwijzer bij een recept in de feed om het hier te bewaren.", "browse": "Recepten bekijken", "removed": "Verwijderd" },
   "editor": {

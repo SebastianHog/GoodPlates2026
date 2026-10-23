@@ -37,6 +37,12 @@
     overflow-wrap: anywhere;
   }
 
+  &__cooked {
+    margin-top: $space-8;
+    padding-top: $space-6;
+    border-top: 1px solid $color-border;
+  }
+
   &__recipe {
     margin-top: $space-8;
     padding-top: $space-6;

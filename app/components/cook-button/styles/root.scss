@@ -1,0 +1,93 @@
+@use "~/assets/scss/tokens" as *;
+@use "~/assets/scss/mixins" as *;
+
+.cook-button {
+  &__nudge {
+    margin: 0 0 $space-3;
+    font-family: $font-family-serif;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-tight;
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+  }
+
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: $space-2;
+    min-height: 2.75rem;
+    padding: $space-3 $space-6;
+    border: 1px solid $color-primary;
+    border-radius: $radius-sm;
+    background: $color-surface;
+    color: $color-primary;
+    font: inherit;
+    font-weight: $font-weight-semibold;
+    cursor: pointer;
+    transition:
+      background $transition-fast,
+      color $transition-fast,
+      transform 160ms $ease-out;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: $color-paper;
+      }
+    }
+
+    &--done {
+      background: $color-primary;
+      color: $color-surface;
+
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          background: $color-primary-hover;
+        }
+      }
+    }
+
+    @include press;
+    @include focus-ring;
+  }
+
+  &__icon {
+    width: 1.25rem;
+    height: 1.25rem;
+
+    &--tick {
+      --icon-stroke: 2.5;
+      animation: cook-button-tick 300ms $ease-out;
+    }
+  }
+
+  &__count {
+    margin: 0;
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+  }
+}
+
+@keyframes cook-button-tick {
+  from {
+    opacity: 0;
+    transform: scale(0.6) rotate(-12deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cook-button__icon--tick {
+    animation-name: cook-button-tick-fade;
+  }
+
+  @keyframes cook-button-tick-fade {
+    from {
+      opacity: 0;
+    }
+  }
+}

@@ -27,7 +27,21 @@
     </booklet-spread>
 
     <div v-if="ingredients.length || steps.length" class="recipe-article__recipe">
-      <recipe-details :id="id" :ingredients="ingredients" :steps="steps" :servings="servings" />
+      <recipe-details
+        :id="id"
+        :ingredients="ingredients"
+        :steps="steps"
+        :servings="servings"
+        @complete="allStepsDone = $event"
+      />
+
+      <cook-button
+        class="recipe-article__cooked"
+        :post-id="id"
+        :cook-count="cookCount"
+        :cooked-by-me="cookedByMe"
+        :all-steps-done="allStepsDone"
+      />
     </div>
 
     <author-posts :author="author" :exclude-id="id" />
@@ -38,6 +52,7 @@
 const props = defineProps<IPostContent>();
 
 const { t } = useI18n();
+const allStepsDone = ref(false);
 const summary = computed(() => formatRecipeSummary(props, t));
 </script>
 

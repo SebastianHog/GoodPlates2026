@@ -10,15 +10,22 @@ export interface IPostContent {
   servings: string;
   totalTimeMinutes: number | null;
   likeCount: number;
-  // Whether the logged-in viewer has liked / bookmarked it; always false for logged-out visitors
+  cookCount: number;
   likedByMe: boolean;
   bookmarkedByMe: boolean;
+  cookedByMe: boolean;
   createdAt: string;
   modifiedAt: string;
 }
 
-// What the create and edit forms send
+// create and edit forms
 export type PostInput = Pick<
   IPostContent,
-  "title" | "caption" | "images" | "ingredients" | "steps" | "servings" | "totalTimeMinutes"
+  | "title"
+  | "caption"
+  | "images"
+  | "ingredients"
+  | "steps"
+  | "servings"
+  | "totalTimeMinutes"
 >;

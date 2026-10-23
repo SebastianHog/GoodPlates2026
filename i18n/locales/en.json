@@ -81,7 +81,9 @@
     "dismiss": "Dismiss",
     "likeLogin": "Log in to like recipes.",
     "bookmarkLogin": "Log in to save recipes to your bookmarks.",
-    "logIn": "Log in"
+    "logIn": "Log in",
+    "cookLogin": "Log in to keep track of what you've cooked.",
+    "cookFailed": "Could not save that you cooked this. Try again."
   },
   "post": {
     "edit": "Edit",
@@ -114,7 +116,15 @@
     "backToFeed": "Back to recipes",
     "loadFailed": "Could not load this recipe.",
     "loading": "Loading recipe…",
-    "moreFrom": "More from {name}"
+    "moreFrom": "More from {name}",
+    "cooked": {
+      "button": "I cooked this",
+      "nudge": "Every step is ticked off. Did you make it?",
+      "first": "You're the first to cook this.",
+      "withOthers": "You and {n} other person cooked this. | You and {n} other people cooked this.",
+      "others": "Cooked by {n} person. | Cooked by {n} people.",
+      "none": "Nobody has cooked this yet."
+    }
   },
   "bookmarks": {
     "title": "Bookmarks",

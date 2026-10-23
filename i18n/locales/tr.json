@@ -19,7 +19,7 @@
     }
   },
   "feed": { "matching": "“{query}” ile eşleşen tarifler", "noMatches": "“{query}” ile eşleşen tarif yok.", "showAll": "Tümünü göster", "title": "Tarifler", "introTitle": "Ev aşçılarından tarifler", "intro": "İnsanların ne pişirdiğini görün; her gönderide tarifi de var.", "introJoin": "Kaydolun, kendi tariflerinizi paylaşın", "empty": "Henüz tarif yok.", "emptyPost": "İlk tarifi siz paylaşın", "emptyJoin": "Kaydolun ve ilk tarifi paylaşın", "loading": "Tarifler yükleniyor…", "loadFailed": "Tarifler yüklenemedi.", "retry": "Tekrar dene", "tabsLabel": "Akış", "latest": "En yeni", "discover": "Keşfet" },
-  "toast": { "likeFailed": "Beğeniniz kaydedilemedi. Tekrar deneyin.", "bookmarkFailed": "Yer işaretiniz kaydedilemedi. Tekrar deneyin.", "dismiss": "Kapat", "likeLogin": "Tarifleri beğenmek için giriş yapın.", "bookmarkLogin": "Tarifleri yer işaretlerinize kaydetmek için giriş yapın.", "logIn": "Giriş yap" },
+  "toast": { "likeFailed": "Beğeniniz kaydedilemedi. Tekrar deneyin.", "bookmarkFailed": "Yer işaretiniz kaydedilemedi. Tekrar deneyin.", "dismiss": "Kapat", "likeLogin": "Tarifleri beğenmek için giriş yapın.", "bookmarkLogin": "Tarifleri yer işaretlerinize kaydetmek için giriş yapın.", "logIn": "Giriş yap", "cookLogin": "Pişirdiklerinizi takip etmek için giriş yapın.", "cookFailed": "Pişirdiğiniz kaydedilemedi. Tekrar deneyin." },
   "post": {
     "edit": "Düzenle",
     "photos": "{title}, {count} fotoğraf",
@@ -41,7 +41,8 @@
     "backToFeed": "Tariflere dön",
     "loadFailed": "Bu tarif yüklenemedi.",
     "loading": "Tarif yükleniyor…",
-    "moreFrom": "{name} kullanıcısından daha fazlası"
+    "moreFrom": "{name} kullanıcısından daha fazlası",
+    "cooked": { "button": "Bunu pişirdim", "nudge": "Tüm adımlar işaretlendi. Yaptınız mı?", "first": "Bunu ilk pişiren sizsiniz.", "withOthers": "Siz ve {n} kişi daha bunu pişirdi. | Siz ve {n} kişi daha bunu pişirdi.", "others": "{n} kişi pişirdi. | {n} kişi pişirdi.", "none": "Henüz kimse bunu pişirmedi." }
   },
   "bookmarks": { "title": "Yer imleri", "empty": "Henüz yer imi yok. Akıştaki bir tarifin yer imi simgesine dokunarak buraya kaydet.", "browse": "Tariflere göz at", "removed": "Kaldırıldı" },
   "editor": {

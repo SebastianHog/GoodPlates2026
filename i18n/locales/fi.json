@@ -19,7 +19,7 @@
     }
   },
   "feed": { "matching": "Reseptit haulla ”{query}”", "noMatches": "Haulla ”{query}” ei löytynyt reseptejä.", "showAll": "Näytä kaikki", "title": "Reseptit", "introTitle": "Reseptejä kotikokeilta", "intro": "Katso, mitä muut kokkaavat – jokaisessa julkaisussa on mukana resepti.", "introJoin": "Rekisteröidy ja jaa omasi", "empty": "Reseptejä ei ole vielä.", "emptyPost": "Julkaise ensimmäinen", "emptyJoin": "Rekisteröidy ja julkaise ensimmäinen", "loading": "Ladataan reseptejä…", "loadFailed": "Reseptejä ei voitu ladata.", "retry": "Yritä uudelleen", "tabsLabel": "Syöte", "latest": "Uusimmat", "discover": "Löydä" },
-  "toast": { "likeFailed": "Tykkäystäsi ei voitu tallentaa. Yritä uudelleen.", "bookmarkFailed": "Kirjanmerkkiäsi ei voitu tallentaa. Yritä uudelleen.", "dismiss": "Sulje", "likeLogin": "Kirjaudu, niin voit tykätä resepteistä.", "bookmarkLogin": "Kirjaudu, niin voit tallentaa reseptejä kirjanmerkkeihin.", "logIn": "Kirjaudu" },
+  "toast": { "likeFailed": "Tykkäystäsi ei voitu tallentaa. Yritä uudelleen.", "bookmarkFailed": "Kirjanmerkkiäsi ei voitu tallentaa. Yritä uudelleen.", "dismiss": "Sulje", "likeLogin": "Kirjaudu, niin voit tykätä resepteistä.", "bookmarkLogin": "Kirjaudu, niin voit tallentaa reseptejä kirjanmerkkeihin.", "logIn": "Kirjaudu", "cookLogin": "Kirjaudu, niin voit pitää kirjaa tekemistäsi resepteistä.", "cookFailed": "Tekemistäsi ei voitu tallentaa. Yritä uudelleen." },
   "post": {
     "edit": "Muokkaa",
     "photos": "{title}, {count} kuvaa",
@@ -41,7 +41,8 @@
     "backToFeed": "Takaisin resepteihin",
     "loadFailed": "Reseptiä ei voitu ladata.",
     "loading": "Ladataan reseptiä…",
-    "moreFrom": "Lisää käyttäjältä {name}"
+    "moreFrom": "Lisää käyttäjältä {name}",
+    "cooked": { "button": "Tein tämän", "nudge": "Kaikki vaiheet on merkitty. Onnistuiko?", "first": "Olet ensimmäinen, joka teki tämän.", "withOthers": "Sinä ja {n} muu teitte tämän. | Sinä ja {n} muuta teitte tämän.", "others": "{n} henkilö on tehnyt tämän. | {n} henkilöä on tehnyt tämän.", "none": "Kukaan ei ole vielä tehnyt tätä." }
   },
   "bookmarks": { "title": "Kirjanmerkit", "empty": "Ei vielä kirjanmerkkejä. Napauta reseptin kirjanmerkkiä syötteessä tallentaaksesi sen tänne.", "browse": "Selaa reseptejä", "removed": "Poistettu" },
   "editor": {

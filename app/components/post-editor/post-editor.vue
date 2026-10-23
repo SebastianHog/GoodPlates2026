@@ -14,12 +14,20 @@
         <section class="post-editor__recipe" :aria-label="$t('editor.recipe')">
           <div v-if="restoredDraft" class="post-editor__notice" role="status">
             {{ $t("editor.draftRestored") }}
-            <button class="post-editor__link" type="button" @click="discardDraft">{{ $t("editor.startOver") }}</button>
+            <button
+              class="post-editor__link"
+              type="button"
+              @click="discardDraft"
+            >
+              {{ $t("editor.startOver") }}
+            </button>
           </div>
 
           <template v-if="!showPreview">
             <div class="post-editor__field">
-              <label class="visually-hidden" for="post-title">{{ $t("editor.title") }}</label>
+              <label class="visually-hidden" for="post-title">{{
+                $t("editor.title")
+              }}</label>
               <input
                 id="post-title"
                 v-model="title"
@@ -30,11 +38,19 @@
                 :aria-invalid="!!errors.title || undefined"
                 aria-describedby="post-title-error"
               />
-              <p v-if="errors.title" id="post-title-error" class="post-editor__field-error">{{ $t(errors.title, POST_LIMITS) }}</p>
+              <p
+                v-if="errors.title"
+                id="post-title-error"
+                class="post-editor__field-error"
+              >
+                {{ $t(errors.title, POST_LIMITS) }}
+              </p>
             </div>
 
             <div class="post-editor__field">
-              <label class="visually-hidden" for="post-caption">{{ $t("editor.description") }}</label>
+              <label class="visually-hidden" for="post-caption">{{
+                $t("editor.description")
+              }}</label>
               <textarea
                 id="post-caption"
                 ref="captionField"
@@ -47,12 +63,20 @@
                 aria-describedby="post-caption-error"
                 @input="fitToContent(captionField)"
               />
-              <p v-if="errors.caption" id="post-caption-error" class="post-editor__field-error">{{ $t(errors.caption, POST_LIMITS) }}</p>
+              <p
+                v-if="errors.caption"
+                id="post-caption-error"
+                class="post-editor__field-error"
+              >
+                {{ $t(errors.caption, POST_LIMITS) }}
+              </p>
             </div>
 
             <div class="post-editor__details">
               <div class="post-editor__detail">
-                <label class="post-editor__label" for="post-servings">{{ $t("editor.servings") }}</label>
+                <label class="post-editor__label" for="post-servings">{{
+                  $t("editor.servings")
+                }}</label>
                 <input
                   id="post-servings"
                   v-model="servings"
@@ -63,7 +87,9 @@
                 />
               </div>
               <div class="post-editor__detail">
-                <label class="post-editor__label" for="post-time">{{ $t("editor.totalTime") }}</label>
+                <label class="post-editor__label" for="post-time">{{
+                  $t("editor.totalTime")
+                }}</label>
                 <div class="post-editor__suffixed">
                   <input
                     id="post-time"
@@ -76,9 +102,15 @@
                     :aria-invalid="!!errors.totalTimeMinutes || undefined"
                     aria-describedby="post-time-error"
                   />
-                  <span class="post-editor__suffix" aria-hidden="true">{{ $t("editor.minutes") }}</span>
+                  <span class="post-editor__suffix" aria-hidden="true">{{
+                    $t("editor.minutes")
+                  }}</span>
                 </div>
-                <p v-if="errors.totalTimeMinutes" id="post-time-error" class="post-editor__field-error">
+                <p
+                  v-if="errors.totalTimeMinutes"
+                  id="post-time-error"
+                  class="post-editor__field-error"
+                >
                   {{ $t(errors.totalTimeMinutes, POST_LIMITS) }}
                 </p>
               </div>
@@ -86,7 +118,9 @@
 
             <div class="post-editor__lists">
               <div class="post-editor__list">
-                <h3 class="post-editor__label">{{ $t("editor.ingredients") }}</h3>
+                <h3 class="post-editor__label">
+                  {{ $t("editor.ingredients") }}
+                </h3>
                 <list-editor
                   v-model="ingredients"
                   id-prefix="post-ingredients"
@@ -97,7 +131,11 @@
                   :invalid="!!errors.ingredients"
                   describedby="post-ingredients-error"
                 />
-                <p v-if="errors.ingredients" id="post-ingredients-error" class="post-editor__field-error">
+                <p
+                  v-if="errors.ingredients"
+                  id="post-ingredients-error"
+                  class="post-editor__field-error"
+                >
                   {{ $t(errors.ingredients, POST_LIMITS) }}
                 </p>
               </div>
@@ -116,24 +154,44 @@
                   :invalid="!!errors.steps"
                   describedby="post-steps-error"
                 />
-                <p v-if="errors.steps" id="post-steps-error" class="post-editor__field-error">{{ $t(errors.steps, POST_LIMITS) }}</p>
+                <p
+                  v-if="errors.steps"
+                  id="post-steps-error"
+                  class="post-editor__field-error"
+                >
+                  {{ $t(errors.steps, POST_LIMITS) }}
+                </p>
               </div>
             </div>
           </template>
 
           <div v-else class="post-editor__preview">
-            <h2 class="post-editor__label">{{ $t("editor.previewHeading") }}</h2>
+            <h2 class="post-editor__label">
+              {{ $t("editor.previewHeading") }}
+            </h2>
             <recipe-post v-bind="previewPost" preview />
           </div>
 
-          <p v-if="submitError" class="post-editor__error" role="alert">{{ submitError }}</p>
+          <p v-if="submitError" class="post-editor__error" role="alert">
+            {{ submitError }}
+          </p>
 
           <div class="post-editor__footer">
-            <span class="post-editor__status" aria-live="polite">{{ statusText }}</span>
+            <span class="post-editor__status" aria-live="polite">{{
+              statusText
+            }}</span>
             <div class="post-editor__buttons">
-              <NuxtLink v-if="post" :to="'/'" class="post-editor__button">{{ $t("editor.discardChanges") }}</NuxtLink>
-              <button class="post-editor__button" type="button" @click="showPreview = !showPreview">
-                {{ $t(showPreview ? "editor.backToEditing" : "editor.preview") }}
+              <NuxtLink v-if="post" :to="'/'" class="post-editor__button">{{
+                $t("editor.discardChanges")
+              }}</NuxtLink>
+              <button
+                class="post-editor__button"
+                type="button"
+                @click="showPreview = !showPreview"
+              >
+                {{
+                  $t(showPreview ? "editor.backToEditing" : "editor.preview")
+                }}
               </button>
               <button
                 class="post-editor__button post-editor__button--primary"
@@ -183,9 +241,13 @@ const showPreview = ref(false);
 const dirty = ref(false);
 const restoredDraft = ref(false);
 
-const uploading = computed(() => photos.value.some((photo) => photo.status === "uploading"));
+const uploading = computed(() =>
+  photos.value.some((photo) => photo.status === "uploading"),
+);
 const uploadedKeys = computed(() =>
-  photos.value.filter((photo) => photo.status === "done").map((photo) => photo.key),
+  photos.value
+    .filter((photo) => photo.status === "done")
+    .map((photo) => photo.key),
 );
 
 const submitLabel = computed(() => {
@@ -196,11 +258,14 @@ const submitLabel = computed(() => {
 
 const statusText = computed(() => {
   if (props.post || !draft.savedAt.value) return "";
-  const time = draft.savedAt.value.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  const time = draft.savedAt.value.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
   return t("editor.draftSaved", { time });
 });
 
-// What gets sent to the server, and what a draft stores
+// what gets sent to the server, and what a draft stores
 
 const input = computed<PostInput>(() => ({
   title: title.value,
@@ -212,7 +277,10 @@ const input = computed<PostInput>(() => ({
   totalTimeMinutes: totalTime.value === "" ? null : totalTime.value,
 }));
 
-const draftContent = (): PostDraftContent => ({ ...input.value, totalTime: totalTime.value });
+const draftContent = (): PostDraftContent => ({
+  ...input.value,
+  totalTime: totalTime.value,
+});
 
 // The post as the feed card will show it, for Preview
 const previewPost = computed<IPostContent>(() => {
@@ -225,7 +293,8 @@ const previewPost = computed<IPostContent>(() => {
     createdAt: now,
     modifiedAt: now,
   };
-  const lines = (list: string[]) => list.map((line) => line.trim()).filter(Boolean);
+  const lines = (list: string[]) =>
+    list.map((line) => line.trim()).filter(Boolean);
 
   return {
     ...input.value,
@@ -236,6 +305,8 @@ const previewPost = computed<IPostContent>(() => {
     steps: lines(steps.value),
     likeCount: props.post?.likeCount ?? 0,
     likedByMe: false,
+    cookCount: props.post?.cookCount ?? 0,
+    cookedByMe: false,
     bookmarkedByMe: false,
     createdAt: props.post?.createdAt ?? now,
     modifiedAt: now,
@@ -250,7 +321,9 @@ function load(source: PostDraftContent) {
   caption.value = source.caption;
   servings.value = source.servings;
   totalTime.value = source.totalTime;
-  ingredients.value = source.ingredients.length ? [...source.ingredients] : [""];
+  ingredients.value = source.ingredients.length
+    ? [...source.ingredients]
+    : [""];
   steps.value = source.steps.length ? [...source.steps] : [""];
 }
 
@@ -278,7 +351,15 @@ onMounted(() => {
 function discardDraft() {
   draft.clear();
   restoredDraft.value = false;
-  load({ title: "", caption: "", images: [], ingredients: [], steps: [], servings: "", totalTime: "" });
+  load({
+    title: "",
+    caption: "",
+    images: [],
+    ingredients: [],
+    steps: [],
+    servings: "",
+    totalTime: "",
+  });
   markClean();
 }
 
@@ -302,7 +383,9 @@ function onBeforeUnload(event: BeforeUnloadEvent) {
 }
 
 onMounted(() => window.addEventListener("beforeunload", onBeforeUnload));
-onBeforeUnmount(() => window.removeEventListener("beforeunload", onBeforeUnload));
+onBeforeUnmount(() =>
+  window.removeEventListener("beforeunload", onBeforeUnload),
+);
 
 onBeforeRouteLeave(() => {
   if (hasUnsavedWork() && !window.confirm(t("editor.leaveConfirm"))) {
@@ -323,13 +406,21 @@ const fieldTargets: Partial<Record<PostField, string>> = {
 };
 
 function focusFirstError() {
-  const first = (Object.keys(fieldTargets) as PostField[]).find((field) => errors.value[field]);
+  const first = (Object.keys(fieldTargets) as PostField[]).find(
+    (field) => errors.value[field],
+  );
   if (!first) return;
 
   const target = document.getElementById(fieldTargets[first]!);
   // With photos already added there is no drop zone to focus, so scroll to the photos instead
-  const fallback = first === "images" ? document.querySelector<HTMLElement>(".photo-picker") : null;
-  (target ?? fallback)?.scrollIntoView({ behavior: scrollBehavior(), block: "center" });
+  const fallback =
+    first === "images"
+      ? document.querySelector<HTMLElement>(".photo-picker")
+      : null;
+  (target ?? fallback)?.scrollIntoView({
+    behavior: scrollBehavior(),
+    block: "center",
+  });
   target?.focus({ preventScroll: true });
 }
 
@@ -354,7 +445,10 @@ async function submit() {
   pending.value = true;
   try {
     if (props.post) {
-      await $fetch(`/api/posts/${props.post.id}`, { method: "PATCH", body: result.data });
+      await $fetch(`/api/posts/${props.post.id}`, {
+        method: "PATCH",
+        body: result.data,
+      });
     } else {
       await $fetch("/api/posts", { method: "POST", body: result.data });
       draft.clear();
@@ -363,7 +457,9 @@ async function submit() {
     await navigateTo("/");
   } catch (e) {
     // Problems the server found in the fields come back as i18n keys, shown next to each field
-    const fieldErrors = (e as { data?: { data?: { errors?: typeof errors.value } } }).data?.data?.errors;
+    const fieldErrors = (
+      e as { data?: { data?: { errors?: typeof errors.value } } }
+    ).data?.data?.errors;
     if (fieldErrors) {
       errors.value = fieldErrors;
       nextTick(focusFirstError);

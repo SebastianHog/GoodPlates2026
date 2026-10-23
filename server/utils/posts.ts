@@ -3,7 +3,7 @@ import { ObjectId, type WithId } from "mongodb";
 // Posts made before structured recipes have `image` and `body` instead
 type PostDocument = Omit<
   IPostContent,
-  "id" | "likedByMe" | "bookmarkedByMe"
+  "id" | "likedByMe" | "bookmarkedByMe" | "cookedByMe"
 > & { image?: string; body?: string };
 
 async function postsCollection() {
@@ -11,21 +11,24 @@ async function postsCollection() {
   return db.collection<PostDocument>("posts");
 }
 
-// What the viewer has done to a post; logged-out visitors have done neither
+// What the viewer has done to a post; logged-out visitors have done none of it
 interface ViewerMarks {
   liked: boolean;
   bookmarked: boolean;
+  cooked: boolean;
 }
 
 function toPost(
   { _id, image, body, ...post }: WithId<PostDocument>,
-  viewer: ViewerMarks = { liked: false, bookmarked: false },
+  viewer: ViewerMarks = { liked: false, bookmarked: false, cooked: false },
 ): IPostContent {
   return {
     ...post,
     likeCount: post.likeCount ?? 0,
+    cookCount: post.cookCount ?? 0,
     likedByMe: viewer.liked,
     bookmarkedByMe: viewer.bookmarked,
+    cookedByMe: viewer.cooked,
     id: _id.toHexString(),
     caption: post.caption ?? "",
     images: post.images ?? (image ? [image] : []),
@@ -98,6 +101,7 @@ export async function createPost(
     author,
     ...input,
     likeCount: 0,
+    cookCount: 0,
     createdAt: now,
     modifiedAt: now,
   };
@@ -124,8 +128,8 @@ export async function updatePost(
   return doc ? toPost(doc) : null;
 }
 
-// Likes and bookmarks live in their own collections, one row per user and post, so each can only happen once
-type MarkKind = "likes" | "bookmarks";
+// Likes, bookmarks and cooks live in their own collections, one row per user and post, so each can only happen once
+type MarkKind = "likes" | "bookmarks" | "cooks";
 const markIndexReady = new Set<MarkKind>();
 
 async function marksCollection(kind: MarkKind) {
@@ -162,20 +166,22 @@ async function withViewerMarks(
   }
 
   const ids = docs.map((doc) => doc._id.toHexString());
-  const [liked, bookmarked] = await Promise.all([
+  const [liked, bookmarked, cooked] = await Promise.all([
     markedPostIds("likes", viewerId, ids),
     markedPostIds("bookmarks", viewerId, ids),
+    markedPostIds("cooks", viewerId, ids),
   ]);
   return docs.map((doc) => {
     const id = doc._id.toHexString();
     return toPost(doc, {
       liked: liked.has(id),
       bookmarked: bookmarked.has(id),
+      cooked: cooked.has(id),
     });
   });
 }
 
-// Adds or removes a like/bookmark row; returns whether anything changed, or null when the post is missing
+// Adds or removes a like/bookmark/cook row; returns whether anything changed, or null when the post is missing
 async function setMark(
   kind: MarkKind,
   postId: string,
@@ -213,12 +219,32 @@ async function setMark(
 }
 
 // Likes or unlikes a post and returns the new count; repeating the same action changes nothing
-export async function setPostLike(
+export function setPostLike(
   postId: string,
   userId: string,
   liked: boolean,
 ): Promise<number | null> {
-  const changed = await setMark("likes", postId, userId, liked);
+  return setCountedMark("likes", "likeCount", postId, userId, liked);
+}
+
+// Marks a post as cooked (or not) and returns how many people cooked it
+export function setPostCook(
+  postId: string,
+  userId: string,
+  cooked: boolean,
+): Promise<number | null> {
+  return setCountedMark("cooks", "cookCount", postId, userId, cooked);
+}
+
+// A mark that also keeps a count on the post
+async function setCountedMark(
+  kind: MarkKind,
+  countField: "likeCount" | "cookCount",
+  postId: string,
+  userId: string,
+  on: boolean,
+): Promise<number | null> {
+  const changed = await setMark(kind, postId, userId, on);
   if (changed === null) {
     return null;
   }
@@ -228,11 +254,11 @@ export async function setPostLike(
   const doc = changed
     ? await posts.findOneAndUpdate(
         { _id },
-        { $inc: { likeCount: liked ? 1 : -1 } },
+        { $inc: { [countField]: on ? 1 : -1 } },
         { returnDocument: "after" },
       )
     : await posts.findOne({ _id });
-  return doc?.likeCount ?? 0;
+  return doc?.[countField] ?? 0;
 }
 
 // Bookmarks or un-bookmarks a post; false when the post does not exist
@@ -264,8 +290,8 @@ export async function getBookmarkedPosts(
 }
 
 // Discover: posts that are popular and/or recent, slight randomness to it.
-// Score = activity in the last 2 weeks (bookmarks count double) + all-time likes, faded by age, times a random factor.
-// Posts the viewer wrote, liked or bookmarked go last, and the same author isn't shown twice in a row if it can be avoided
+// Score = activity in the last 2 weeks (bookmarks count double, cooks triple) + all-time likes and cooks, faded by age, times a random factor.
+// Posts the viewer wrote, liked, bookmarked or cooked go last, and the same author isn't shown twice in a row if it can be avoided
 const DISCOVER_DAYS = 14;
 
 export async function getDiscoverPosts(
@@ -275,9 +301,10 @@ export async function getDiscoverPosts(
   const docs = await posts.find().toArray();
   const since = new Date(Date.now() - DISCOVER_DAYS * 86_400_000).toISOString();
 
-  const [recentLikes, recentBookmarks] = await Promise.all([
+  const [recentLikes, recentBookmarks, recentCooks] = await Promise.all([
     recentMarkCounts("likes", since),
     recentMarkCounts("bookmarks", since),
+    recentMarkCounts("cooks", since),
   ]);
   const withMarks = await withViewerMarks(docs, viewerId);
 
@@ -285,14 +312,19 @@ export async function getDiscoverPosts(
     const activity =
       (recentLikes.get(post.id) ?? 0) +
       2 * (recentBookmarks.get(post.id) ?? 0) +
-      0.25 * post.likeCount;
+      3 * (recentCooks.get(post.id) ?? 0) +
+      0.25 * post.likeCount +
+      0.5 * post.cookCount;
     const ageDays =
       (Date.now() - new Date(post.createdAt).getTime()) / 86_400_000;
     const freshness = 1 / (1 + ageDays / DISCOVER_DAYS);
     const score =
       (1 + Math.log1p(activity)) * freshness * (0.5 + Math.random());
     const seen =
-      post.author.id === viewerId || post.likedByMe || post.bookmarkedByMe;
+      post.author.id === viewerId ||
+      post.likedByMe ||
+      post.bookmarkedByMe ||
+      post.cookedByMe;
     return { post, score, seen };
   });
 
@@ -302,7 +334,7 @@ export async function getDiscoverPosts(
   return spreadAuthors(ranked);
 }
 
-// How many likes/bookmarks each post got since the given time
+// How many likes/bookmarks/cooks each post got since the given time
 async function recentMarkCounts(
   kind: MarkKind,
   since: string,
