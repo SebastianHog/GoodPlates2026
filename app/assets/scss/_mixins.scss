@@ -54,9 +54,12 @@
     background $transition-fast,
     transform 160ms $ease-out;
 
-  &:hover:not(:disabled) {
-    background: $color-paper;
-    color: $color-text;
+  // only on mouse, so the hover look doesn't stick after a tap on phones
+  @media (hover: hover) and (pointer: fine) {
+    &:hover:not(:disabled) {
+      background: $color-paper;
+      color: $color-text;
+    }
   }
 
   &:disabled {
