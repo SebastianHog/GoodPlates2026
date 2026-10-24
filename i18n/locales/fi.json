@@ -79,5 +79,6 @@
     "ingredientsRequired": "Lisää vähintään yksi ainesosa", "ingredientsMax": "Lisää enintään {ingredients} ainesosaa", "ingredientTooLong": "Yksi ainesosa on liian pitkä",
     "stepsRequired": "Lisää vähintään yksi vaihe", "stepsMax": "Lisää enintään {steps} vaihetta", "stepTooLong": "Yksi vaihe on liian pitkä",
     "servingsMax": "Annosten on oltava alle {servings} merkkiä", "timeInvalid": "Anna aika kokonaisina minuutteina"
-  }
+  },
+  "errors": { "tooManyRequests": "Liian monta yritystä. Odota muutama minuutti ja yritä uudelleen." }
 }

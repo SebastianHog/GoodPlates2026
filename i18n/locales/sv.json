@@ -79,5 +79,6 @@
     "ingredientsRequired": "Lägg till minst en ingrediens", "ingredientsMax": "Lägg till högst {ingredients} ingredienser", "ingredientTooLong": "En ingrediens är för lång",
     "stepsRequired": "Lägg till minst ett steg", "stepsMax": "Lägg till högst {steps} steg", "stepTooLong": "Ett steg är för långt",
     "servingsMax": "Håll portioner under {servings} tecken", "timeInvalid": "Ange tiden i hela minuter"
-  }
+  },
+  "errors": { "tooManyRequests": "För många försök. Vänta några minuter och försök igen." }
 }

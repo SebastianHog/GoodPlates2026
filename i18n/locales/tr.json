@@ -79,5 +79,6 @@
     "ingredientsRequired": "En az bir malzeme ekle", "ingredientsMax": "En fazla {ingredients} malzeme ekle", "ingredientTooLong": "Bir malzeme çok uzun",
     "stepsRequired": "En az bir adım ekle", "stepsMax": "En fazla {steps} adım ekle", "stepTooLong": "Bir adım çok uzun",
     "servingsMax": "Porsiyon {servings} karakterden kısa olmalı", "timeInvalid": "Süreyi tam dakika olarak gir"
-  }
+  },
+  "errors": { "tooManyRequests": "Çok fazla deneme yapıldı. Birkaç dakika bekleyip tekrar deneyin." }
 }

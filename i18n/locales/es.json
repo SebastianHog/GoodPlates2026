@@ -79,5 +79,6 @@
     "ingredientsRequired": "Añade al menos un ingrediente", "ingredientsMax": "Añade como máximo {ingredients} ingredientes", "ingredientTooLong": "Un ingrediente es demasiado largo",
     "stepsRequired": "Añade al menos un paso", "stepsMax": "Añade como máximo {steps} pasos", "stepTooLong": "Un paso es demasiado largo",
     "servingsMax": "Las raciones deben tener menos de {servings} caracteres", "timeInvalid": "Indica el tiempo en minutos enteros"
-  }
+  },
+  "errors": { "tooManyRequests": "Demasiados intentos. Espera unos minutos y vuelve a intentarlo." }
 }

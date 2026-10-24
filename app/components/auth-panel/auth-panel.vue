@@ -201,10 +201,12 @@ async function submit() {
     await navigateTo(redirect.value);
   } catch (e) {
     // The server names the problem with an i18n key when it is something the user can fix
-    const { data } = e as { data?: { data?: { messageKey?: string } } };
+    const { data, statusCode } = e as { data?: { data?: { messageKey?: string } }; statusCode?: number };
     const messageKey = data?.data?.messageKey;
 
-    if (tab.value === "login") {
+    if (statusCode === 429 && messageKey) {
+      error.value = t(messageKey);
+    } else if (tab.value === "login") {
       error.value = t("auth.errors.wrongLogin");
     } else {
       error.value = messageKey ? t(messageKey) : t("auth.errors.signupFailed");

@@ -242,5 +242,8 @@
     "stepTooLong": "One step is too long",
     "servingsMax": "Keep servings under {servings} characters",
     "timeInvalid": "Enter the time in whole minutes"
+  },
+  "errors": {
+    "tooManyRequests": "Too many attempts. Wait a few minutes and try again."
   }
 }

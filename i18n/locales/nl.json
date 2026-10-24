@@ -79,5 +79,6 @@
     "ingredientsRequired": "Voeg minstens één ingrediënt toe", "ingredientsMax": "Voeg maximaal {ingredients} ingrediënten toe", "ingredientTooLong": "Eén ingrediënt is te lang",
     "stepsRequired": "Voeg minstens één stap toe", "stepsMax": "Voeg maximaal {steps} stappen toe", "stepTooLong": "Eén stap is te lang",
     "servingsMax": "Houd de porties korter dan {servings} tekens", "timeInvalid": "Vul de tijd in hele minuten in"
-  }
+  },
+  "errors": { "tooManyRequests": "Te veel pogingen. Wacht een paar minuten en probeer het opnieuw." }
 }
