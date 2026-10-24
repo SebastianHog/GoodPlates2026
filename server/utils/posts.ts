@@ -200,28 +200,40 @@ async function whyNotOwn(id: string): Promise<NotOwnPost> {
   return exists ? "notYours" : "missing";
 }
 
-// Saves an edit, only when `authorId` wrote the post
+// Saves an edit, only when `authorId` wrote the post.
+// Also returns the photo keys the edit took out that no other post uses
 export async function updatePost(
   id: string,
   authorId: string,
   input: PostInput,
-): Promise<IPostContent | NotOwnPost> {
+): Promise<{ post: IPostContent; unusedImages: string[] } | NotOwnPost> {
   if (!ObjectId.isValid(id)) {
     return "missing";
   }
 
   const posts = await postsCollection();
-  const doc = await posts.findOneAndUpdate(
+  const modifiedAt = new Date().toISOString();
+  const before = await posts.findOneAndUpdate(
     { _id: new ObjectId(id), "author.id": authorId },
-    { $set: { ...input, modifiedAt: new Date().toISOString() } },
-    { returnDocument: "after" },
+    { $set: { ...input, modifiedAt } },
+    { returnDocument: "before" },
   );
-  if (!doc) {
+  if (!before) {
     return whyNotOwn(id);
   }
 
-  const [post] = await toPosts([doc]);
-  return post!;
+  const [post] = await toPosts([{ ...before, ...input, modifiedAt }]);
+  const removed = before.images.filter((key) => !input.images.includes(key));
+  return { post: post!, unusedImages: await unusedImages(removed) };
+}
+
+// The keys no post uses (any more)
+async function unusedImages(keys: string[]): Promise<string[]> {
+  const posts = await postsCollection();
+  const stillUsed = await Promise.all(
+    keys.map((key) => posts.countDocuments({ images: key }, { limit: 1 })),
+  );
+  return keys.filter((_, index) => !stillUsed[index]);
 }
 
 // Removes a post with its likes, bookmarks and cooks, only when `authorId` wrote it.
@@ -246,9 +258,5 @@ export async function deletePost(
     ),
   );
 
-  const images = doc.images;
-  const stillUsed = await Promise.all(
-    images.map((key) => posts.countDocuments({ images: key }, { limit: 1 })),
-  );
-  return images.filter((_, index) => !stillUsed[index]);
+  return unusedImages(doc.images);
 }

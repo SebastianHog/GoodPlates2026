@@ -6,7 +6,8 @@ export default defineEventHandler(async (event): Promise<IPostContent> => {
     throw createError({ statusCode: 400, statusMessage: "Invalid post", data: { errors } });
   }
 
-  const result = await updatePost(getRouterParam(event, "id")!, user.id, data);
+  const id = getRouterParam(event, "id")!;
+  const result = await updatePost(id, user.id, data);
   if (result === "missing") {
     throw createError({ statusCode: 404, statusMessage: "Post not found" });
   }
@@ -14,5 +15,8 @@ export default defineEventHandler(async (event): Promise<IPostContent> => {
     throw createError({ statusCode: 403, statusMessage: "You can only edit your own posts" });
   }
 
-  return result;
+  // Photos taken out of the post would otherwise stay in storage forever
+  await deletePhotos(result.unusedImages, `post ${id}`);
+
+  return result.post;
 });

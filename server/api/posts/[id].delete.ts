@@ -11,12 +11,7 @@ export default defineEventHandler(async (event): Promise<{ deleted: true }> => {
   }
 
   // The post is gone either way; a photo that fails to delete only takes up space
-  await Promise.allSettled(
-    result.flatMap((key) => IMAGE_WIDTHS.map((width) => deleteObject(`${key}-${width}.webp`))),
-  ).then((results) => {
-    const failed = results.filter((outcome) => outcome.status === "rejected").length;
-    if (failed) console.warn(`Could not delete ${failed} photo files of post ${id}`);
-  });
+  await deletePhotos(result, `post ${id}`);
 
   return { deleted: true };
 });

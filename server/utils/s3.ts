@@ -54,3 +54,12 @@ export async function getObject(key: string) {
 export async function deleteObject(key: string): Promise<void> {
   await getS3().send(new DeleteObjectCommand({ Bucket: bucket(), Key: key }));
 }
+
+// Deletes every size of these photos. A file that fails to delete only takes up space, so this never throws
+export async function deletePhotos(keys: string[], context: string): Promise<void> {
+  const results = await Promise.allSettled(
+    keys.flatMap((key) => IMAGE_WIDTHS.map((width) => deleteObject(`${key}-${width}.webp`))),
+  );
+  const failed = results.filter((outcome) => outcome.status === "rejected").length;
+  if (failed) console.warn(`Could not delete ${failed} photo files of ${context}`);
+}
