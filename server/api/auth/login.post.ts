@@ -5,7 +5,8 @@ export default defineEventHandler(async (event): Promise<IAuthor> => {
     throw createError({ statusCode: 400, statusMessage: "Email and password are required" });
   }
 
-  const user = await verifyUserLogin(email, password);
+  // No account has an email or password this long, and hashing a huge password would tie up the server
+  const user = email.length <= 254 && password.length <= 128 ? await verifyUserLogin(email, password) : null;
 
   // Same answer for an unknown email and a wrong password, so accounts can't be discovered
   if (!user) {

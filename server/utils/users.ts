@@ -64,16 +64,21 @@ export async function getUserByHandle(handle: string): Promise<IAuthor | null> {
   return doc ? toAuthor(doc) : null;
 }
 
+// Checked against when the email is unknown, so that answer takes as long as a wrong password
+let unknownUserHash: Promise<string> | undefined;
+
 // Returns the user only when the password matches
 export async function verifyUserLogin(email: string, password: string): Promise<IAuthor | null> {
   const users = await usersCollection();
   const doc = await users.findOne({ email: email.toLowerCase() });
 
-  if (!doc || !(await verifyPassword(doc.passwordHash, password))) {
+  if (!doc) {
+    unknownUserHash ??= hashPassword(crypto.randomUUID());
+    await verifyPassword(await unknownUserHash, password);
     return null;
   }
 
-  return toAuthor(doc);
+  return (await verifyPassword(doc.passwordHash, password)) ? toAuthor(doc) : null;
 }
 
 export async function createUser(input: {
