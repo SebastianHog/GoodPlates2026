@@ -4,7 +4,7 @@ export default defineEventHandler(async (event): Promise<IPostContent[]> => {
   const search = typeof q === "string" ? q.slice(0, 100) : undefined;
   const authorId = typeof author === "string" ? author : undefined;
   const page = {
-    limit: Math.min(Math.max(Number(limit) || POST_PAGE_SIZE, 1), 50),
+    limit: Math.min(Math.max(Math.floor(Number(limit)) || POST_PAGE_SIZE, 1), 50),
     before: typeof before === "string" ? before : undefined,
   };
 

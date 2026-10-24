@@ -1,6 +1,7 @@
 import { MongoClient, type Db } from "mongodb";
 
-let client: MongoClient | undefined;
+// One connection for the whole app; requests that arrive while it is opening wait for the same one
+let client: Promise<MongoClient> | undefined;
 
 export async function getDb(): Promise<Db> {
   if (!client) {
@@ -8,10 +9,12 @@ export async function getDb(): Promise<Db> {
     if (!mongodbUri) {
       throw new Error("NUXT_MONGODB_URI is not set");
     }
-    const newClient = new MongoClient(mongodbUri);
-    await newClient.connect();
-    client = newClient;
+    client = new MongoClient(mongodbUri).connect();
+    // A failed connection is tried again on the next request
+    client.catch(() => {
+      client = undefined;
+    });
   }
 
-  return client.db();
+  return (await client).db();
 }
