@@ -3,6 +3,7 @@
   "header": { "nav": "Cuenta", "newPost": "Nueva publicación", "logIn": "Entrar", "signUp": "Registrarse" },
   "search": { "label": "Buscar recetas", "placeholder": "Buscar recetas" },
   "accountMenu": { "account": "Cuenta", "profile": "Tu perfil", "bookmarks": "Guardados", "logOut": "Cerrar sesión" },
+  "languageSwitcher": { "label": "Idioma" },
   "auth": {
     "tabsLabel": "Cuenta",
     "login": { "tab": "Iniciar sesión", "pageTitle": "Iniciar sesión", "title": "Bienvenido de nuevo", "subtitle": "Inicia sesión para compartir tus recetas.", "submit": "Iniciar sesión", "pending": "Iniciando sesión…" },

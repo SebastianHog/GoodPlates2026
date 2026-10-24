@@ -3,6 +3,7 @@
   "header": { "nav": "Account", "newPost": "Nieuw bericht", "logIn": "Inloggen", "signUp": "Registreren" },
   "search": { "label": "Recepten zoeken", "placeholder": "Recepten zoeken" },
   "accountMenu": { "account": "Account", "profile": "Jouw profiel", "bookmarks": "Bladwijzers", "logOut": "Uitloggen" },
+  "languageSwitcher": { "label": "Taal" },
   "auth": {
     "tabsLabel": "Account",
     "login": { "tab": "Inloggen", "pageTitle": "Inloggen", "title": "Welkom terug", "subtitle": "Log in om je recepten te delen.", "submit": "Inloggen", "pending": "Bezig met inloggen…" },

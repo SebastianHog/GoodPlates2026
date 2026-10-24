@@ -3,6 +3,7 @@
   "header": { "nav": "Tili", "newPost": "Uusi julkaisu", "logIn": "Kirjaudu", "signUp": "Luo tili" },
   "search": { "label": "Hae reseptejä", "placeholder": "Hae reseptejä" },
   "accountMenu": { "account": "Tili", "profile": "Oma profiili", "bookmarks": "Kirjanmerkit", "logOut": "Kirjaudu ulos" },
+  "languageSwitcher": { "label": "Kieli" },
   "auth": {
     "tabsLabel": "Tili",
     "login": { "tab": "Kirjaudu", "pageTitle": "Kirjaudu", "title": "Tervetuloa takaisin", "subtitle": "Kirjaudu jakaaksesi reseptejäsi.", "submit": "Kirjaudu", "pending": "Kirjaudutaan…" },

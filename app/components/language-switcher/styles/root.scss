@@ -1,0 +1,25 @@
+@use "~/assets/scss/tokens" as *;
+@use "~/assets/scss/mixins" as *;
+
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+
+  &__select {
+    padding: $space-1 $space-2;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    background: $color-surface;
+    color: $color-text;
+    cursor: pointer;
+
+    &:hover {
+      border-color: $color-border-secondary;
+    }
+
+    @include focus-ring;
+  }
+}

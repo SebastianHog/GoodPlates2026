@@ -3,6 +3,7 @@
   "header": { "nav": "Konto", "newPost": "Nytt inlägg", "logIn": "Logga in", "signUp": "Skapa konto" },
   "search": { "label": "Sök recept", "placeholder": "Sök recept" },
   "accountMenu": { "account": "Konto", "profile": "Din profil", "bookmarks": "Bokmärken", "logOut": "Logga ut" },
+  "languageSwitcher": { "label": "Språk" },
   "auth": {
     "tabsLabel": "Konto",
     "login": { "tab": "Logga in", "pageTitle": "Logga in", "title": "Välkommen tillbaka", "subtitle": "Logga in för att dela dina recept.", "submit": "Logga in", "pending": "Loggar in…" },

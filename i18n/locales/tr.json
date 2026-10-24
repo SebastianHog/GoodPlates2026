@@ -3,6 +3,7 @@
   "header": { "nav": "Hesap", "newPost": "Yeni gönderi", "logIn": "Giriş yap", "signUp": "Kayıt ol" },
   "search": { "label": "Tarif ara", "placeholder": "Tarif ara" },
   "accountMenu": { "account": "Hesap", "profile": "Profiliniz", "bookmarks": "Yer imleri", "logOut": "Çıkış yap" },
+  "languageSwitcher": { "label": "Dil" },
   "auth": {
     "tabsLabel": "Hesap",
     "login": { "tab": "Giriş yap", "pageTitle": "Giriş yap", "title": "Tekrar hoş geldin", "subtitle": "Tariflerini paylaşmak için giriş yap.", "submit": "Giriş yap", "pending": "Giriş yapılıyor…" },

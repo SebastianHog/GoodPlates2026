@@ -19,6 +19,9 @@
     "bookmarks": "Bookmarks",
     "logOut": "Log out"
   },
+  "languageSwitcher": {
+    "label": "Language"
+  },
   "auth": {
     "tabsLabel": "Account",
     "login": {
