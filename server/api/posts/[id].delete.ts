@@ -12,6 +12,7 @@ export default defineEventHandler(async (event): Promise<{ deleted: true }> => {
 
   // The post is gone either way; a photo that fails to delete only takes up space
   await deletePhotos(result, `post ${id}`);
+  await forgetUploads(result);
 
   return { deleted: true };
 });

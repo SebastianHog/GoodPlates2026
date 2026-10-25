@@ -46,8 +46,15 @@ export function getClientIp(event: H3Event): string | undefined {
 
   let ip = normalizeIp(event.node.req.socket.remoteAddress ?? "");
   const forwarded = normalizeIp(getRequestHeader(event, "x-forwarded-for")?.split(",").at(-1)?.trim() ?? "");
-  // No address at all means a local socket, which only a proxy on the same machine can use
-  if (forwarded && (!ip || isPrivateIp(ip))) {
+  // Only believe the forwarded address from a source we trust. When NUXT_TRUSTED_PROXY_IPS lists the
+  // reverse proxy, only that address counts; otherwise fall back to trusting any private/loopback source.
+  // No address at all is a local socket, which only a proxy on the same machine can use.
+  const trusted = useRuntimeConfig(event).trustedProxyIps
+    .split(",")
+    .map((entry) => normalizeIp(entry.trim()))
+    .filter(Boolean);
+  const fromProxy = !ip || (trusted.length ? trusted.includes(ip) : isPrivateIp(ip));
+  if (forwarded && fromProxy) {
     ip = forwarded;
   }
   if (!ip) return undefined;

@@ -16,7 +16,7 @@
       "usernameFormat": "Käyttäjänimen on oltava 3–20 merkkiä: a–z, 0–9 ja _.",
       "emailInvalid": "Anna kelvollinen sähköpostiosoite.",
       "passwordLength": "Salasanan on oltava 8–128 merkkiä.",
-      "taken": "Sähköposti tai käyttäjänimi on jo käytössä."
+      "usernameTaken": "Käyttäjänimi on jo varattu."
     }
   },
   "feed": { "matching": "Reseptit haulla ”{query}”", "noMatches": "Haulla ”{query}” ei löytynyt reseptejä.", "showAll": "Näytä kaikki", "title": "Reseptit", "introTitle": "Reseptejä kotikokeilta", "intro": "Katso, mitä muut kokkaavat – jokaisessa julkaisussa on mukana resepti.", "introJoin": "Rekisteröidy ja jaa omasi", "empty": "Reseptejä ei ole vielä.", "emptyPost": "Julkaise ensimmäinen", "emptyJoin": "Rekisteröidy ja julkaise ensimmäinen", "loading": "Ladataan reseptejä…", "loadFailed": "Reseptejä ei voitu ladata.", "retry": "Yritä uudelleen", "tabsLabel": "Syöte", "latest": "Uusimmat", "discover": "Löydä", "following": "Seurattavat", "followingEmpty": "Täällä ei ole vielä mitään. Seuraa kokkeja nähdäksesi heidän uudet reseptinsä täällä.", "findCooks": "Löydä kokkeja Löydä-osiosta", "showMore": "Näytä lisää reseptejä", "loadingMore": "Ladataan…", "loadMoreFailed": "Lisää reseptejä ei voitu ladata. Yritä uudelleen." },
@@ -80,5 +80,6 @@
     "stepsRequired": "Lisää vähintään yksi vaihe", "stepsMax": "Lisää enintään {steps} vaihetta", "stepTooLong": "Yksi vaihe on liian pitkä",
     "servingsMax": "Annosten on oltava alle {servings} merkkiä", "timeInvalid": "Anna aika kokonaisina minuutteina"
   },
-  "errors": { "tooManyRequests": "Liian monta yritystä. Odota muutama minuutti ja yritä uudelleen." }
+  "errors": { "tooManyRequests": "Liian monta yritystä. Odota muutama minuutti ja yritä uudelleen." },
+  "error": { "title404": "Sivua ei löytynyt", "message404": "Emme löytäneet sivua.", "titleGeneric": "Jokin meni pieleen", "messageGeneric": "Yritä hetken kuluttua uudelleen.", "backHome": "Takaisin GoodPlatesiin" }
 }

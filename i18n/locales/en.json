@@ -58,7 +58,7 @@
       "usernameFormat": "Username must be 3–20 characters: a–z, 0–9 and _.",
       "emailInvalid": "Enter a valid email address.",
       "passwordLength": "Password must be 8–128 characters.",
-      "taken": "That email or username is already taken."
+      "usernameTaken": "That username is already taken."
     }
   },
   "feed": {
@@ -245,5 +245,12 @@
   },
   "errors": {
     "tooManyRequests": "Too many attempts. Wait a few minutes and try again."
+  },
+  "error": {
+    "title404": "Page not found",
+    "message404": "We couldn’t find that page.",
+    "titleGeneric": "Something went wrong",
+    "messageGeneric": "Please try again in a moment.",
+    "backHome": "Back to GoodPlates"
   }
 }

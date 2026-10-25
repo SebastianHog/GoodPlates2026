@@ -8,13 +8,8 @@
       id-prefix="auth-tab"
     />
 
-    <form
-      id="auth-panel"
-      class="auth-panel__panel"
-      role="tabpanel"
-      :aria-labelledby="`auth-tab-${tab}`"
-      @submit.prevent="submit"
-    >
+    <div id="auth-panel" role="tabpanel" :aria-labelledby="`auth-tab-${tab}`">
+      <form class="auth-panel__panel" @submit.prevent="submit">
       <div class="auth-panel__intro">
         <h1 class="auth-panel__title">{{ $t(`auth.${tab}.title`) }}</h1>
         <p class="auth-panel__subtitle">{{ $t(`auth.${tab}.subtitle`) }}</p>
@@ -126,7 +121,8 @@
       <button class="auth-panel__submit" type="submit" :disabled="pending">
         {{ $t(`auth.${tab}.${pending ? "pending" : "submit"}`) }}
       </button>
-    </form>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -163,9 +159,11 @@ const error = ref("");
 
 const redirect = computed(() => {
   const value = route.query.redirect;
+  // Only same-site, absolute paths: no "//host" or "/\host" tricks that point at another site
   return typeof value === "string" &&
     value.startsWith("/") &&
-    !value.startsWith("//")
+    !value.startsWith("//") &&
+    !value.includes("\\")
     ? value
     : "/";
 });
@@ -198,7 +196,6 @@ async function submit() {
       });
     }
     await refreshSession();
-    await navigateTo(redirect.value);
   } catch (e) {
     // The server names the problem with an i18n key when it is something the user can fix
     const { data, statusCode } = e as { data?: { data?: { messageKey?: string } }; statusCode?: number };
@@ -211,9 +208,13 @@ async function submit() {
     } else {
       error.value = messageKey ? t(messageKey) : t("auth.errors.signupFailed");
     }
+    return;
   } finally {
     pending.value = false;
   }
+
+  // Navigate only after a clean sign-in, so a rejected redirect target never shows a login error
+  await navigateTo(redirect.value);
 }
 </script>
 

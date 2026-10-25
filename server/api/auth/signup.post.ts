@@ -18,7 +18,7 @@ export default defineEventHandler(async (event): Promise<IAuthor> => {
 
   const user = await createUser({ displayName: displayName.trim(), hiddenName, email, password });
   await setUserSession(event, {
-    user: { id: user.id, displayName: user.displayName, hiddenName: user.hiddenName },
+    user: { id: user.id, displayName: user.displayName, hiddenName: user.hiddenName, sessionVersion: 0 },
   });
 
   return user;

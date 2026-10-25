@@ -31,11 +31,31 @@ const {
   lazy: true,
 });
 
+// A missing post should answer 404, not a 200 "not found" page that search engines would index
+const requestEvent = useRequestEvent();
+watchEffect(() => {
+  if (requestEvent && (error.value as { statusCode?: number } | null)?.statusCode === 404) {
+    setResponseStatus(requestEvent, 404);
+  }
+});
+
 useWakeLock();
 
 useHead({
   title: () =>
     t("site.pageTitle", { page: post.value?.title ?? t("feed.title") }),
+});
+
+// A link to a recipe should preview with its title, a caption excerpt and its photo when shared
+const { imageBaseUrl } = useRuntimeConfig().public;
+const origin = import.meta.server ? useRequestURL().origin : "";
+useSeoMeta({
+  description: () => post.value?.caption?.slice(0, 200) || undefined,
+  ogTitle: () => post.value?.title,
+  ogDescription: () => post.value?.caption?.slice(0, 200) || undefined,
+  ogType: "article",
+  ogImage: () =>
+    post.value?.images[0] ? `${origin}${imageBaseUrl}/${post.value.images[0]}-800.webp` : undefined,
 });
 </script>
 

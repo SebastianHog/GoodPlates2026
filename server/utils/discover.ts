@@ -6,6 +6,9 @@ import { ObjectId } from "mongodb";
 // Only posts from the last POOL_DAYS, or with activity in the last DISCOVER_DAYS, are considered
 const DISCOVER_DAYS = 14;
 const POOL_DAYS = 90;
+// Score at most this many recent posts per request, plus any older ones with recent activity,
+// so the work stays bounded as the catalogue grows
+const POOL_CAP = 300;
 
 export async function getDiscoverPosts(
   viewerId?: string,
@@ -22,15 +25,19 @@ export async function getDiscoverPosts(
   const active = [...new Set([...recentLikes.keys(), ...recentBookmarks.keys(), ...recentCooks.keys()])];
 
   const posts = await postsCollection();
-  const docs = await posts
-    .find({
-      $or: [
-        { createdAt: { $gte: daysAgo(POOL_DAYS) } },
-        { _id: { $in: active.filter((id) => ObjectId.isValid(id)).map((id) => new ObjectId(id)) } },
-      ],
-    })
-    .toArray();
-  const withMarks = await toPosts(docs, viewerId);
+  const activeIds = active.filter((id) => ObjectId.isValid(id)).map((id) => new ObjectId(id));
+  const [recent, activeDocs] = await Promise.all([
+    posts
+      .find({ createdAt: { $gte: daysAgo(POOL_DAYS) } })
+      .sort({ createdAt: -1, _id: -1 })
+      .limit(POOL_CAP)
+      .toArray(),
+    activeIds.length ? posts.find({ _id: { $in: activeIds } }).toArray() : [],
+  ]);
+  // The newest POOL_CAP posts, plus older ones that have recent activity, with no post counted twice
+  const byId = new Map(recent.map((doc) => [doc._id.toHexString(), doc]));
+  for (const doc of activeDocs) byId.set(doc._id.toHexString(), doc);
+  const withMarks = await toPosts([...byId.values()], viewerId);
 
   const scored = withMarks.map((post) => {
     const activity =

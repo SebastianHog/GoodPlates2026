@@ -121,12 +121,15 @@ async function setCountedMark(
   return doc?.[countField] ?? 0;
 }
 
+// At most this many bookmarks are returned, so the query stays bounded for heavy bookmarkers
+const BOOKMARKS_MAX = 200;
+
 // The user's bookmarked posts, most recently bookmarked first
 export async function getBookmarkedPosts(
   userId: string,
 ): Promise<IPostContent[]> {
   const marks = await marksCollection("bookmarks");
-  const rows = await marks.find({ userId }).sort({ createdAt: -1 }).toArray();
+  const rows = await marks.find({ userId }).sort({ createdAt: -1 }).limit(BOOKMARKS_MAX).toArray();
 
   const posts = await postsCollection();
   const docs = await posts

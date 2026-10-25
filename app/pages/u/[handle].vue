@@ -58,6 +58,14 @@ const {
   lazy: true,
 });
 
+// A missing profile should answer 404, not a 200 "not found" page that search engines would index
+const requestEvent = useRequestEvent();
+watchEffect(() => {
+  if (requestEvent && (error.value as { statusCode?: number } | null)?.statusCode === 404) {
+    setResponseStatus(requestEvent, 404);
+  }
+});
+
 // The profile brings the first page of recipes; the rest load from /api/posts
 const { posts, hasMore, loadingMore, loadMore } = usePostPages(
   computed(() => profile.value?.posts),
