@@ -32,7 +32,7 @@
 defineProps<{ user: { displayName: string; hiddenName: string } }>();
 
 const route = useRoute();
-const { clear } = useUserSession();
+const { fetch: refreshSession } = useUserSession();
 
 const open = ref(false);
 const root = ref<HTMLElement>();
@@ -69,7 +69,9 @@ onBeforeUnmount(() => {
 
 async function logout() {
   open.value = false;
-  await clear();
+  // Revokes the session server-side (so a copied cookie stops working), then refreshes client state
+  await $fetch("/api/auth/logout", { method: "POST" });
+  await refreshSession();
   await navigateTo("/");
 }
 </script>

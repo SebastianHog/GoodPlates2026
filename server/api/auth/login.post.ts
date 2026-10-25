@@ -14,7 +14,12 @@ export default defineEventHandler(async (event): Promise<IAuthor> => {
   }
 
   await setUserSession(event, {
-    user: { id: user.id, displayName: user.displayName, hiddenName: user.hiddenName },
+    user: {
+      id: user.id,
+      displayName: user.displayName,
+      hiddenName: user.hiddenName,
+      sessionVersion: (await getSessionVersion(user.id)) ?? 0,
+    },
   });
 
   return user;

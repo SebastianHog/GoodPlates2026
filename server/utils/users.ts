@@ -3,6 +3,8 @@ import { ObjectId, type WithId } from "mongodb";
 interface UserDocument extends Omit<IAuthor, "id"> {
   email: string;
   passwordHash: string;
+  // Incremented on logout; the value baked into a session cookie must match for it to stay valid
+  sessionVersion?: number;
 }
 
 let indexesReady = false;
@@ -23,9 +25,36 @@ async function usersCollection() {
   return users;
 }
 
-// Public profile only: never send the email or password hash to other users
-function toAuthor({ _id, email: _email, passwordHash: _hash, ...user }: WithId<UserDocument>): IAuthor {
+// Public profile only: never send the email, password hash or session version to other users
+function toAuthor({
+  _id,
+  email: _email,
+  passwordHash: _hash,
+  sessionVersion: _version,
+  ...user
+}: WithId<UserDocument>): IAuthor {
   return { ...user, id: _id.toHexString() };
+}
+
+// The value a session cookie must carry to stay valid; a logout raises it (see clearUserSessions)
+export async function getSessionVersion(userId: string): Promise<number | null> {
+  if (!ObjectId.isValid(userId)) {
+    return null;
+  }
+  const users = await usersCollection();
+  const doc = await users.findOne({ _id: new ObjectId(userId) }, { projection: { sessionVersion: 1 } });
+  return doc ? (doc.sessionVersion ?? 0) : null;
+}
+
+// Logs the user out everywhere: every cookie issued before this stops matching. Returns the new version.
+export async function clearUserSessions(userId: string): Promise<number> {
+  const users = await usersCollection();
+  const doc = await users.findOneAndUpdate(
+    { _id: new ObjectId(userId) },
+    { $inc: { sessionVersion: 1 } },
+    { returnDocument: "after", projection: { sessionVersion: 1 } },
+  );
+  return doc?.sessionVersion ?? 0;
 }
 
 // Public profiles for a list of user ids, by id
@@ -103,11 +132,21 @@ export async function createUser(input: {
     const { insertedId } = await users.insertOne(user);
     return toAuthor({ _id: insertedId, ...user });
   } catch (error) {
-    if ((error as { code?: number }).code === 11000) {
+    const duplicate = error as { code?: number; keyPattern?: Record<string, number> };
+    if (duplicate.code === 11000) {
+      // A clashing username is safe to name (the user picked it). A clashing email is not: a clear
+      // message there would let anyone check which emails have an account, so it stays generic.
+      if (duplicate.keyPattern?.hiddenName) {
+        throw createError({
+          statusCode: 409,
+          statusMessage: "That username is already taken",
+          data: { messageKey: "auth.errors.usernameTaken" },
+        });
+      }
       throw createError({
         statusCode: 409,
-        statusMessage: "That email or username is already taken",
-        data: { messageKey: "auth.errors.taken" },
+        statusMessage: "Could not create your account",
+        data: { messageKey: "auth.errors.signupFailed" },
       });
     }
     throw error;

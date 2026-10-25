@@ -16,7 +16,7 @@
       "usernameFormat": "Användarnamnet måste vara 3–20 tecken: a–z, 0–9 och _.",
       "emailInvalid": "Ange en giltig e-postadress.",
       "passwordLength": "Lösenordet måste vara 8–128 tecken.",
-      "taken": "E-postadressen eller användarnamnet är redan upptaget."
+      "usernameTaken": "Det användarnamnet är upptaget."
     }
   },
   "feed": { "matching": "Recept som matchar ”{query}”", "noMatches": "Inga recept matchar ”{query}”.", "showAll": "Visa alla", "title": "Recept", "introTitle": "Recept från hemmakockar", "intro": "Se vad folk lagar, med receptet i varje inlägg.", "introJoin": "Skapa ett konto och dela dina egna", "empty": "Inga recept än.", "emptyPost": "Lägg upp det första", "emptyJoin": "Skapa ett konto och lägg upp det första", "loading": "Laddar recept…", "loadFailed": "Det gick inte att ladda recepten.", "retry": "Försök igen", "tabsLabel": "Flöde", "latest": "Senaste", "discover": "Upptäck", "following": "Följer", "followingEmpty": "Inget här än. Följ kockar för att se deras nya recept här.", "findCooks": "Hitta kockar under Upptäck", "showMore": "Visa fler recept", "loadingMore": "Laddar…", "loadMoreFailed": "Det gick inte att ladda fler recept. Försök igen." },
@@ -80,5 +80,6 @@
     "stepsRequired": "Lägg till minst ett steg", "stepsMax": "Lägg till högst {steps} steg", "stepTooLong": "Ett steg är för långt",
     "servingsMax": "Håll portioner under {servings} tecken", "timeInvalid": "Ange tiden i hela minuter"
   },
-  "errors": { "tooManyRequests": "För många försök. Vänta några minuter och försök igen." }
+  "errors": { "tooManyRequests": "För många försök. Vänta några minuter och försök igen." },
+  "error": { "title404": "Sidan hittades inte", "message404": "Vi kunde inte hitta den sidan.", "titleGeneric": "Något gick fel", "messageGeneric": "Försök igen om en stund.", "backHome": "Tillbaka till GoodPlates" }
 }

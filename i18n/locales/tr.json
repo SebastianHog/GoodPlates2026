@@ -16,7 +16,7 @@
       "usernameFormat": "Kullanıcı adı 3–20 karakter olmalı: a–z, 0–9 ve _.",
       "emailInvalid": "Geçerli bir e-posta adresi gir.",
       "passwordLength": "Şifre 8–128 karakter olmalı.",
-      "taken": "Bu e-posta veya kullanıcı adı zaten kullanılıyor."
+      "usernameTaken": "Bu kullanıcı adı zaten alınmış."
     }
   },
   "feed": { "matching": "“{query}” ile eşleşen tarifler", "noMatches": "“{query}” ile eşleşen tarif yok.", "showAll": "Tümünü göster", "title": "Tarifler", "introTitle": "Ev aşçılarından tarifler", "intro": "İnsanların ne pişirdiğini görün; her gönderide tarifi de var.", "introJoin": "Kaydolun, kendi tariflerinizi paylaşın", "empty": "Henüz tarif yok.", "emptyPost": "İlk tarifi siz paylaşın", "emptyJoin": "Kaydolun ve ilk tarifi paylaşın", "loading": "Tarifler yükleniyor…", "loadFailed": "Tarifler yüklenemedi.", "retry": "Tekrar dene", "tabsLabel": "Akış", "latest": "En yeni", "discover": "Keşfet", "following": "Takip", "followingEmpty": "Henüz bir şey yok. Yeni tariflerini burada görmek için aşçıları takip edin.", "findCooks": "Keşfet'te aşçı bulun", "showMore": "Daha fazla tarif göster", "loadingMore": "Yükleniyor…", "loadMoreFailed": "Daha fazla tarif yüklenemedi. Tekrar deneyin." },
@@ -80,5 +80,6 @@
     "stepsRequired": "En az bir adım ekle", "stepsMax": "En fazla {steps} adım ekle", "stepTooLong": "Bir adım çok uzun",
     "servingsMax": "Porsiyon {servings} karakterden kısa olmalı", "timeInvalid": "Süreyi tam dakika olarak gir"
   },
-  "errors": { "tooManyRequests": "Çok fazla deneme yapıldı. Birkaç dakika bekleyip tekrar deneyin." }
+  "errors": { "tooManyRequests": "Çok fazla deneme yapıldı. Birkaç dakika bekleyip tekrar deneyin." },
+  "error": { "title404": "Sayfa bulunamadı", "message404": "Bu sayfayı bulamadık.", "titleGeneric": "Bir şeyler ters gitti", "messageGeneric": "Lütfen birazdan tekrar deneyin.", "backHome": "GoodPlates’e dön" }
 }

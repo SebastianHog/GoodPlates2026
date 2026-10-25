@@ -16,7 +16,7 @@
       "usernameFormat": "Je gebruikersnaam moet 3–20 tekens lang zijn: a–z, 0–9 en _.",
       "emailInvalid": "Vul een geldig e-mailadres in.",
       "passwordLength": "Je wachtwoord moet 8–128 tekens lang zijn.",
-      "taken": "Dat e-mailadres of die gebruikersnaam is al in gebruik."
+      "usernameTaken": "Die gebruikersnaam is al in gebruik."
     }
   },
   "feed": { "matching": "Recepten met „{query}”", "noMatches": "Geen recepten gevonden voor „{query}”.", "showAll": "Alles tonen", "title": "Recepten", "introTitle": "Recepten van thuiskoks", "intro": "Zie wat mensen koken, met het recept bij elk bericht.", "introJoin": "Meld je aan om je eigen recepten te delen", "empty": "Nog geen recepten.", "emptyPost": "Plaats het eerste", "emptyJoin": "Meld je aan om het eerste te plaatsen", "loading": "Recepten laden…", "loadFailed": "De recepten konden niet worden geladen.", "retry": "Opnieuw proberen", "tabsLabel": "Feed", "latest": "Nieuwste", "discover": "Ontdekken", "following": "Volgend", "followingEmpty": "Nog niets hier. Volg koks om hier hun nieuwe recepten te zien.", "findCooks": "Vind koks via Ontdekken", "showMore": "Meer recepten tonen", "loadingMore": "Laden…", "loadMoreFailed": "Kon geen meer recepten laden. Probeer het opnieuw." },
@@ -80,5 +80,6 @@
     "stepsRequired": "Voeg minstens één stap toe", "stepsMax": "Voeg maximaal {steps} stappen toe", "stepTooLong": "Eén stap is te lang",
     "servingsMax": "Houd de porties korter dan {servings} tekens", "timeInvalid": "Vul de tijd in hele minuten in"
   },
-  "errors": { "tooManyRequests": "Te veel pogingen. Wacht een paar minuten en probeer het opnieuw." }
+  "errors": { "tooManyRequests": "Te veel pogingen. Wacht een paar minuten en probeer het opnieuw." },
+  "error": { "title404": "Pagina niet gevonden", "message404": "We konden die pagina niet vinden.", "titleGeneric": "Er ging iets mis", "messageGeneric": "Probeer het zo meteen opnieuw.", "backHome": "Terug naar GoodPlates" }
 }

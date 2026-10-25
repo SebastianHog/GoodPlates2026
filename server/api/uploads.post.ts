@@ -9,7 +9,7 @@ const MAX_PIXELS = 50_000_000;
 
 // Uploads one photo to Garage in every size from IMAGE_WIDTHS and returns its key
 export default defineEventHandler(async (event): Promise<{ key: string }> => {
-  await requireUserSession(event);
+  const { user } = await requireUserSession(event);
   const parts = await readMultipartFormData(event);
   const file = parts?.find((part) => part.name === "image" && part.filename);
 
@@ -73,6 +73,12 @@ export default defineEventHandler(async (event): Promise<{ key: string }> => {
 
   await Promise.all(
     resized.map((body, index) => putObject(`${key}-${IMAGE_WIDTHS[index]}.webp`, body, "image/webp")),
+  );
+
+  // Tie the photo to its uploader so only they can post it, and tidy up their day-old unused uploads
+  await recordUpload(key, user.id);
+  await sweepOrphanUploads(user.id).catch((error) =>
+    console.warn("Could not sweep orphaned uploads:", error),
   );
 
   return { key };
