@@ -120,7 +120,9 @@
     "details": {
       "ingredients": "Ingredients",
       "steps": "Steps",
-      "clear": "Clear ticks"
+      "clear": "Clear ticks",
+      "ticked": "{done} of {total} ticked",
+      "closeIngredients": "Close ingredients"
     },
     "share": "Share",
     "shareLabel": "Share {title}",

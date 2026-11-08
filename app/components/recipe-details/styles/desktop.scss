@@ -9,4 +9,9 @@
     position: sticky;
     top: $space-6;
   }
+
+  // the ingredient column stays pinned on wide screens, so there's no need for the bar
+  &__peek {
+    display: none;
+  }
 }

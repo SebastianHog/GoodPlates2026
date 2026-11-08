@@ -3,6 +3,7 @@
 
 .share-button {
   @include icon-button;
+  @include touch-size;
 
   &__icon {
     --icon-stroke: 1.75;

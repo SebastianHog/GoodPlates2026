@@ -33,7 +33,7 @@
     "bookmarkTooltip": "Bewaren",
     "removeBookmarkTooltip": "Uit bladwijzers halen",
     "summary": { "ingredients": "{n} ingrediënt | {n} ingrediënten", "steps": "{n} stap | {n} stappen", "minutes": "{n} min", "hours": "{n} uur", "hoursMinutes": "{h} uur {m} min" },
-    "details": { "ingredients": "Ingrediënten", "steps": "Bereiding", "clear": "Vinkjes wissen" },
+    "details": { "ingredients": "Ingrediënten", "steps": "Bereiding", "clear": "Vinkjes wissen", "ticked": "{done} van {total} afgevinkt", "closeIngredients": "Ingrediënten sluiten" },
     "share": "Delen",
     "shareLabel": "{title} delen",
     "linkCopied": "Link gekopieerd.",

@@ -62,6 +62,7 @@
 
   &__action {
     @include text-link;
+    @include touch-area;
 
     padding: 0;
     border: none;

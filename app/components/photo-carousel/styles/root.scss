@@ -45,6 +45,10 @@
     display: flex;
     justify-content: center;
     padding: $space-8 0 $space-1;
+
+    @media (pointer: coarse) {
+      padding-bottom: 0;
+    }
     background: linear-gradient(to top, rgb($color-text, 0.35), transparent);
     pointer-events: none;
   }
@@ -59,6 +63,12 @@
     background: none;
     cursor: pointer;
     pointer-events: auto;
+
+    // a full thumb-sized target per dot on touch; at most 6 photos, so the row still fits a phone
+    @media (pointer: coarse) {
+      width: 2.75rem;
+      height: 2.75rem;
+    }
 
     &::before {
       content: "";

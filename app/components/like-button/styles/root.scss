@@ -3,6 +3,7 @@
 
 .like-button {
   @include icon-button;
+  @include touch-size;
   padding-inline: $space-2;
   font-size: $font-size-sm;
   font-weight: $font-weight-medium;

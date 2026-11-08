@@ -16,6 +16,7 @@
 
   &__name {
     @include text-link;
+    @include touch-area(0.75rem, 0.25rem);
 
     width: fit-content;
     overflow-wrap: anywhere;

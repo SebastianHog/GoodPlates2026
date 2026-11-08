@@ -33,7 +33,7 @@
     "bookmarkTooltip": "Bokmärk",
     "removeBookmarkTooltip": "Ta bort bokmärke",
     "summary": { "ingredients": "{n} ingrediens | {n} ingredienser", "steps": "{n} steg | {n} steg", "minutes": "{n} min", "hours": "{n} tim", "hoursMinutes": "{h} tim {m} min" },
-    "details": { "ingredients": "Ingredienser", "steps": "Gör så här", "clear": "Rensa bockar" },
+    "details": { "ingredients": "Ingredienser", "steps": "Gör så här", "clear": "Rensa bockar", "ticked": "{done} av {total} avbockade", "closeIngredients": "Stäng ingredienser" },
     "share": "Dela",
     "shareLabel": "Dela {title}",
     "linkCopied": "Länken kopierad.",

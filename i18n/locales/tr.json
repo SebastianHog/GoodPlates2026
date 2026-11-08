@@ -33,7 +33,7 @@
     "bookmarkTooltip": "Yer imlerine ekle",
     "removeBookmarkTooltip": "Yer iminden kaldır",
     "summary": { "ingredients": "{n} malzeme | {n} malzeme", "steps": "{n} adım | {n} adım", "minutes": "{n} dk", "hours": "{n} sa", "hoursMinutes": "{h} sa {m} dk" },
-    "details": { "ingredients": "Malzemeler", "steps": "Hazırlanışı", "clear": "İşaretleri temizle" },
+    "details": { "ingredients": "Malzemeler", "steps": "Hazırlanışı", "clear": "İşaretleri temizle", "ticked": "{done}/{total} işaretli", "closeIngredients": "Malzemeleri kapat" },
     "share": "Paylaş",
     "shareLabel": "{title} tarifini paylaş",
     "linkCopied": "Bağlantı kopyalandı.",

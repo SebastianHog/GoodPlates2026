@@ -33,7 +33,7 @@
     "bookmarkTooltip": "Guardar",
     "removeBookmarkTooltip": "Quitar de guardados",
     "summary": { "ingredients": "{n} ingrediente | {n} ingredientes", "steps": "{n} paso | {n} pasos", "minutes": "{n} min", "hours": "{n} h", "hoursMinutes": "{h} h {m} min" },
-    "details": { "ingredients": "Ingredientes", "steps": "Preparación", "clear": "Quitar marcas" },
+    "details": { "ingredients": "Ingredientes", "steps": "Preparación", "clear": "Quitar marcas", "ticked": "{done} de {total} marcados", "closeIngredients": "Cerrar ingredientes" },
     "share": "Compartir",
     "shareLabel": "Compartir {title}",
     "linkCopied": "Enlace copiado.",

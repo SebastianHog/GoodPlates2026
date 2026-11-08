@@ -48,7 +48,8 @@
     place-items: center;
     width: 1.5rem;
     height: 1.5rem;
-    border: 1.5px solid $color-border-secondary;
+    // muted ink: about 5:1 on white, so the empty box is easy to see from across the counter
+    border: 1.5px solid $color-text-muted;
     border-radius: $radius-sm;
     background: $color-surface;
     color: $color-primary;
@@ -132,5 +133,155 @@
     font-size: $font-size-sm;
     font-weight: $font-weight-semibold;
     cursor: pointer;
+  }
+
+  // a zero-height marker after the last step; the ingredients bar hides when it scrolls into view
+  &__steps-end {
+    display: block;
+    height: 1px;
+  }
+
+  // Bar pinned to the bottom of the screen while the steps are in view (phones only)
+  &__peek {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    width: 100%;
+    min-height: 3.25rem;
+    padding: $space-2 $space-6 max(#{$space-2}, env(safe-area-inset-bottom));
+    border: none;
+    border-top: 1px solid $color-border;
+    background: $color-surface;
+    box-shadow: 0 -6px 16px -10px rgb($color-text, 0.25);
+    color: $color-text;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: background $transition-fast;
+
+    &:active {
+      background: $color-paper;
+    }
+
+    @include focus-ring(-4px);
+  }
+
+  &__peek-label {
+    font-weight: $font-weight-semibold;
+  }
+
+  &__peek-count {
+    flex: 1;
+    min-width: 0;
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__peek-icon {
+    color: $color-primary;
+  }
+
+  &__peek-enter-active,
+  &__peek-leave-active {
+    transition: transform 250ms $ease-out;
+  }
+
+  &__peek-enter-from,
+  &__peek-leave-to {
+    transform: translateY(100%);
+  }
+
+  // Bottom sheet holding a second, synced copy of the ingredient checklist
+  &__sheet {
+    width: 100%;
+    max-width: none;
+    max-height: min(75dvh, 40rem);
+    margin: auto 0 0;
+    padding: 0;
+    border: none;
+    border-top: 1px solid $color-border;
+    background: $color-surface;
+    box-shadow: 0 -12px 32px -12px rgb($color-text, 0.3);
+    color: $color-text;
+    transform: translateY(100%);
+    transition:
+      transform 300ms $ease-out,
+      overlay 300ms allow-discrete,
+      display 300ms allow-discrete;
+
+    &[open] {
+      transform: none;
+
+      @starting-style {
+        transform: translateY(100%);
+      }
+    }
+
+    &::backdrop {
+      background: rgb($color-text, 0);
+      transition:
+        background 300ms $ease-out,
+        overlay 300ms allow-discrete,
+        display 300ms allow-discrete;
+    }
+
+    &[open]::backdrop {
+      background: rgb($color-text, 0.4);
+
+      @starting-style {
+        background: rgb($color-text, 0);
+      }
+    }
+  }
+
+  &__sheet-panel {
+    max-height: inherit;
+    padding: 0 $space-6 max(#{$space-4}, env(safe-area-inset-bottom));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  &__sheet-header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-3;
+    padding: $space-3 0 $space-2;
+    border-bottom: 1px solid $color-border;
+    background: $color-surface;
+
+    .recipe-details__heading {
+      margin: 0;
+    }
+  }
+
+  &__sheet-close {
+    @include icon-button;
+    @include touch-size;
+
+    flex: none;
+    margin-right: -$space-2;
+  }
+}
+
+// keep the page behind the sheet still
+:root:has(.recipe-details__sheet[open]) {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .recipe-details__peek,
+  .recipe-details__sheet,
+  .recipe-details__sheet::backdrop {
+    transition-duration: 0s !important;
   }
 }

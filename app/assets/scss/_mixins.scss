@@ -66,6 +66,28 @@
   }
 }
 
+// On touch screens, grows a small control to a 44px box so a thumb (or a floury finger) hits it
+@mixin touch-size {
+  @media (pointer: coarse) {
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+  }
+}
+
+// On touch screens, widens the tappable area of a small text control without moving anything.
+// Keep $x at or under half the gap to the next control so the areas don't overlap.
+@mixin touch-area($y: 0.75rem, $x: 0.375rem) {
+  @media (pointer: coarse) {
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: -$y (-$x);
+    }
+  }
+}
+
 // Small borderless button holding an icon (and sometimes a count)
 @mixin icon-button {
   display: inline-flex;
