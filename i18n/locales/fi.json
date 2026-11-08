@@ -113,6 +113,7 @@
     "replyLogin": "Kirjaudu sisään vastataksesi kommentteihin.",
     "showMore": "Näytä lisää kommentteja",
     "loadMoreFailed": "Lisää kommentteja ei voitu ladata. Yritä uudelleen.",
-    "validation": { "required": "Kirjoita ensin jotain", "tooLong": "Pidä kommentit alle {body} merkissä" }
+    "validation": { "required": "Kirjoita ensin jotain", "tooLong": "Pidä kommentit alle {body} merkissä" },
+    "errors": { "postMissing": "Reseptiä ei löytynyt.", "commentMissing": "Tämä kommentti on poistettu.", "notYours": "Voit poistaa vain omia kommenttejasi tai resepteihisi jätettyjä kommentteja.", "threadFull": "Tässä keskustelussa on {replies} vastausta, mikä on enimmäismäärä." }
   }
 }

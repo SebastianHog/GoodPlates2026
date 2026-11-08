@@ -38,6 +38,14 @@ const RULES: {
     windowMs: 60 * MINUTE,
     matches: (event, path) => event.method === "POST" && path === "/api/posts",
   },
+  // Enough for a lively conversation, not for flooding a post
+  {
+    name: "comment",
+    max: 30,
+    windowMs: 10 * MINUTE,
+    matches: (event, path) =>
+      event.method === "POST" && /^\/api\/posts\/[^/]+\/comments$/.test(path),
+  },
   {
     name: "write",
     max: 120,

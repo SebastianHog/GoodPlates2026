@@ -113,6 +113,7 @@
     "replyLogin": "Inicia sesión para responder a comentarios.",
     "showMore": "Mostrar más comentarios",
     "loadMoreFailed": "No se pudieron cargar más comentarios. Inténtalo de nuevo.",
-    "validation": { "required": "Escribe algo primero", "tooLong": "Los comentarios deben tener menos de {body} caracteres" }
+    "validation": { "required": "Escribe algo primero", "tooLong": "Los comentarios deben tener menos de {body} caracteres" },
+    "errors": { "postMissing": "No se encontró esta receta.", "commentMissing": "Este comentario se eliminó.", "notYours": "Solo puedes eliminar tus propios comentarios o los comentarios en tus recetas.", "threadFull": "Esta conversación tiene {replies} respuestas, el máximo posible." }
   }
 }

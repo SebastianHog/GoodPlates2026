@@ -241,7 +241,7 @@ async function unusedImages(keys: string[]): Promise<string[]> {
   return keys.filter((_, index) => !stillUsed[index]);
 }
 
-// Removes a post with its likes, bookmarks and cooks, only when `authorId` wrote it.
+// Removes a post with its likes, bookmarks, cooks and comments, only when `authorId` wrote it.
 // Returns the photo keys no other post uses
 export async function deletePost(
   id: string,
@@ -257,11 +257,12 @@ export async function deletePost(
     return whyNotOwn(id);
   }
 
-  await Promise.all(
-    (["likes", "bookmarks", "cooks"] as const).map(async (kind) =>
+  await Promise.all([
+    ...(["likes", "bookmarks", "cooks"] as const).map(async (kind) =>
       (await marksCollection(kind)).deleteMany({ postId: id }),
     ),
-  );
+    deletePostComments(id),
+  ]);
 
   return unusedImages(doc.images);
 }

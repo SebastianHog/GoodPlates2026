@@ -113,6 +113,7 @@
     "replyLogin": "Yorumlara yanıt vermek için giriş yapın.",
     "showMore": "Daha fazla yorum göster",
     "loadMoreFailed": "Daha fazla yorum yüklenemedi. Tekrar deneyin.",
-    "validation": { "required": "Önce bir şey yazın", "tooLong": "Yorumlar {body} karakterden kısa olmalı" }
+    "validation": { "required": "Önce bir şey yazın", "tooLong": "Yorumlar {body} karakterden kısa olmalı" },
+    "errors": { "postMissing": "Bu tarif bulunamadı.", "commentMissing": "Bu yorum silindi.", "notYours": "Yalnızca kendi yorumlarınızı veya tariflerinize yapılan yorumları silebilirsiniz.", "threadFull": "Bu konuşmada {replies} yanıt var, olabilecek en fazla sayı." }
   }
 }

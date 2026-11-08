@@ -408,6 +408,12 @@
     "validation": {
       "required": "Write something first",
       "tooLong": "Keep comments under {body} characters"
+    },
+    "errors": {
+      "postMissing": "This recipe could not be found.",
+      "commentMissing": "This comment was deleted.",
+      "notYours": "You can only delete your own comments, or comments on your recipes.",
+      "threadFull": "This conversation has {replies} replies, the most it can have."
     }
   }
 }

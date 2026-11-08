@@ -113,6 +113,7 @@
     "replyLogin": "Log in om op reacties te antwoorden.",
     "showMore": "Meer reacties tonen",
     "loadMoreFailed": "Kon niet meer reacties laden. Probeer het opnieuw.",
-    "validation": { "required": "Schrijf eerst iets", "tooLong": "Houd reacties onder {body} tekens" }
+    "validation": { "required": "Schrijf eerst iets", "tooLong": "Houd reacties onder {body} tekens" },
+    "errors": { "postMissing": "Dit recept is niet gevonden.", "commentMissing": "Deze reactie is verwijderd.", "notYours": "Je kunt alleen je eigen reacties verwijderen, of reacties op je recepten.", "threadFull": "Dit gesprek heeft {replies} antwoorden, het maximum." }
   }
 }

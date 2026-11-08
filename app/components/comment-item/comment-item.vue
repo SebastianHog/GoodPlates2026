@@ -4,9 +4,10 @@
 
     <div class="comment-item__main">
       <header class="comment-item__header">
-        <NuxtLink :to="`/u/${comment.author.hiddenName}`" class="comment-item__name">
+        <NuxtLink v-if="comment.author.hiddenName" :to="`/u/${comment.author.hiddenName}`" class="comment-item__name">
           {{ comment.author.displayName }}
         </NuxtLink>
+        <span v-else class="comment-item__name">{{ comment.author.displayName }}</span>
         <span v-if="comment.author.id === postAuthorId" class="comment-item__badge">
           {{ $t("comments.authorBadge") }}
         </span>
@@ -19,6 +20,7 @@
 
       <div class="comment-item__actions">
         <button
+          v-if="!reply"
           type="button"
           class="comment-item__action"
           :aria-label="$t('comments.replyTo', { name: comment.author.displayName })"

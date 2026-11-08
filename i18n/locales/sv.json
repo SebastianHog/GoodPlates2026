@@ -113,6 +113,7 @@
     "replyLogin": "Logga in för att svara på kommentarer.",
     "showMore": "Visa fler kommentarer",
     "loadMoreFailed": "Kunde inte ladda fler kommentarer. Försök igen.",
-    "validation": { "required": "Skriv något först", "tooLong": "Håll kommentarer under {body} tecken" }
+    "validation": { "required": "Skriv något först", "tooLong": "Håll kommentarer under {body} tecken" },
+    "errors": { "postMissing": "Receptet hittades inte.", "commentMissing": "Kommentaren har tagits bort.", "notYours": "Du kan bara ta bort dina egna kommentarer, eller kommentarer på dina recept.", "threadFull": "Den här tråden har {replies} svar, det högsta antalet." }
   }
 }

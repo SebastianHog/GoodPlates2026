@@ -28,7 +28,7 @@
           :post-author-id="postAuthorId"
           :can-delete="canDelete(thread)"
           :deleting="deletingId === thread.id"
-          @reply="openReply(thread, thread)"
+          @reply="openReply(thread)"
           @delete="remove(thread)"
         />
 
@@ -40,7 +40,6 @@
               :can-delete="canDelete(reply)"
               :deleting="deletingId === reply.id"
               reply
-              @reply="openReply(thread, reply)"
               @delete="remove(reply, thread)"
             />
           </li>
@@ -127,26 +126,41 @@ async function addComment(body: string) {
   threads.value.unshift({ ...comment, replies: [] });
 }
 
-// Replying to a reply opens the box under the same thread, as replies only go one level deep
+// Only top comments can be replied to, as replies go one level deep
 const replyingTo = ref<{ threadId: string; name: string; key: number } | null>(null);
 
-function openReply(thread: ICommentThread, comment: IComment) {
+function openReply(thread: ICommentThread) {
   if (!loggedIn.value) {
     showToast(t("comments.replyLogin"), { tone: "info", action: { label: t("toast.logIn"), to: loginUrl.value } });
     return;
   }
-  replyingTo.value = { threadId: thread.id, name: comment.author.displayName, key: Date.now() };
+  replyingTo.value = { threadId: thread.id, name: thread.author.displayName, key: Date.now() };
 }
 
 async function addReply(thread: ICommentThread, body: string) {
-  const reply = await send(body, thread.id);
-  thread.replies.push(reply);
-  replyingTo.value = null;
+  try {
+    thread.replies.push(await send(body, thread.id));
+    replyingTo.value = null;
+  } catch (e) {
+    // Someone deleted the comment meanwhile, so the thread is gone
+    if (errorKey(e) === "comments.errors.commentMissing") dropLocally(thread);
+    throw e;
+  }
 }
 
 // Deleting
 
 const deletingId = ref<string | null>(null);
+
+// Takes a comment off the page; a top comment takes its replies (and an open reply box) with it
+function dropLocally(comment: IComment, thread?: ICommentThread) {
+  if (thread) {
+    thread.replies = thread.replies.filter((reply) => reply.id !== comment.id);
+    return;
+  }
+  threads.value = threads.value.filter((top) => top.id !== comment.id);
+  if (replyingTo.value?.threadId === comment.id) replyingTo.value = null;
+}
 
 async function remove(comment: IComment, thread?: ICommentThread) {
   const hasReplies = !thread && (comment as ICommentThread).replies.length > 0;
@@ -155,12 +169,13 @@ async function remove(comment: IComment, thread?: ICommentThread) {
   deletingId.value = comment.id;
   try {
     await $fetch(`${url.value}/${comment.id}`, { method: "DELETE" });
-    if (thread) thread.replies = thread.replies.filter((reply) => reply.id !== comment.id);
-    else threads.value = threads.value.filter((top) => top.id !== comment.id);
-    if (!thread && replyingTo.value?.threadId === comment.id) replyingTo.value = null;
+    dropLocally(comment, thread);
     showToast(t("comments.deleted"), { tone: "info" });
   } catch (e) {
-    showToast(t(errorKey(e) ?? "comments.deleteFailed"));
+    const key = errorKey(e);
+    // Already gone (deleted elsewhere): what was asked for has happened
+    if (key === "comments.errors.commentMissing") dropLocally(comment, thread);
+    else showToast(t(key ?? "comments.deleteFailed"));
   } finally {
     deletingId.value = null;
   }
