@@ -1,6 +1,8 @@
 <template>
-  <div class="photo-carousel">
+  <div class="photo-carousel" :class="{ 'photo-carousel--empty': !images.length }">
+    <photo-placeholder v-if="!images.length" class="photo-carousel__placeholder" />
     <div
+      v-else
       ref="track"
       class="photo-carousel__track"
       :role="hasSeveral ? 'region' : undefined"
@@ -36,7 +38,8 @@
 </template>
 
 <script setup lang="ts">
-// Square photos that scroll sideways; the dots follow the scroll and jump to a photo
+// Square photos that scroll sideways; the dots follow the scroll and jump to a photo.
+// A post without photos gets a placeholder instead
 const props = defineProps<{
   images: string[];
   title: string;

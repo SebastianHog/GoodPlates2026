@@ -70,7 +70,7 @@
     "add": "Yemeğinin fotoğraflarını ekle", "addHint": "Buraya sürükle ya da dosya seç · en fazla {max}", "addMore": "Fotoğraf ekle",
     "uploading": "Yükleniyor…", "failed": "Başarısız", "retry": "Tekrar dene",
     "moveLeft": "{index}. fotoğrafı sola taşı", "moveRight": "{index}. fotoğrafı sağa taşı", "remove": "{index}. fotoğrafı kaldır",
-    "count": "{count}/{max} fotoğraf", "reorderHint": "ilki kapak fotoğrafıdır, sıralamak için sürükle ya da okları kullan",
+    "count": "{count}/{max} fotoğraf", "reorderHint": "ilki kapak fotoğrafıdır, sıralamak için sürükle ya da okları kullan", "optionalHint": "isteğe bağlı, ancak fotoğrafsız tarifler En yeni ve Keşfet sekmelerinde görünmez",
     "tooMany": "Yalnızca {max} fotoğraf sığar; kalanlar atlandı"
   },
   "validation": {

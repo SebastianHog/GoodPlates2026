@@ -42,8 +42,8 @@ export function validatePostInput(
   const time = body.totalTimeMinutes;
   const totalTimeMinutes = time === null || time === undefined || time === "" ? null : Number(time);
 
-  if (images.length === 0) errors.images = "validation.photosRequired";
-  else if (images.length > POST_LIMITS.photos) errors.images = "validation.photosMax";
+  // Photos are optional, but posts without one stay out of Latest and Discover
+  if (images.length > POST_LIMITS.photos) errors.images = "validation.photosMax";
   else if (!images.every((key) => IMAGE_KEY_PATTERN.test(key))) errors.images = "validation.photoBroken";
 
   if (!title) errors.title = "validation.titleRequired";

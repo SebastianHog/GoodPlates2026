@@ -8,8 +8,10 @@
     <ul class="author-posts__list">
       <li v-for="post in others" :key="post.id">
         <NuxtLink :to="`/posts/${post.id}`" class="author-posts__link">
+          <photo-placeholder v-if="!post.images[0]" class="author-posts__photo" />
           <img
-            v-bind="imageSources(post.images[0]!)"
+            v-else
+            v-bind="imageSources(post.images[0])"
             sizes="(min-width: 52em) 18rem, 33vw"
             alt=""
             class="author-posts__photo"

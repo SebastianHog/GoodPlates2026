@@ -70,7 +70,7 @@
     "add": "Voeg foto's van je gerecht toe", "addHint": "Sleep ze hierheen of kies bestanden · maximaal {max}", "addMore": "Foto's toevoegen",
     "uploading": "Uploaden…", "failed": "Mislukt", "retry": "Opnieuw proberen",
     "moveLeft": "Foto {index} naar links", "moveRight": "Foto {index} naar rechts", "remove": "Foto {index} verwijderen",
-    "count": "{count} van {max} foto's", "reorderHint": "de eerste is de omslag, sleep of gebruik de pijlen om de volgorde te wijzigen",
+    "count": "{count} van {max} foto's", "reorderHint": "de eerste is de omslag, sleep of gebruik de pijlen om de volgorde te wijzigen", "optionalHint": "optioneel, maar recepten zonder foto verschijnen niet in Nieuwste of Ontdekken",
     "tooMany": "Er passen maar {max} foto's; de rest is overgeslagen"
   },
   "validation": {

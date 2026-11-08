@@ -18,6 +18,15 @@
     @include focus-ring(-2px);
   }
 
+  // Shorter on phones, where a full square of nothing would push the recipe down
+  &__placeholder {
+    aspect-ratio: 5 / 2;
+
+    @media #{$mq-min-width-mobile} {
+      aspect-ratio: 1;
+    }
+  }
+
   &__image {
     display: block;
     flex: 0 0 100%;

@@ -70,7 +70,7 @@
     "add": "Lisää kuvia ruoastasi", "addHint": "Vedä ne tähän tai valitse tiedostot · enintään {max}", "addMore": "Lisää kuvia",
     "uploading": "Ladataan…", "failed": "Epäonnistui", "retry": "Yritä uudelleen",
     "moveLeft": "Siirrä kuvaa {index} vasemmalle", "moveRight": "Siirrä kuvaa {index} oikealle", "remove": "Poista kuva {index}",
-    "count": "{count}/{max} kuvaa", "reorderHint": "ensimmäinen on kansikuva, vedä tai käytä nuolia järjestyksen muuttamiseen",
+    "count": "{count}/{max} kuvaa", "reorderHint": "ensimmäinen on kansikuva, vedä tai käytä nuolia järjestyksen muuttamiseen", "optionalHint": "vapaaehtoinen, mutta reseptit ilman kuvaa eivät näy Uusimmat- tai Löydä-näkymissä",
     "tooMany": "Vain {max} kuvaa mahtuu; loput ohitettiin"
   },
   "validation": {

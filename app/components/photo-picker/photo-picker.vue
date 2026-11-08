@@ -85,6 +85,7 @@
     <p class="photo-picker__count">
       {{ $t("photos.count", { count: photos.length, max: POST_LIMITS.photos }) }}
       <template v-if="photos.length > 1">· {{ $t("photos.reorderHint") }}</template>
+      <template v-if="!photos.length">· {{ $t("photos.optionalHint") }}</template>
     </p>
     <p v-if="error || notice" :id="`${inputId}-error`" class="photo-picker__error">{{ error || notice }}</p>
 

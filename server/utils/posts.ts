@@ -110,6 +110,9 @@ function missingAuthor(stored: PostDocument["author"]): IAuthor {
   };
 }
 
+// Posts with at least one photo. Latest and Discover only show these
+export const WITH_PHOTO = { "images.0": { $exists: true } };
+
 // Newest first, a page at a time. With a search term, only posts whose title, recipe or author name contain it.
 // With a viewer, each post also says whether they liked, bookmarked and cooked it
 export async function getPosts({
@@ -129,6 +132,8 @@ export async function getPosts({
       ],
     }),
     ...(authorId && { "author.id": authorId }),
+    // Latest (no search, no author) only shows posts with a photo
+    ...(!term && !authorId && WITH_PHOTO),
   };
 
   return findPage(filter, viewerId, page);

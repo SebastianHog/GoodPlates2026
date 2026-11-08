@@ -3,7 +3,7 @@ import { ObjectId } from "mongodb";
 // Discover: posts that are popular and/or recent, slight randomness to it.
 // Score = activity in the last 2 weeks (bookmarks count double, cooks triple) + all-time likes and cooks, faded by age, times a random factor.
 // Posts the viewer wrote, liked, bookmarked or cooked go last, and the same author isn't shown twice in a row if it can be avoided
-// Only posts from the last POOL_DAYS, or with activity in the last DISCOVER_DAYS, are considered
+// Only posts with a photo from the last POOL_DAYS, or with activity in the last DISCOVER_DAYS, are considered
 const DISCOVER_DAYS = 14;
 const POOL_DAYS = 90;
 
@@ -24,6 +24,7 @@ export async function getDiscoverPosts(
   const posts = await postsCollection();
   const docs = await posts
     .find({
+      ...WITH_PHOTO,
       $or: [
         { createdAt: { $gte: daysAgo(POOL_DAYS) } },
         { _id: { $in: active.filter((id) => ObjectId.isValid(id)).map((id) => new ObjectId(id)) } },

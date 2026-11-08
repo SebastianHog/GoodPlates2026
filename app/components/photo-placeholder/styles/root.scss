@@ -1,0 +1,27 @@
+@use "~/assets/scss/tokens" as *;
+
+.photo-placeholder {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  background: $color-border;
+
+  &__plates {
+    width: min(38%, 8rem);
+    height: auto;
+    stroke: $color-border-secondary;
+    stroke-width: 1.5;
+    // Thin at every size, like a pencil line
+    vector-effect: non-scaling-stroke;
+
+    circle {
+      vector-effect: non-scaling-stroke;
+    }
+  }
+
+  // The front plate covers the one behind it
+  &__front {
+    fill: $color-border;
+  }
+}

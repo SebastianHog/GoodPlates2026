@@ -70,7 +70,7 @@
     "add": "Lägg till foton på din rätt", "addHint": "Dra hit dem eller välj filer · upp till {max}", "addMore": "Lägg till foton",
     "uploading": "Laddar upp…", "failed": "Misslyckades", "retry": "Försök igen",
     "moveLeft": "Flytta foto {index} åt vänster", "moveRight": "Flytta foto {index} åt höger", "remove": "Ta bort foto {index}",
-    "count": "{count} av {max} foton", "reorderHint": "det första är omslaget, dra eller använd pilarna för att ändra ordning",
+    "count": "{count} av {max} foton", "reorderHint": "det första är omslaget, dra eller använd pilarna för att ändra ordning", "optionalHint": "valfritt, men recept utan foto visas inte i Senaste eller Upptäck",
     "tooMany": "Bara {max} foton får plats; resten hoppades över"
   },
   "validation": {

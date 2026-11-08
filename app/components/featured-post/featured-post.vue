@@ -1,7 +1,9 @@
 <template>
   <figure class="featured-post">
+    <photo-placeholder v-if="!post.images[0]" class="featured-post__photo" />
     <img
-      v-bind="imageSources(post.images[0]!)"
+      v-else
+      v-bind="imageSources(post.images[0])"
       :sizes="sizes"
       :alt="post.title"
       class="featured-post__photo"

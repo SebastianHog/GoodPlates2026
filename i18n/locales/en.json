@@ -226,6 +226,7 @@
     "remove": "Remove photo {index}",
     "count": "{count} of {max} photos",
     "reorderHint": "first is the cover, drag or use the arrows to reorder",
+    "optionalHint": "optional, but recipes without a photo don't appear in Latest or Discover",
     "tooMany": "Only {max} photos fit; the rest were skipped"
   },
   "validation": {

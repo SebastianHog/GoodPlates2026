@@ -2,6 +2,12 @@
 @use "~/assets/scss/mixins" as *;
 
 .recipe-article {
+  @media not all and #{$mq-min-width-mobile} {
+    .booklet-spread__page--left:has(.photo-carousel--empty) {
+      display: none;
+    }
+  }
+
   &__title {
     @include headline;
   }
