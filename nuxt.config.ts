@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
-  modules: ["nuxt-auth-utils", "@nuxtjs/i18n"],
+  modules: ["nuxt-auth-utils", "@nuxtjs/i18n", "nuxt-security"],
   // Texts live in i18n/locales/<code>.json; the browser's language is picked when we have it
   i18n: {
     defaultLocale: "en",
@@ -22,13 +22,59 @@ export default defineNuxtConfig({
     "@fontsource-variable/figtree/wght.css",
     "~/assets/scss/main.scss",
   ],
-  // Basic hardening for every response: no MIME sniffing, and no framing by other sites (clickjacking)
-  routeRules: {
-    "/**": {
-      headers: {
-        "X-Content-Type-Options": "nosniff",
-        "X-Frame-Options": "DENY",
+  // Security headers on every response (nuxt-security). Its other features are off: the app has its own
+  // rate limits and body size limits, and recipe text may contain characters its XSS filter rejects
+  security: {
+    rateLimiter: false,
+    requestSizeLimiter: false,
+    xssValidator: false,
+    corsHandler: false,
+    removeLoggers: false,
+    headers: {
+      // Only scripts from this site run; inline ones need the per-page nonce Nuxt adds
+      contentSecurityPolicy: {
+        "default-src": ["'self'"],
+        "script-src": ["'self'", "'strict-dynamic'", "'nonce-{{nonce}}'"],
+        "script-src-attr": ["'none'"],
+        // Vue sets inline styles
+        "style-src": ["'self'", "'unsafe-inline'"],
+        // blob: for previews of photos picked in the editor
+        "img-src": ["'self'", "data:", "blob:"],
+        "font-src": ["'self'"],
+        "connect-src": ["'self'"],
+        "object-src": ["'none'"],
+        "base-uri": ["'none'"],
+        "form-action": ["'self'"],
+        "frame-ancestors": ["'none'"],
+        "upgrade-insecure-requests": true,
       },
+      strictTransportSecurity: { maxAge: 31536000, includeSubdomains: true },
+      xFrameOptions: "DENY",
+      referrerPolicy: "strict-origin-when-cross-origin",
+      crossOriginOpenerPolicy: "same-origin",
+      // Nothing is loaded from other sites, so this would only add a way to break things
+      crossOriginEmbedderPolicy: false,
+      // Turns off what the site never uses; wake lock (recipe pages), sharing and the clipboard stay allowed
+      permissionsPolicy: {
+        camera: [],
+        microphone: [],
+        geolocation: [],
+        "display-capture": [],
+        payment: [],
+        usb: [],
+      },
+    },
+  },
+  // The dev server's hot reload needs inline scripts and a websocket, so the CSP only applies to builds
+  $development: {
+    security: {
+      headers: { contentSecurityPolicy: false, strictTransportSecurity: false },
+    },
+  },
+  routeRules: {
+    // Link previews and other sites may show recipe photos
+    "/images/**": {
+      security: { headers: { crossOriginResourcePolicy: "cross-origin" } },
     },
   },
   runtimeConfig: {
