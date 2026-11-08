@@ -76,7 +76,7 @@
       height: 0.4375rem;
       border-radius: 50%;
       background: rgb($color-surface, 0.55);
-      box-shadow: 0 0 2px rgb(0 0 0 / 30%);
+      box-shadow: $shadow-on-photo;
       transition:
         background $transition-fast,
         transform $transition-fast;

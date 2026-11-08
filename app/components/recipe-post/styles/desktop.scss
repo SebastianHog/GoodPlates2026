@@ -43,13 +43,13 @@
 
       &::after {
         right: 0;
-        background: linear-gradient(to left, rgb(0 0 0 / 7%), transparent);
+        background: linear-gradient(to left, $fold-shade-left, transparent);
       }
     }
 
     &__text-page::after {
       left: 0;
-      background: linear-gradient(to right, rgb(0 0 0 / 5%), transparent);
+      background: linear-gradient(to right, $fold-shade-right, transparent);
     }
 
     &__title {

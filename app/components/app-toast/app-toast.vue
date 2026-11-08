@@ -18,13 +18,21 @@
         />
         <p class="app-toast__message">{{ toast.message }}</p>
         <NuxtLink
-          v-if="toast.action"
+          v-if="toast.action?.to"
           :to="toast.action.to"
           class="app-toast__action"
           @click="dismiss"
         >
           {{ toast.action.label }}
         </NuxtLink>
+        <button
+          v-else-if="toast.action"
+          type="button"
+          class="app-toast__action"
+          @click="runAction"
+        >
+          {{ toast.action.label }}
+        </button>
         <button
           type="button"
           class="app-toast__close"
@@ -44,6 +52,11 @@ const { duration = 5000 } = defineProps<{ duration?: number }>();
 const { toast, dismiss } = useToast();
 
 let timer: ReturnType<typeof setTimeout> | undefined;
+
+function runAction() {
+  toast.value?.action?.onClick?.();
+  dismiss();
+}
 
 function pause() {
   clearTimeout(timer);

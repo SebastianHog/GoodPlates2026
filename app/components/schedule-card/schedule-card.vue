@@ -19,7 +19,7 @@
         <NuxtLink :to="`/schedules/${id}`" class="schedule-card__link">{{ name }}</NuxtLink>
       </h3>
       <p class="schedule-card__meta">
-        <span v-if="!hideOwner">{{ $t("schedules.card.by", { name: owner.displayName }) }} · </span>
+        <span v-if="!hideOwner">{{ $t("schedules.card.by", { name: authorName(owner) }) }} · </span>
         {{ $t("schedules.card.days", dayCount) }} · {{ $t("schedules.card.recipes", recipeCount) }}
       </p>
       <p v-if="showStatus && (!isPublic || savedFrom)" class="schedule-card__tags">
@@ -35,6 +35,8 @@
 // A schedule in a list: the first recipes' photos, the name, and how big it is.
 // `showStatus` adds Private / Saved copy labels (for your own list); `hideOwner` drops the author (on their profile)
 defineProps<IScheduleSummary & { showStatus?: boolean; hideOwner?: boolean }>();
+
+const authorName = useAuthorName();
 </script>
 
 <style lang="scss" src="./styles.scss"></style>

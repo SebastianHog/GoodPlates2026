@@ -7,10 +7,14 @@
   border: 1px solid $color-border-secondary;
   border-radius: $radius-full;
 
+  &--deleted {
+    border-style: dashed;
+  }
+
   &--small {
     width: 1.25rem;
     height: 1.25rem;
-    font-size: 0.625rem;
+    font-size: $font-size-xs;
   }
   &--medium {
     width: 1.75rem;

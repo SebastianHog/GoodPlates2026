@@ -16,7 +16,7 @@
           {{ post.title }}
         </NuxtLink>
         <span v-else class="schedule-recipe__title">{{ post.title }}</span>
-        <span class="schedule-recipe__author">{{ post.author.displayName }}</span>
+        <span class="schedule-recipe__author">{{ authorName(post.author) }}</span>
       </div>
     </template>
     <p v-else class="schedule-recipe__removed">{{ $t("schedules.recipeRemoved") }}</p>
@@ -30,6 +30,8 @@
 <script setup lang="ts">
 // One recipe in a schedule: small photo, title and author. `post` is null when the recipe was deleted
 const { link = true } = defineProps<{ post: IPostContent | null; link?: boolean }>();
+
+const authorName = useAuthorName();
 </script>
 
 <style lang="scss" src="./styles.scss"></style>

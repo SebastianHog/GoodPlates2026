@@ -1,0 +1,17 @@
+@use "~/assets/scss/tokens" as *;
+
+.recipe-article-skeleton {
+  &__byline {
+    margin-top: auto;
+  }
+
+  &__recipe {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+    gap: $space-12;
+    padding: $space-8;
+    border: 1px solid $color-border;
+    border-radius: $radius-lg;
+    background: $color-surface;
+    box-shadow: $shadow-page;
+  }
+}

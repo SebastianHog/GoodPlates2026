@@ -1,7 +1,5 @@
-interface ToastAction {
-  label: string;
-  to: string;
-}
+// A link ("Log in") or a callback ("Undo"); either way the toast closes when it's used
+type ToastAction = { label: string } & ({ to: string; onClick?: never } | { onClick: () => void; to?: never });
 
 interface Toast {
   id: number;

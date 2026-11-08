@@ -7,7 +7,7 @@
         <NuxtLink v-if="comment.author.hiddenName" :to="`/u/${comment.author.hiddenName}`" class="comment-item__name">
           {{ comment.author.displayName }}
         </NuxtLink>
-        <span v-else class="comment-item__name">{{ comment.author.displayName }}</span>
+        <span v-else class="comment-item__name">{{ authorName(comment.author) }}</span>
         <span v-if="comment.author.id === postAuthorId" class="comment-item__badge">
           {{ $t("comments.authorBadge") }}
         </span>
@@ -20,10 +20,10 @@
 
       <div class="comment-item__actions">
         <button
-          v-if="!reply"
+          v-if="!reply && canReply"
           type="button"
           class="comment-item__action"
-          :aria-label="$t('comments.replyTo', { name: comment.author.displayName })"
+          :aria-label="$t('comments.replyTo', { name: authorName(comment.author) })"
           @click="emit('reply')"
         >
           {{ $t("comments.reply") }}
@@ -48,6 +48,8 @@ defineProps<{
   comment: IComment;
   postAuthorId: string;
   canDelete: boolean;
+  // false when logged out: the section already has one "Log in" line, so no Reply buttons that only show a toast
+  canReply?: boolean;
   deleting?: boolean;
   reply?: boolean;
 }>();
@@ -55,6 +57,7 @@ defineProps<{
 const emit = defineEmits<{ reply: []; delete: [] }>();
 
 const { locale } = useI18n();
+const authorName = useAuthorName();
 </script>
 
 <style lang="scss" src="./styles.scss"></style>

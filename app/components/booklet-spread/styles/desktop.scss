@@ -7,9 +7,7 @@
   gap: 0;
   border: 1px solid $color-border;
   border-radius: $radius-lg;
-  box-shadow:
-    0 1px 2px rgb(0 0 0 / 6%),
-    0 16px 40px -12px rgb(0 0 0 / 20%);
+  box-shadow: $shadow-page;
   overflow: hidden;
 
   &__page {
@@ -30,7 +28,7 @@
 
       &::after {
         right: 0;
-        background: linear-gradient(to left, rgb(0 0 0 / 9%), transparent);
+        background: linear-gradient(to left, $fold-shade-left, transparent);
       }
     }
 
@@ -39,7 +37,7 @@
 
       &::after {
         left: 0;
-        background: linear-gradient(to right, rgb(0 0 0 / 6%), transparent);
+        background: linear-gradient(to right, $fold-shade-right, transparent);
       }
     }
   }

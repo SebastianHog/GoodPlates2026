@@ -7,17 +7,21 @@ $color-border: #e8e4d8;
 $color-border-secondary: #b8b3a6;
 $color-primary: #1a7a50;
 $color-primary-hover: #146140;
-$color-error: #dc2626;
+$color-error: #c81e1e; // 5.2:1 on the pale error surface, so error text passes AA
 $color-error-surface: #fef2f2;
 
 $font-family-sans: "Figtree Variable", ui-sans-serif, system-ui, sans-serif;
 // recipe titles and page titles only
 $font-family-serif: "Literata Variable", Georgia, serif;
+// small print: badges, tiny avatar initials, photo counters
+$font-size-xs: 0.75rem;
 $font-size-sm: 0.875rem;
 $font-size-base: 1rem;
 $font-size-lg: 1.125rem;
 $font-size-xl: 1.25rem;
 $font-size-2xl: 1.5rem;
+// the recipe title on its own page, wide screens only
+$font-size-3xl: 2rem;
 
 $font-weight-normal: 400;
 $font-weight-medium: 500;
@@ -44,6 +48,15 @@ $radius-full: 9999px;
 
 $shadow-sm: 0 1px 2px rgb(0 0 0 / 5%);
 $shadow-md: 0 4px 6px -1px rgb(0 0 0 / 10%);
+// A whole page resting on the table: the booklet and the recipe sheet below it (DESIGN.md "Lifted booklet")
+$shadow-page:
+  0 1px 2px rgb(0 0 0 / 6%),
+  0 16px 40px -12px rgb(0 0 0 / 20%);
+// The booklet's fold: two soft gradients meeting at the spine, darker on the left page
+$fold-shade-left: rgb(0 0 0 / 9%);
+$fold-shade-right: rgb(0 0 0 / 6%);
+// Lifts small light marks (carousel dots) off any photo
+$shadow-on-photo: 0 0 2px rgb(0 0 0 / 30%);
 
 // For color and background changes
 $transition-fast: 150ms ease;

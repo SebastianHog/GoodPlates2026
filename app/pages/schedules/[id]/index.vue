@@ -21,6 +21,7 @@
           <NuxtLink v-if="schedule.owner.hiddenName" :to="`/u/${schedule.owner.hiddenName}`" class="schedule-page__author">
             {{ schedule.owner.displayName }}
           </NuxtLink>
+          <span v-else>{{ authorName(schedule.owner) }}</span>
           · {{ $t("schedules.card.days", schedule.dayCount) }} · {{ $t("schedules.card.recipes", schedule.recipeCount) }}
           <template v-if="isMine">
             · {{ schedule.isPublic ? $t("schedules.view.public") : $t("schedules.view.private") }}
@@ -33,7 +34,7 @@
               <template #name>
                 <NuxtLink :to="`/schedules/${schedule.source.id}`">{{ schedule.source.name }}</NuxtLink>
               </template>
-              <template #author>{{ schedule.source.owner?.displayName ?? "?" }}</template>
+              <template #author>{{ schedule.source.owner ? authorName(schedule.source.owner) : $t("site.deletedUser") }}</template>
             </i18n-t>
             <span v-if="schedule.source.changedSinceSave" class="schedule-page__changed">
               {{ $t("schedules.view.sourceChanged") }}
@@ -105,6 +106,7 @@
 <script lang="ts" setup>
 const route = useRoute();
 const { t } = useI18n();
+const authorName = useAuthorName();
 const { loggedIn, user } = useUserSession();
 const { show: showToast } = useToast();
 

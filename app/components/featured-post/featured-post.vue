@@ -12,7 +12,7 @@
       <span class="featured-post__title">{{ post.title }}</span>
       <span class="featured-post__author">
         <user-circle-icon size="small" :user="post.author" />
-        {{ post.author.displayName }}
+        {{ authorName(post.author) }}
       </span>
     </figcaption>
   </figure>
@@ -24,6 +24,8 @@ defineProps<{
   post: IPostContent;
   sizes: string;
 }>();
+
+const authorName = useAuthorName();
 </script>
 
 <style lang="scss" src="./styles.scss"></style>

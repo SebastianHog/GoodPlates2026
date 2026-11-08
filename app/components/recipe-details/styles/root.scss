@@ -122,17 +122,57 @@
     text-decoration-color: rgb($color-text-muted, 0.6);
   }
 
+  // "Tap a step to tick it off", then "3 of 12 steps done · Clear ticks", always one line high
+  &__status {
+    margin: 0 0 $space-2;
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+    line-height: $line-height-normal;
+    font-variant-numeric: tabular-nums;
+  }
+
   &__clear {
     @include text-link;
+    @include touch-area;
 
-    margin-top: $space-3;
-    padding: $space-2 0;
+    margin-left: $space-2;
+    padding: 0;
     border: none;
     background: none;
     color: $color-primary;
     font-size: $font-size-sm;
     font-weight: $font-weight-semibold;
     cursor: pointer;
+  }
+
+  // Steps stay readable once done (dimmed, not struck through) so the cook can glance back at them
+  &__section--steps &__item--done &__text {
+    text-decoration: none;
+  }
+
+  // "You are here": the first step not yet ticked, on a faint green wash that runs past the text edges
+  &__step--current {
+    margin-inline: (-$space-3);
+    padding-inline: $space-3;
+    background: rgb($color-primary, 0.06);
+  }
+
+  &__step--current &__box {
+    background: rgb($color-primary, 0.12);
+  }
+
+  // A "Note:" or "Tip:" under its step, lined up with the step text
+  &__note {
+    margin: (-$space-1) 0 $space-3;
+    padding-left: calc(1.5rem + #{$space-3});
+    color: $color-text-muted;
+    line-height: $line-height-relaxed;
+    overflow-wrap: anywhere;
+
+    &--lead {
+      margin: 0 0 $space-3;
+      padding-left: 0;
+    }
   }
 
   // a zero-height marker after the last step; the ingredients bar hides when it scrolls into view

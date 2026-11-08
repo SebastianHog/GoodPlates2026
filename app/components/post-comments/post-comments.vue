@@ -9,9 +9,13 @@
       :placeholder="$t('comments.placeholder')"
       :send="addComment"
     />
-    <status-message v-else>
-      {{ $t("comments.loginPrompt") }}
-      <NuxtLink :to="loginUrl">{{ $t("comments.logIn") }}</NuxtLink>
+    <!-- Logged out, an empty thread gets one line that says both things, instead of a prompt and an invitation they can't act on -->
+    <status-message v-else-if="!isEmpty">
+      <i18n-t keypath="comments.loginPrompt" tag="span" scope="global">
+        <template #logIn>
+          <NuxtLink :to="loginUrl">{{ $t("comments.logIn") }}</NuxtLink>
+        </template>
+      </i18n-t>
     </status-message>
 
     <status-message v-if="error && !threads.length">
@@ -19,7 +23,14 @@
       <button type="button" @click="() => refresh()">{{ $t("comments.retry") }}</button>
     </status-message>
     <status-message v-else-if="!data">{{ $t("comments.loading") }}</status-message>
-    <status-message v-else-if="!threads.length">{{ $t("comments.empty") }}</status-message>
+    <status-message v-else-if="isEmpty && loggedIn">{{ $t("comments.empty") }}</status-message>
+    <status-message v-else-if="isEmpty">
+      <i18n-t keypath="comments.emptyLoggedOut" tag="span" scope="global">
+        <template #logIn>
+          <NuxtLink :to="loginUrl">{{ $t("comments.logIn") }}</NuxtLink>
+        </template>
+      </i18n-t>
+    </status-message>
 
     <ol v-if="threads.length" class="post-comments__list">
       <li v-for="thread in threads" :key="thread.id" class="post-comments__thread">
@@ -27,6 +38,7 @@
           :comment="thread"
           :post-author-id="postAuthorId"
           :can-delete="canDelete(thread)"
+          :can-reply="loggedIn"
           :deleting="deletingId === thread.id"
           @reply="openReply(thread)"
           @delete="remove(thread)"
@@ -74,28 +86,37 @@ const route = useRoute();
 const { t } = useI18n();
 const { show: showToast } = useToast();
 const headingId = useId();
+const authorName = useAuthorName();
 
 const url = computed(() => `/api/posts/${props.postId}/comments`);
 const loginUrl = computed(() => `/login?redirect=${encodeURIComponent(`${route.path}#comments`)}`);
 
-const { data, error, refresh } = useFetch<ICommentThread[]>(url, {
+const request = useFetch<ICommentThread[]>(url, {
   query: { limit: COMMENT_PAGE_SIZE },
   key: `comments-${props.postId}`,
   lazy: true,
 });
+const { data, error, refresh } = request;
 
 // A local copy, so new and deleted comments show without fetching the list again
 const threads = ref<ICommentThread[]>([]);
 const lastPageFull = ref(false);
+// Loaded and nothing to show (not while loading or after a failed load)
+const isEmpty = computed(() => !!data.value && !error.value && !threads.value.length);
 
-watch(
-  data,
-  (page) => {
-    threads.value = page ? page.map((thread) => ({ ...thread, replies: [...thread.replies] })) : [];
-    lastPageFull.value = (page?.length ?? 0) >= COMMENT_PAGE_SIZE;
-  },
-  { immediate: true },
-);
+function showPage(page: ICommentThread[] | null | undefined) {
+  threads.value = page ? page.map((thread) => ({ ...thread, replies: [...thread.replies] })) : [];
+  lastPageFull.value = (page?.length ?? 0) >= COMMENT_PAGE_SIZE;
+}
+
+watch(data, showPage, { immediate: true });
+
+// Watchers don't run during server rendering, so copy the first page in once it has arrived.
+// Without this the server page says "No comments yet" and the browser swaps the comments in.
+onServerPrefetch(async () => {
+  await request;
+  showPage(data.value);
+});
 
 function canDelete(comment: IComment) {
   const me = user.value?.id;
@@ -130,11 +151,7 @@ async function addComment(body: string) {
 const replyingTo = ref<{ threadId: string; name: string; key: number } | null>(null);
 
 function openReply(thread: ICommentThread) {
-  if (!loggedIn.value) {
-    showToast(t("comments.replyLogin"), { tone: "info", action: { label: t("toast.logIn"), to: loginUrl.value } });
-    return;
-  }
-  replyingTo.value = { threadId: thread.id, name: thread.author.displayName, key: Date.now() };
+  replyingTo.value = { threadId: thread.id, name: authorName(thread.author), key: Date.now() };
 }
 
 async function addReply(thread: ICommentThread, body: string) {

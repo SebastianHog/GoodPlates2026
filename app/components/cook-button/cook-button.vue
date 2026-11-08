@@ -1,7 +1,15 @@
 <template>
   <div class="cook-button">
-    <p v-if="allStepsDone && !cooked" class="cook-button__nudge">
+    <p v-if="allStepsDone && !cooked && loggedIn" class="cook-button__nudge">
       {{ $t("post.cooked.nudge") }}
+    </p>
+    <!-- Logged out, say up front that saying so needs an account, instead of a button that only answers with a toast -->
+    <p v-else-if="allStepsDone && !loggedIn" class="cook-button__nudge">
+      <i18n-t keypath="post.cooked.nudgeLoggedOut" tag="span" scope="global">
+        <template #logIn>
+          <NuxtLink :to="loginUrl" class="cook-button__login">{{ $t("post.cooked.logIn") }}</NuxtLink>
+        </template>
+      </i18n-t>
     </p>
 
     <div class="cook-button__row">
@@ -35,6 +43,9 @@ const props = defineProps<{
 }>();
 
 const { t } = useI18n();
+const { loggedIn } = useUserSession();
+const route = useRoute();
+const loginUrl = computed(() => `/login?redirect=${encodeURIComponent(route.fullPath)}`);
 
 const {
   on: cooked,

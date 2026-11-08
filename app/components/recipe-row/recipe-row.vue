@@ -37,11 +37,12 @@
 const props = defineProps<IPostContent>();
 
 const { t, locale } = useI18n();
+const authorName = useAuthorName();
 
 const bookmarked = ref(props.bookmarkedByMe);
 
 const meta = computed(() =>
-  [props.author.displayName, formatPostDate(props.createdAt, locale.value), formatRecipeSummary(props, t)].filter(Boolean).join(" · "),
+  [authorName(props.author), formatPostDate(props.createdAt, locale.value), formatRecipeSummary(props, t)].filter(Boolean).join(" · "),
 );
 </script>
 

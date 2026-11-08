@@ -58,4 +58,36 @@
     -webkit-line-clamp: 2;
     line-clamp: 2;
   }
+
+  // With only one or two posts, a third-width tile leaves a gap; a photo-and-title row fills the width instead
+  &__list--few {
+    grid-template-columns: minmax(0, 1fr);
+    gap: $space-3;
+
+    .author-posts__link {
+      display: flex;
+      align-items: center;
+      gap: $space-4;
+    }
+
+    .author-posts__photo {
+      flex: none;
+      width: 5rem;
+    }
+
+    .author-posts__title {
+      margin-top: 0;
+    }
+  }
+
+  @media #{$mq-min-width-mobile} {
+    &__list--few {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: $space-6;
+
+      .author-posts__photo {
+        width: 6rem;
+      }
+    }
+  }
 }

@@ -7,11 +7,16 @@ export function formatRecipeSummary(
 ): string {
   return [
     post.ingredients.length && t("post.summary.ingredients", post.ingredients.length),
-    post.steps.length && t("post.summary.steps", post.steps.length),
+    stepCount(post.steps) && t("post.summary.steps", stepCount(post.steps)),
     post.totalTimeMinutes && formatDuration(post.totalTimeMinutes, t),
   ]
     .filter(Boolean)
     .join(" · ");
+}
+
+// Notes and tips between steps aren't steps
+function stepCount(steps: string[]): number {
+  return steps.filter((step) => !isStepNote(step)).length;
 }
 
 // "45 min", "2 h", "1 h 30 min": long cooking times read as hours

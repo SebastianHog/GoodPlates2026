@@ -1,9 +1,12 @@
 <template>
   <template v-if="status === 'pending'">
     <p class="visually-hidden" role="status">{{ loadingLabel }}</p>
-    <post-container aria-hidden="true">
-      <recipe-post-skeleton v-for="n in skeletons" :key="n" />
-    </post-container>
+    <!-- A page can pass a placeholder shaped like its own content; the feed's cards are the default -->
+    <slot name="skeleton">
+      <post-container aria-hidden="true">
+        <recipe-post-skeleton v-for="n in skeletons" :key="n" />
+      </post-container>
+    </slot>
   </template>
 
   <status-message v-else-if="error?.statusCode === 404 && $slots.notFound">

@@ -10,9 +10,15 @@ colors:
   ink-muted: "#6b6a60"
   border: "#e8e4d8"
   border-strong: "#b8b3a6"
-  error: "#dc2626"
+  error: "#c81e1e"
   error-surface: "#fef2f2"
 typography:
+  display:
+    fontFamily: "Literata Variable, Georgia, serif"
+    fontSize: "2rem"
+    fontWeight: 600
+    lineHeight: 1.25
+    letterSpacing: "-0.01em"
   headline:
     fontFamily: "Literata Variable, Georgia, serif"
     fontSize: "1.5rem"
@@ -38,6 +44,11 @@ typography:
     fontSize: "0.875rem"
     fontWeight: 400
     lineHeight: 1.5
+  caption:
+    fontFamily: "Figtree Variable, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "0.75rem"
+    fontWeight: 600
+    lineHeight: 1.25
 rounded:
   sm: "2px"
   md: "2px"
@@ -139,11 +150,13 @@ A warm, low-chroma neutral palette with one homegrown green accent.
 Both are self-hosted variable fonts (`@fontsource-variable`), loaded with `font-display: swap`, covering Latin and Latin Extended for all six UI languages.
 
 ### Hierarchy
+- **Display** (600, 2rem, 1.25, -0.01em): The recipe title on its own page, wide screens only; phones use Headline.
 - **Headline** (600, 1.5rem, 1.25): Page titles (feed intro, Bookmarks, New/Edit recipe, login) and recipe titles in the desktop feed row.
 - **Title** (600, 1.25rem, 1.25): Recipe titles on phone cards and in Bookmarks rows; balanced wrapping.
 - **Body** (400, 1rem, 1.5): Descriptions and running text, kept to 60ch; `text-wrap: pretty`.
 - **Label** (500, 0.875rem): Buttons, header actions, field labels, the author's name (600).
-- **Meta** (400, 0.875rem, Pencil Grey): The "ingredients · steps · time" line, dates, hints.
+- **Meta** (400, 0.875rem, Pencil Grey): The "ingredients · steps · time" line, dates, hints, and nutrition lines found in a caption ("352 calories · 28.7g protein"), set in tabular figures.
+- **Caption** (600, 0.75rem): Small print only: the "Author" badge on comments, photo counters, the initial in the smallest avatar.
 
 ### Named Rules
 **The Cook's Voice Rule.** Literata is only for words a cook or a page owns: recipe titles and page titles. Buttons, labels, meta and messages are always Figtree.
@@ -167,7 +180,9 @@ Paper on a table. Surfaces are flat; shadows only lift whole pages as if they re
 
 ### Shadow Vocabulary
 - **Resting card** (`box-shadow: 0 1px 2px rgb(0 0 0 / 5%)`): Feed cards on wider screens.
-- **Lifted booklet** (`box-shadow: 0 1px 2px rgb(0 0 0 / 6%), 0 16px 40px -12px rgb(0 0 0 / 20%)`): The open booklet on login and in the editor.
+- **Lifted booklet** (`$shadow-page`: `0 1px 2px rgb(0 0 0 / 6%), 0 16px 40px -12px rgb(0 0 0 / 20%)`): The open booklet on login, in the editor and on the post page, and the recipe sheet below it.
+- **Fold shade** (`$fold-shade-left` 9% black, `$fold-shade-right` 6% black): The two gradients at the booklet's spine, on every booklet including feed rows.
+- **Photo mark** (`$shadow-on-photo`: `0 0 2px rgb(0 0 0 / 30%)`): Keeps the carousel dots visible on light photos.
 - **Floating toast** (`box-shadow: 0 1px 2px rgb(0 0 0 / 6%), 0 12px 32px -12px rgb(0 0 0 / 25%)`): The message box at the top of the screen.
 - **Focus glow** (`box-shadow: 0 0 0 3px` garden green at 20%): Text inputs on focus.
 

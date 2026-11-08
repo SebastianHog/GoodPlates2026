@@ -10,6 +10,13 @@
     line-height: $line-height-tight;
   }
 
+  &__login {
+    @include text-link;
+    @include underline;
+
+    color: $color-primary;
+  }
+
   &__row {
     display: flex;
     flex-direction: column;

@@ -1,6 +1,7 @@
 {
   "site": {
     "pageTitle": "{page} · GoodPlates",
+    "deletedUser": "Deleted user",
     "home": "GoodPlates home"
   },
   "header": {
@@ -122,13 +123,17 @@
       "steps": "Steps",
       "clear": "Clear ticks",
       "ticked": "{done} of {total} ticked",
-      "closeIngredients": "Close ingredients"
+      "closeIngredients": "Close ingredients",
+      "serves": "Serves {n}",
+      "hint": "Tap a step to tick it off as you go.",
+      "progress": "{done} of {total} steps done",
+      "cleared": "Ticks cleared.",
+      "undo": "Undo"
     },
     "share": "Share",
     "shareLabel": "Share {title}",
     "linkCopied": "Link copied.",
     "copyFailed": "Could not copy the link.",
-    "notFound": "This recipe could not be found.",
     "backToFeed": "Back to recipes",
     "previewDescription": "A recipe by {name}: {ingredients}, {steps}.",
     "loadFailed": "Could not load this recipe.",
@@ -137,6 +142,8 @@
     "cooked": {
       "button": "I cooked this",
       "nudge": "Every step is ticked off. Did you make it?",
+      "nudgeLoggedOut": "Every step is ticked off. Made it? {logIn} to say so.",
+      "logIn": "Log in",
       "first": "You're the first to cook this.",
       "withOthers": "You and {n} other person cooked this. | You and {n} other people cooked this.",
       "others": "Cooked by {n} person. | Cooked by {n} people.",
@@ -168,7 +175,8 @@
     "newTitle": "New recipe",
     "editTitle": "Edit recipe",
     "editPageTitle": "Edit {title}",
-    "notFound": "This recipe could not be found.",
+    "loadFailed": "Could not load this recipe for editing.",
+    "backToRecipe": "Back to recipe",
     "notYours": "You can only edit your own recipes.",
     "recipe": "Recipe",
     "draftRestored": "Your unfinished draft was restored.",
@@ -399,12 +407,12 @@
     "authorBadge": "Author",
     "remaining": "{n} character left | {n} characters left",
     "empty": "No comments yet. Be the first to say something.",
+    "emptyLoggedOut": "No comments yet. {logIn} to start the conversation.",
     "loading": "Loading comments…",
     "loadFailed": "Could not load comments.",
     "retry": "Try again",
-    "loginPrompt": "Log in to join the conversation.",
+    "loginPrompt": "{logIn} to join the conversation.",
     "logIn": "Log in",
-    "replyLogin": "Log in to reply to comments.",
     "showMore": "Show more comments",
     "loadMoreFailed": "Could not load more comments. Try again.",
     "validation": {

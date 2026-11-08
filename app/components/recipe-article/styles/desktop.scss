@@ -4,7 +4,20 @@
   &__recipe {
     padding: $space-8;
     border: 1px solid $color-border;
+    border-radius: $radius-lg;
     background: $color-surface;
-    box-shadow: $shadow-sm;
+    // the same lift as the booklet above, so both read as pages on one table
+    box-shadow: $shadow-page;
+  }
+
+  // the page's own heading gets a step up from the feed's 1.5rem headline
+  &__title {
+    font-size: $font-size-3xl;
+    letter-spacing: -0.01em;
+  }
+
+  // the intro takes up the free height, so the byline rests at the foot of the right page beside the photo
+  &__intro {
+    flex: 1;
   }
 }

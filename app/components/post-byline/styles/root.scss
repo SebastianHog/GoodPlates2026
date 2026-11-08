@@ -24,6 +24,29 @@
     font-weight: $font-weight-semibold;
   }
 
+  &--prominent {
+    gap: $space-3;
+
+    .user-circle-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      font-size: $font-size-base;
+    }
+  }
+
+  &--prominent &__text {
+    gap: 0.125rem;
+  }
+
+  &--prominent &__name {
+    font-size: $font-size-base;
+  }
+
+  &__name--deleted {
+    color: $color-text-muted;
+    font-weight: $font-weight-medium;
+  }
+
   &__date {
     color: $color-text-muted;
     font-size: $font-size-sm;

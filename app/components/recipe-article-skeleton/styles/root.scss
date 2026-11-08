@@ -1,0 +1,88 @@
+@use "~/assets/scss/tokens" as *;
+
+.recipe-article-skeleton {
+  animation: recipe-article-skeleton-pulse 1.6s ease-in-out infinite;
+
+  &__photo {
+    aspect-ratio: 1;
+    background: $color-border;
+  }
+
+  &__bar {
+    height: 0.875rem;
+    margin-top: $space-3;
+    background: $color-border;
+
+    &--title {
+      width: 70%;
+      height: 1.75rem;
+      margin-top: 0;
+    }
+
+    &--summary {
+      width: 45%;
+      margin-bottom: $space-4;
+    }
+
+    &--short {
+      width: 60%;
+    }
+
+    &--name {
+      width: 6rem;
+      margin-top: 0;
+    }
+
+    &--heading {
+      width: 8rem;
+      height: 1.25rem;
+      margin: 0 0 $space-4;
+    }
+  }
+
+  &__byline {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+    margin-top: $space-6;
+    padding-top: $space-4;
+    border-top: 1px solid $color-border;
+  }
+
+  &__avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: $radius-full;
+    background: $color-border;
+  }
+
+  &__recipe {
+    display: grid;
+    gap: $space-8;
+    margin-top: $space-8;
+    padding-top: $space-6;
+    border-top: 1px solid $color-border-secondary;
+  }
+
+  &__row {
+    height: 1.5rem;
+    margin-bottom: $space-4;
+    background: $color-border;
+
+    &--tall {
+      height: 3.5rem;
+    }
+  }
+}
+
+@keyframes recipe-article-skeleton-pulse {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .recipe-article-skeleton {
+    animation: none;
+  }
+}

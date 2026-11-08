@@ -5,14 +5,11 @@
       :error="error"
       :loading-label="$t('post.loading')"
       :failed-label="$t('post.loadFailed')"
-      :skeletons="1"
       @retry="refresh"
     >
-      <template #notFound>
-        {{ $t("post.notFound") }}
-        <NuxtLink to="/">{{ $t("post.backToFeed") }}</NuxtLink>
+      <template #skeleton>
+        <recipe-article-skeleton />
       </template>
-
       <recipe-article v-if="post" v-bind="post" />
     </load-state>
   </section>
@@ -21,14 +18,24 @@
 <script lang="ts" setup>
 const route = useRoute();
 const { t } = useI18n();
+const authorName = useAuthorName();
 
-const {
-  data: post,
-  status,
-  error,
-  refresh,
-} = useFetch<IPostContent>(() => `/api/posts/${route.params.id}`, {
+const request = useFetch<IPostContent>(() => `/api/posts/${route.params.id}`, {
   lazy: true,
+});
+const { data: post, status, error, refresh } = request;
+
+// A missing recipe gets the site's "Page not found" page and a real 404 status, so search engines drop the link.
+// On the server the watcher below doesn't run, so check once the fetch has finished.
+const notFound = () => createError({ statusCode: 404, statusMessage: "Recipe not found", fatal: true });
+
+onServerPrefetch(async () => {
+  await request;
+  if (error.value?.statusCode === 404) throw notFound();
+});
+
+watch(error, (e) => {
+  if (e?.statusCode === 404) showError(notFound());
 });
 
 useWakeLock();
@@ -45,9 +52,9 @@ const description = computed(() => {
   const caption = post.value.caption.replace(/\s+/g, " ").trim();
   if (caption) return truncate(caption, 160);
   return t("post.previewDescription", {
-    name: post.value.author.displayName,
+    name: authorName(post.value.author),
     ingredients: t("post.summary.ingredients", post.value.ingredients.length),
-    steps: t("post.summary.steps", post.value.steps.length),
+    steps: t("post.summary.steps", post.value.steps.filter((step) => !isStepNote(step)).length),
   });
 });
 
