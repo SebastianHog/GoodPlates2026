@@ -29,7 +29,7 @@ export interface PageOptions {
   before?: string;
 }
 
-function afterCursor(before?: string) {
+export function afterCursor(before?: string) {
   const split = before?.lastIndexOf("_") ?? -1;
   const createdAt = before?.slice(0, split);
   const id = before?.slice(split + 1);

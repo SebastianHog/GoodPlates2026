@@ -7,7 +7,9 @@
     "nav": "Account",
     "newPost": "New post",
     "logIn": "Log in",
-    "signUp": "Sign up"
+    "signUp": "Sign up",
+    "sections": "Sections",
+    "schedules": "Schedules"
   },
   "search": {
     "label": "Search recipes",
@@ -255,5 +257,122 @@
     "failedTitle": "Something went wrong",
     "failedText": "This page couldn't load. Try again in a moment.",
     "retry": "Try again"
+  },
+  "schedules": {
+    "title": "Schedules",
+    "intro": "Meal plans for up to a week, made from recipes people have posted.",
+    "yours": "Your schedules",
+    "yoursCount": "{count} of {max}",
+    "new": "New schedule",
+    "limitReached": "You have {max} schedules, the most you can have. Delete one to make or save another.",
+    "noneYet": "You haven't made or saved a schedule yet.",
+    "public": "Public schedules",
+    "publicEmpty": "Nobody has shared a schedule yet.",
+    "loginPrompt": "Log in to make your own schedules and save other people's.",
+    "loadFailed": "Could not load schedules.",
+    "showMore": "Show more schedules",
+    "day": "Day {n}",
+    "meals": {
+      "breakfast": "Breakfast",
+      "lunch": "Lunch",
+      "dinner": "Dinner"
+    },
+    "nothingPlanned": "Nothing planned",
+    "recipeRemoved": "This recipe was removed",
+    "card": {
+      "by": "by {name}",
+      "days": "{n} day | {n} days",
+      "recipes": "{n} recipe | {n} recipes",
+      "private": "Private",
+      "saved": "Saved copy"
+    },
+    "view": {
+      "back": "All schedules",
+      "backToSchedule": "Back to the schedule",
+      "notFound": "This schedule could not be found. It may be private or deleted.",
+      "loadFailed": "Could not load this schedule.",
+      "public": "Public",
+      "private": "Private",
+      "savedFrom": "Saved from {name} by {author}",
+      "sourceChanged": "Updated since you saved",
+      "sourceGone": "Saved from a schedule that is no longer available.",
+      "edit": "Edit",
+      "delete": "Delete schedule",
+      "deleteConfirm": "Delete this schedule? This can't be undone.",
+      "deleted": "Schedule deleted.",
+      "deleteFailed": "Could not delete the schedule. Try again.",
+      "save": "Save to my schedules",
+      "saving": "Saving…",
+      "saved": "Saved to your schedules.",
+      "saveFailed": "Could not save the schedule. Try again.",
+      "openCopy": "Open your saved copy",
+      "logInToSave": "Log in to save"
+    },
+    "shopping": {
+      "title": "Shopping list",
+      "count": "{done} of {total} ticked",
+      "empty": "Add recipes to get a shopping list.",
+      "noIngredients": "No ingredients listed.",
+      "allListed": "Everything is already on the list.",
+      "alsoFor": "also for {title}",
+      "clear": "Clear ticks"
+    },
+    "editor": {
+      "newTitle": "New schedule",
+      "editTitle": "Edit schedule",
+      "editPageTitle": "Edit {name}",
+      "name": "Name",
+      "namePlaceholder": "Schedule name, e.g. High-protein week",
+      "description": "Description",
+      "descriptionPlaceholder": "What the week is for, tips for cooking ahead… (optional)",
+      "visibility": "Who can see it",
+      "private": "Only me",
+      "privateHint": "Only you can see it.",
+      "public": "Everyone",
+      "publicHint": "Shown on Schedules and your profile, and others can save a copy.",
+      "days": "Days",
+      "addDay": "Add day",
+      "removeDay": "Remove day {n}",
+      "removeDayConfirm": "Remove day {n} and its recipes?",
+      "addRecipe": "Add recipe",
+      "addRecipeTo": "Add a recipe to {meal} on day {n}",
+      "moveUp": "Move {title} up",
+      "moveDown": "Move {title} down",
+      "remove": "Remove {title}",
+      "create": "Create schedule",
+      "creating": "Creating…",
+      "save": "Save changes",
+      "saving": "Saving…",
+      "cancel": "Cancel",
+      "saveFailed": "Could not save the schedule. It is still here; try again."
+    },
+    "picker": {
+      "title": "Your bookmarks",
+      "close": "Close",
+      "filter": "Filter bookmarks",
+      "add": "Add",
+      "added": "Added",
+      "loading": "Loading bookmarks…",
+      "loadFailed": "Could not load your bookmarks.",
+      "empty": "Only bookmarked recipes can go in a schedule, and you haven't bookmarked any yet.",
+      "browse": "Find recipes to bookmark",
+      "noMatches": "No bookmarks match “{query}”."
+    },
+    "validation": {
+      "nameRequired": "Give the schedule a name",
+      "nameMax": "Keep the name under {name} characters",
+      "descriptionMax": "Keep the description under {description} characters",
+      "daysRequired": "Add at least one day",
+      "daysMax": "A schedule has at most {days} days",
+      "mealMax": "A meal has at most {recipesPerMeal} recipes",
+      "recipeBroken": "A recipe could not be added"
+    },
+    "errors": {
+      "notFound": "This schedule could not be found.",
+      "notYours": "You can only change your own schedules.",
+      "limit": "You already have {perUser} schedules, the most you can have. Delete one first.",
+      "notBookmarked": "Only bookmarked recipes can be added. Bookmark the recipe first, then try again.",
+      "ownSchedule": "This is already your schedule."
+    }
   }
 }

@@ -23,6 +23,13 @@
           :followed-by-me="profile.followedByMe"
         />
 
+        <template v-if="schedules?.length">
+          <h2 class="profile-page__heading">{{ $t("schedules.title") }}</h2>
+          <div class="profile-page__schedules">
+            <schedule-card v-for="schedule in schedules" :key="schedule.id" v-bind="schedule" hide-owner />
+          </div>
+        </template>
+
         <h2 class="profile-page__heading">{{ $t("profile.recipesHeading") }}</h2>
 
         <status-message v-if="!profile.posts.length">
@@ -63,6 +70,16 @@ const { posts, hasMore, loadingMore, loadMore } = usePostPages(
   computed(() => profile.value?.posts),
   () => ({ author: profile.value?.user.id }),
 );
+
+// Their public schedules, shown above the recipes when they have any. Waits for the profile, so it knows whose
+const profileId = computed(() => profile.value?.user.id);
+const { data: schedules, execute: loadSchedules } = useFetch<IScheduleSummary[]>("/api/schedules", {
+  query: { author: profileId },
+  immediate: false,
+  lazy: true,
+  watch: false,
+});
+watch(profileId, (id) => id && loadSchedules(), { immediate: true });
 
 const isOwnProfile = computed(() => user.value?.id === profile.value?.user.id);
 

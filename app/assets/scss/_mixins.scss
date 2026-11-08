@@ -99,3 +99,76 @@
   @include press;
   @include focus-ring;
 }
+
+// A bordered text button (Cancel, Preview…). Add `--primary` styles with button-primary
+@mixin button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-1;
+  padding: $space-2 $space-4;
+  border: 1px solid $color-border-secondary;
+  border-radius: $radius-sm;
+  background: $color-surface;
+  color: $color-text;
+  font: inherit;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background $transition-fast,
+    border-color $transition-fast,
+    transform 160ms $ease-out;
+
+  &:hover:not(:disabled) {
+    border-color: $color-text-muted;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+
+  @include press;
+  @include focus-ring;
+}
+
+// The green main action of a page or form
+@mixin button-primary {
+  border-color: $color-primary;
+  background: $color-primary;
+  color: $color-surface;
+
+  &:hover:not(:disabled) {
+    border-color: $color-primary-hover;
+    background: $color-primary-hover;
+  }
+}
+
+// A boxed text field (inputs and textareas in forms)
+@mixin field {
+  width: 100%;
+  padding: $space-2 $space-3;
+  border: 1px solid $color-border-secondary;
+  border-radius: $radius-sm;
+  background: $color-surface;
+  color: $color-text;
+  font: inherit;
+  caret-color: $color-primary;
+
+  &::placeholder {
+    color: $color-text-muted;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgb($color-primary, 0.2);
+  }
+
+  &[aria-invalid="true"] {
+    border-color: $color-error;
+  }
+}

@@ -7,6 +7,10 @@
 
     <search-field class="site-header__search" />
 
+    <nav class="site-header__tabs" :aria-label="$t('header.sections')">
+      <NuxtLink to="/schedules" class="site-header__tab">{{ $t("header.schedules") }}</NuxtLink>
+    </nav>
+
     <nav class="site-header__actions" :aria-label="$t('header.nav')">
       <template v-if="loggedIn && user">
         <NuxtLink to="/create" class="site-header__button site-header__button--primary">

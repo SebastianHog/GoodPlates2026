@@ -1,0 +1,150 @@
+@use "~/assets/scss/tokens" as *;
+@use "~/assets/scss/mixins" as *;
+
+// The same ticking rows as a recipe's ingredients
+.shopping-list {
+  &__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: $space-2;
+    margin-bottom: $space-2;
+  }
+
+  &__heading {
+    margin: 0;
+    font-family: $font-family-serif;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-tight;
+  }
+
+  &__count {
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__empty,
+  &__note {
+    margin: 0;
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+  }
+
+  &__note {
+    padding: $space-2 0;
+  }
+
+  &__group + &__group {
+    margin-top: $space-6;
+  }
+
+  &__recipe {
+    margin: $space-4 0 0;
+    padding-bottom: $space-1;
+    border-bottom: 1px solid $color-border-secondary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    overflow-wrap: anywhere;
+  }
+
+  &__items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li + li {
+      border-top: 1px solid $color-border;
+    }
+  }
+
+  // The whole row is the tap target
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    gap: $space-3;
+    min-height: 2.75rem;
+    padding: $space-3 0;
+    cursor: pointer;
+  }
+
+  &__check {
+    @include visually-hidden;
+  }
+
+  &__box {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1.5px solid $color-border-secondary;
+    border-radius: $radius-sm;
+    background: $color-surface;
+    transition:
+      background $transition-fast,
+      border-color $transition-fast,
+      transform 160ms $ease-out;
+  }
+
+  &__tick {
+    display: none;
+    --icon-stroke: 2.5;
+  }
+
+  &__text {
+    min-width: 0;
+    padding-top: 0.0625rem;
+    overflow-wrap: anywhere;
+    transition: color $transition-fast;
+  }
+
+  &__also {
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+  }
+
+  &__item:hover &__box {
+    border-color: $color-primary;
+  }
+
+  &__item:active &__box {
+    transform: scale(0.94);
+  }
+
+  &__check:focus-visible + &__box {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+
+  &__item--done &__box {
+    border-color: $color-primary;
+    background: $color-primary;
+    color: $color-surface;
+  }
+
+  &__item--done &__tick {
+    display: inline-flex;
+  }
+
+  &__item--done &__text {
+    color: $color-text-muted;
+    text-decoration: line-through;
+    text-decoration-color: rgb($color-text-muted, 0.6);
+  }
+
+  &__clear {
+    @include text-link;
+
+    margin-top: $space-3;
+    padding: $space-2 0;
+    border: none;
+    background: none;
+    color: $color-primary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    cursor: pointer;
+  }
+}

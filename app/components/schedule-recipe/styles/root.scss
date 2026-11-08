@@ -1,0 +1,57 @@
+@use "~/assets/scss/tokens" as *;
+@use "~/assets/scss/mixins" as *;
+
+.schedule-recipe {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  min-height: 3rem;
+
+  &__photo {
+    flex: none;
+    width: 3rem;
+    height: 3rem;
+    border-radius: $radius-sm;
+    object-fit: cover;
+    overflow: hidden;
+  }
+
+  &__text {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  &__title {
+    font-family: $font-family-serif;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-tight;
+    overflow-wrap: anywhere;
+
+    &--link {
+      @include text-link;
+    }
+  }
+
+  &__author {
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+  }
+
+  &__removed {
+    flex: 1;
+    margin: 0;
+    padding-left: $space-3;
+    border-left: 1px solid $color-border-secondary;
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+    font-style: italic;
+  }
+
+  &__actions {
+    display: flex;
+    flex: none;
+    align-items: center;
+  }
+}

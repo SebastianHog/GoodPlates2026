@@ -1,0 +1,243 @@
+@use "~/assets/scss/tokens" as *;
+@use "~/assets/scss/mixins" as *;
+
+.schedule-editor {
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+  }
+
+  &__label {
+    margin: 0 0 $space-1;
+    padding: 0;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+  }
+
+  // Name reads like the page title, as in the recipe editor
+  &__name {
+    width: 100%;
+    padding: $space-1 0;
+    border: none;
+    border-bottom: 1px solid $color-border-secondary;
+    background: none;
+    color: $color-text;
+    caret-color: $color-primary;
+    font-family: $font-family-serif;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-tight;
+
+    &::placeholder {
+      color: $color-text-muted;
+    }
+
+    &:focus {
+      outline: none;
+      border-bottom-color: $color-primary;
+      box-shadow: 0 1px 0 $color-primary;
+    }
+
+    &[aria-invalid="true"] {
+      border-bottom-color: $color-error;
+    }
+  }
+
+  &__description {
+    @include field;
+
+    min-height: 4.5rem;
+    line-height: $line-height-relaxed;
+    resize: vertical;
+  }
+
+  &__field-error {
+    margin: 0;
+    color: $color-error;
+    font-size: $font-size-sm;
+  }
+
+  &__visibility {
+    display: grid;
+    gap: $space-2;
+    margin: 0;
+    padding: 0;
+    border: none;
+
+    @media #{$mq-min-width-mobile} {
+      grid-template-columns: 1fr 1fr;
+
+      legend {
+        grid-column: 1 / -1;
+      }
+    }
+  }
+
+  &__option {
+    display: flex;
+    align-items: flex-start;
+    gap: $space-3;
+    padding: $space-3;
+    border: 1px solid $color-border-secondary;
+    border-radius: $radius-sm;
+    background: $color-surface;
+    cursor: pointer;
+    transition: border-color $transition-fast, background $transition-fast;
+
+    &:has(:checked) {
+      border-color: $color-primary;
+      background: rgb($color-primary, 0.06);
+    }
+
+    &:has(:focus-visible) {
+      outline: 2px solid $color-primary;
+      outline-offset: 2px;
+    }
+  }
+
+  &__radio {
+    flex: none;
+    margin: 0.2rem 0 0;
+    accent-color: $color-primary;
+  }
+
+  &__option-label {
+    display: block;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__option-hint {
+    display: block;
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+  }
+
+  &__heading {
+    margin: 0 0 $space-3;
+    font-family: $font-family-serif;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-tight;
+  }
+
+  &__days {
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+  }
+
+  &__day {
+    padding: $space-4;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    background: $color-surface;
+  }
+
+  &__day-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-2;
+    margin-bottom: $space-2;
+  }
+
+  &__day-title {
+    margin: 0;
+    font-family: $font-family-serif;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__meal {
+    padding: $space-3 0;
+
+    & + & {
+      border-top: 1px solid $color-border;
+    }
+  }
+
+  &__meal-title {
+    margin: 0 0 $space-2;
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__recipes {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+    margin: 0 0 $space-2;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__icon {
+    @include icon-button;
+
+    width: 2rem;
+    height: 2rem;
+
+    .app-icon {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    &:disabled {
+      opacity: 0.35;
+    }
+  }
+
+  &__add,
+  &__add-day {
+    @include text-link;
+
+    align-self: flex-start;
+    padding: $space-1 0;
+    border: none;
+    background: none;
+    color: $color-primary;
+    font: inherit;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    cursor: pointer;
+  }
+
+  &__add-day {
+    padding: $space-2 0;
+  }
+
+  &__error {
+    margin: 0;
+    padding: $space-2 $space-3;
+    border: 1px solid $color-error;
+    border-radius: $radius-sm;
+    background: $color-error-surface;
+    color: $color-error;
+    font-size: $font-size-sm;
+  }
+
+  &__footer {
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    justify-content: flex-end;
+    gap: $space-2;
+    padding: $space-3 0;
+    border-top: 1px solid $color-border;
+    background: $color-paper;
+  }
+
+  &__button {
+    @include button;
+
+    &--primary {
+      @include button-primary;
+    }
+  }
+}

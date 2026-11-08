@@ -3,8 +3,8 @@
 
 // One row: brand, search right after it, actions pushed to the right
 .site-header {
-  grid-template-columns: auto minmax(0, 28rem) 1fr;
-  grid-template-areas: "brand search actions";
+  grid-template-columns: auto minmax(0, 28rem) auto 1fr;
+  grid-template-areas: "brand search tabs actions";
   gap: $space-8;
   padding: $space-3 $space-6;
 

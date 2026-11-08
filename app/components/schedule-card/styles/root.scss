@@ -1,0 +1,95 @@
+@use "~/assets/scss/tokens" as *;
+@use "~/assets/scss/mixins" as *;
+
+.schedule-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr);
+  align-items: start;
+  gap: $space-4;
+  padding: $space-4 0;
+  border-bottom: 1px solid $color-border;
+
+  // Up to three photos in one square: one fills it, two split it, three put two on the right
+  &__mosaic {
+    display: grid;
+    gap: 2px;
+    aspect-ratio: 1;
+    border-radius: $radius-sm;
+    overflow: hidden;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      object-fit: cover;
+    }
+
+    &--2 {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    &--3 {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+
+      img:first-child {
+        grid-row: span 2;
+      }
+    }
+  }
+
+  &__name {
+    margin: 0;
+    font-family: $font-family-serif;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-tight;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+  }
+
+  // The whole card opens the schedule
+  &__link {
+    @include text-link;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+    }
+  }
+
+  &__meta {
+    margin: $space-1 0 0;
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-1;
+    margin: $space-2 0 0;
+  }
+
+  &__tag {
+    padding: 0 $space-2;
+    border: 1px solid $color-border-secondary;
+    border-radius: $radius-sm;
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+    line-height: 1.5rem;
+  }
+
+  &__description {
+    display: -webkit-box;
+    margin: $space-2 0 0;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow-wrap: anywhere;
+  }
+}

@@ -1,0 +1,84 @@
+@use "~/assets/scss/tokens" as *;
+@use "~/assets/scss/mixins" as *;
+
+// Opens under the meal it adds to
+.recipe-picker {
+  margin-top: $space-2;
+  padding: $space-3;
+  border: 1px solid $color-border-secondary;
+  border-radius: $radius-sm;
+  background: $color-surface;
+  box-shadow: $shadow-md;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-2;
+    margin-bottom: $space-2;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__close {
+    @include icon-button;
+
+    .app-icon {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  &__status {
+    margin: 0;
+    padding: $space-2 0;
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+  }
+
+  &__inline {
+    @include text-link;
+
+    padding: 0;
+    border: none;
+    background: none;
+    color: $color-primary;
+    font: inherit;
+    font-weight: $font-weight-semibold;
+    cursor: pointer;
+  }
+
+  &__filter {
+    @include field;
+
+    margin-bottom: $space-2;
+    font-size: $font-size-sm;
+  }
+
+  &__list {
+    max-height: 20rem;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    list-style: none;
+    overscroll-behavior: contain;
+  }
+
+  &__row {
+    padding: $space-2 0;
+
+    & + & {
+      border-top: 1px solid $color-border;
+    }
+  }
+
+  &__add {
+    @include button;
+
+    padding-inline: $space-3;
+  }
+}
