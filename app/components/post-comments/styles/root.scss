@@ -1,0 +1,50 @@
+@use "~/assets/scss/tokens" as *;
+@use "~/assets/scss/mixins" as *;
+
+.post-comments {
+  max-width: 44rem;
+  margin-top: $space-12;
+  scroll-margin-top: $space-8;
+
+  &__heading {
+    margin: 0 0 $space-4;
+    font-family: $font-family-serif;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-tight;
+  }
+
+  &__new {
+    margin-bottom: $space-6;
+  }
+
+  &__list,
+  &__replies {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__thread {
+    padding: $space-4 0;
+    border-top: 1px solid $color-border;
+
+    &:last-child {
+      border-bottom: 1px solid $color-border;
+    }
+  }
+
+  // Indented under the top comment's avatar, with a rule to show they belong to it
+  &__replies {
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+    margin: $space-4 0 0 calc(0.875rem - 1px);
+    padding-left: calc(0.875rem + #{$space-3} - 1px);
+    border-left: 1px solid $color-border;
+  }
+
+  .show-more {
+    margin-top: $space-6;
+  }
+}

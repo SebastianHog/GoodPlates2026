@@ -44,6 +44,8 @@
       />
     </div>
 
+    <post-comments :post-id="id" :post-author-id="author.id" />
+
     <author-posts :author="author" :exclude-id="id" />
   </article>
 </template>

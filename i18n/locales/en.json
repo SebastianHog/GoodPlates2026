@@ -374,5 +374,40 @@
       "notBookmarked": "Only bookmarked recipes can be added. Bookmark the recipe first, then try again.",
       "ownSchedule": "This is already your schedule."
     }
+  },
+  "comments": {
+    "title": "Comments",
+    "label": "Your comment",
+    "placeholder": "Add a comment…",
+    "replyLabel": "Your reply to {name}",
+    "replyPlaceholder": "Reply to {name}…",
+    "post": "Post",
+    "postReply": "Reply",
+    "posting": "Posting…",
+    "cancel": "Cancel",
+    "reply": "Reply",
+    "replyTo": "Reply to {name}",
+    "delete": "Delete",
+    "deleting": "Deleting…",
+    "deleteConfirm": "Delete this comment? This can't be undone.",
+    "deleteThreadConfirm": "Delete this comment and its replies? This can't be undone.",
+    "deleted": "Comment deleted.",
+    "deleteFailed": "Could not delete the comment. Try again.",
+    "postFailed": "Could not post your comment. It is still here; try again.",
+    "authorBadge": "Author",
+    "remaining": "{n} character left | {n} characters left",
+    "empty": "No comments yet. Be the first to say something.",
+    "loading": "Loading comments…",
+    "loadFailed": "Could not load comments.",
+    "retry": "Try again",
+    "loginPrompt": "Log in to join the conversation.",
+    "logIn": "Log in",
+    "replyLogin": "Log in to reply to comments.",
+    "showMore": "Show more comments",
+    "loadMoreFailed": "Could not load more comments. Try again.",
+    "validation": {
+      "required": "Write something first",
+      "tooLong": "Keep comments under {body} characters"
+    }
   }
 }

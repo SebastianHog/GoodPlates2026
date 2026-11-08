@@ -1,0 +1,88 @@
+@use "~/assets/scss/tokens" as *;
+@use "~/assets/scss/mixins" as *;
+
+.comment-item {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-3;
+
+  > .user-circle-icon {
+    flex: none;
+    margin-top: 0.125rem;
+  }
+
+  &__main {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 $space-2;
+    font-size: $font-size-sm;
+    line-height: $line-height-tight;
+  }
+
+  &__name {
+    @include text-link;
+
+    overflow-wrap: anywhere;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__badge {
+    padding: 0 $space-1;
+    border-radius: $radius-sm;
+    background: rgb($color-primary, 0.1);
+    color: $color-primary;
+    font-size: 0.75rem;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__date {
+    color: $color-text-muted;
+  }
+
+  &__body {
+    max-width: 60ch;
+    margin: $space-1 0 0;
+    line-height: $line-height-normal;
+    white-space: pre-line;
+    text-wrap: pretty;
+    overflow-wrap: anywhere;
+  }
+
+  &__actions {
+    display: flex;
+    gap: $space-3;
+    margin-top: $space-1;
+  }
+
+  &__action {
+    @include text-link;
+
+    padding: 0;
+    border: none;
+    background: none;
+    color: $color-text-muted;
+    font: inherit;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      color: $color-text;
+    }
+
+    &--delete:hover:not(:disabled) {
+      color: $color-error;
+    }
+
+    &:disabled {
+      cursor: default;
+      opacity: 0.6;
+    }
+  }
+}

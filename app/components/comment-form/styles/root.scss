@@ -1,0 +1,54 @@
+@use "~/assets/scss/tokens" as *;
+@use "~/assets/scss/mixins" as *;
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+
+  &__label {
+    @include visually-hidden;
+  }
+
+  &__field {
+    @include field;
+
+    min-height: 4.5rem;
+    max-height: 20rem;
+    line-height: $line-height-normal;
+    resize: vertical;
+    field-sizing: content;
+  }
+
+  &--reply &__field {
+    min-height: 3rem;
+  }
+
+  &__footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $space-2 $space-3;
+  }
+
+  &__count {
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: $space-2;
+    margin-left: auto;
+  }
+
+  &__cancel {
+    @include button;
+  }
+
+  &__submit {
+    @include button;
+    @include button-primary;
+  }
+}
