@@ -7,7 +7,8 @@ interface PendingUploadDocument {
 }
 
 const HOUR = 60 * 60 * 1000;
-export const UPLOAD_LIFETIME_MS = 12 * HOUR;
+const hoursToDelete = 12;
+export const UPLOAD_LIFETIME_MS = hoursToDelete * HOUR;
 // Cleanup waits a little longer than publishing allows, so a post being published right at the limit keeps its photos
 const CLEANUP_GRACE_MS = 10 * 60 * 1000;
 
@@ -29,14 +30,21 @@ export async function recordUpload(key: string, userId: string) {
 }
 
 // The keys this user can't put in a post: not uploaded by them in the last 12 hours, and not already in one of their posts
-export async function unavailableImages(keys: string[], userId: string): Promise<string[]> {
+export async function unavailableImages(
+  keys: string[],
+  userId: string,
+): Promise<string[]> {
   if (keys.length === 0) return [];
 
   const uploads = await pendingUploadsCollection();
   const posts = await postsCollection();
   const [pending, published] = await Promise.all([
     uploads
-      .find({ _id: { $in: keys }, userId, uploadedAt: { $gt: new Date(Date.now() - UPLOAD_LIFETIME_MS) } })
+      .find({
+        _id: { $in: keys },
+        userId,
+        uploadedAt: { $gt: new Date(Date.now() - UPLOAD_LIFETIME_MS) },
+      })
       .project<{ _id: string }>({ _id: 1 })
       .toArray(),
     posts.distinct("images", { "author.id": userId, images: { $in: keys } }),
