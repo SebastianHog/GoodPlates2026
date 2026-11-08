@@ -47,6 +47,9 @@ export default defineNuxtConfig({
       secretAccessKey: "",
     },
     public: {
+      // The site's public address, e.g. https://goodplates.sebhog.com, for absolute links in link previews.
+      // Set via NUXT_PUBLIC_SITE_URL; without it the address of the request is used
+      siteUrl: "",
       // TODO: Change to garage url later on
       imageBaseUrl: "/images",
     },

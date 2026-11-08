@@ -39,7 +39,7 @@
     "linkCopied": "Linkki kopioitu.",
     "copyFailed": "Linkkiä ei voitu kopioida.",
     "notFound": "Reseptiä ei löytynyt.",
-    "backToFeed": "Takaisin resepteihin",
+    "backToFeed": "Takaisin resepteihin", "previewDescription": "Resepti käyttäjältä {name}: {ingredients}, {steps}.",
     "loadFailed": "Reseptiä ei voitu ladata.",
     "loading": "Ladataan reseptiä…",
     "moreFrom": "Lisää käyttäjältä {name}",
@@ -80,5 +80,6 @@
     "stepsRequired": "Lisää vähintään yksi vaihe", "stepsMax": "Lisää enintään {steps} vaihetta", "stepTooLong": "Yksi vaihe on liian pitkä",
     "servingsMax": "Annosten on oltava alle {servings} merkkiä", "timeInvalid": "Anna aika kokonaisina minuutteina"
   },
-  "errors": { "tooManyRequests": "Liian monta yritystä. Odota muutama minuutti ja yritä uudelleen." }
+  "errors": { "tooManyRequests": "Liian monta yritystä. Odota muutama minuutti ja yritä uudelleen." },
+  "errorPage": { "notFoundTitle": "Sivua ei löytynyt", "notFoundText": "Tässä osoitteessa ei ole sivua. Resepti on ehkä poistettu, tai linkissä on kirjoitusvirhe.", "failedTitle": "Jokin meni pieleen", "failedText": "Sivua ei voitu ladata. Yritä hetken päästä uudelleen.", "retry": "Yritä uudelleen" }
 }

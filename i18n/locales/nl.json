@@ -39,7 +39,7 @@
     "linkCopied": "Link gekopieerd.",
     "copyFailed": "De link kon niet worden gekopieerd.",
     "notFound": "Dit recept kon niet worden gevonden.",
-    "backToFeed": "Terug naar recepten",
+    "backToFeed": "Terug naar recepten", "previewDescription": "Een recept van {name}: {ingredients}, {steps}.",
     "loadFailed": "Dit recept kon niet worden geladen.",
     "loading": "Recept laden…",
     "moreFrom": "Meer van {name}",
@@ -80,5 +80,6 @@
     "stepsRequired": "Voeg minstens één stap toe", "stepsMax": "Voeg maximaal {steps} stappen toe", "stepTooLong": "Eén stap is te lang",
     "servingsMax": "Houd de porties korter dan {servings} tekens", "timeInvalid": "Vul de tijd in hele minuten in"
   },
-  "errors": { "tooManyRequests": "Te veel pogingen. Wacht een paar minuten en probeer het opnieuw." }
+  "errors": { "tooManyRequests": "Te veel pogingen. Wacht een paar minuten en probeer het opnieuw." },
+  "errorPage": { "notFoundTitle": "Pagina niet gevonden", "notFoundText": "Er is geen pagina op dit adres. Het recept is misschien verwijderd, of de link bevat een typfout.", "failedTitle": "Er ging iets mis", "failedText": "Deze pagina kon niet worden geladen. Probeer het zo opnieuw.", "retry": "Opnieuw proberen" }
 }

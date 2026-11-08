@@ -126,6 +126,7 @@
     "copyFailed": "Could not copy the link.",
     "notFound": "This recipe could not be found.",
     "backToFeed": "Back to recipes",
+    "previewDescription": "A recipe by {name}: {ingredients}, {steps}.",
     "loadFailed": "Could not load this recipe.",
     "loading": "Loading recipe…",
     "moreFrom": "More from {name}",
@@ -246,5 +247,12 @@
   },
   "errors": {
     "tooManyRequests": "Too many attempts. Wait a few minutes and try again."
+  },
+  "errorPage": {
+    "notFoundTitle": "Page not found",
+    "notFoundText": "There's no page at this address. The recipe may have been deleted, or the link has a typo.",
+    "failedTitle": "Something went wrong",
+    "failedText": "This page couldn't load. Try again in a moment.",
+    "retry": "Try again"
   }
 }

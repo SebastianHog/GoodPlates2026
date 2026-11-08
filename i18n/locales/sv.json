@@ -39,7 +39,7 @@
     "linkCopied": "Länken kopierad.",
     "copyFailed": "Det gick inte att kopiera länken.",
     "notFound": "Receptet kunde inte hittas.",
-    "backToFeed": "Tillbaka till recepten",
+    "backToFeed": "Tillbaka till recepten", "previewDescription": "Ett recept av {name}: {ingredients}, {steps}.",
     "loadFailed": "Det gick inte att ladda receptet.",
     "loading": "Laddar recept…",
     "moreFrom": "Mer från {name}",
@@ -80,5 +80,6 @@
     "stepsRequired": "Lägg till minst ett steg", "stepsMax": "Lägg till högst {steps} steg", "stepTooLong": "Ett steg är för långt",
     "servingsMax": "Håll portioner under {servings} tecken", "timeInvalid": "Ange tiden i hela minuter"
   },
-  "errors": { "tooManyRequests": "För många försök. Vänta några minuter och försök igen." }
+  "errors": { "tooManyRequests": "För många försök. Vänta några minuter och försök igen." },
+  "errorPage": { "notFoundTitle": "Sidan hittades inte", "notFoundText": "Det finns ingen sida på den här adressen. Receptet kan ha tagits bort, eller så är länken felstavad.", "failedTitle": "Något gick fel", "failedText": "Sidan kunde inte laddas. Försök igen om en stund.", "retry": "Försök igen" }
 }

@@ -39,7 +39,7 @@
     "linkCopied": "Bağlantı kopyalandı.",
     "copyFailed": "Bağlantı kopyalanamadı.",
     "notFound": "Bu tarif bulunamadı.",
-    "backToFeed": "Tariflere dön",
+    "backToFeed": "Tariflere dön", "previewDescription": "{name} tarafından bir tarif: {ingredients}, {steps}.",
     "loadFailed": "Bu tarif yüklenemedi.",
     "loading": "Tarif yükleniyor…",
     "moreFrom": "{name} kullanıcısından daha fazlası",
@@ -80,5 +80,6 @@
     "stepsRequired": "En az bir adım ekle", "stepsMax": "En fazla {steps} adım ekle", "stepTooLong": "Bir adım çok uzun",
     "servingsMax": "Porsiyon {servings} karakterden kısa olmalı", "timeInvalid": "Süreyi tam dakika olarak gir"
   },
-  "errors": { "tooManyRequests": "Çok fazla deneme yapıldı. Birkaç dakika bekleyip tekrar deneyin." }
+  "errors": { "tooManyRequests": "Çok fazla deneme yapıldı. Birkaç dakika bekleyip tekrar deneyin." },
+  "errorPage": { "notFoundTitle": "Sayfa bulunamadı", "notFoundText": "Bu adreste bir sayfa yok. Tarif silinmiş olabilir ya da bağlantıda bir yazım hatası var.", "failedTitle": "Bir şeyler ters gitti", "failedText": "Bu sayfa yüklenemedi. Biraz sonra tekrar dene.", "retry": "Tekrar dene" }
 }
