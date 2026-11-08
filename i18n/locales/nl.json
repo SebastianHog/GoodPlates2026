@@ -74,7 +74,7 @@
     "tooMany": "Er passen maar {max} foto's; de rest is overgeslagen"
   },
   "validation": {
-    "photosRequired": "Voeg minstens één foto toe", "photosMax": "Voeg maximaal {photos} foto's toe", "photoBroken": "Een foto is niet goed geüpload",
+    "photosRequired": "Voeg minstens één foto toe", "photosMax": "Voeg maximaal {photos} foto's toe", "photoBroken": "Een foto is niet goed geüpload", "photosExpired": "Foto's die niet binnen 12 uur na het uploaden zijn geplaatst, zijn verwijderd. Voeg ze opnieuw toe.",
     "titleRequired": "Geef je recept een titel", "titleMax": "Houd de titel korter dan {title} tekens", "captionMax": "Houd de beschrijving korter dan {caption} tekens",
     "ingredientsRequired": "Voeg minstens één ingrediënt toe", "ingredientsMax": "Voeg maximaal {ingredients} ingrediënten toe", "ingredientTooLong": "Eén ingrediënt is te lang",
     "stepsRequired": "Voeg minstens één stap toe", "stepsMax": "Voeg maximaal {steps} stappen toe", "stepTooLong": "Eén stap is te lang",

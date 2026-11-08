@@ -74,7 +74,7 @@
     "tooMany": "Vain {max} kuvaa mahtuu; loput ohitettiin"
   },
   "validation": {
-    "photosRequired": "Lisää vähintään yksi kuva", "photosMax": "Lisää enintään {photos} kuvaa", "photoBroken": "Kuva ei latautunut oikein",
+    "photosRequired": "Lisää vähintään yksi kuva", "photosMax": "Lisää enintään {photos} kuvaa", "photoBroken": "Kuva ei latautunut oikein", "photosExpired": "Kuvat, joita ei julkaistu 12 tunnin kuluessa lataamisesta, poistettiin. Lisää ne uudelleen.",
     "titleRequired": "Anna reseptille otsikko", "titleMax": "Otsikon on oltava alle {title} merkkiä", "captionMax": "Kuvauksen on oltava alle {caption} merkkiä",
     "ingredientsRequired": "Lisää vähintään yksi ainesosa", "ingredientsMax": "Lisää enintään {ingredients} ainesosaa", "ingredientTooLong": "Yksi ainesosa on liian pitkä",
     "stepsRequired": "Lisää vähintään yksi vaihe", "stepsMax": "Lisää enintään {steps} vaihetta", "stepTooLong": "Yksi vaihe on liian pitkä",

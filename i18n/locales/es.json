@@ -74,7 +74,7 @@
     "tooMany": "Solo caben {max} fotos; se omitieron las demás"
   },
   "validation": {
-    "photosRequired": "Añade al menos una foto", "photosMax": "Añade como máximo {photos} fotos", "photoBroken": "Una foto no se subió correctamente",
+    "photosRequired": "Añade al menos una foto", "photosMax": "Añade como máximo {photos} fotos", "photoBroken": "Una foto no se subió correctamente", "photosExpired": "Se quitaron las fotos que no se publicaron en las 12 horas siguientes a subirlas. Vuelve a añadirlas.",
     "titleRequired": "Ponle un título a tu receta", "titleMax": "El título debe tener menos de {title} caracteres", "captionMax": "La descripción debe tener menos de {caption} caracteres",
     "ingredientsRequired": "Añade al menos un ingrediente", "ingredientsMax": "Añade como máximo {ingredients} ingredientes", "ingredientTooLong": "Un ingrediente es demasiado largo",
     "stepsRequired": "Añade al menos un paso", "stepsMax": "Añade como máximo {steps} pasos", "stepTooLong": "Un paso es demasiado largo",

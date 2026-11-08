@@ -74,7 +74,7 @@
     "tooMany": "Yalnızca {max} fotoğraf sığar; kalanlar atlandı"
   },
   "validation": {
-    "photosRequired": "En az bir fotoğraf ekle", "photosMax": "En fazla {photos} fotoğraf ekle", "photoBroken": "Bir fotoğraf düzgün yüklenmedi",
+    "photosRequired": "En az bir fotoğraf ekle", "photosMax": "En fazla {photos} fotoğraf ekle", "photoBroken": "Bir fotoğraf düzgün yüklenmedi", "photosExpired": "Yüklendikten sonraki 12 saat içinde paylaşılmayan fotoğraflar kaldırıldı. Tekrar ekle.",
     "titleRequired": "Tarifine bir başlık ver", "titleMax": "Başlık {title} karakterden kısa olmalı", "captionMax": "Açıklama {caption} karakterden kısa olmalı",
     "ingredientsRequired": "En az bir malzeme ekle", "ingredientsMax": "En fazla {ingredients} malzeme ekle", "ingredientTooLong": "Bir malzeme çok uzun",
     "stepsRequired": "En az bir adım ekle", "stepsMax": "En fazla {steps} adım ekle", "stepTooLong": "Bir adım çok uzun",

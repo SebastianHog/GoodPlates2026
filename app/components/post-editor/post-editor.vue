@@ -355,9 +355,39 @@ onMounted(() => {
   if (saved) {
     load(saved);
     restoredDraft.value = true;
+    dropExpiredPhotos(saved.images);
   }
   markClean();
 });
+
+// Photos not posted within 12 hours of uploading are deleted, so a draft from before then can't use them
+async function dropExpiredPhotos(keys: string[]) {
+  if (keys.length === 0) return;
+  try {
+    const { expired } = await $fetch("/api/uploads/expired", {
+      query: { keys },
+    });
+    removeExpiredPhotos(expired);
+  } catch {
+    // Posting checks again, so the draft can stay as it is
+  }
+}
+
+function removeExpiredPhotos(expired: string[]) {
+  if (expired.length === 0) return;
+  photos.value = photos.value.filter((photo) => !expired.includes(photo.key));
+  errors.value = { ...errors.value, images: "validation.photosExpired" };
+}
+
+// The note about removed photos has done its job once a new photo is in
+watch(
+  () => uploadedKeys.value.length,
+  (count, before) => {
+    if (count > before && errors.value.images === "validation.photosExpired") {
+      errors.value = { ...errors.value, images: undefined };
+    }
+  },
+);
 
 function discardDraft() {
   draft.clear();
@@ -488,10 +518,21 @@ async function submit() {
     await navigateTo("/");
   } catch (e) {
     // Problems the server found in the fields come back as i18n keys, shown next to each field
-    const fieldErrors = (
-      e as { data?: { data?: { errors?: typeof errors.value } } }
-    ).data?.data?.errors;
+    const { errors: fieldErrors, expiredImages } =
+      (
+        e as {
+          data?: {
+            data?: { errors?: typeof errors.value; expiredImages?: string[] };
+          };
+        }
+      ).data?.data ?? {};
     if (fieldErrors) {
+      // The page was open so long that some photos expired before posting
+      if (expiredImages) {
+        photos.value = photos.value.filter(
+          (photo) => !expiredImages.includes(photo.key),
+        );
+      }
       errors.value = fieldErrors;
       nextTick(focusFirstError);
     } else {

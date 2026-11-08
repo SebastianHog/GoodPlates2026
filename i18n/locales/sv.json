@@ -74,7 +74,7 @@
     "tooMany": "Bara {max} foton får plats; resten hoppades över"
   },
   "validation": {
-    "photosRequired": "Lägg till minst ett foto", "photosMax": "Lägg till högst {photos} foton", "photoBroken": "Ett foto laddades inte upp korrekt",
+    "photosRequired": "Lägg till minst ett foto", "photosMax": "Lägg till högst {photos} foton", "photoBroken": "Ett foto laddades inte upp korrekt", "photosExpired": "Foton som inte publicerades inom 12 timmar efter uppladdningen har tagits bort. Lägg till dem igen.",
     "titleRequired": "Ge receptet en titel", "titleMax": "Håll titeln under {title} tecken", "captionMax": "Håll beskrivningen under {caption} tecken",
     "ingredientsRequired": "Lägg till minst en ingrediens", "ingredientsMax": "Lägg till högst {ingredients} ingredienser", "ingredientTooLong": "En ingrediens är för lång",
     "stepsRequired": "Lägg till minst ett steg", "stepsMax": "Lägg till högst {steps} steg", "stepTooLong": "Ett steg är för långt",

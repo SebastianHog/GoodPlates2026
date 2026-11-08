@@ -231,6 +231,7 @@
     "photosRequired": "Add at least one photo",
     "photosMax": "Add at most {photos} photos",
     "photoBroken": "A photo did not upload correctly",
+    "photosExpired": "Photos that weren't posted within 12 hours of uploading were removed. Add them again.",
     "titleRequired": "Give your recipe a title",
     "titleMax": "Keep the title under {title} characters",
     "captionMax": "Keep the description under {caption} characters",
