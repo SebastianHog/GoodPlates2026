@@ -1,3 +1,15 @@
+import { execSync } from "node:child_process";
+
+// Which code a build is, shown on /version. The Docker build gets these from CI as build args; locally, ask git
+function gitCommit(): string {
+  if (process.env.GIT_COMMIT) return process.env.GIT_COMMIT;
+  try {
+    return execSync("git rev-parse HEAD", { stdio: ["ignore", "pipe", "ignore"] }).toString().trim();
+  } catch {
+    return "";
+  }
+}
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
@@ -81,6 +93,12 @@ export default defineNuxtConfig({
     session: {
       // sec, min, hour, day
       maxAge: 60 * 60 * 24 * 7,
+    },
+    // Fixed when the app is built, server-only (see /version)
+    build: {
+      commit: gitCommit(),
+      version: process.env.BUILD_VERSION ?? "",
+      builtAt: new Date().toISOString(),
     },
     // Set via NUXT_MONGODB_URI in .env, server-only
     mongodbUri: "",

@@ -25,7 +25,10 @@ jobs:
             # Stop on the first error, so a failed build never takes down the running site
             set -e
 
-            docker build -t goodplates:latest .
+            docker build \
+              --build-arg GIT_COMMIT='@commit_hash@' \
+              --build-arg BUILD_VERSION='@build_version@' \
+              -t goodplates:latest .
 
             docker stop goodplates || true
             docker rm goodplates || true

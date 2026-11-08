@@ -44,15 +44,29 @@ export function getClientIp(event: H3Event): string | undefined {
     return (event.node.req as InternalRequest).__unenv__?.clientIp;
   }
 
+  const ip = clientAddress(event);
+  if (!ip) return undefined;
+
+  return ip.includes(":") ? `${ip.split(":").slice(0, 4).join(":")}::/64` : ip;
+}
+
+// Whether the visitor is on the local network (or this machine), e.g. for pages only the people running the site
+// should see. Relies on the reverse proxy setting X-Forwarded-For, like getClientIp
+export function isLocalNetworkClient(event: H3Event): boolean {
+  if (isInternalRequest(event)) return false;
+  const ip = clientAddress(event);
+  return !!ip && isPrivateIp(ip);
+}
+
+// The visitor's full address, see getClientIp
+function clientAddress(event: H3Event): string | undefined {
   let ip = normalizeIp(event.node.req.socket.remoteAddress ?? "");
   const forwarded = normalizeIp(getRequestHeader(event, "x-forwarded-for")?.split(",").at(-1)?.trim() ?? "");
   // No address at all means a local socket, which only a proxy on the same machine can use
   if (forwarded && (!ip || isPrivateIp(ip))) {
     ip = forwarded;
   }
-  if (!ip) return undefined;
-
-  return ip.includes(":") ? `${ip.split(":").slice(0, 4).join(":")}::/64` : ip;
+  return ip || undefined;
 }
 
 // The address in one spelling (IPv6 with all eight groups, IPv4-mapped IPv6 as plain IPv4), or "" when it isn't one
