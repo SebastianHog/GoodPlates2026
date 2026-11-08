@@ -17,14 +17,25 @@ export default defineNuxtConfig({
     ],
   },
   // Self-hosted variable fonts: Literata for recipe and page titles, Figtree for everything else
-  css: ["@fontsource-variable/literata/opsz.css", "@fontsource-variable/figtree/wght.css", "~/assets/scss/main.scss"],
+  css: [
+    "@fontsource-variable/literata/opsz.css",
+    "@fontsource-variable/figtree/wght.css",
+    "~/assets/scss/main.scss",
+  ],
   // Basic hardening for every response: no MIME sniffing, and no framing by other sites (clickjacking)
   routeRules: {
     "/**": {
-      headers: { "X-Content-Type-Options": "nosniff", "X-Frame-Options": "DENY" },
+      headers: {
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+      },
     },
   },
   runtimeConfig: {
+    session: {
+      // sec, min, hour, day
+      maxAge: 60 * 60 * 24 * 7,
+    },
     // Set via NUXT_MONGODB_URI in .env, server-only
     mongodbUri: "",
     // Set via NUXT_S3_* in .env, server-only (Garage, see deploy/garage)
