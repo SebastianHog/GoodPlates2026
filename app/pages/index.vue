@@ -54,7 +54,7 @@
           </NuxtLink>
         </status-message>
 
-        <post-container>
+        <post-container ref="list">
           <recipe-post v-for="post in posts" :key="post.id" v-bind="post" />
         </post-container>
         <show-more :has-more="hasMore" :loading="loadingMore" @more="loadMore" />
@@ -96,7 +96,7 @@ const feedTabs = computed<{ id: FeedId; label: string }[]>(() => [
   { id: "discover", label: t("feed.discover") },
 ]);
 
-const { posts, status, error, refresh, hasMore, loadingMore, loadMore } =
+const { posts, status, error, refresh, hasMore, loadingMore, loadMore, list } =
   usePosts({ search, feed, lazy: true });
 
 const showIntro = computed(() => !loggedIn.value && !search.value);

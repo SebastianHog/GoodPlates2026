@@ -42,7 +42,7 @@
           </template>
         </status-message>
 
-        <post-container>
+        <post-container ref="list">
           <recipe-post v-for="post in posts" :key="post.id" v-bind="post" />
         </post-container>
         <show-more :has-more="hasMore" :loading="loadingMore" @more="loadMore" />
@@ -66,7 +66,7 @@ const {
 });
 
 // The profile brings the first page of recipes; the rest load from /api/posts
-const { posts, hasMore, loadingMore, loadMore } = usePostPages(
+const { posts, hasMore, loadingMore, loadMore, list } = usePostPages(
   computed(() => profile.value?.posts),
   () => ({ author: profile.value?.user.id }),
 );

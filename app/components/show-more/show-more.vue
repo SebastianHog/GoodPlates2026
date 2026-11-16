@@ -1,5 +1,5 @@
 <template>
-  <div v-if="hasMore" class="show-more">
+  <div v-if="hasMore" class="show-more" aria-live="polite">
     <button type="button" class="show-more__button" :disabled="loading" @click="emit('more')">
       {{ loading ? $t("feed.loadingMore") : (label ?? $t("feed.showMore")) }}
     </button>

@@ -1,5 +1,8 @@
-// How many posts one request returns: a page of a feed or profile, and the Discover list
+// Default page size when a request sends no limit; schedules use it too
 export const POST_PAGE_SIZE = 20;
+// Post lists (feeds, profiles) start with 7 posts, then load 10 more each time the reader reaches the end
+export const POST_FIRST_PAGE = 7;
+export const POST_NEXT_PAGE = 10;
 export const DISCOVER_SIZE = 30;
 
 // Where the next page starts: "<createdAt>_<id>" of the last post shown, sent as ?before=
